@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Install Brew Packages
 brew install gpg
 brew install pinentry-mac
