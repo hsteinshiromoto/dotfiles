@@ -1,4 +1,6 @@
 # Install Brew Packages
+brew install gpg
+brew install pinentry-mac
 brew install python
 brew install tree
 brew install wget
