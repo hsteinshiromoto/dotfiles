@@ -10,16 +10,21 @@ brew install zsh
 
 # Install MacOS Applications
 brew install --cask bitwarden
+brew install --cask boxcryptor
 brew install --cask docker
 brew install --cask firefox
 brew install --cask iterm2
 brew install --cask notion
+brew install --cask obsidian
 brew install --cask pocket-casts
 brew install --cask protonvpn
 brew install --cask signal
+brew install --cask slack
 brew install --cask spotify
+brew install --cask standard-notes
 brew install --cask sublime-merge
 brew install --cask visual-studio-code
+brew install --cask whatsapp
 brew install --cask xquartz
 
 # Fonts
