@@ -19,8 +19,8 @@ brew install --cask protonvpn
 brew install --cask signal
 brew install --cask spotify
 brew install --cask sublime-merge
-brew install --cask xquartz
 brew install --cask visual-studio-code
+brew install --cask xquartz
 
 # Fonts
 brew tap homebrew/cask-Fonts
