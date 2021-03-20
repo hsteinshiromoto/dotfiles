@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Install Brew Packages
 brew install gpg
@@ -9,14 +10,21 @@ brew install wget
 brew install zsh
 
 # Install MacOS Applications
+brew install --cask alfred
+brew install --cask bartender
+brew install --cask bettertouchtool
 brew install --cask bitwarden
 brew install --cask boxcryptor
+brew install --cask dbeaver-community
 brew install --cask docker
+brew install --cask dropbox
 brew install --cask firefox
+brew install --cask istat-menus
 brew install --cask iterm2
 brew install --cask notion
 brew install --cask obsidian
 brew install --cask pocket-casts
+brew install --cask popclip
 brew install --cask protonvpn
 brew install --cask signal
 brew install --cask slack
