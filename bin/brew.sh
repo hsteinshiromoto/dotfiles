@@ -36,6 +36,7 @@ brew install --cask signal
 brew install --cask slack
 brew install --cask spotify
 brew install --cask standard-notes
+brew install --cask steam
 brew install --cask sublime-merge
 brew install --cask the-unarchiver
 brew install --cask transmission
