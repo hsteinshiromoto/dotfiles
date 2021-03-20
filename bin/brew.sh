@@ -2,7 +2,7 @@
 
 # Install Brew Packages
 brew install gpg
-brew install pinentry-mac
+brew install pinentry-mac #To be used with gpg
 brew install python
 brew install tree
 brew install wget
@@ -13,8 +13,9 @@ brew install --cask bitwarden
 brew install --cask docker
 brew install --cask firefox
 brew install --cask iterm2
-brew install --cask visual-studio-code
 brew install --cask protonvpn
+brew install --cask signal
+brew install --cask visual-studio-code
 
 # Fonts
 brew tap homebrew/cask-Fonts
