@@ -14,6 +14,7 @@ brew install --cask docker
 brew install --cask firefox
 brew install --cask iterm2
 brew install --cask visual-studio-code
+brew install --cask protonvpn
 
 # Fonts
 brew tap homebrew/cask-Fonts
