@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 
 # Install Brew Packages
+brew install git
 brew install gpg
 brew install pinentry-mac #To be used with gpg
 brew install python
 brew install texlive
 brew install tree
+brew install vim
 brew install wget
 brew install zsh
 
-# Install MacOS Applications
+# ---
+# Casks
+# ---
 brew install --cask adobe-acrobat-reader
 brew install --cask alfred
 brew install --cask bartender
@@ -23,6 +27,7 @@ brew install --cask docker
 brew install --cask drawio
 brew install --cask dropbox
 brew install --cask firefox
+brew install --cask gpg-suite
 brew install --cask inkscape
 brew install --cask istat-menus
 brew install --cask iterm2
@@ -45,6 +50,10 @@ brew install --cask vlc
 brew install --cask waterfox
 brew install --cask whatsapp
 brew install --cask xquartz
+
+# ---
+# Other Installations
+# ---
 
 # Fonts
 brew tap homebrew/cask-Fonts
