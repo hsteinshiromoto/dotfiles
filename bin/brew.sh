@@ -3,6 +3,7 @@
 # Install Brew Packages
 brew install git
 brew install gpg
+brew install python@3.9
 brew install pinentry-mac #To be used with gpg
 brew install python
 brew install texlive
