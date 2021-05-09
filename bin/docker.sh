@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-python_version=${python_version:-3.9-slim}
+python_version=${python_version:-3.9}
 
 get_images(){
     echo "Getting image hsteinshiromoto/docker.tex:latest ..."
@@ -12,7 +12,7 @@ get_images(){
     echo "Done"
 
     echo "Getting image python:${python_version} ..."
-    docker pull python:${python_version}
+    docker pull python:${python_version}-slim
     echo "Done"
             }
 
