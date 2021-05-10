@@ -49,6 +49,7 @@ brew install --cask steam
 brew install --cask sublime-merge
 brew install --cask the-unarchiver
 brew install --cask transmission
+brew install --cask virtualbox
 brew install --cask visual-studio-code
 brew install --cask vlc
 brew install --cask waterfox
