@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 # Install Brew Packages
+brew install automake
+brew install cask
+brew install cmake
 brew install git
 brew install gpg
 brew install python@3.9
