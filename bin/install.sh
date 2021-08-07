@@ -16,13 +16,19 @@ display_help() {
 }
 
 make_variables() {
-    if [[ $1 == "l" ]]; then
-        OS="linux"
+    # References:
+    #   [1] https://stackoverflow.com/questions/3466166/how-to-check-if-running-in-cygwin-mac-or-linux
 
-    else
-        OS="macos"
-
-    fi
+    # Get OS type
+    unameOut="$(uname -s)"
+    case "${unameOut}" in
+        Linux*)     OS=Linux;;
+        Darwin*)    OS=Mac;;
+        CYGWIN*)    OS=Cygwin;;
+        MINGW*)     OS=MinGw;;
+        *)          OS="UNKNOWN:${unameOut}"
+    esac
+    echo ${OS}
 }
 
 build_essentials() {
