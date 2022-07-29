@@ -5,7 +5,7 @@ export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
 
 # Add python
-export PATH="${PATH}:/Users/humberto/Library/Python/3.8/bin"
+export PATH="${PATH}:/Users/humberto/Library/Python/3.9/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/humberto/.oh-my-zsh"
@@ -103,3 +103,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+eval "$(pyenv init -)"
+
+alias ls="exa"

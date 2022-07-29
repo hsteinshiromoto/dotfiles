@@ -2,6 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,latex,macos,linux,pycharm,visualstudiocode,jupyternotebooks,tex,windows,dbeaver
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,latex,macos,linux,pycharm,visualstudiocode,jupyternotebooks,tex,windows,dbeaver
 
+## Files
+**/hotlist
+
 ### DBeaver ###
 # ide config file
 .dbeaver-data-sources*.xml
