@@ -106,3 +106,4 @@ source $ZSH/oh-my-zsh.sh
 eval "$(pyenv init -)"
 
 alias ls="exa"
+alias cat="bat"
