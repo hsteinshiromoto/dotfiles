@@ -1,12 +1,13 @@
 SHELL:=/bin/bash
 
-.PHONY: homebrew vscode mc kitty btop
+.PHONY: btop homebrew kitty mc shell vscode
+
+all: btop homebrew kitty mc shell vscode
 
 btop:
 	@echo "Backing up btop ..."
 	bash bin/btop.sh
 	@echo "Done."
-
 
 homebrew:
 	@echo "Backing up homebrew ..."
