@@ -1,6 +1,6 @@
 SHELL:=/bin/bash
 
-.PHONY: homebrew vscode
+.PHONY: homebrew vscode mc
 
 shell:
 	@echo "Backing up shell profiles ..."
@@ -15,4 +15,9 @@ homebrew:
 vscode:
 	@echo "Backing up VSCode ..."
 	bash bin/vscode.sh
+	@echo "Done."
+
+mc:
+	@echo "Backing up Midnight Commander ..."
+	bash bin/mc.sh
 	@echo "Done."
