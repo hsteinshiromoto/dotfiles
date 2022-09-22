@@ -2,7 +2,7 @@ SHELL:=/bin/bash
 
 .PHONY: homebrew
 
-backup:
+shell:
 	@echo "Backing up shell profiles ..."
 	bash bin/shell.sh
 	@echo "Done."
