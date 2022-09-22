@@ -1,3 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-brew bundle dump
+PROJECT_ROOT=$(git rev-parse --show-toplevel)
+cd ${PROJECT_ROOT}/homebrew && brew bundle dump
