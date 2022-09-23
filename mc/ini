@@ -15,8 +15,8 @@ confirm_exit=false
 confirm_directory_hotlist_delete=false
 confirm_view_dir=false
 safe_delete=false
-safe_overwrite=false
-use_8th_bit_as_meta=false
+safe_overwrite=true
+use_8th_bit_as_meta=true
 mouse_move_pages_viewer=true
 mouse_close_dialog=false
 fast_refresh=false
@@ -83,11 +83,11 @@ editor_backup_extension=~
 editor_filesize_threshold=64M
 editor_stop_format_chars=-+*\\,.;:&>
 mcview_eof=
-skin=darkfar
+skin=dracula
 
 [Layout]
 output_lines=0
-left_panel_size=104
+left_panel_size=98
 top_panel_size=0
 message_visible=false
 keybar_visible=true
@@ -115,6 +115,10 @@ base_color=
 xterm-256color=
 color_terminals=
 
+screen-256color=
+
+xterm-kitty=
+
 [FindFile]
 file_case_sens=true
 file_shell_pattern=true
@@ -133,7 +137,7 @@ ignore_dirs=
 [Panels]
 simple_swap=false
 show_mini_info=true
-kilobyte_si=false
+kilobyte_si=true
 mix_all_files=false
 show_backups=true
 show_dot_files=true
@@ -150,7 +154,7 @@ filetype_mode=true
 permission_mode=true
 torben_fj_mode=false
 quick_search_mode=2
-select_flags=6
+select_flags=7
 
 [Panelize]
 Find *.orig after patching=find . -name \\*.orig -print
