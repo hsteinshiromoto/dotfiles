@@ -7,6 +7,9 @@ gpgconf --launch gpg-agent
 # Add python
 export PATH="${PATH}:/Users/humberto/Library/Python/3.9/bin"
 
+# Add Poetry
+export PATH="/Users/humberto/.local/bin:$PATH"
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/humberto/.oh-my-zsh"
 
@@ -107,3 +110,16 @@ eval "$(pyenv init -)"
 
 alias ls="exa"
 alias cat="bat"
+export HOMEBREW_GITHUB_API_TOKEN=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
+export HOMEBREW_GITHUB_API_TOKEN=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
+source /Users/humberto/Projects/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# MacOS Shortcuts
+# References: https://stackoverflow.com/questions/20167962/binding-option-left-and-right-arrows-to-move-by-words-in-zsh-command-line
+
+bindkey "\e[1;3D" backward-word     # ⌥←
+bindkey "\e[1;3C" forward-word      # ⌥→
+bindkey "^[[1;9D" beginning-of-line # cmd+←
+bindkey "^[[1;9C" end-of-line       # cmd+→
+
+
