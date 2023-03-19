@@ -575,9 +575,9 @@ type/^PostScript
 # PDF
 type/^PDF
 	#Open=/usr/local/Cellar/midnight-commander/4.8.28/libexec/mc/ext.d/doc.sh open pdf
-	Open=(open %s)
+	Open=(open %s &)
 	#View=%view{ascii} /usr/local/Cellar/midnight-commander/4.8.28/libexec/mc/ext.d/doc.sh view pdf
-	View=(open %s)
+	View=(open %s &)
 
 # html
 regex/i/\.html?$
