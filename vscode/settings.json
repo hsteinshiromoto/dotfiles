@@ -209,7 +209,8 @@
 	},
 	"editor.renderControlCharacters": true,
 	"[python]": {
-		"editor.defaultFormatter": "ms-python.python"
+		"editor.defaultFormatter": "ms-python.python",
+		"editor.formatOnType": true
 	},
 	"python.formatting.provider": "black",
 	"bracketPairColorizer.depreciation-notice": false,
