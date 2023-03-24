@@ -1,6 +1,6 @@
 SHELL:=/bin/bash
 
-.PHONY: btop homebrew kitty mc shell vscode ssh
+.PHONY: btop homebrew kitty mc shell vscode ssh tmux
 
 all: btop homebrew kitty mc shell vscode
 
@@ -37,4 +37,9 @@ vscode:
 ssh:
 	@echo "Backing up SSH config..."
 	bash bin/ssh.sh
+	@echo "Done."
+
+tmux:
+	@echo "Backing up tmux config..."
+	bash bin/tmux.sh
 	@echo "Done."
