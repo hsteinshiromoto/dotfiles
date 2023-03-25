@@ -10,10 +10,6 @@ Host github.com
   IdentityFile ~/.ssh/github_rsa
 
 # Nas
-Host 192.168.50.239
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/mbp18nas
 # ---
 # AWS
 # ---
