@@ -2,7 +2,7 @@ SHELL:=/bin/bash
 
 .PHONY: btop homebrew kitty mc shell vscode ssh tmux
 
-all: btop homebrew kitty mc shell vscode
+all: btop homebrew kitty mc shell vscode ssh tmux
 
 btop:
 	@echo "Backing up btop ..."
