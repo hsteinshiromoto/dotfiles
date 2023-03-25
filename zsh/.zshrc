@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Starts tmux with zsh [1]
+if [ "$TMUX" = "" ]; then tmux; fi
+
 export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
 
@@ -122,4 +125,5 @@ bindkey "\e[1;3C" forward-word      # ⌥→
 bindkey "^[[1;9D" beginning-of-line # cmd+←
 bindkey "^[[1;9C" end-of-line       # cmd+→
 
-
+# References
+# [1] https://unix.stackexchange.com/questions/41274/having-tmux-load-by-default-when-a-zsh-terminal-is-launched
