@@ -74,7 +74,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git macos)
+plugins=(git macos docker tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # ---
 
 # Starts tmux with zsh [1]
-if [ "$TMUX" = "" ]; then tmux; fi
+# if [ "$TMUX" = "" ]; then tmux; fi
 
 # ---
 # User configuration: gpg
