@@ -1,33 +1,37 @@
 {
-  "workbench.startupEditor": "none",
   "[python]": {
     "editor.formatOnType": true
   },
+  "debug.console.fontFamily": "JetBrains Mono",
+  "debug.terminal.clearBeforeReusing": true,
+  "editor.accessibilitySupport": "off",
+  "editor.codeLensFontFamily": "JetBrains Mono",
+  "editor.fontFamily": "JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
+  "editor.inlayHints.fontFamily": "JetBrains Mono",
   "editor.inlineSuggest.enabled": true,
   "git.confirmSync": false,
-  "python.testing.pytestEnabled": true,
+  "git.terminalGitEditor": true,
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": false,
+    "plaintext": false,
+    "scminput": false,
+    "yaml": true
+  },
   "python.testing.pytestArgs": [
     "--doctest-modules",
     "--doctest-report",
     "ndiff"
   ],
-  "workbench.colorTheme": "Dracula Soft",
-  "editor.fontFamily": "JetBrains Mono, Menlo, Monaco, 'Courier New', monospace",
-  "editor.codeLensFontFamily": "JetBrains Mono",
-  "editor.inlayHints.fontFamily": "JetBrains Mono",
-  "scm.inputFontFamily": "JetBrains Mono",
-  "debug.console.fontFamily": "JetBrains Mono",
+  "python.testing.pytestEnabled": true,
   "redhat.telemetry.enabled": false,
-  "github.copilot.enable": {
-    "*": true,
-    "yaml": true,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
-  },
+  "scm.inputFontFamily": "JetBrains Mono",
   "terminal.external.osxExec": "kitty.app",
-  "debug.terminal.clearBeforeReusing": true,
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.smoothScrolling": true,
-  "git.terminalGitEditor": true
+  "workbench.colorTheme": "Dracula Soft",
+  "workbench.startupEditor": "none",
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  }
 }
