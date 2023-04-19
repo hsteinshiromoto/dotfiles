@@ -7,9 +7,14 @@ Host gitlab.com
 Host github.com
   AddKeysToAgent yes
   UseKeychain yes
-  IdentityFile ~/.ssh/github_rsa
+  IdentityFile ~/.ssh/github
 
 # Nas
+Host 192.168.50.239
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/NASGituser
+
 # ---
 # AWS
 # ---
@@ -20,3 +25,7 @@ Host github.com
 Host ec2-54-206-36-102.ap-southeast-2.compute.amazonaws.com
   Preferredauthentications publickey
   IdentityFile ~/.ssh/MBP.pem
+
+# Fig ssh integration. Keep at the bottom of this file.
+Match all
+  Include ~/.fig/ssh
