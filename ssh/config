@@ -15,6 +15,10 @@ Host 192.168.50.239
   UseKeychain yes
   IdentityFile ~/.ssh/NASGituser
 
+# Cloudflare
+Host steinshiromoto.net
+	ProxyCommand cloudflared access ssh --hostname %h
+
 # ---
 # AWS
 # ---
