@@ -33,5 +33,7 @@
   "workbench.startupEditor": "none",
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
-  }
+  },
+  "editor.defaultFormatter": "ms-python.black-formatter",
+  "remote.autoForwardPortsSource": "hybrid"
 }
