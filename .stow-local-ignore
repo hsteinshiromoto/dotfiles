@@ -3,6 +3,8 @@
 # \.ssh/*
 # \.gnupg/*
 
+\.gitconfig
+
 RCS
 .+,v
 
