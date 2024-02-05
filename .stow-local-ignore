@@ -15,7 +15,9 @@ _darcs
 \.gitignore
 
 Makefile
-*.code-workspace
+\#*.code-workspace
+
+\#*.DS_Store
 
 .+~          # emacs backup files
 \#.*\#       # emacs autosave files
