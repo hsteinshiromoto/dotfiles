@@ -1,5 +1,8 @@
 # Comments and blank lines are allowed.
 
+# \.ssh/*
+# \.gnupg/*
+
 RCS
 .+,v
 
