@@ -2,9 +2,10 @@ SHELL:=/bin/bash
 
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
 
-.PHONY: btop homebrew kitty mc shell vscode ssh tmux
+.PHONY: homebrew vscode all delete
 
-all: btop homebrew kitty mc shell vscode ssh tmux
+all:
+        stow --verbose 3 --restow .
 
 homebrew:
 	@echo "Backing up homebrew ..."
