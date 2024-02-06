@@ -29,9 +29,11 @@
   "terminal.external.osxExec": "kitty.app",
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.smoothScrolling": true,
-  "workbench.colorTheme": "Dracula Soft",
+  "workbench.colorTheme": "Dracula",
   "workbench.startupEditor": "none",
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
-  }
+  },
+  "editor.defaultFormatter": "ms-python.black-formatter",
+  "remote.autoForwardPortsSource": "hybrid"
 }
