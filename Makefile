@@ -1,45 +1,19 @@
 SHELL:=/bin/bash
 
-.PHONY: btop homebrew kitty mc shell vscode ssh tmux
+PROJECT_ROOT=$(git rev-parse --show-toplevel)
 
-all: btop homebrew kitty mc shell vscode ssh tmux
+.PHONY: homebrew vscode all delete
 
-btop:
-	@echo "Backing up btop ..."
-	bash bin/btop.sh
-	@echo "Done."
+all:
+        stow --verbose 3 --restow .
 
 homebrew:
 	@echo "Backing up homebrew ..."
-	bash bin/homebrew.sh
-	@echo "Done."
-
-kitty:
-	@echo "Backing up kitty ..."
-	bash bin/kitty.sh
-	@echo "Done."
-
-mc:
-	@echo "Backing up Midnight Commander ..."
-	bash bin/mc.sh
-	@echo "Done."
-
-shell:
-	@echo "Backing up shell profiles ..."
-	bash bin/shell.sh
+	brew bundle dump
 	@echo "Done."
 
 vscode:
-	@echo "Backing up VSCode ..."
-	bash bin/vscode.sh
-	@echo "Done."
-
-ssh:
-	@echo "Backing up SSH config..."
-	bash bin/ssh.sh
-	@echo "Done."
-
-tmux:
-	@echo "Backing up tmux config..."
-	bash bin/tmux.sh
+	@echo "Backing up vscode settings ..."
+	$(eval VSCODE_SETTINGS_DIR := Library/Application\ Support/Code/User)
+	cp ${HOME}/${VSCODE_SETTINGS_DIR}/settings.json ${VSCODE_SETTINGS_DIR}
 	@echo "Done."
