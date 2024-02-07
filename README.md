@@ -1,6 +1,6 @@
 # dotfiles
 
-My dotfiles
+My dotfiles for MacOS.
 
 # Requirements
 
@@ -28,7 +28,6 @@ My dotfiles
 │       ├── mc.ext
 │       ├── mc.ext.ini
 │       └── panels.ini
-├── .gitignore
 ├── .gnupg
 │   ├── gpg-agent.conf
 │   └── gpg.conf
@@ -39,11 +38,19 @@ My dotfiles
 ├── .zshrc
 ├── Brewfile
 ├── LICENSE
-├── Library                         <- VSCode User Settings
+├── Library
 │   └── Application Support
-│       └── Code
-│           └── User
-│               └── settings.json
+│       ├── Code
+│       │   └── User
+│       │       └── settings.json
+│       └── espanso
+│           ├── config
+│           │   └── default.yml
+│           ├── match
+│           │   ├── base.yml
+│           │   ├── obsidian.yml
+│           │   └── packages
+│           └── user
 ├── Makefile
 ├── README.md
 └── dotfiles.code-workspace
