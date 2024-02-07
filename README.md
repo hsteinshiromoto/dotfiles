@@ -8,6 +8,9 @@ My dotfiles for MacOS.
 2. GNU Stow
 
 # Repository Structure
+
+Note that the structure of this repository must be the same as the structure as the config files in the `/home/user` folder.
+
 ```
 .
 ├── .bashrc
