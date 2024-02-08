@@ -89,7 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # ---
 
 # Starts tmux with zsh [1]
-if [ "$TMUX" = "" ]; then tmux new-session; fi
+if [ "$TMUX" = "" ]; then tmux; fi
 
 # ---
 # User configuration: gpg
