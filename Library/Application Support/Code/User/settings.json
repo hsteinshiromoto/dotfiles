@@ -35,5 +35,14 @@
     "FIG_NEW_SESSION": "1"
   },
   "editor.defaultFormatter": "ms-python.black-formatter",
-  "remote.autoForwardPortsSource": "hybrid"
+  "remote.autoForwardPortsSource": "hybrid",
+  "terminal.integrated.profiles.osx": 
+  {
+    "tmux-shell": 
+    {
+      "path": "tmux",
+      "args": ["new-session", "-A", "-s", "vscode:${workspaceFolder}"]
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "tmux-shell"
 }
