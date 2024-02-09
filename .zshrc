@@ -96,7 +96,7 @@ source $ZSH/oh-my-zsh.sh
 ZSH_TMUX_AUTOSTART=true
 
 # Starts tmux with zsh [1]
-# if [ "$TMUX" = "" ]; then tmux; fi
+if [ "$TMUX" = "" ]; then tmux; fi
 
 # ---
 # User configuration: gpg
