@@ -1,6 +1,10 @@
 name: Changelog CI
 
 on:
+  push:
+    tags:
+      - "**"
+
   pull_request:
     types: [ opened ]
 
