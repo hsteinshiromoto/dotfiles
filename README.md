@@ -58,3 +58,9 @@ Note that the structure of this repository must be the same as the structure as 
 ├── README.md
 └── dotfiles.code-workspace
 ```
+
+# Known Bugs
+
+## Copy from tmux terminal in VSCode
+
+- VSCode does not copy the text from tmux terminal by simply selecting it. In MacOS, it is necessary [to hold the Option key while selecting it](https://unix.stackexchange.com/questions/757939/cannot-copy-text-from-tmux-integrated-terminal-in-update-1-82-2) to get it copied.
