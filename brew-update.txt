@@ -1,2 +1,0 @@
-MAILTO="crontab.fyk8z@simplelogin.com"
-0 2 * * 1 brew update && brew upgrade

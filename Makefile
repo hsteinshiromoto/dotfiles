@@ -23,6 +23,3 @@ adopt:
 
 tree:
 	tree -a -I .git -I .DS_Store -I .gitignore
-
-cron:
-	crontab brew-update.txt
