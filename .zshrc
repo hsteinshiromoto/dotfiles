@@ -186,4 +186,8 @@ eval "$(pyenv init -)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# ---
+# Settings for zoxide
+# ---
+
 eval "$(zoxide init --cmd cd zsh)"
