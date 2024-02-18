@@ -4,6 +4,7 @@
 
 ## Files
 **/hotlist
+.ssh/config
 
 ### DBeaver ###
 # ide config file
