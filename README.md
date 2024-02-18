@@ -11,7 +11,7 @@ My dotfiles for MacOS.
 
 Note that the structure of this repository must be the same as the structure as the config files in the `/home/user` folder.
 
-```
+```bash
 .
 ├── .bashrc
 ├── .config
@@ -31,13 +31,17 @@ Note that the structure of this repository must be the same as the structure as 
 │       ├── mc.ext
 │       ├── mc.ext.ini
 │       └── panels.ini
+├── .github
+│   └── workflows
+│       └── changelog.yml
 ├── .gnupg
 │   ├── gpg-agent.conf
 │   └── gpg.conf
 ├── .ssh
-│   └── config
+│   └── config.template
 ├── .stow-local-ignore
 ├── .tmux.conf
+├── .vimrc
 ├── .zshrc
 ├── Brewfile
 ├── LICENSE

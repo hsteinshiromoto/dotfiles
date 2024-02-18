@@ -17,7 +17,7 @@ matches:
   # But matches can also be dynamic:
 
   # Print the current date
-  - trigger: ";tday"
+  - trigger: ";0day"
     replace: "{{mydate}}"
     vars:
       - name: mydate
@@ -25,7 +25,7 @@ matches:
         params:
           format: "%Y-%m-%d"
 
-  - trigger: ";yday"
+  - trigger: ";-day"
     word: true
     replace: "{{output}}"
     vars:
@@ -34,7 +34,7 @@ matches:
         params:
           cmd: "echo `date -v -1d \"+%Y-%m-%d\"`"
 
-  - trigger: ";tmrw"
+  - trigger: ";+day"
     word: true
     replace: "{{output}}"
     vars:
