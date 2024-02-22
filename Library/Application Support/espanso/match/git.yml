@@ -1,3 +1,9 @@
 matches:
   - trigger: ";ga"
-    replace: "git add"
+    replace: "git add "
+
+  - trigger: ";gc"
+    replace: "git commit -m \" \""
+
+  - trigger: ";gp"
+    replace: "git push"
