@@ -7,6 +7,15 @@ My dotfiles for MacOS.
 1. Homebrew
 2. GNU Stow
 
+# Workflow
+
+## New .dotfile
+
+1. Create an empty file in the correct location in the repository.
+2. Create the desired file in the config folder.
+3. Run `$ stow . --adopt`
+4. Add file to the version control.
+
 # Repository Structure
 
 Note that the structure of this repository must be the same as the structure as the config files in the `/home/user` folder.
