@@ -40,9 +40,6 @@ Note that the structure of this repository must be the same as the structure as 
 │       ├── mc.ext
 │       ├── mc.ext.ini
 │       └── panels.ini
-├── .github
-│   └── workflows
-│       └── changelog.yml
 ├── .gnupg
 │   ├── gpg-agent.conf
 │   └── gpg.conf
@@ -64,6 +61,7 @@ Note that the structure of this repository must be the same as the structure as 
 │           │   └── default.yml
 │           ├── match
 │           │   ├── base.yml
+│           │   ├── git.yml
 │           │   ├── obsidian.yml
 │           │   └── packages
 │           └── user

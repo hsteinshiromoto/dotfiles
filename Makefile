@@ -22,4 +22,4 @@ adopt:
 	stow --adopt .
 
 tree:
-	tree -a -I .git -I .DS_Store -I .gitignore
+	tree -a -I .git -I .DS_Store -I .gitignore -I .github
