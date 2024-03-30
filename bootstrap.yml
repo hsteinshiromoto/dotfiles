@@ -1,0 +1,25 @@
+- name: Bootstrap development environment
+  hosts: localhost
+
+  tasks:
+  - name: Install packages with apt
+    become: yes
+    ansible.builtin.apt:
+      name:
+        - git
+        - tmux
+      state: present
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install packages with brew
+    become: yes
+    community.general.homebew:
+      name:
+        - git
+        - tmux
+      state: present
+    when: ansible_distribution == "MacOSX"
+
+
+# References
+# [1] https://phelipetls.github.io/posts/introduction-to-ansible/
