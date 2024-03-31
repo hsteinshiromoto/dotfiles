@@ -83,7 +83,6 @@ Run
 
 Run
 ```
-# Bootstrap development environntment in Linux, WSL and macOS
 ansible-playbook bootstrap.yml
 ```
 
