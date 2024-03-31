@@ -6,8 +6,30 @@
     become: yes
     ansible.builtin.apt:
       name:
-        - git
-        - tmux
+        - "autoconf"
+        - "ca-certificates"
+        - "gcc"
+        - "btop"
+        - "git"
+        - "git-flow-avh"
+        - "cloudflared"
+        - "docker"
+        - "docker-compose"
+        - "exa"
+        - "fzf"
+        - "pinentry"
+        - "pyenv"
+        - "stow"
+        - "syncthing"
+        - "texlive"
+        - "tmux"
+        - "tree"
+        - "wget"
+        - "zoxide"
+        - "zsh"
+        - "zsh-autosuggestions"
+        - "zsh-completions"
+        - "zsh-syntax-highlighting"
       state: present
     when: ansible_distribution == "Ubuntu"
 
