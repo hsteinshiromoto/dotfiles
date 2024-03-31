@@ -2,25 +2,9 @@
 
 My dotfiles.
 
-# Install
-
-Run
-```bash
-./install
-```
-
-# Workflow
-
-## New .dotfile
-
-1. Create an empty file in the correct location in the repository.
-2. Create the desired file in the config folder.
-3. Run `$ stow . --adopt`
-4. Add file to the version control.
-
 # Repository Structure
 
-Note that the structure of this repository must be the same as the structure as the config files in the `/home/user` folder.
+Note that the structure of this repository must be the same as the structure as the config files in the `$HOME` folder.
 
 ```bash
 .
@@ -71,6 +55,48 @@ Note that the structure of this repository must be the same as the structure as 
 ├── README.md
 └── dotfiles.code-workspace
 ```
+
+# Install
+
+## 1. Git
+
+For MacOS install with XCode
+```
+xcode-select --install
+```
+## 2. Clone this Repository
+
+In the `$HOME` folder, run
+
+```
+git clone git@github.com:hsteinshiromoto/dotfiles.git
+cd dotfiles
+```
+## 3. Install Ansible
+
+Run
+```bash
+./install
+```
+
+## 4. Run Playbook
+
+Run
+```
+# Bootstrap development environntment in Linux, WSL and macOS
+ansible-playbook bootstrap.yml
+```
+
+# Workflow
+
+## New .dotfile
+
+1. Create an empty file in the correct location in the repository.
+2. Create the desired file in the config folder.
+3. Run `$ stow . --adopt`
+4. Add file to the version control.
+
+
 
 # Known Bugs
 
