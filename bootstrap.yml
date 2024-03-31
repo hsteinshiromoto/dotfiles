@@ -11,13 +11,9 @@
       state: present
     when: ansible_distribution == "Ubuntu"
 
-  - name: Install packages with brew
+  - name: Install packages from Brewfile
     become: yes
-    community.general.homebew:
-      name:
-        - git
-        - tmux
-      state: present
+    ansible.builtin.shell: brew bundle
     when: ansible_distribution == "MacOSX"
 
 
