@@ -70,18 +70,17 @@ In the `$HOME` folder, run
 
 ```
 git clone git@github.com:hsteinshiromoto/dotfiles.git
-cd dotfiles
 ```
 ## 3. Install Ansible
 
-Run
+In the `$HOME/dotfiles` folder, run
 ```bash
 ./install
 ```
 
 ## 4. Run Playbook
 
-Run
+In the `$HOME/dotfiles` folder, run
 ```
 ansible-playbook bootstrap.yml
 ```
