@@ -1,18 +1,15 @@
 # dotfiles
 
-My dotfiles for MacOS.
+My dotfiles.
 
-# Requirements
+# Install
 
-1. Homebrew
-2. GNU Stow
+Run
+```bash
+./install
+```
 
 # Workflow
-
-## Install
-
-1. Install [Homebrew](https://brew.sh/).
-2. Install [Ansible](https://formulae.brew.sh/formula/ansible).
 
 ## New .dotfile
 
