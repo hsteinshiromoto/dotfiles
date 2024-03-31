@@ -9,6 +9,11 @@ My dotfiles for MacOS.
 
 # Workflow
 
+## Install
+
+1. Install [Homebrew](https://brew.sh/).
+2. Install [Ansible](https://formulae.brew.sh/formula/ansible).
+
 ## New .dotfile
 
 1. Create an empty file in the correct location in the repository.
