@@ -17,6 +17,7 @@
         - "docker-compose"
         - "exa"
         - "fzf"
+        - "kitty"
         - "pinentry"
         - "pyenv"
         - "stow"
