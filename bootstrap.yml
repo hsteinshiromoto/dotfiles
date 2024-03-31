@@ -15,6 +15,7 @@
         - "cloudflared"
         - "docker"
         - "docker-compose"
+        - "espanso"
         - "exa"
         - "fzf"
         - "kitty"
