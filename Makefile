@@ -1,8 +1,13 @@
 SHELL:=/bin/bash
 
+default: ansible
+
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
 
 .PHONY: homebrew vscode all delete
+
+ansible:
+	bash bin/install.sh
 
 all:
 	stow --verbose 3 .
@@ -23,3 +28,6 @@ adopt:
 
 tree:
 	tree -a -I .git -I .DS_Store -I .gitignore -I .github
+
+install:
+	ansible-playbook --ask-become-pass bootstrap.yml --check
