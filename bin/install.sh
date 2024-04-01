@@ -95,6 +95,9 @@ function _task_done {
   _clear_task
 }
 
+# ---
+# Main
+# ---
 unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)     machine=Linux;;
@@ -102,6 +105,7 @@ case "${unameOut}" in
     *)          machine="UNKNOWN:${unameOut}"
 esac
 
+# Check if Homebrew is installed
 function check_brew {
     if [[ $(command -v brew) == "" ]]; then
         echo "Installing Hombrew"
@@ -112,7 +116,7 @@ function check_brew {
     fi
 }
 
-
+# Check if dotfiles directory exists
 if ! [[ -d "$DOTFILES_DIR" ]]; then
   _task "Cloning repository"
   _cmd "git clone --quiet git@github.com:hsteinshiromoto/dotfiles.git $DOTFILES_DIR"
@@ -121,6 +125,7 @@ else
   _cmd "git -C $DOTFILES_DIR pull --quiet"
 fi
 
+# Install Ansible on Different Machines
 if [ $machine == "Mac" ]; then
     # Install Homebrew
     _task "Check if homebrew is installed"
