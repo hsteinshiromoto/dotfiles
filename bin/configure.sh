@@ -40,11 +40,25 @@ DOTFILES_LOG="$HOME/dotfiles/dotfiles.log"
 
 set -e
 
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
+if [ $machine == "Mac" ]; then
+
+    export $(grep -v '^#' paths.env | xargs -0)
+
+elif [ $machine == "Linux" ]; then
+
+    export $(grep -v '^#' paths.env | xargs -d '\n')
+
+fi
+
 # Paths
-CONFIG_DIR="$HOME/.config/dotfiles"
 VAULT_SECRET="$HOME/.ansible-vault/vault.secret"
-DOTFILES_DIR="$HOME/dotfiles"
-SSH_DIR="$HOME/.ssh"
 IS_FIRST_RUN="$HOME/.dotfiles_run"
 
 function _task {
