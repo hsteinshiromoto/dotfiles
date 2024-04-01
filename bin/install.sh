@@ -147,4 +147,4 @@ fi
 
 # Install Ansible roles
 _task "Install Ansible Roles"
-ansible-galaxy install -r $DOTFILES_DIR/ansible-requirements.txt
+_cmd "ansible-galaxy install -r $DOTFILES_DIR/ansible-requirements.txt"
