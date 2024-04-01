@@ -3,38 +3,6 @@
 # References:
 #     [1] https://github.com/TechDufus/dotfiles/blob/main/bin/dotfiles
 
-# color codes
-RESTORE='\033[0m'
-NC='\033[0m'
-BLACK='\033[00;30m'
-RED='\033[00;31m'
-GREEN='\033[00;32m'
-YELLOW='\033[00;33m'
-BLUE='\033[00;34m'
-PURPLE='\033[00;35m'
-CYAN='\033[00;36m'
-SEA="\\033[38;5;49m"
-LIGHTGRAY='\033[00;37m'
-LBLACK='\033[01;30m'
-LRED='\033[01;31m'
-LGREEN='\033[01;32m'
-LYELLOW='\033[01;33m'
-LBLUE='\033[01;34m'
-LPURPLE='\033[01;35m'
-LCYAN='\033[01;36m'
-WHITE='\033[01;37m'
-OVERWRITE='\e[1A\e[K'
-
-#emoji codes
-CHECK_MARK="${GREEN}\xE2\x9C\x94${NC}"
-X_MARK="${RED}\xE2\x9C\x96${NC}"
-PIN="${RED}\xF0\x9F\x93\x8C${NC}"
-CLOCK="${GREEN}\xE2\x8C\x9B${NC}"
-ARROW="${SEA}\xE2\x96\xB6${NC}"
-BOOK="${RED}\xF0\x9F\x93\x8B${NC}"
-HOT="${ORANGE}\xF0\x9F\x94\xA5${NC}"
-WARNING="${RED}\xF0\x9F\x9A\xA8${NC}"
-RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
 
 DOTFILES_LOG="$HOME/dotfiles/dotfiles.log"
 
@@ -49,11 +17,15 @@ esac
 
 if [ $machine == "Mac" ]; then
 
-    export $(grep -v '^#' paths.env | xargs -0)
+    export $(grep -v '^#' paths.env | xargs -0) 1> /dev/null
+    export $(grep -v '^#' colors.env | xargs -0) 1> /dev/null
+    export $(grep -v '^#' emoji.env | xargs -0) 1> /dev/null
 
 elif [ $machine == "Linux" ]; then
 
     export $(grep -v '^#' paths.env | xargs -d '\n')
+    export $(grep -v '^#' colors.env | xargs -d '\n')
+    export $(grep -v '^#' emoji.env | xargs -d '\n')
 
 fi
 
