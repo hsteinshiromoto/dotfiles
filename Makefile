@@ -1,13 +1,10 @@
 SHELL:=/bin/bash
 
-default: ansible
+default: install
 
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
 
 .PHONY: homebrew vscode all delete
-
-ansible:
-	bash bin/install.sh
 
 all:
 	stow --verbose 3 .
