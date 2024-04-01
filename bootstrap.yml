@@ -37,6 +37,8 @@
     ansible.builtin.apt:
       name:
         - "autoconf"
+        - "build-essential" 
+        - "build-dep"
         - "ca-certificates"
         - "gcc"
         - "btop"
