@@ -97,8 +97,3 @@ else
   _task "Updating repository"
   _cmd "git -C $DOTFILES_DIR pull --quiet"
 fi
-
-# pip3 install ansible
-
-# export PATH="$PATH:~/.local/bin"
-# ansible-galaxy install -r ansible-requirements.yml
