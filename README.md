@@ -66,23 +66,24 @@ xcode-select --install
 ```
 ## 2. Clone this Repository
 
-In the `$HOME` folder, run
+Run
 
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/hsteinshiromoto/dotfiles/main/bin/configure.sh)"
 ```
-git clone git@github.com:hsteinshiromoto/dotfiles.git
-```
-## 3. Install Ansible
+
+## 3. Install and Configure Ansible
 
 In the `$HOME/dotfiles` folder, run
 ```bash
-./install
+sudo make
 ```
 
 ## 4. Run Playbook
 
 In the `$HOME/dotfiles` folder, run
-```
-ansible-playbook bootstrap.yml
+```bash
+sudo make install
 ```
 
 # Workflow
