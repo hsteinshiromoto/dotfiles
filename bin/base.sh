@@ -1,5 +1,30 @@
 #!/bin/bash
 
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
+set -e
+DOTFILES_LOG="$HOME/dotfiles/dotfiles.log"
+
+
+if [ $machine == "Mac" ]; then
+
+    export $(grep -v '^#' paths.env | xargs -0) 1> /dev/null
+    export $(grep -v '^#' colors.env | xargs -0) 1> /dev/null
+    export $(grep -v '^#' emoji.env | xargs -0) 1> /dev/null
+
+elif [ $machine == "Linux" ]; then
+
+    export $(grep -v '^#' paths.env | xargs -d '\n')
+    export $(grep -v '^#' colors.env | xargs -d '\n')
+    export $(grep -v '^#' emoji.env | xargs -d '\n')
+
+fi
+
 function _task {
   # if _task is called while a task was set, complete the previous
   if [[ $TASK != "" ]]; then
