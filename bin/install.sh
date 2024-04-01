@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# References:
+#     [1] https://github.com/TechDufus/dotfiles/blob/main/bin/dotfiles
+
 set -e
 # ---
 # Color Codes
