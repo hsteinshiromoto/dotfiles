@@ -64,26 +64,19 @@ For MacOS install with XCode
 ```
 xcode-select --install
 ```
-## 2. Clone this Repository
+## 2. Clone this Repository and Install Ansible
 
 Run
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/hsteinshiromoto/dotfiles/main/bin/configure.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/hsteinshiromoto/dotfiles/main/bin/install.sh)"
 ```
 
-## 3. Install and Configure Ansible
+## 3. Run Playbook
 
 In the `$HOME/dotfiles` folder, run
 ```bash
 sudo make
-```
-
-## 4. Run Playbook
-
-In the `$HOME/dotfiles` folder, run
-```bash
-sudo make install
 ```
 
 # Workflow
