@@ -191,3 +191,9 @@ eval "$(pyenv init -)"
 # ---
 
 eval "$(zoxide init --cmd cd zsh)"
+
+# ---
+# Settings for zplug
+# ---
+export ZPLUG_HOME=/opt/homebrew/opt/zplug
+source $ZPLUG_HOME/init.zsh
