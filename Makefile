@@ -6,9 +6,6 @@ PROJECT_ROOT=$(git rev-parse --show-toplevel)
 
 .PHONY: homebrew vscode all delete help
 
-all:
-	stow --verbose 3 .
-
 ## Make Brewfile
 homebrew:
 	@echo "Backing up homebrew ..."
@@ -21,9 +18,6 @@ vscode:
 	$(eval VSCODE_SETTINGS_DIR := Library/Application\ Support/Code/User)
 	cp ${HOME}/${VSCODE_SETTINGS_DIR}/settings.json ${VSCODE_SETTINGS_DIR}
 	@echo "Done."
-
-adopt:
-	stow --adopt .
 
 ## Print tree
 tree:
