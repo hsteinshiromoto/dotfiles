@@ -58,7 +58,9 @@ Note that the structure of this repository must be the same as the structure as 
 
 # Install
 
-## 1. Git
+## 1. Requirements
+
+### Git
 
 For MacOS install with XCode
 ```
