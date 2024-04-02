@@ -28,3 +28,6 @@ tree:
 
 install:
 	ansible-playbook --ask-become-pass bootstrap.yml --check
+
+clean:
+	rm -rf *.log
