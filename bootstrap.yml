@@ -68,7 +68,7 @@
     when: ansible_distribution == "Ubuntu"
 
   - name: Install packages from Brewfile
-    become: yes
+    # become: yes
     ansible.builtin.shell: brew bundle
     when: ansible_distribution == "MacOSX"
 
