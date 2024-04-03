@@ -1,0 +1,9 @@
+---
+collections:
+  - name: community.general
+
+roles:
+  - name: elliotweiser.osx-command-line-tools
+  - name: geerlingguy.nodejs
+  - name: gantsign.visual-studio-code
+  - name: gantsign.visual-studio-code-extensions
