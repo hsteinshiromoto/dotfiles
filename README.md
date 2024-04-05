@@ -1,3 +1,7 @@
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hsteinshiromoto/dotfiles?style=flat)
+![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)
+
+
 # dotfiles
 
 My dotfiles.
@@ -90,10 +94,12 @@ sudo make
 3. Run `$ stow . --adopt`
 4. Add file to the version control.
 
-
-
 # Known Bugs
 
 ## Copy from tmux terminal in VSCode
 
 - VSCode does not copy the text from tmux terminal by simply selecting it. In MacOS, it is necessary [to hold the Option key while selecting it](https://unix.stackexchange.com/questions/757939/cannot-copy-text-from-tmux-integrated-terminal-in-update-1-82-2) to get it copied.
+
+# References
+
+[1] https://systemcrafters.net/managing-your-dotfiles/using-gnu-stow/
