@@ -1,24 +1,14 @@
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hsteinshiromoto/dotfiles?style=flat)
+![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)
+
+
 # dotfiles
 
-My dotfiles for MacOS.
-
-# Requirements
-
-1. Homebrew
-2. GNU Stow
-
-# Workflow
-
-## New .dotfile
-
-1. Create an empty file in the correct location in the repository.
-2. Create the desired file in the config folder.
-3. Run `$ stow . --adopt`
-4. Add file to the version control.
+My dotfiles.
 
 # Repository Structure
 
-Note that the structure of this repository must be the same as the structure as the config files in the `/home/user` folder.
+Note that the structure of this repository must be the same as the structure as the config files in the `$HOME` folder.
 
 ```bash
 .
@@ -70,8 +60,46 @@ Note that the structure of this repository must be the same as the structure as 
 └── dotfiles.code-workspace
 ```
 
+# Install
+
+## 1. Requirements
+
+### Git
+
+For MacOS install with XCode
+```
+xcode-select --install
+```
+## 2. Clone this Repository and Install Ansible
+
+Run
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/hsteinshiromoto/dotfiles/main/bin/install.sh)"
+```
+
+## 3. Run Playbook
+
+In the `$HOME/dotfiles` folder, run
+```bash
+sudo make
+```
+
+# Workflow
+
+## New .dotfile
+
+1. Create an empty file in the correct location in the repository.
+2. Create the desired file in the config folder.
+3. Run `$ stow . --adopt`
+4. Add file to the version control.
+
 # Known Bugs
 
 ## Copy from tmux terminal in VSCode
 
 - VSCode does not copy the text from tmux terminal by simply selecting it. In MacOS, it is necessary [to hold the Option key while selecting it](https://unix.stackexchange.com/questions/757939/cannot-copy-text-from-tmux-integrated-terminal-in-update-1-82-2) to get it copied.
+
+# References
+
+[1] https://systemcrafters.net/managing-your-dotfiles/using-gnu-stow/
