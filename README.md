@@ -1,3 +1,7 @@
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hsteinshiromoto/dotfiles?style=flat)
+![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)
+
+
 # dotfiles
 
 My dotfiles.
