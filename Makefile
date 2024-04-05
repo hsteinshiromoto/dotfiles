@@ -25,7 +25,7 @@ tree:
 
 ## Install using ansible
 install:
-	ansible-playbook bootstrap.yml
+	ansible-playbook bootstrap.yml --ask-become-pass
 
 ## Remove log flies
 clean:
