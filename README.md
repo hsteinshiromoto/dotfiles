@@ -82,7 +82,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/hsteinshiromoto/dotfiles
 
 In the `$HOME/dotfiles` folder, run
 ```bash
-sudo make
+make install
 ```
 
 # Workflow
