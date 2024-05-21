@@ -138,8 +138,8 @@ alias gh='git hist'
 # ---
 # Docker Aliases
 # ---
-alias dk='docker kill $(docker ps -a | fzf | awk "{ print $1 }")'
-alias drmi='docker rmi $(docker images | fzf | awk "{ print $1 }")'
+alias dkl='docker kill $(docker ps -a | fzf | awk "{ print $1 }")'
+alias drm='docker rmi $(docker images | fzf | awk "{ print $1 }")'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
