@@ -3,26 +3,13 @@
   gather_facts: yes
   
   tasks:
-    - name: Install packages
+    - name: Install Additional Packages for MacOS
       # become: yes
       ansible.builtin.package:
         name:
-          - "btop"
-          - "git"
-          - "git-flow"
-          - "cloudflared"
-          - "docker"
           - "espanso"
-          - "exa"
-          - "fzf"
           - "kitty"
-          - "stow"
-          - "tmux"
-          - "wget"
           - "zoxide"
-          - "zsh"
-          - "zsh-autosuggestions"
-          - "zsh-syntax-highlighting"
         state: "present"
   
 
