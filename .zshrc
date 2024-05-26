@@ -141,6 +141,11 @@ alias gh='git hist'
 alias dkl='docker kill $(docker ps -a | fzf | awk "{ print $1 }")'
 alias drm='docker rmi $(docker images | fzf | awk "{ print $1 }")'
 
+# ---
+# SSH Aliases
+# ---
+# alias servidor='192.168.50.13'
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -198,3 +203,8 @@ eval "$(zoxide init --cmd cd zsh)"
 # ---
 export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
+
+# ---
+# Eza
+# ---
+alias ls='eza -lah --git'
