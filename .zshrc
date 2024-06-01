@@ -1,19 +1,8 @@
-# ---
-# Aliases
-# ---
-source bin/cli_alias.sh
+export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/usr/local/MacGPG2/bin:/Applications/VMware
 
-# ---
-# User configuration: gpg
-# ---
-export GPG_TTY=$(tty)
-gpgconf --launch gpg-agent
+alias ls='exa -lah --git'
+alias cat='bat'
 
-# ---
-# Load Pyenv automatically
-# ---
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+export BAT_THEME="gruvbox"
 
-eval "$(starship init zsh)"
+eval "$(starship init /bin/zsh)"
