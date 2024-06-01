@@ -44,5 +44,6 @@
       "args": ["new-session", "-A", "-s", "vscode:${workspaceFolder}"]
     }
   },
-  "terminal.integrated.defaultProfile.osx": "tmux-shell"
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
 }
