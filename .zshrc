@@ -1,4 +1,9 @@
 # ---
+# Aliases
+# ---
+source bin/cli_alias.sh
+
+# ---
 # User configuration: gpg
 # ---
 export GPG_TTY=$(tty)
