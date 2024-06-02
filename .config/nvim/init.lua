@@ -23,6 +23,15 @@ local plugins = {
     		-- VimTeX configuration goes here, e.g.
     		-- vim.g.vimtex_view_method = "zathura"
   		--end
+	},
+	{"NeogitOrg/neogit",
+  		dependencies = {"nvim-lua/plenary.nvim",         -- required
+    				"sindrets/diffview.nvim",        -- optional - Diff integration
+    				-- Only one of these is needed, not both.
+    				"nvim-telescope/telescope.nvim", -- optional
+    				-- "ibhagwan/fzf-lua",              -- optional
+  				},
+  		config = true
 	}
 }
 local opts = {}
@@ -42,12 +51,9 @@ local config = require("nvim-treesitter.configs")
 config.setup({
 	ensure_installed = {"latex", "lua", "python", "toml", "vim", "vimdoc"},
 	auto_install = true,
-	highlight = {
-    		enable = true,
-	},
+	highlight = {enable = true },
 	indent = { enable = true}
-}
-)
+	})
 
 -- Setup relative and absolute numbers
 -- References:
