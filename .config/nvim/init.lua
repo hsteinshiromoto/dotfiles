@@ -63,3 +63,12 @@ config.setup({
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.o.statuscolumn = "%s %l %r "
+
+-- Setup Gitgitsigns
+require('gitsigns').setup({
+	signs = {
+		add 	= { text = '+' },
+		delete 	= { text = '-' },
+	},
+	}
+)
