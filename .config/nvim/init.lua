@@ -32,7 +32,8 @@ local plugins = {
     				-- "ibhagwan/fzf-lua",              -- optional
   				},
   		config = true
-	}
+	},
+	{ "lewis6991/gitsigns.nvim" }
 }
 local opts = {}
 
