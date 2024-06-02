@@ -17,7 +17,13 @@ local plugins = {
       		dependencies = { 'nvim-lua/plenary.nvim' }
     	},
 	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
-	{ "sitiom/nvim-numbertoggle" }
+	{ "sitiom/nvim-numbertoggle" },
+	{ "lervag/vimtex",
+  		--init = function()
+    		-- VimTeX configuration goes here, e.g.
+    		-- vim.g.vimtex_view_method = "zathura"
+  		--end
+	}
 }
 local opts = {}
 
