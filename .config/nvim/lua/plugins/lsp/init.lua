@@ -1,43 +1,9 @@
+-- lsp/init.lua
+
 return {
 	{
-		"neovim/nvim-lspconfig",
-		event = "BufReadPre",
-		dependencies = {
-			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-			{ "folke/neodev.nvim", config = true },
-			{ "j-hui/fidget.nvim", config = true },
-			{ "smjonas/inc-rename.nvim", config = true },
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
-		},
-		opts = {
-			servers = {
-				lua_ls = {
-					settings = {
-						Lua = {
-							workspace = {
-								checkThirdParty = false,
-							},
-							completion = { callSnippet = "Replace" },
-							telemetry = { enable = false },
-							hint = {
-								enable = false,
-							},
-						},
-					},
-				},
-				dockerls = {},
-			},
-			setup = {},
-		},
-		config = function(plugin, opts)
-			require("plugins.lsp.servers").setup(plugin, opts)
-		end,
-	},
-	{
 		"williamboman/mason.nvim",
+		priority = 100, -- Ensure Mason loads first
 		cmd = "Mason",
 		keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
 		ensure_installed = {
@@ -73,6 +39,52 @@ return {
 		end,
 	},
 	{
+		"williamboman/mason-lspconfig.nvim",
+		priority = 90, -- Load right after Mason
+		dependencies = { "williamboman/mason.nvim" },
+		config = function()
+			-- Initialize mason-lspconfig with a basic setup
+			require("mason-lspconfig").setup()
+		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		event = "BufReadPre",
+		dependencies = {
+			"williamboman/mason.nvim", -- Make sure this loads first
+			"williamboman/mason-lspconfig.nvim", -- Then this
+			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+			{ "folke/neodev.nvim", config = true },
+			{ "j-hui/fidget.nvim", config = true },
+			{ "smjonas/inc-rename.nvim", config = true },
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
+		},
+		opts = {
+			servers = {
+				lua_ls = {
+					settings = {
+						Lua = {
+							workspace = {
+								checkThirdParty = false,
+							},
+							completion = { callSnippet = "Replace" },
+							telemetry = { enable = false },
+							hint = {
+								enable = false,
+							},
+						},
+					},
+				},
+				dockerls = {},
+			},
+			setup = {},
+		},
+		config = function(plugin, opts)
+			require("plugins.lsp.servers").setup(plugin, opts)
+		end,
+	},
+	{
 		"nvimtools/none-ls.nvim",
 		event = "BufReadPre",
 		dependencies = { "mason.nvim" },
@@ -99,6 +111,3 @@ return {
 		config = true,
 	},
 }
-
--- References:
--- 	[1] https://alpha2phi.medium.com/modern-neovim-lsp-and-remote-development-9b1250ee6aee
