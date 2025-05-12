@@ -70,12 +70,49 @@ stty ixoff -ixon
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# ---
+# Plugins
+# ---
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git docker tmux)
+#
+# The plugins are installes using zgenom plugin manager.
+# To install most of these plugins add zgenom load githubuser/reponame to .zshrc
+source "${HOME}/.zgenom/zgenom.zsh"
+
+# Check for plugin and zgenom updates every 7 days
+# This does not increase the startup time.
+zgenom autoupdate
+
+# if the init script doesn't exist
+if ! zgenom saved; then
+    echo "Creating a zgenom save"
+
+		zgenom load zsh-users/zsh-autosuggestions
+		zgenom load zsh-users/zsh-syntax-highlighting
+
+		zgenom save
+
+EOPLUGINS
+    # ^ can't indent this EOPLUGINS
+
+    # add binaries
+    zgenom bin tj/git-extras
+
+    # completions
+    zgenom load zsh-users/zsh-completions
+		zgenom load softmoth/zsh-vim-mode
+
+		# save all to init script
+    zgenom save
+
+    # Compile your zsh files
+    zgenom compile "$HOME/.zshrc"
+fi
 
 # source $ZSH/oh-my-zsh.sh
 
@@ -135,7 +172,7 @@ export PATH="$PATH:/nix/var/nix/profiles/default/bin:$HOME/.tmux/plugins/tpm"
 #
 # ---
 # Configuration: tmux
-# 
+#
 # References:
 # 	[1] https://github.com/ohmyzsh/ohmyzsh/blob/fff073b55defed72a0a1aac4e853b165f208735b/plugins/tmux/tmux.plugin.zsh#L8
 # ---
@@ -192,7 +229,7 @@ function yz() {
 # ---
 # References for fzf with bat preview ([1] is the one adopted here):
 # 	[1] https://medium.com/@GroundControl/better-git-diffs-with-fzf-89083739a9cb
-# 	[2] https://sidneyliebrand.medium.com/how-fzf-and-ripgrep-improved-my-workflow-61c7ca212861 
+# 	[2] https://sidneyliebrand.medium.com/how-fzf-and-ripgrep-improved-my-workflow-61c7ca212861
 alias rf="fzf --preview 'bat {-1} --color=always'"
 alias cd="z"
 alias ls="eza --hyperlink -alh --icons=auto --git"
