@@ -70,12 +70,49 @@ stty ixoff -ixon
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# ---
+# Plugins
+# ---
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git docker tmux)
+#
+# The plugins are installes using zgenom plugin manager.
+# To install most of these plugins add zgenom load githubuser/reponame to .zshrc
+source "${HOME}/.zgenom/zgenom.zsh"
+
+# Check for plugin and zgenom updates every 7 days
+# This does not increase the startup time.
+zgenom autoupdate
+
+# if the init script doesn't exist
+if ! zgenom saved; then
+    echo "Creating a zgenom save"
+
+		zgenom load zsh-users/zsh-autosuggestions
+		zgenom load zsh-users/zsh-syntax-highlighting
+
+		zgenom save
+
+EOPLUGINS
+    # ^ can't indent this EOPLUGINS
+
+    # add binaries
+    zgenom bin tj/git-extras
+
+    # completions
+    zgenom load zsh-users/zsh-completions
+		zgenom load softmoth/zsh-vim-mode
+
+		# save all to init script
+    zgenom save
+
+    # Compile your zsh files
+    zgenom compile "$HOME/.zshrc"
+fi
 
 # source $ZSH/oh-my-zsh.sh
 
