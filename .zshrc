@@ -135,7 +135,7 @@ export PATH="$PATH:/nix/var/nix/profiles/default/bin:$HOME/.tmux/plugins/tpm"
 #
 # ---
 # Configuration: tmux
-# 
+#
 # References:
 # 	[1] https://github.com/ohmyzsh/ohmyzsh/blob/fff073b55defed72a0a1aac4e853b165f208735b/plugins/tmux/tmux.plugin.zsh#L8
 # ---
@@ -192,15 +192,14 @@ function yz() {
 # ---
 # References for fzf with bat preview ([1] is the one adopted here):
 # 	[1] https://medium.com/@GroundControl/better-git-diffs-with-fzf-89083739a9cb
-# 	[2] https://sidneyliebrand.medium.com/how-fzf-and-ripgrep-improved-my-workflow-61c7ca212861 
+# 	[2] https://sidneyliebrand.medium.com/how-fzf-and-ripgrep-improved-my-workflow-61c7ca212861
 alias rf="fzf --preview 'bat {-1} --color=always'"
 alias cd="z"
 alias ls="eza --hyperlink -alh --icons=auto --git"
 alias ld="lazydocker"
 alias lg="lazygit"
 if [[ ${unameOut} == "Linux" ]]; then
-	alias cat="batcat"
-	alias bat="batcat"
+	alias cat="bat"
 elif [[ ${unameOut} == "Darwin" ]]; then
 	alias cat="bat"
 	alias ns="darwin-rebuild build --flake ~/.config/nix-darwin"
