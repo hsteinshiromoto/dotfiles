@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.6.0
+
+- Move installation to nix flake in the nix/ repo.
+- Remove few nvim plugins.
+- Install tmux plugins
+
 ## v2.5.1
 
 See link: https://github.com/hsteinshiromoto/dotfiles.linux/pull/4#issuecomment-2571546170
