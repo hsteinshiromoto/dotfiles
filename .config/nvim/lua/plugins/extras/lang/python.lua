@@ -22,6 +22,7 @@ return {
 						},
 					},
 				},
+				ruff_lsp = {},
 			},
 			setup = {
 				pyright = function(_, opts)
@@ -37,6 +38,29 @@ return {
 				end,
 			},
 		},
+	},
+	{
+		"stevearc/conform.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					python = { "ruff_format" },
+				},
+				format_on_save = {
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 1000,
+				},
+			})
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				pattern = "*.py",
+				callback = function(args)
+					require("conform").format({ bufnr = args.buf })
+				end,
+				group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
+			})
+		end,
 	},
 	{
 		"mfussenegger/nvim-dap",
