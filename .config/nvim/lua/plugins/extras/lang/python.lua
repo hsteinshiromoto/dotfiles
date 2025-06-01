@@ -10,7 +10,7 @@ return {
 		"neovim/nvim-lspconfig",
 		opts = {
 			servers = {
-				ruff_lsp = {},
+				ruff = {},
 			},
 			setup = {
 				-- No specific setup for ruff_lsp needed here by default
