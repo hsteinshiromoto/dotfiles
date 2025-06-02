@@ -12,13 +12,13 @@ return {
 		end,
 	},
 	{
-		"catppuccin/nvim",
-		lazy = false,
-		name = "catppuccin",
-		priority = 1000,
-		config = function()
-			vim.cmd.colorscheme("catppuccin-mocha")
-		end,
+		-- "catppuccin/nvim",
+		-- lazy = false,
+		-- name = "catppuccin",
+		-- priority = 1000,
+		-- config = function()
+		-- 	vim.cmd.colorscheme("catppuccin-mocha")
+		-- end,
 		-- require("catppuccin").setup({
 		-- 	integrations = {
 		-- 		aerial = true,
@@ -61,14 +61,14 @@ return {
 		-- 	},
 		-- }),
 	},
-	-- {
-	-- 	"ellisonleao/gruvbox.nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		require("gruvbox").setup()
-	-- 		vim.o.background = "dark" -- or "light" for light mode
-	-- 		vim.cmd([[colorscheme gruvbox]])
-	-- 	end,
-	-- },
+	{
+		"ellisonleao/gruvbox.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("gruvbox").setup()
+			vim.o.background = "dark" -- or "light" for light mode
+			vim.cmd([[colorscheme gruvbox]])
+		end,
+	},
 }
