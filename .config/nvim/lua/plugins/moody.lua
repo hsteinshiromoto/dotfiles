@@ -30,7 +30,8 @@ return {
 		colors = {
 			normal = "#7C6F64",
 			insert = "#98ab53",
-			visual = "#e15250",
+			-- visual = "#9A8018",
+			visual = "#D65D0D",
 			command = "#6b9f91",
 			operator = "#FF8F40",
 			replace = "#E66767",
