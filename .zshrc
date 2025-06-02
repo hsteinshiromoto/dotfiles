@@ -205,6 +205,7 @@ _comp_options+=(globdots)							# Include hidden files
 # ---
 bindkey -v
 export KEYTIMEOUT=1
+
 # ---
 # Custom Functions
 # ---
