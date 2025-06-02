@@ -201,6 +201,11 @@ compinit
 _comp_options+=(globdots)							# Include hidden files
 
 # ---
+# Vi mode
+# ---
+bindkey -v
+export KEYTIMEOUT=1
+# ---
 # Custom Functions
 # ---
 
