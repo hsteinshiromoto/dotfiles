@@ -192,6 +192,15 @@ fi
 export BAT_THEME="gruvbox-dark"
 
 # ---
+# Tab complete
+# ---
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)							# Include hidden files
+
+# ---
 # Custom Functions
 # ---
 
