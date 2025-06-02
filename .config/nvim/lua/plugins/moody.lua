@@ -4,7 +4,7 @@ return {
 	dependencies = {
 		-- or whatever "colorscheme" you use to setup your HL groups :)
 		-- Colours can also be set within setup, in which case this is redundant.
-		"catppuccin/nvim",
+		-- "catppuccin/nvim",
 		-- for seeing Moody's take on folds
 		"kevinhwang91/nvim-ufo",
 	},
@@ -28,15 +28,15 @@ return {
 		-- set them up with highlight groups. Any highlight group set takes
 		-- precedence over any colours defined here.
 		colors = {
-			-- normal = "#978871",
-			-- insert = "#98ab53",
-			-- visual = "#e15250",
-			-- command = "#6b9f91",
-			-- operator = "#FF8F40",
-			-- replace = "#E66767",
-			-- select = "#AD6FF7",
-			-- terminal = "#4CD4BD",
-			-- terminal_n = "#00BBCC",
+			normal = "#978871",
+			insert = "#98ab53",
+			visual = "#e15250",
+			command = "#6b9f91",
+			operator = "#FF8F40",
+			replace = "#E66767",
+			select = "#AD6FF7",
+			terminal = "#4CD4BD",
+			terminal_n = "#00BBCC",
 		},
 		-- disable filetypes here. Add for example "TelescopePrompt" to
 		-- not have any coloured cursorline for the telescope prompt.
