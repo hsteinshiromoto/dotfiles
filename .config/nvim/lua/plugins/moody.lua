@@ -13,7 +13,7 @@ return {
 		-- Some colours might look better more dark, so set a higher value
 		-- will result in a darker shade.
 		blends = {
-			normal = 0.25,
+			normal = 0.5,
 			insert = 0.5,
 			visual = 0.5,
 			command = 0.5,
@@ -28,7 +28,7 @@ return {
 		-- set them up with highlight groups. Any highlight group set takes
 		-- precedence over any colours defined here.
 		colors = {
-			normal = "#978871",
+			normal = "#7C6F64",
 			insert = "#98ab53",
 			visual = "#e15250",
 			command = "#6b9f91",
