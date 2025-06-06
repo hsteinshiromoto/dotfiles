@@ -4,8 +4,8 @@ vim.lsp.enable({
 })
 
 vim.diagnostic.config({
-	virtual_lines = { severity = { min = vim.diagnostic.severity.ERROR } },
-	virtual_text = { severity = { min = vim.diagnostic.severity.WARN } },
+	-- virtual_lines = { severity = { min = vim.diagnostic.severity.ERROR } },
+	virtual_text = true,
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,
