@@ -515,11 +515,28 @@ return {
 			desc = "Rename File",
 		},
 		{
-			"<c-/>",
+			"`",
 			function()
 				Snacks.terminal()
 			end,
 			desc = "Toggle Terminal",
+			mode = { "n" },
+		},
+		{
+			"<leader>`o",
+			function()
+				Snacks.terminal.open()
+			end,
+			desc = "Open New Terminal",
+			mode = { "n" },
+		},
+		{
+			"<leader>`l",
+			function()
+				Snacks.terminal.list()
+			end,
+			desc = "List Terminal",
+			mode = { "n" },
 		},
 	},
 	init = function()
