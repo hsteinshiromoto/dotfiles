@@ -14,7 +14,7 @@ end, { desc = "Insert Yesterday's Date" })
 keymap({ "n", "v" }, "<F7>", "a<C-r>=strftime('%Y-%m-%d')<CR><Esc>", { desc = "Insert Today's Date" })
 
 -- Remaps for Tmux Panes: The following comment depends on the tpane file located in .local/bin
-keymap("n", "<leader>`", "<cmd>!tpane<CR>", { desc = "Toggle Tmux bottom pane" })
+-- keymap("n", "<leader>`", "<cmd>!tpane<CR>", { desc = "Toggle Tmux bottom pane" })
 
 -- Remaps for selection
 keymap("n", "$$", "v$h", { noremap = true, silent = true, desc = "Select until end of line" })
