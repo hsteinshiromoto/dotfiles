@@ -75,6 +75,7 @@
   "one-small-step-for-vimkind": { "branch": "main", "commit": "69c0dc61f2298862b3a38bdf3c4158c181cf15be" },
   "outline.nvim": { "branch": "main", "commit": "321f89ef79f168a78685f70d70c52d0e7b563abb" },
   "overseer.nvim": { "branch": "master", "commit": "72c68aab0358c92f451168b704c411c4a3e3410e" },
+  "pdf-preview.nvim": { "branch": "main", "commit": "1d600ce109c4f77c14b2c72873a965b7cbdd002c" },
   "persistence.nvim": { "branch": "main", "commit": "166a79a55bfa7a4db3e26fc031b4d92af71d0b51" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "55ad4fb76ab68460f700599b7449385f0c4e858e" },
