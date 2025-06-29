@@ -1,9 +1,10 @@
 [user]
-	email = h.stein.shiromoto@gmail.com
+	email = hsteinshiromoto@gmail.com
 	name = Humberto STEIN SHIROMOTO
 	username = hsteinshiromoto
 [core]
 	editor = nvim
+	excludesfile = ~/.gitignore_global
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	pager = delta
 [column]
