@@ -29,7 +29,7 @@ while :
 do
     case "$1" in
         -z | --zgenom)
-            enter_container
+            zgenom
             exit 0
             ;;
 
@@ -40,7 +40,7 @@ do
 
 
         -t | --tpm)
-            kill_container
+            tpm
             exit 0
             ;;
 
