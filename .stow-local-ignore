@@ -32,10 +32,13 @@ utils
 \.stow-local-ignore
 CHANGELOG\.md
 CLAUDE\.md
+Dockerfile
+docker-compose\.yml
 LICENSE\.md
 Makefile
 nvim\.Dockerfile
 README\.md
+TODO\.md
 todo\.txt
 
 .*\.code-workspace
