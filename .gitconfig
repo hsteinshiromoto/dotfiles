@@ -22,3 +22,13 @@
 	all = true
 [color]
 	ui = auto
+[alias]
+	gs='git status'
+	gd='git diff --name-only --relative --diff-filter=d | xargs batcat --diff'
+	gc="git commit -m '.'"
+	gP='git push'
+	gp='git pull'
+	gfb='git flow bugfix start'
+	gfh='git flow hotfix start'
+	gfr='git flow release start'
+	gff='git flow feature start'
