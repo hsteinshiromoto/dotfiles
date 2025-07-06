@@ -5,29 +5,54 @@
 # ---
 
 # Documentation
-display_help() {
+function display_help() {
     echo "Usage: [variable=value] $0" >&2
     echo
-    echo "   -t, --tpm      tmux plugin manager"
-    echo "   -h, --help     display help"
-    echo "   -z, --zgenom   zgenom plugin manager"
+    echo "   -a, --all      Runs all functions"
+		echo "   -t, --tpm      Installs tmux plugin manager (TPM)"
+    echo "   -h, --help     Display help"
+    echo "   -z, --zgenom   Installs zsh zgenom plugin manager"
     echo
-    # echo some stuff here for the -a or --add-options
-    exit 1
 }
 
-zgenom() {
-	git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
+function zgenom() {
+	echo "Installing zgenom ..."
+	if [ -z "$(ls -A ${HOME}/.zgenom)" ]; then
+		git clone https://github.com/jandamm/zgenom.git "${HOME}/.zgenom"
+	else
+		echo "zgenom already exists in ${HOME}/.zgenom skipping ..."
+	fi
+
+	echo "Done."
 }
 
-tpm() {
-	git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
+function tpm() {
+	echo "Installing tmux plugin manager (TPM) ..."
+	if [ -z "$(ls -A ${HOME}/.tmux/plugins/tpm)" ]; then
+		git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
+	else
+		echo "tpm already exists in ${HOME}/.tmux/plugins/tpm skipping ..."
+	fi
+
+	echo "Done."
+}
+
+function all() {
+	echo "Running all functions ..."
+	tpm
+	zgenom
+	echo "Done."
 }
 
 # Available options
 while :
 do
     case "$1" in
+				-a | --all)
+            all
+            exit 0
+            ;;
+
         -z | --zgenom)
             zgenom
             exit 0
