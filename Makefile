@@ -8,31 +8,20 @@ PLAYBOOK_DOTFILES=dotfiles.yml
 
 .PHONY: clean help tree playbook
 
+## Install all plygin managers
+plugins:
+	$(eval ARG="a")
+
+	@echo "Installing ALL plugin managers ..."
+	bash bin/get_plugin_managers.sh -$(ARG)
+
 ## Changelog
 changelog:
 	git cliff --unreleased --prepend CHANGELOG.md
 
-## Install OS Packages
-packages:
-	@echo "Running Playbook ${PLAYBOOK_PACKAGES}" 
-	ansible-playbook --ask-become-pass -C ${PLAYBOOK_PACKAGES} 
-
-## Setup Dotfiles
-dotfiles: packages
-	@echo "Running Playbook ${PLAYBOOK_DOTFILES}" 
-	ansible-playbook --ask-become-pass -C ${PLAYBOOK_DOTFILES}  
-
 ## Build NeoVim Docker Image
 nvim:
-	docker buildx build -f nvim.Dockerfile -t ghcr.io/hsteinshiromoto/dotfiles.linux/dotfiles.linux:nvim . 
-
-## Image
-build: 
-	docker build --no-cache -t test_ansible:latest .
-
-run:
-	docker run -it test_ansible:latest /bin/zsh
-
+	docker buildx build -f nvim.Dockerfile -t ghcr.io/hsteinshiromoto/dotfiles.linux/dotfiles.linux:nvim .
 
 ## Print tree
 tree:
