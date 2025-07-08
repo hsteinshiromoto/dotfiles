@@ -39,8 +39,10 @@ function tpm() {
 
 function all() {
 	echo "Running all functions ..."
+	echo
 	tpm
 	zgenom
+	echo
 	echo "Done."
 }
 
