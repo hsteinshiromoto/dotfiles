@@ -1,6 +1,9 @@
-# dotfiles.linux
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/hsteinshiromoto/dotfiles?style=flat)
+![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)
 
-My Linux dotfiles.
+# Dotfiles
+
+My dotfiles.
 
 ## Structure
 
