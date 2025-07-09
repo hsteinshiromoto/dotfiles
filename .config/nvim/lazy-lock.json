@@ -85,6 +85,7 @@
   "resession.nvim": { "branch": "master", "commit": "fd08e476c4e2f826905c384a3a301a821758764b" },
   "scroll-it.nvim": { "branch": "main", "commit": "81b4e8bd37ada6bfb85ce221705687eb4fc5bff6" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
+  "sort.nvim": { "branch": "main", "commit": "d0da9d6a715d50f74f7bae84bf3b62422adb5713" },
   "statuscol.nvim": { "branch": "main", "commit": "a2580e009a3b4c51b5978768d907dafae2c919ac" },
   "styler.nvim": { "branch": "main", "commit": "cd616580f206d929a319987f8f9aa7e0bd6f11ef" },
   "tabout.nvim": { "branch": "master", "commit": "9a3499480a8e53dcaa665e2836f287e3b7764009" },
