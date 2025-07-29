@@ -93,6 +93,15 @@ return {
 				week = function()
 					return os.date("%Y-W%W", os.time())
 				end,
+				month = function()
+					return os.date("%Y-%m", os.time())
+				end,
+				quarter = function()
+					return string.format("%s-Q%d", os.date("%Y"), math.ceil(os.date("%m") / 3))
+				end,
+				year = function()
+					return os.date("%Y", os.time())
+				end,
 			},
 		},
 		-- Optional, customize how note IDs are generated given an optional title.
