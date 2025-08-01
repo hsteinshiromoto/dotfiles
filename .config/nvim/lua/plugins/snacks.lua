@@ -50,7 +50,7 @@ return {
 			enabled = true,
 		},
 		notifier = { enabled = true },
-		picker = { enabled = true, hidden = true },
+		picker = { enabled = true, hidden = true, ui_select = true },
 		quickfile = { enabled = true },
 		rename = { enabled = true },
 		scope = { enabled = true },
