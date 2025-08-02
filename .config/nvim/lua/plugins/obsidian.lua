@@ -49,10 +49,10 @@ return {
 	cond = vim.fn.isdirectory(".obsidian") == 1,
 	keys = {
 
-		{ "<localleader>t", "<cmd>ObsidianTemplate<cr>", desc = "Insert Template" },
-		{ "<localleader>n", "<cmd>ObsidianNewFromTemplate<cr>", desc = "New Note From Template" },
-		{ "<localleader>d", "<cmd>ObsidianToday<cr>", desc = "Obsidian Daily Note" },
-		{ "<localleader>l", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
+		{ "<localleader>t", "<cmd>Obsidian template<cr>", desc = "Insert Template" },
+		{ "<localleader>n", "<cmd>Obsidian new_from_template<cr>", desc = "New Note From Template" },
+		{ "<localleader>d", "<cmd>Obsidian today<cr>", desc = "Obsidian Daily Note" },
+		{ "<localleader>l", "<cmd>Obsidian backlinks<cr>", desc = "Backlinks" },
 	},
 	new_notes_location = "notes_subdir",
 	opts = {
