@@ -27,8 +27,8 @@ local function basename_func(title)
 end
 
 return {
-	"epwalsh/obsidian.nvim",
-	version = "*", -- recommended, use latest release instead of latest commit
+	"obsidian-nvim/obsidian.nvim",
+	tag = "v3.12.0",
 	lazy = true,
 	ft = "markdown",
 	-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
@@ -49,10 +49,10 @@ return {
 	cond = vim.fn.isdirectory(".obsidian") == 1,
 	keys = {
 
-		{ "<localleader>t", "<cmd>ObsidianTemplate<cr>", desc = "Insert Template" },
-		{ "<localleader>n", "<cmd>ObsidianNewFromTemplate<cr>", desc = "New Note From Template" },
-		{ "<localleader>d", "<cmd>ObsidianToday<cr>", desc = "Obsidian Daily Note" },
-		{ "<localleader>l", "<cmd>ObsidianBacklinks<cr>", desc = "Backlinks" },
+		{ "<localleader>t", "<cmd>Obsidian template<cr>", desc = "Insert Template" },
+		{ "<localleader>n", "<cmd>Obsidian new_from_template<cr>", desc = "New Note From Template" },
+		{ "<localleader>d", "<cmd>Obsidian today<cr>", desc = "Obsidian Daily Note" },
+		{ "<localleader>l", "<cmd>Obsidian backlinks<cr>", desc = "Backlinks" },
 	},
 	new_notes_location = "notes_subdir",
 	opts = {
@@ -89,7 +89,20 @@ return {
 			date_format = "%Y-%m-%d",
 			time_format = "%H:%M",
 			-- A map for custom variables, the key should be the variable and the value a function
-			substitutions = {},
+			substitutions = {
+				week = function()
+					return os.date("%Y-W%W", os.time())
+				end,
+				month = function()
+					return os.date("%Y-%m", os.time())
+				end,
+				quarter = function()
+					return string.format("%s-Q%d", os.date("%Y"), math.ceil(os.date("%m") / 3))
+				end,
+				year = function()
+					return os.date("%Y", os.time())
+				end,
+			},
 		},
 		-- Optional, customize how note IDs are generated given an optional title.
 		---@return string
