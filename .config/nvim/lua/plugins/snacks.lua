@@ -54,6 +54,7 @@ return {
 		quickfile = { enabled = true },
 		rename = { enabled = true },
 		scope = { enabled = true },
+		scratch = { enabled = true },
 		scroll = { enabled = true },
 		-- TODO: Find a way for statuscolumn column to work
 		statuscolumn = {
@@ -300,6 +301,20 @@ return {
 				Snacks.picker.command_history()
 			end,
 			desc = "Command History",
+		},
+		{
+			"<leader>.",
+			function()
+				Snacks.scratch()
+			end,
+			desc = "Toggle Scratch Buffer",
+		},
+		{
+			"<leader>S",
+			function()
+				Snacks.scratch.select()
+			end,
+			desc = "Select Scratch Buffer",
 		},
 		{
 			"<leader>sC",
