@@ -74,6 +74,7 @@
   "obsidian.nvim": { "branch": "main", "commit": "2f0222b3eb20382cadf3e1d91f368318b768771c" },
   "one-small-step-for-vimkind": { "branch": "main", "commit": "91b4e0fb0d640def73812aceb22dafb99261dd67" },
   "outline.nvim": { "branch": "main", "commit": "0eb9289ab39c91caf8b3ed0e3a17764809d69558" },
+  "overlook.nvim": { "branch": "master", "commit": "8a9ab48f1acb1eb250db75630df9ec74ba1fd820" },
   "overseer.nvim": { "branch": "master", "commit": "fe7b2f9ba263e150ab36474dfc810217b8cf7400" },
   "pdf-preview.nvim": { "branch": "main", "commit": "640c294222f815f6ec773dba730994fd6d817df0" },
   "persistence.nvim": { "branch": "main", "commit": "166a79a55bfa7a4db3e26fc031b4d92af71d0b51" },
