@@ -1,6 +1,6 @@
 local keymap = vim.keymap.set
 
-keymap("n", "r", "<cmd>red<cr>", { desc = "Undo" })
+-- keymap("n", "r", "<cmd>red<cr>", { desc = "Undo" })
 
 keymap({ "n", "v" }, "<F8>", function()
 	local tomorrow = os.time() + (24 * 60 * 60) -- add 24 hours in seconds
