@@ -192,6 +192,21 @@ fi
 export BAT_THEME="gruvbox-dark"
 
 # ---
+# Tab complete
+# ---
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)							# Include hidden files
+
+# ---
+# Vi mode
+# ---
+bindkey -v
+export KEYTIMEOUT=1
+
+# ---
 # Custom Functions
 # ---
 
@@ -261,7 +276,7 @@ alias drmi='docker rmi $(docker images | fzf | awk "{print $3}")'
 # ---
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 # ---
 # Configuration: zoxide
@@ -306,3 +321,4 @@ setopt appendhistory
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+eval "$(atuin init zsh)"

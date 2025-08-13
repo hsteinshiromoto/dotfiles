@@ -50,10 +50,11 @@ return {
 			enabled = true,
 		},
 		notifier = { enabled = true },
-		picker = { enabled = true, hidden = true },
+		picker = { enabled = true, hidden = true, ui_select = true },
 		quickfile = { enabled = true },
 		rename = { enabled = true },
 		scope = { enabled = true },
+		scratch = { enabled = true },
 		scroll = { enabled = true },
 		-- TODO: Find a way for statuscolumn column to work
 		statuscolumn = {
@@ -302,6 +303,20 @@ return {
 			desc = "Command History",
 		},
 		{
+			"<leader>.",
+			function()
+				Snacks.scratch()
+			end,
+			desc = "Toggle Scratch Buffer",
+		},
+		{
+			"<leader>S",
+			function()
+				Snacks.scratch.select()
+			end,
+			desc = "Select Scratch Buffer",
+		},
+		{
 			"<leader>sC",
 			function()
 				Snacks.picker.commands()
@@ -515,11 +530,28 @@ return {
 			desc = "Rename File",
 		},
 		{
-			"<c-/>",
+			"`",
 			function()
 				Snacks.terminal()
 			end,
 			desc = "Toggle Terminal",
+			mode = { "n" },
+		},
+		{
+			"<leader>`o",
+			function()
+				Snacks.terminal.open()
+			end,
+			desc = "Open New Terminal",
+			mode = { "n" },
+		},
+		{
+			"<leader>`l",
+			function()
+				Snacks.terminal.list()
+			end,
+			desc = "List Terminal",
+			mode = { "n" },
 		},
 	},
 	init = function()

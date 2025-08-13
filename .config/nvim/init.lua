@@ -13,6 +13,7 @@ if not is_remote then
 	require("config.options")
 	require("config.lazy")
 	require("config.icons")
+	require("core.lsp")
 
 	vim.api.nvim_create_autocmd("User", {
 		pattern = "VeryLazy",
@@ -21,7 +22,7 @@ if not is_remote then
 			require("config.keymaps")
 		end,
 	})
--- Load your regular plugins here
+	-- Load your regular plugins here
 else
 	-- Load only minimal plugins needed for remote work
 end
