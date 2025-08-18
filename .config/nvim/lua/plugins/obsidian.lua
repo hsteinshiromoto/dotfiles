@@ -1,3 +1,161 @@
+local function getDayOffset(days, isBusinessDay)
+	-- Default isBusinessDay to false if not provided
+	isBusinessDay = isBusinessDay or false
+
+	-- If not business day mode, use original logic
+	if not isBusinessDay then
+		-- Get current local time
+		local current = os.date("*t")
+		-- Create a new time table for the target date
+		local target = {
+			year = current.year,
+			month = current.month,
+			day = current.day + days,
+			hour = 12, -- Set to noon to avoid DST issues
+			min = 0,
+			sec = 0,
+		}
+		-- Convert to timestamp and back to ensure proper date calculation
+		local target_time = os.time(target)
+		return os.date("%Y-%m-%d", target_time)
+	end
+
+	-- Business day logic
+	local current = os.date("*t")
+	local days_offset = 0
+	local business_days_counted = 0
+	local direction = days > 0 and 1 or -1
+	local target_business_days = math.abs(days)
+
+	-- Skip weekends when counting business days
+	while business_days_counted < target_business_days do
+		days_offset = days_offset + direction
+		local target = {
+			year = current.year,
+			month = current.month,
+			day = current.day + days_offset,
+			hour = 12,
+			min = 0,
+			sec = 0,
+		}
+		local time = os.time(target)
+		local t = os.date("*t", time)
+		-- Check if it's a weekday (Monday=2 to Friday=6)
+		if t.wday >= 2 and t.wday <= 6 then
+			business_days_counted = business_days_counted + 1
+		end
+	end
+
+	local final_target = {
+		year = current.year,
+		month = current.month,
+		day = current.day + days_offset,
+		hour = 12,
+		min = 0,
+		sec = 0,
+	}
+	return os.date("%Y-%m-%d", os.time(final_target))
+end
+
+-- Corrected ISO week calculation
+function getISOWeek(time)
+	time = time or os.time()
+	local t = os.date("*t", time)
+
+	-- Find Thursday of current week
+	-- In Lua: Sunday=1, Monday=2, ..., Thursday=5, ..., Saturday=7
+	local current_day = t.wday
+	local days_to_thursday = 5 - current_day -- Thursday is day 5
+	local thursday_time = time + (days_to_thursday * 86400)
+	local thursday_date = os.date("*t", thursday_time)
+
+	-- The year of the ISO week is the year of the Thursday
+	local iso_year = thursday_date.year
+
+	-- Find the first Thursday of the ISO year
+	local jan1 = os.time({ year = iso_year, month = 1, day = 1 })
+	local jan1_date = os.date("*t", jan1)
+	local jan1_wday = jan1_date.wday
+
+	-- Days from Jan 1 to first Thursday
+	local days_to_first_thursday
+	if jan1_wday <= 5 then
+		-- Jan 1 is Mon-Thu (2-5), Thursday is in the same week
+		days_to_first_thursday = 5 - jan1_wday
+	else
+		-- Jan 1 is Fri-Sun (6,7,1), Thursday is in the next week
+		days_to_first_thursday = 12 - jan1_wday
+	end
+
+	local first_thursday = jan1 + (days_to_first_thursday * 86400)
+
+	-- Calculate week number
+	local days_diff = (thursday_time - first_thursday) / 86400
+	local week_num = math.floor(days_diff / 7) + 1
+
+	return string.format("%d-W%02d", iso_year, week_num)
+end
+
+-- Main function remains the same
+function getDateOffset(offset, unit)
+	unit = unit or "week"
+
+	if unit == "week" then
+		local current = os.date("*t")
+		local target = {
+			year = current.year,
+			month = current.month,
+			day = current.day + (offset * 7),
+			hour = 12,
+			min = 0,
+			sec = 0,
+		}
+		local offset_time = os.time(target)
+		return getISOWeek(offset_time)
+	elseif unit == "month" then
+		local t = os.date("*t")
+		t.day = 15
+		t.month = t.month + offset
+		t.hour = 12
+		t.min = 0
+		t.sec = 0
+		return os.date("%Y-%m", os.time(t))
+	elseif unit == "quarter" then
+		local t = os.date("*t")
+		t.day = 15
+		t.month = t.month + (offset * 3)
+		t.hour = 12
+		t.min = 0
+		t.sec = 0
+		local quarter = math.ceil(((t.month - 1) % 12 + 1) / 3)
+		return os.date("%Y", os.time(t)) .. "-Q" .. quarter
+	end
+end
+
+function getWeekDays(include_weekend)
+	include_weekend = include_weekend ~= false
+	local current = os.date("*t")
+	local d = {}
+	-- For Sunday start: wday=1 is Sunday, so days since Sunday = wday - 1
+	local days_since_sunday = current.wday - 1
+	for i = 0, (include_weekend and 6 or 4) do
+		local target = {
+			year = current.year,
+			month = current.month,
+			day = current.day - days_since_sunday + i,
+			hour = 12,
+			min = 0,
+			sec = 0,
+		}
+		d[i + 1] = string.format(
+			"[[%s|%s]]",
+			os.date("%Y-%m-%d", os.time(target)),
+			({ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" })[i + 1]
+		)
+	end
+	return table.concat(d, ", ")
+end
+
 local icons = require("config.icons")
 local function tchelper(first, rest)
 	return first:upper() .. rest:lower()
@@ -90,17 +248,42 @@ return {
 			time_format = "%H:%M",
 			-- A map for custom variables, the key should be the variable and the value a function
 			substitutions = {
-				week = function()
-					return os.date("%Y-W%W", os.time())
+				YEAR = os.date("%Y", os.time()),
+				YEAR_PREVIOUS_QUARTER = function()
+					return getDateOffset(-1, "quarter")
 				end,
-				month = function()
-					return os.date("%Y-%m", os.time())
+				YEAR_QUARTER = string.format("%s-Q%d", os.date("%Y"), math.ceil(os.date("%m") / 3)),
+				YEAR_NEXT_QUARTER = function()
+					return getDateOffset(1, "quarter")
 				end,
-				quarter = function()
-					return string.format("%s-Q%d", os.date("%Y"), math.ceil(os.date("%m") / 3))
+				YEAR_PREVIOUS_MONTH = function()
+					return getDateOffset(-1, "month")
 				end,
-				year = function()
-					return os.date("%Y", os.time())
+				YEAR_MONTH = os.date("%Y-%m", os.time()),
+				YEAR_NEXT_MONTH = function()
+					return getDateOffset(1, "month")
+				end,
+				YEAR_PREVIOUS_WEEK_NUMBER = function()
+					return getDateOffset(-1, "week")
+				end,
+				YEAR_WEEK_NUMBER = function()
+					return getDateOffset(0, "week")
+				end,
+				DAYS_OF_WEEK = function()
+					return getWeekDays()
+				end,
+				YEAR_NEXT_WEEK_NUMBER = function()
+					return getDateOffset(1, "week")
+				end,
+				-- YESTERDAY and TOMORROW were being evaluated once when the config was loaded (likely on 2025-08-15), rather than being evaluated each time a template is created
+				YESTERDAY = function()
+					return getDayOffset(-1)
+				end,
+				TODAY = function()
+					return getDayOffset(0)
+				end,
+				TOMORROW = function()
+					return getDayOffset(1)
 				end,
 			},
 		},
