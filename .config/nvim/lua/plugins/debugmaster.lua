@@ -1,5 +1,6 @@
 return {
 	{ "rcarriga/nvim-dap-ui", enabled = false },
+	lazy = false,
 	{
 		"miroshQa/debugmaster.nvim",
 		-- osv is needed if you want to debug neovim lua code. Also can be used
@@ -13,7 +14,7 @@ return {
 			-- If you want to disable debug mode in addition to leader+d using the Escape key:
 			-- vim.keymap.set("n", "<Esc>", dm.mode.disable)
 			-- This might be unwanted if you already use Esc for ":noh"
-			vim.keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+			-- vim.keymap.set("t", "<C-\\>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 			dm.plugins.osv_integration.enabled = true -- needed if you want to debug neovim lua code
 			local dap = require("dap")
