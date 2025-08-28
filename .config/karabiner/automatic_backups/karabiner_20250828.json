@@ -4,56 +4,18 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Open Firefox by HyperKey + f",
+                        "description": "Command → Esc if alone",
+                        "enabled": false,
                         "manipulators": [
                             {
-                                "from": {
-                                    "key_code": "f",
-                                    "modifiers": { "mandatory": ["left_command", "left_control", "left_shift", "left_option"] }
-                                },
-                                "to": [{ "software_function": { "open_application": { "file_path": "/Applications/Firefox.app" } } }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Open Spotify by HyperKey + s",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "s",
-                                    "modifiers": { "mandatory": ["left_command", "left_control", "left_shift", "left_option"] }
-                                },
-                                "to": [{ "software_function": { "open_application": { "file_path": "/Applications/Spotify.app" } } }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Tab → Hyper Key (Tab if alone)",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "tab" },
+                                "from": { "key_code": "left_control" },
                                 "to": [
                                     {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_command", "left_control", "left_option"]
+                                        "key_code": "left_control",
+                                        "modifiers": ["left_control"]
                                     }
                                 ],
-                                "to_if_alone": [{ "key_code": "tab" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Open Ghostty by HyperKey + t",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "t",
-                                    "modifiers": { "mandatory": ["left_command", "left_control", "left_shift", "left_option"] }
-                                },
-                                "to": [{ "software_function": { "open_application": { "file_path": "/Applications/Ghostty.app" } } }],
+                                "to_if_alone": [{ "key_code": "escape" }],
                                 "type": "basic"
                             }
                         ]
@@ -90,17 +52,56 @@
                         ]
                     },
                     {
-                        "description": "Caps Lock → MEH Key (⌃⌥⇧) (Escape if alone)",
+                        "description": "Caps Lock → Hyper Key (⌃⌥⇧⌘) (Escape if alone)",
                         "manipulators": [
                             {
                                 "from": { "key_code": "caps_lock" },
                                 "to": [
                                     {
                                         "key_code": "left_shift",
-                                        "modifiers": ["left_control", "left_option"]
+                                        "modifiers": ["left_command", "left_control", "left_option"]
                                     }
                                 ],
                                 "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Hyper+Esc to Lock Screen",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": { "mandatory": ["left_shift", "left_control", "left_command", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "q",
+                                        "modifiers": ["left_control", "left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Left Command -> Tmux Prefix (if alone)",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "left_command" },
+                                "to": [
+                                    {
+                                        "key_code": "left_command",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "b",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
