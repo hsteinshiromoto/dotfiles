@@ -1,6 +1,9 @@
 local keymap = vim.keymap.set
 
 -- keymap("n", "r", "<cmd>red<cr>", { desc = "Undo" })
+keymap({ "n" }, "<M-h>", ":bn!<CR>", { desc = " Move to left buffer" })
+keymap({ "n" }, "<M-l>", ":bp!<CR>", { desc = " Move to right buffer" })
+keymap({ "n" }, "<M-j>", ":b#<CR>", { desc = " Move to previous visited buffer" })
 
 keymap({ "n", "v" }, "<F8>", function()
 	local tomorrow = os.time() + (24 * 60 * 60) -- add 24 hours in seconds
