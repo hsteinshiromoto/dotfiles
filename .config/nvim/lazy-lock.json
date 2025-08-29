@@ -96,6 +96,7 @@
   "telescope-resession.nvim": { "branch": "main", "commit": "3bd9b6a7765be068d2bd88ba77c2602229c97442" },
   "telescope.nvim": { "branch": "master", "commit": "b4da76be54691e854d3e0e02c36b0245f945c2c7" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
+  "todo.nvim": { "branch": "dev", "commit": "cd238e4614ad02ada8265ab0f129c380771ac708" },
   "toggleterm.nvim": { "branch": "main", "commit": "9a88eae817ef395952e08650b3283726786fb5fb" },
   "undotree": { "branch": "master", "commit": "28f2f54a34baff90ea6f4a735ef1813ad875c743" },
   "vim-commentary": { "branch": "master", "commit": "64a654ef4a20db1727938338310209b6a63f60c9" },

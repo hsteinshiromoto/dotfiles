@@ -1,5 +1,6 @@
 return {
 	"hsteinshiromoto/todo.nvim",
+	lazy = false,
 	branch = "dev",
 	config = function()
 		require("todo-nvim").setup({
