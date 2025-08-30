@@ -1,7 +1,7 @@
 # ghostty +show-config --default --docs
 # ghostty +list-themes
 command=zsh -c "tmux attach || tmux new"
-
+macos-option-as-alt 					 = true
 font-thicken                   = false
 font-size                      = 14
 # window-inherit-font-size       = true
@@ -27,4 +27,4 @@ quit-after-last-window-closed  = false
 # scrollback-limit             = 4200
 shell-integration              = zsh
 shell-integration-features     = no-cursor,sudo,title
-confirm-close-surface = false
+confirm-close-surface 				 = false
