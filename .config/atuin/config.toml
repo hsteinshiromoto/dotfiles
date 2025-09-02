@@ -206,7 +206,7 @@ common_subcommands = [
 ignored_commands = [
   "cd",
   "ls",
-  "vi"
+  "vi",
 	"nvim"
 ]
 
