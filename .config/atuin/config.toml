@@ -185,6 +185,7 @@ common_subcommands = [
 #   "ip",
 #   "jj",
 #   "kubectl",
+	"make",
   "nix",
   "nmcli",
 #   "npm",
@@ -194,6 +195,7 @@ common_subcommands = [
 #   "port",
   "systemctl",
   "tmux",
+	"uv",
 #   "yarn",
 ]
 
@@ -228,7 +230,7 @@ records = true
 ## auto: length of the selected command.
 ## static: length of the longest command stored in the history.
 ## fixed: use max_preview_height as fixed height.
-# strategy = "auto"
+strategy = "auto"
 
 [daemon]
 ## Enables using the daemon to sync. Requires the daemon to be running in the background. Start it with `atuin daemon`
