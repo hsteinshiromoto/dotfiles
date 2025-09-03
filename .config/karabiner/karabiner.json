@@ -4,11 +4,11 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Open Firefox by HyperKey + f",
+                        "description": "Open Browser by HyperKey + b",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "f",
+                                    "key_code": "b",
                                     "modifiers": { "mandatory": ["left_command", "left_control", "left_shift", "left_option"] }
                                 },
                                 "to": [{ "software_function": { "open_application": { "file_path": "/Applications/Firefox.app" } } }],
