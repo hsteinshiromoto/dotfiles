@@ -248,7 +248,9 @@ return {
 			time_format = "%H:%M",
 			-- A map for custom variables, the key should be the variable and the value a function
 			substitutions = {
-				YEAR = os.date("%Y", os.time()),
+				YEAR = function()
+					return os.date("%Y", os.time())
+				end,
 				YEAR_PREVIOUS_QUARTER = function()
 					return getDateOffset(-1, "quarter")
 				end,
@@ -259,7 +261,9 @@ return {
 				YEAR_PREVIOUS_MONTH = function()
 					return getDateOffset(-1, "month")
 				end,
-				YEAR_MONTH = os.date("%Y-%m", os.time()),
+				YEAR_MONTH = function()
+					return os.date("%Y-%m", os.time())
+				end,
 				YEAR_NEXT_MONTH = function()
 					return getDateOffset(1, "month")
 				end,
