@@ -7,7 +7,7 @@ return {
 	end,
 	keys = {
 		"ga", -- Default invocation prefix
-		{ "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
+		{ "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x", "v" }, desc = "Telescope" },
 	},
 	cmd = {
 		-- NOTE: The Subs command name can be customized via the option "substitude_command_name"
