@@ -75,7 +75,7 @@ keymap({ "n", "v" }, "D", '"_d$', { desc = "Delete and not yank" })
 -- keymap("n", "zz", ":wqa<CR>", { desc = "Save and quit" })
 
 -- Map <leader>backspace to stop Highlight
-keymap({ "n", "v" }, "\\", "<cmd>nohlsearch<cr>", { desc = "Stop Highlight" })
+keymap({ "n", "v" }, "\\", "<cmd>nohlsearch<cr>", { desc = "Stop Search Highlight" })
 
 -- Map paste above and below current line.
 keymap({ "n", "v" }, "<leader>p", ":pu<CR>", { desc = "Past below line" })
