@@ -1,6 +1,7 @@
 vim.lsp.enable({
 	"ruff",
 	"lua_ls",
+	"marksman",
 })
 
 vim.diagnostic.config({
