@@ -81,7 +81,6 @@
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "687ef75fdbd497eabc9eea92b52e7b4d403b3319" },
   "render-markdown.nvim": { "branch": "main", "commit": "7fd911692e5bc705c5487ae1c390d0b6d9738d87" },
   "resession.nvim": { "branch": "master", "commit": "84c81e5fd8a94dc85a60b97089536174e558e288" },
-  "scroll-it.nvim": { "branch": "main", "commit": "81b4e8bd37ada6bfb85ce221705687eb4fc5bff6" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "sort.nvim": { "branch": "main", "commit": "bb92140e1b96d62339bd5ab5b6df1eecca0d5da6" },
   "statuscol.nvim": { "branch": "main", "commit": "c46172d0911aa5d49ba5f39f4351d1bb7aa289cc" },
