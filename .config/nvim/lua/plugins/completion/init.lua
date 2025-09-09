@@ -1,3 +1,8 @@
+--- ---
+--- References:
+--- 	[1] https://github.com/cpow/neovim-for-newbs
+--- ---
+
 return {
 	{
 		"hrsh7th/cmp-nvim-lsp",
