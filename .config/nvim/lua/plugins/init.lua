@@ -5,7 +5,6 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		config = { default = true },
 	},
-	{ "nacro90/numb.nvim", event = "BufReadPre", config = true },
 	{
 		"stevearc/dressing.nvim",
 		event = "VeryLazy",
