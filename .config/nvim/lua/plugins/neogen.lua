@@ -16,11 +16,11 @@ return {
 			},
 		},
 	},
-  --stylua: ignore
-  keys = {
-    { "<leader>cgd", function() require("neogen").generate() end, desc = "Annotation", },
-    { "<leader>cgc", function() require("neogen").generate { type = "class" } end, desc = "Class", },
-    { "<leader>cgf", function() require("neogen").generate { type = "func" } end, desc = "Function", },
-    { "<leader>cgt", function() require("neogen").generate { type = "type" } end, desc = "Type", },
-  },
+	--stylua: ignore
+	keys = {
+		{ "<localleader>ga", function() require("neogen").generate() end,                  desc = "Generate Annotation", },
+		{ "<localleader>gc", function() require("neogen").generate { type = "class" } end, desc = "Generate Class", },
+		{ "<localleader>gf", function() require("neogen").generate { type = "func" } end,  desc = "Generate Function", },
+		{ "<localleader>gt", function() require("neogen").generate { type = "type" } end,  desc = "Generate Type", },
+	},
 }
