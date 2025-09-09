@@ -6,11 +6,6 @@ return {
 		config = { default = true },
 	},
 	{
-		"stevearc/dressing.nvim",
-		event = "VeryLazy",
-		config = true,
-	},
-	{
 		"sitiom/nvim-numbertoggle",
 	},
 	{
