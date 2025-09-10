@@ -177,6 +177,19 @@ function getMonthCalendar()
 	local last_day = os.time({year = next_year, month = next_month, day = 1, hour = 12}) - 86400
 	local last_day_t = os.date("*t", last_day)
 	local days_in_month = last_day_t.day
+	local last_wday = last_day_t.wday
+	
+	-- Get previous month info
+	local prev_month = month - 1
+	local prev_year = year
+	if prev_month < 1 then
+		prev_month = 12
+		prev_year = year - 1
+	end
+	-- Get last day of previous month
+	local prev_last_day = os.time({year = year, month = month, day = 1, hour = 12}) - 86400
+	local prev_last_day_t = os.date("*t", prev_last_day)
+	local prev_days_in_month = prev_last_day_t.day
 	
 	-- Build calendar table
 	local calendar = {}
@@ -194,19 +207,22 @@ function getMonthCalendar()
 	local week_num = getISOWeek(first_day)
 	table.insert(week_row, string.format("[[%s]]", week_num))
 	
-	-- Fill in empty days before the first day of the month
-	for i = 1, first_wday - 1 do
-		table.insert(week_row, "")
+	-- Fill in days from previous month before the first day of current month
+	if first_wday > 1 then
+		local prev_day = prev_days_in_month - (first_wday - 2)
+		for i = 1, first_wday - 1 do
+			local date_str = string.format("%04d-%02d-%02d", prev_year, prev_month, prev_day)
+			table.insert(week_row, string.format("[[%s\\|%02d]]", date_str, prev_day))
+			prev_day = prev_day + 1
+		end
 	end
 	
-	-- Fill in the days of the first week
+	-- Fill in the days of the first week from current month
 	for i = first_wday, 7 do
 		if day <= days_in_month then
 			local date_str = string.format("%04d-%02d-%02d", year, month, day)
 			table.insert(week_row, string.format("[[%s\\|%02d]]", date_str, day))
 			day = day + 1
-		else
-			table.insert(week_row, "")
 		end
 	end
 	table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
@@ -226,10 +242,19 @@ function getMonthCalendar()
 				table.insert(week_row, string.format("[[%s\\|%02d]]", date_str, day))
 				day = day + 1
 			else
-				table.insert(week_row, "")
+				-- We've gone past the last day of the month, add next month's days
+				local next_day = day - days_in_month
+				local date_str = string.format("%04d-%02d-%02d", next_year, next_month, next_day)
+				table.insert(week_row, string.format("[[%s\\|%02d]]", date_str, next_day))
+				day = day + 1
 			end
 		end
 		table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
+		
+		-- Check if we've filled the last week completely
+		if day > days_in_month and ((day - days_in_month - 1) % 7 == 0 or (last_wday == 7 and day == days_in_month + 1)) then
+			break
+		end
 	end
 	
 	return table.concat(calendar, "\n")
