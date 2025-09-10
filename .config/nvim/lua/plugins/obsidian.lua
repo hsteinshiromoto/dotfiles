@@ -161,12 +161,12 @@ function getMonthCalendar()
 	local current = os.date("*t")
 	local year = current.year
 	local month = current.month
-	
+
 	-- Get first day of the month
-	local first_day = os.time({year = year, month = month, day = 1, hour = 12})
+	local first_day = os.time({ year = year, month = month, day = 1, hour = 12 })
 	local first_day_t = os.date("*t", first_day)
 	local first_wday = first_day_t.wday -- 1=Sunday, 2=Monday, ..., 7=Saturday
-	
+
 	-- Get last day of the month
 	local next_month = month + 1
 	local next_year = year
@@ -174,11 +174,11 @@ function getMonthCalendar()
 		next_month = 1
 		next_year = year + 1
 	end
-	local last_day = os.time({year = next_year, month = next_month, day = 1, hour = 12}) - 86400
+	local last_day = os.time({ year = next_year, month = next_month, day = 1, hour = 12 }) - 86400
 	local last_day_t = os.date("*t", last_day)
 	local days_in_month = last_day_t.day
 	local last_wday = last_day_t.wday
-	
+
 	-- Get previous month info
 	local prev_month = month - 1
 	local prev_year = year
@@ -187,26 +187,36 @@ function getMonthCalendar()
 		prev_year = year - 1
 	end
 	-- Get last day of previous month
-	local prev_last_day = os.time({year = year, month = month, day = 1, hour = 12}) - 86400
+	local prev_last_day = os.time({ year = year, month = month, day = 1, hour = 12 }) - 86400
 	local prev_last_day_t = os.date("*t", prev_last_day)
 	local prev_days_in_month = prev_last_day_t.day
-	
-	-- Build calendar table
+
+	-- Helper function to center text in a fixed width
+	local function centerText(text, width)
+		local textLen = #text
+		local padding = width - textLen
+		local leftPad = math.floor(padding / 2)
+		local rightPad = padding - leftPad
+		return string.rep(" ", leftPad) .. text .. string.rep(" ", rightPad)
+	end
+
+	-- Build calendar table with consistent column widths
 	local calendar = {}
-	table.insert(calendar, "| Week | Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday |")
-	table.insert(calendar, "| ---- | ------ | ------ | ------- | --------- | -------- | ------ | -------- |")
-	
+	-- Header row with centered day names
+	table.insert(calendar, "|   Week   |  Sunday  |  Monday  | Tuesday  | Wednesday | Thursday |  Friday  | Saturday |")
+	table.insert(calendar, "|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|")
+
 	-- Calculate starting position
 	local day = 1
 	local week_row = {}
-	
+
 	-- Handle the first week
 	local first_week_time = first_day
 	-- Adjust to get the Sunday of the first week
 	first_week_time = first_week_time - ((first_wday - 1) * 86400)
 	local week_num = getISOWeek(first_day)
 	table.insert(week_row, string.format("[[%s]]", week_num))
-	
+
 	-- Fill in days from previous month before the first day of current month
 	if first_wday > 1 then
 		local prev_day = prev_days_in_month - (first_wday - 2)
@@ -216,7 +226,7 @@ function getMonthCalendar()
 			prev_day = prev_day + 1
 		end
 	end
-	
+
 	-- Fill in the days of the first week from current month
 	for i = first_wday, 7 do
 		if day <= days_in_month then
@@ -226,15 +236,15 @@ function getMonthCalendar()
 		end
 	end
 	table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
-	
+
 	-- Handle remaining weeks
 	while day <= days_in_month do
 		week_row = {}
 		-- Calculate week number for this week
-		local current_day_time = os.time({year = year, month = month, day = day, hour = 12})
+		local current_day_time = os.time({ year = year, month = month, day = day, hour = 12 })
 		week_num = getISOWeek(current_day_time)
 		table.insert(week_row, string.format("[[%s]]", week_num))
-		
+
 		-- Fill in the days of the week
 		for wday = 1, 7 do
 			if day <= days_in_month then
@@ -250,13 +260,16 @@ function getMonthCalendar()
 			end
 		end
 		table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
-		
+
 		-- Check if we've filled the last week completely
-		if day > days_in_month and ((day - days_in_month - 1) % 7 == 0 or (last_wday == 7 and day == days_in_month + 1)) then
+		if
+			day > days_in_month
+			and ((day - days_in_month - 1) % 7 == 0 or (last_wday == 7 and day == days_in_month + 1))
+		then
 			break
 		end
 	end
-	
+
 	return table.concat(calendar, "\n")
 end
 
