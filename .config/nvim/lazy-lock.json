@@ -9,6 +9,7 @@
   "dart.nvim": { "branch": "master", "commit": "54c0c194da09bfe92995eeb4e4bcd719aa0bcbe7" },
   "debugmaster.nvim": { "branch": "main", "commit": "3d144b98c2c23f39123fbf5f10fdff7d6480a0e6" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
+  "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
   "edgy.nvim": { "branch": "main", "commit": "7e8dedc39abebe40c289b8012cc89b11c69aa7a0" },
   "fidget.nvim": { "branch": "main", "commit": "4d5858bd4c471c895060e1b9f3575f1551184dc5" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
@@ -96,6 +97,5 @@
   "vim-matchup": { "branch": "master", "commit": "b23ba393ee600f4f637999f2c02b06a17838e2f0" },
   "vim-test": { "branch": "master", "commit": "ba859e8f66ffe12a097e9963110cd7712db14801" },
   "vimtex": { "branch": "master", "commit": "dc90feacb86f7b85b0b791d8073eefc769a23725" },
-  "vimux": { "branch": "master", "commit": "04f299e53eb81883da0edea6a57018067f3b4938" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" }
 }
