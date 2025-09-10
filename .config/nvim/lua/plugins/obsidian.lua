@@ -156,6 +156,85 @@ function getWeekDays(include_weekend)
 	return table.concat(d, ", ")
 end
 
+-- Generate a calendar table for a given month
+function getMonthCalendar()
+	local current = os.date("*t")
+	local year = current.year
+	local month = current.month
+	
+	-- Get first day of the month
+	local first_day = os.time({year = year, month = month, day = 1, hour = 12})
+	local first_day_t = os.date("*t", first_day)
+	local first_wday = first_day_t.wday -- 1=Sunday, 2=Monday, ..., 7=Saturday
+	
+	-- Get last day of the month
+	local next_month = month + 1
+	local next_year = year
+	if next_month > 12 then
+		next_month = 1
+		next_year = year + 1
+	end
+	local last_day = os.time({year = next_year, month = next_month, day = 1, hour = 12}) - 86400
+	local last_day_t = os.date("*t", last_day)
+	local days_in_month = last_day_t.day
+	
+	-- Build calendar table
+	local calendar = {}
+	table.insert(calendar, "| Week | Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday |")
+	table.insert(calendar, "| ---- | ------ | ------ | ------- | --------- | -------- | ------ | -------- |")
+	
+	-- Calculate starting position
+	local day = 1
+	local week_row = {}
+	
+	-- Handle the first week
+	local first_week_time = first_day
+	-- Adjust to get the Sunday of the first week
+	first_week_time = first_week_time - ((first_wday - 1) * 86400)
+	local week_num = getISOWeek(first_day)
+	table.insert(week_row, string.format("[[%s]]", week_num))
+	
+	-- Fill in empty days before the first day of the month
+	for i = 1, first_wday - 1 do
+		table.insert(week_row, "")
+	end
+	
+	-- Fill in the days of the first week
+	for i = first_wday, 7 do
+		if day <= days_in_month then
+			local date_str = string.format("%04d-%02d-%02d", year, month, day)
+			table.insert(week_row, string.format("[[%s\\|%02d]]", date_str, day))
+			day = day + 1
+		else
+			table.insert(week_row, "")
+		end
+	end
+	table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
+	
+	-- Handle remaining weeks
+	while day <= days_in_month do
+		week_row = {}
+		-- Calculate week number for this week
+		local current_day_time = os.time({year = year, month = month, day = day, hour = 12})
+		week_num = getISOWeek(current_day_time)
+		table.insert(week_row, string.format("[[%s]]", week_num))
+		
+		-- Fill in the days of the week
+		for wday = 1, 7 do
+			if day <= days_in_month then
+				local date_str = string.format("%04d-%02d-%02d", year, month, day)
+				table.insert(week_row, string.format("[[%s\\|%02d]]", date_str, day))
+				day = day + 1
+			else
+				table.insert(week_row, "")
+			end
+		end
+		table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
+	end
+	
+	return table.concat(calendar, "\n")
+end
+
 local icons = require("config.icons")
 local function tchelper(first, rest)
 	return first:upper() .. rest:lower()
@@ -288,6 +367,9 @@ return {
 				end,
 				TOMORROW = function()
 					return getDayOffset(1)
+				end,
+				MONTH_CALENDAR = function()
+					return getMonthCalendar()
 				end,
 			},
 		},
