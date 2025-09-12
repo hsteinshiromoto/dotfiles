@@ -300,6 +300,49 @@ function getMonthCalendar()
 	return table.concat(calendar, "\n")
 end
 
+-- Generate a calendar table for the current week
+function getWeekCalendar()
+	local current = os.date("*t")
+	-- Get current week number
+	local week_num = getISOWeek(os.time(current))
+
+	-- Calculate days of the current week (Sunday to Saturday)
+	-- Find Sunday of current week
+	local days_since_sunday = current.wday - 1 -- wday: 1=Sunday, so days_since_sunday = 0 for Sunday
+	local sunday_time = os.time(current) - (days_since_sunday * 86400)
+
+	-- Build calendar table
+	local calendar = {}
+	-- Header row
+	table.insert(calendar, "| Week Day | Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday |")
+	table.insert(calendar, "|----------|--------|--------|---------|-----------|----------|--------|----------|")
+
+	-- Build the week row
+	local week_row = {}
+	-- Add week number
+	table.insert(week_row, string.format("[[%s]]", week_num))
+
+	-- Add each day of the week
+	for i = 0, 6 do
+		local day_time = sunday_time + (i * 86400)
+		local day_date = os.date("*t", day_time)
+		local date_str = os.date("%Y-%m-%d", day_time)
+		local day_num = day_date.day
+
+		-- Format each day cell with proper centering (3 spaces on each side for 8-char columns, except Wednesday with 11)
+		local link = string.format("[[%s\\|%02d]]", date_str, day_num)
+		if i == 3 then -- Wednesday (index 3, since Sunday is 0)
+			table.insert(week_row, "   " .. link .. "    ") -- 2 left, 3 right for 11-char column
+		else
+			table.insert(week_row, "  " .. link .. "  ") -- 1 space on each side for 8-char columns
+		end
+	end
+
+	table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
+
+	return table.concat(calendar, "\n")
+end
+
 local icons = require("config.icons")
 local function tchelper(first, rest)
 	return first:upper() .. rest:lower()
@@ -435,6 +478,9 @@ return {
 				end,
 				MONTH_CALENDAR = function()
 					return getMonthCalendar()
+				end,
+				WEEK_CALENDAR = function()
+					return getWeekCalendar()
 				end,
 			},
 		},
