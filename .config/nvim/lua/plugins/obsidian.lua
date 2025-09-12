@@ -156,6 +156,193 @@ function getWeekDays(include_weekend)
 	return table.concat(d, ", ")
 end
 
+-- Generate a calendar table for a given month
+function getMonthCalendar()
+	local current = os.date("*t")
+	local year = current.year
+	local month = current.month
+
+	-- Get first day of the month
+	local first_day = os.time({ year = year, month = month, day = 1, hour = 12 })
+	local first_day_t = os.date("*t", first_day)
+	local first_wday = first_day_t.wday -- 1=Sunday, 2=Monday, ..., 7=Saturday
+
+	-- Get last day of the month
+	local next_month = month + 1
+	local next_year = year
+	if next_month > 12 then
+		next_month = 1
+		next_year = year + 1
+	end
+	local last_day = os.time({ year = next_year, month = next_month, day = 1, hour = 12 }) - 86400
+	local last_day_t = os.date("*t", last_day)
+	local days_in_month = last_day_t.day
+	local last_wday = last_day_t.wday
+
+	-- Get previous month info
+	local prev_month = month - 1
+	local prev_year = year
+	if prev_month < 1 then
+		prev_month = 12
+		prev_year = year - 1
+	end
+	-- Get last day of previous month
+	local prev_last_day = os.time({ year = year, month = month, day = 1, hour = 12 }) - 86400
+	local prev_last_day_t = os.date("*t", prev_last_day)
+	local prev_days_in_month = prev_last_day_t.day
+
+	-- Helper function to create a properly padded day link for calendar
+	local function formatDayCell(date_str, day_num)
+		-- Create the link with day number - always use 4 spaces padding on each side
+		local link = string.format("[[%s\\|%02d]]", date_str, day_num)
+		return "   " .. link .. "   " -- 3 spaces on each side
+	end
+
+	-- Helper function to format week cell with proper centering
+	local function formatWeekCell(week_str)
+		local link = string.format("[[%s]]", week_str)
+		-- Week links are typically 11 chars like [[2025-W01]], need to center in 10 char column
+		return link -- 1 space padding for 11-char week string in 10-char column
+	end
+
+	-- Helper function for Wednesday column which has 11 characters
+	local function formatWednesdayCell(date_str, day_num)
+		local link = string.format("[[%s\\|%02d]]", date_str, day_num)
+		return "   " .. link .. "    " -- 4 spaces left, 5 spaces right for 11-char column
+	end
+
+	-- Build calendar table with consistent column widths
+	local calendar = {}
+	-- Header row with properly spaced day names
+	table.insert(calendar, "|   Week   |  Sunday  |  Monday  | Tuesday  | Wednesday | Thursday |  Friday  | Saturday |")
+	table.insert(calendar, "|----------|----------|----------|----------|-----------|----------|----------|----------|")
+
+	-- Calculate starting position
+	local day = 1
+	local week_row = {}
+
+	-- Handle the first week
+	local first_week_time = first_day
+	-- Adjust to get the Sunday of the first week
+	first_week_time = first_week_time - ((first_wday - 1) * 86400)
+	local week_num = getISOWeek(first_day)
+	table.insert(week_row, formatWeekCell(week_num))
+
+	-- Fill in days from previous month before the first day of current month
+	if first_wday > 1 then
+		local prev_day = prev_days_in_month - (first_wday - 2)
+		for i = 1, first_wday - 1 do
+			local date_str = string.format("%04d-%02d-%02d", prev_year, prev_month, prev_day)
+			if i == 4 then -- Wednesday column
+				table.insert(week_row, formatWednesdayCell(date_str, prev_day))
+			else
+				table.insert(week_row, formatDayCell(date_str, prev_day))
+			end
+			prev_day = prev_day + 1
+		end
+	end
+
+	-- Fill in the days of the first week from current month
+	for i = first_wday, 7 do
+		if day <= days_in_month then
+			local date_str = string.format("%04d-%02d-%02d", year, month, day)
+			if i == 4 then -- Wednesday column
+				table.insert(week_row, formatWednesdayCell(date_str, day))
+			else
+				table.insert(week_row, formatDayCell(date_str, day))
+			end
+			day = day + 1
+		end
+	end
+	table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
+
+	-- Handle remaining weeks
+	while day <= days_in_month do
+		week_row = {}
+		-- Calculate week number for this week
+		local current_day_time = os.time({ year = year, month = month, day = day, hour = 12 })
+		week_num = getISOWeek(current_day_time)
+		table.insert(week_row, formatWeekCell(week_num))
+
+		-- Fill in the days of the week
+		for wday = 1, 7 do
+			if day <= days_in_month then
+				local date_str = string.format("%04d-%02d-%02d", year, month, day)
+				if wday == 4 then -- Wednesday column
+					table.insert(week_row, formatWednesdayCell(date_str, day))
+				else
+					table.insert(week_row, formatDayCell(date_str, day))
+				end
+				day = day + 1
+			else
+				-- We've gone past the last day of the month, add next month's days
+				local next_day = day - days_in_month
+				local date_str = string.format("%04d-%02d-%02d", next_year, next_month, next_day)
+				if wday == 4 then -- Wednesday column
+					table.insert(week_row, formatWednesdayCell(date_str, next_day))
+				else
+					table.insert(week_row, formatDayCell(date_str, next_day))
+				end
+				day = day + 1
+			end
+		end
+		table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
+
+		-- Check if we've filled the last week completely
+		if
+			day > days_in_month
+			and ((day - days_in_month - 1) % 7 == 0 or (last_wday == 7 and day == days_in_month + 1))
+		then
+			break
+		end
+	end
+
+	return table.concat(calendar, "\n")
+end
+
+-- Generate a calendar table for the current week
+function getWeekCalendar()
+	local current = os.date("*t")
+	-- Get current week number
+	local week_num = getISOWeek(os.time(current))
+
+	-- Calculate days of the current week (Sunday to Saturday)
+	-- Find Sunday of current week
+	local days_since_sunday = current.wday - 1 -- wday: 1=Sunday, so days_since_sunday = 0 for Sunday
+	local sunday_time = os.time(current) - (days_since_sunday * 86400)
+
+	-- Build calendar table
+	local calendar = {}
+	-- Header row
+	table.insert(calendar, "| Week Day | Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday |")
+	table.insert(calendar, "|----------|--------|--------|---------|-----------|----------|--------|----------|")
+
+	-- Build the week row
+	local week_row = {}
+	-- Add week number
+	table.insert(week_row, string.format("[[%s]]", week_num))
+
+	-- Add each day of the week
+	for i = 0, 6 do
+		local day_time = sunday_time + (i * 86400)
+		local day_date = os.date("*t", day_time)
+		local date_str = os.date("%Y-%m-%d", day_time)
+		local day_num = day_date.day
+
+		-- Format each day cell with proper centering (3 spaces on each side for 8-char columns, except Wednesday with 11)
+		local link = string.format("[[%s\\|%02d]]", date_str, day_num)
+		if i == 3 then -- Wednesday (index 3, since Sunday is 0)
+			table.insert(week_row, "   " .. link .. "    ") -- 2 left, 3 right for 11-char column
+		else
+			table.insert(week_row, "  " .. link .. "  ") -- 1 space on each side for 8-char columns
+		end
+	end
+
+	table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
+
+	return table.concat(calendar, "\n")
+end
+
 local icons = require("config.icons")
 local function tchelper(first, rest)
 	return first:upper() .. rest:lower()
@@ -288,6 +475,12 @@ return {
 				end,
 				TOMORROW = function()
 					return getDayOffset(1)
+				end,
+				MONTH_CALENDAR = function()
+					return getMonthCalendar()
+				end,
+				WEEK_CALENDAR = function()
+					return getWeekCalendar()
 				end,
 			},
 		},

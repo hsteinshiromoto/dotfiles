@@ -5,12 +5,6 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		config = { default = true },
 	},
-	{ "nacro90/numb.nvim", event = "BufReadPre", config = true },
-	{
-		"stevearc/dressing.nvim",
-		event = "VeryLazy",
-		config = true,
-	},
 	{
 		"sitiom/nvim-numbertoggle",
 	},
@@ -24,18 +18,6 @@ return {
 		"sindrets/diffview.nvim",
 		cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
 		config = true,
-	},
-	{
-		"monaqa/dial.nvim",
-		event = "BufReadPre",
-		config = function()
-			vim.api.nvim_set_keymap("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
-			vim.api.nvim_set_keymap("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })
-			vim.api.nvim_set_keymap("v", "<C-a>", require("dial.map").inc_visual(), { noremap = true })
-			vim.api.nvim_set_keymap("v", "<C-x>", require("dial.map").dec_visual(), { noremap = true })
-			vim.api.nvim_set_keymap("v", "g<C-a>", require("dial.map").inc_gvisual(), { noremap = true })
-			vim.api.nvim_set_keymap("v", "g<C-x>", require("dial.map").dec_gvisual(), { noremap = true })
-		end,
 	},
 	{
 		-- TODO: Fix issue with NeoVim and Poetry for Nvim and Tmux motions
@@ -60,7 +42,7 @@ return {
 		"mbbill/undotree",
 		lazy = false,
 		config = function()
-			vim.keymap.set("n", "<C-u>", vim.cmd.UndotreeToggle, { desc = "Toggle Undo Tree" })
+			vim.keymap.set("n", "<leader><F5>", vim.cmd.UndotreeToggle, { desc = "Toggle Undo Tree" })
 		end,
 	},
 	-- session management
@@ -68,11 +50,11 @@ return {
 		"folke/persistence.nvim",
 		event = "BufReadPre",
 		opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help" } },
-  -- stylua: ignore
+		-- stylua: ignore
 		keys = {
-			{ "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
+			{ "<leader>qs", function() require("persistence").load() end,                desc = "Restore Session" },
 			{ "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-			{ "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
+			{ "<leader>qd", function() require("persistence").stop() end,                desc = "Don't Save Current Session" },
 		},
 	},
 }
