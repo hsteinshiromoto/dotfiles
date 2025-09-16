@@ -192,9 +192,10 @@ disabled = false
 
 [character]
 disabled = false
-success_symbol = '[T:](bold fg:color_green)'
-error_symbol = '[T:](bold fg:color_red)'
+success_symbol = '[I:](bold fg:color_green)'
+error_symbol = '[I:](bold fg:color_red)'
 vimcmd_symbol = '[N:](bold fg:color_green)'
-vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
-vimcmd_replace_symbol = '[](bold fg:color_purple)'
-vimcmd_visual_symbol = '[V:](bold fg:color_yellow)'
+# The following are only supported in fish
+# vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
+# vimcmd_replace_symbol = '[](bold fg:color_purple)'
+# vimcmd_visual_symbol = '[V:](bold fg:color_yellow)'
