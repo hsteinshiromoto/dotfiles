@@ -123,6 +123,21 @@ fi
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+# ---
+# SSH
+# ---
+
+# Use GPG Agent for Authentification
+#
+# References:
+# 	[1] https://gist.github.com/mcattarinussi/834fc4b641ff4572018d0c665e5a94d3
+unset SSH_AGENT_PID
+# if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ;then
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+# fi
+export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null]
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='nvim'
@@ -165,7 +180,7 @@ esac
 if [[ ${unameOut} == "Linux" ]]; then
 	export PATH="$PATH:/opt/nvim-linux64/bin:/nix/var/nix/profiles/default/bin:$HOME/.local/bin"
 elif [[ ${unameOut} == "Darwin" ]]; then
-	export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/usr/local/MacGPG2/bin:/Applications/VMware:/Users/hsteinshiromoto/.local/bin:$HOME/.local/state/nix/profiles/profile/bin:/run/current-system/sw/bin
+	export PATH=/usr/local/MacGPG2/bin:/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Applications/VMware:/Users/hsteinshiromoto/.local/bin:$HOME/.local/state/nix/profiles/profile/bin:/run/current-system/sw/bin
 fi
 
 export PATH="$PATH:/nix/var/nix/profiles/default/bin:$HOME/.tmux/plugins/tpm"
@@ -307,7 +322,7 @@ export VISUAL=nvim
 # References:
 # 	[1] https://medium.com/@hitechluddite/ditch-cleartext-secrets-how-to-safeguard-api-keys-in-zsh-and-bash-with-pass-77f694b9ff64
 # ---
-export ANTHROPIC_API_KEY=$(pass show ANTHROPIC_API_KEY)
+# export ANTHROPIC_API_KEY=$(pass show ANTHROPIC_API_KEY)
 
 # ---
 # FZF history
