@@ -272,6 +272,9 @@ elif [[ ${unameOut} == "Darwin" ]]; then
 	alias ns="darwin-rebuild build --flake ~/.config/nix-darwin"
 fi
 
+alias je="jira issue list -tEpic -s\"To Do\" -s\"InProgress\" --created -90d --order-by rank --reverse"
+alias js="jira issue list -tStory -s\"To Do\" -s\"InProgress\" --created -90d --order-by rank --reverse"
+
 # Docker aliases
 alias dpl='docker pull'
 alias dph='docker push'
@@ -279,12 +282,6 @@ alias dk='docker kill $(docker ps -a | fzf | awk "{ print $1 }")'
 alias drm='docker rm $(docker ps -a | fzf | awk "{ print $1 }")'
 alias ds='docker stop $(docker ps -a | fzf | awk "{ print $1 }")'
 alias drmi='docker rmi $(docker images | fzf | awk "{print $3}")'
-
-# The following fzf command should be kept below the cat alias
-
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # ---
 # Configuration: Pyenv
@@ -324,8 +321,6 @@ export VISUAL=nvim
 # ---
 # export ANTHROPIC_API_KEY=$(pass show ANTHROPIC_API_KEY)
 export JIRA_API_TOKEN=$(pass show APIs/JIRA_API_TOKEN)
-
-# jira issue list -tEpic -s"To Do" -s"InProgress" --created -90d --order-by rank --reverse
 
 # ---
 # FZF history
