@@ -309,6 +309,8 @@ export VISUAL=nvim
 # ---
 export ANTHROPIC_API_KEY=$(pass show ANTHROPIC_API_KEY)
 
+# jira issue list -tEpic -s"To Do" -s"InProgress" --created -90d --order-by rank --reverse
+
 # ---
 # FZF history
 # ---
