@@ -15,6 +15,11 @@ plugins:
 	@echo "Installing ALL plugin managers ..."
 	bash bin/get_plugin_managers.sh -$(ARG)
 
+
+## Create Public Keys
+public_keys:
+	bash bin/get_ssh_pub_keys.sh
+
 ## Changelog
 changelog:
 	git cliff --unreleased --prepend CHANGELOG.md
