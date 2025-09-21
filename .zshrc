@@ -323,6 +323,7 @@ export VISUAL=nvim
 # 	[1] https://medium.com/@hitechluddite/ditch-cleartext-secrets-how-to-safeguard-api-keys-in-zsh-and-bash-with-pass-77f694b9ff64
 # ---
 # export ANTHROPIC_API_KEY=$(pass show ANTHROPIC_API_KEY)
+export JIRA_API_TOKEN=$(pass show APIs/JIRA_API_TOKEN)
 
 # jira issue list -tEpic -s"To Do" -s"InProgress" --created -90d --order-by rank --reverse
 
