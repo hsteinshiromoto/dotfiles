@@ -254,6 +254,14 @@ function yz() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# Pass wrapper to auto-relearn YubiKey
+#
+# Ensures GPG recognizes the current YubiKey before accessing password store
+pass() {
+	gpg-connect-agent "scd serialno" "learn --force" /bye >/dev/null 2>&1
+	command pass "$@"
+}
 # ---
 # Configuration: aliases
 # ---
