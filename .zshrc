@@ -327,8 +327,9 @@ export VISUAL=nvim
 # References:
 # 	[1] https://medium.com/@hitechluddite/ditch-cleartext-secrets-how-to-safeguard-api-keys-in-zsh-and-bash-with-pass-77f694b9ff64
 # ---
-export ANTHROPIC_API_KEY=$(pass show APIs/ANTHROPIC_API_KEY)
-export JIRA_API_TOKEN=$(pass show APIs/JIRA_API_TOKEN)
+# export GEMINI_API_KEY=$(pass show Google/Tokens/GEMINI_API_KEY)
+# export ANTHROPIC_API_KEY=$(pass show APIs/ANTHROPIC_API_KEY)
+# export JIRA_API_TOKEN=$(pass show APIs/JIRA_API_TOKEN)
 
 # ---
 # FZF history
