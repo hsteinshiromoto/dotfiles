@@ -45,5 +45,12 @@ root: ~/Projects/cv
 # attach: false
 
 windows:
-  - NeoVim: nvim
-  - Git: lazygit
+  - :
+      layout: main-vertical
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        - nvim
+  - 󰊢: lazygit
+  - : yazi
