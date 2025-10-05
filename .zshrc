@@ -123,21 +123,6 @@ fi
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# ---
-# SSH
-# ---
-
-# Use GPG Agent for Authentification
-#
-# References:
-# 	[1] https://gist.github.com/mcattarinussi/834fc4b641ff4572018d0c665e5a94d3
-unset SSH_AGENT_PID
-# if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ;then
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-# fi
-export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
-
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='nvim'
@@ -184,6 +169,22 @@ elif [[ ${unameOut} == "Darwin" ]]; then
 fi
 
 export PATH="$PATH:/nix/var/nix/profiles/default/bin:$HOME/.tmux/plugins/tpm"
+
+# ---
+# SSH
+# ---
+
+# Use GPG Agent for Authentification
+#
+# References:
+# 	[1] https://gist.github.com/mcattarinussi/834fc4b641ff4572018d0c665e5a94d3
+unset SSH_AGENT_PID
+# if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ;then
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+# fi
+export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
+
 #
 # ---
 # Configuration: tmux
