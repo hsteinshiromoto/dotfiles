@@ -136,7 +136,7 @@ unset SSH_AGENT_PID
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 # fi
 export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye >/dev/null]
+gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
