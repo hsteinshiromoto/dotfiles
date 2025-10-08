@@ -373,7 +373,7 @@ end
 
 return {
 	"obsidian-nvim/obsidian.nvim",
-	tag = "v3.12.0",
+	-- tag = "v3.12.0",
 	lazy = true,
 	ft = "markdown",
 	-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
