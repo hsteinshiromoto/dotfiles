@@ -109,7 +109,54 @@ return {
 			"SmiteshP/nvim-navic",
 			"nvim-tree/nvim-web-devicons",
 		},
-		config = true,
+		config = function()
+			require("barbecue").setup({
+				attach_navic = false, -- We'll manually attach navic to avoid conflicts
+				create_autocmd = false, -- We'll manually create the autocmd
+			})
+
+			-- Manually attach navic to avoid conflicts with multiple LSP servers
+			vim.api.nvim_create_autocmd("LspAttach", {
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					local bufnr = args.buf
+					
+					-- Skip if navic is already attached to this buffer
+					if vim.b[bufnr].navic_attached then
+						return
+					end
+					
+					-- Only attach navic to specific LSP servers
+					-- For markdown files, prefer marksman over obsidian-ls
+					local allowed_servers = {
+						lua_ls = true,
+						ruff = true,
+						pyright = true,
+						marksman = true,
+						-- Explicitly exclude obsidian-ls to avoid conflicts
+					}
+					
+					if client and allowed_servers[client.name] and client.server_capabilities.documentSymbolProvider then
+						require("nvim-navic").attach(client, bufnr)
+						vim.b[bufnr].navic_attached = true
+						require("barbecue.ui").update()
+					end
+				end,
+			})
+
+			-- Create autocmd to update barbecue
+			vim.api.nvim_create_autocmd({
+				"WinResized",
+				"BufWinEnter",
+				"CursorHold",
+				"InsertLeave",
+			}, {
+				group = vim.api.nvim_create_augroup("barbecue.updater", {}),
+				callback = function()
+					require("barbecue.ui").update()
+				end,
+			})
+		end,
 	},
 	{
 		"retran/meow.yarn.nvim",
