@@ -401,6 +401,7 @@ return {
 	},
 	new_notes_location = "notes_subdir",
 	opts = {
+		legacy_commands = false,
 		ui = {
 			enable = true,
 			checkboxes = {
