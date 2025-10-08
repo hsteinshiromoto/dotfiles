@@ -499,40 +499,41 @@ return {
 			local path = spec.dir / tostring(basename)
 			return path:with_suffix(".md")
 		end,
-		-- Optional, alternatively you can customize the frontmatter data.
-		---@return table
-		note_frontmatter_func = function(note)
-			local date_created = note.metadata and note.metadata.date_created or tostring(os.date("%Y-%m-%d"))
-			-- Add the title of the note as an alias.
-			if note.title then
-				note:add_alias(note.title)
-				if not string.find(note.title, tostring(date_created), 1, true) then
-					note:add_alias(date_created .. " " .. note.title)
+		-- Optional, customize the frontmatter data using the new format
+		frontmatter = {
+			func = function(note)
+				local date_created = note.metadata and note.metadata.date_created or tostring(os.date("%Y-%m-%d"))
+				-- Add the title of the note as an alias.
+				if note.title then
+					note:add_alias(note.title)
+					if not string.find(note.title, tostring(date_created), 1, true) then
+						note:add_alias(date_created .. " " .. note.title)
+					end
 				end
-			end
-			-- Add the note id as an alias
-			if note.id then
-				note:add_alias(note.id)
-			end
-
-			local out = {
-				aliases = note.aliases,
-				date_created = date_created,
-				id = note.id,
-				tags = note.tags,
-				title = note.title,
-			}
-
-			-- `note.metadata` contains any manually added fields in the frontmatter.
-			-- So here we just make sure those fields are kept in the frontmatter.
-			if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-				for k, v in pairs(note.metadata) do
-					out[k] = v
+				-- Add the note id as an alias
+				if note.id then
+					note:add_alias(note.id)
 				end
-			end
 
-			return out
-		end,
+				local out = {
+					aliases = note.aliases,
+					date_created = date_created,
+					id = note.id,
+					tags = note.tags,
+					title = note.title,
+				}
+
+				-- `note.metadata` contains any manually added fields in the frontmatter.
+				-- So here we just make sure those fields are kept in the frontmatter.
+				if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+					for k, v in pairs(note.metadata) do
+						out[k] = v
+					end
+				end
+
+				return out
+			end,
+		},
 		-- Keep the following setting for wiki links for Obsidian app to find the linked files
 		wiki_link_func = "prepend_note_id",
 	},
