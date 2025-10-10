@@ -2,6 +2,7 @@ vim.lsp.enable({
 	"ruff",
 	"lua_ls",
 	"marksman",
+	"texlab",
 })
 
 vim.diagnostic.config({
