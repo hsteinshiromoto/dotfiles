@@ -418,10 +418,6 @@ return {
 		},
 		workspaces = {
 			{
-				name = "personal",
-				path = "~/Personal/content/",
-			},
-			{
 				name = "LOR",
 				path = "~/Work/LOR/Notes",
 			},
