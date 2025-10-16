@@ -22,6 +22,7 @@ $python\
 [](fg:color_blue bg:color_bg3)\
 $docker_context\
 $conda\
+$shell\
 [](fg:color_bg3 bg:color_bg1)\
 $time\
 [ ](fg:color_bg1)\
@@ -116,7 +117,17 @@ truncation_symbol = "…/"
 [shell]
 disabled = false
 bash_indicator = ""
-zsh_indicator = "Z_"
+zsh_indicator = "zsh"
+style = "bg:color_bg3"
+format = '[[ $indicator ](fg:color_fg0 bg:color_bg3)]($style)'
+fish_indicator = "fish"
+powershell_indicator = "psh"
+ion_indicator = "ion"
+elvish_indicator = "esh"
+tcsh_indicator = "tsh"
+xonsh_indicator = "xsh"
+cmd_indicator = "cmd"
+nu_indicator = "nu"
 
 [git_branch]
 symbol = ""
