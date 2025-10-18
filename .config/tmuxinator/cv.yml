@@ -54,3 +54,4 @@ windows:
         - nvim
   - 󰊢: lazygit
   - : yazi
+  - nu: nu
