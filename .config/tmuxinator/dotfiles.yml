@@ -52,5 +52,5 @@ windows:
       # synchronize: after
       panes:
         - nvim
-  - 󰊢: lazygit
+  - 󰊢: zsh
   - : yazi
