@@ -77,7 +77,7 @@ return {
 			local nls = require("null-ls")
 			nls.setup({
 				sources = {
-					nls.builtins.formatting.stylua,
+					-- nls.builtins.formatting.stylua,
 					nls.builtins.formatting.black,
 					nls.builtins.diagnostics.mypy,
 					-- nls.builtins.diagnostics.ruff,
