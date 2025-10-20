@@ -62,23 +62,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
 		opts = {
-			servers = {
-				lua_ls = {
-					settings = {
-						Lua = {
-							workspace = {
-								checkThirdParty = false,
-							},
-							completion = { callSnippet = "Replace" },
-							telemetry = { enable = false },
-							hint = {
-								enable = false,
-							},
-						},
-					},
-				},
-				dockerls = {},
-			},
+			servers = {},
 			setup = {},
 		},
 		config = function(plugin, opts)
