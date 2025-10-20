@@ -24,7 +24,7 @@ return {
 			"pydocstyle",
 			"pyright",
 			-- "ruff",
-			"stylua",
+			-- "stylua",
 			-- "texlab",
 			"yaml-language-server",
 		},
@@ -120,12 +120,12 @@ return {
 				callback = function(args)
 					local client = vim.lsp.get_client_by_id(args.data.client_id)
 					local bufnr = args.buf
-					
+
 					-- Skip if navic is already attached to this buffer
 					if vim.b[bufnr].navic_attached then
 						return
 					end
-					
+
 					-- Only attach navic to specific LSP servers
 					-- For markdown files, prefer marksman over obsidian-ls
 					local allowed_servers = {
@@ -135,8 +135,12 @@ return {
 						marksman = true,
 						-- Explicitly exclude obsidian-ls to avoid conflicts
 					}
-					
-					if client and allowed_servers[client.name] and client.server_capabilities.documentSymbolProvider then
+
+					if
+						client
+						and allowed_servers[client.name]
+						and client.server_capabilities.documentSymbolProvider
+					then
 						require("nvim-navic").attach(client, bufnr)
 						vim.b[bufnr].navic_attached = true
 						require("barbecue.ui").update()
