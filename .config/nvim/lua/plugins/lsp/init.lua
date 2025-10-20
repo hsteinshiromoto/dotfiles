@@ -19,7 +19,7 @@ return {
 			"json-lsp",
 			"luacheck",
 			"luaformatter",
-			"marksman",
+			-- "marksman",
 			"mypy",
 			"pydocstyle",
 			"pyright",
