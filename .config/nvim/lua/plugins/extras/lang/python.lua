@@ -7,19 +7,6 @@ return {
 		end,
 	},
 	{
-		"neovim/nvim-lspconfig",
-		opts = {
-			servers = {
-				ruff = {},
-			},
-			setup = {
-				-- No specific setup for ruff_lsp needed here by default
-				-- The general on_attach from plugins.lsp.utils will apply if it exists
-				-- or the default nvim-lspconfig on_attach will be used.
-			},
-		},
-	},
-	{
 		"stevearc/conform.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
