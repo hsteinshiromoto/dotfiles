@@ -10,7 +10,7 @@ git:
     showSignature: false
   paging:
     colorArg: always
-    pager: delta --dark --paging=never
+    pager: delta --paging=never
 
 # Periodic update checks
 update:
