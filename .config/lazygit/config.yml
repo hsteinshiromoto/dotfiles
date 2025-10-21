@@ -4,9 +4,13 @@ os:
 git:
   # If true, periodically fetch from remote
   autoFetch: false
-
   # If true, periodically refresh files and submodules
   autoRefresh: false
+  log:
+    showSignature: false
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
 
 # Periodic update checks
 update:
