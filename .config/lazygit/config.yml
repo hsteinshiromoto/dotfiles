@@ -1,2 +1,20 @@
 os:
-  editPreset: 'nvim'
+  editPreset: "nvim"
+
+git:
+  # If true, periodically fetch from remote
+  autoFetch: false
+
+  # If true, periodically refresh files and submodules
+  autoRefresh: false
+
+# Periodic update checks
+update:
+  # One of: 'prompt' (default) | 'background' | 'never'
+  method: prompt
+
+  # Period in days between update checks
+  days: 14
+
+gui:
+  nerdFontsVersion: "3"
