@@ -6,6 +6,12 @@
 # ---
 stty ixany
 stty ixoff -ixon
+
+# Source home-manager session variables
+if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+  . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
