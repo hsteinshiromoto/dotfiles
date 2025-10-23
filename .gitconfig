@@ -38,6 +38,4 @@
 	gfh='git flow hotfix start'
 	gfr='git flow release start'
 	gff='git flow feature start'
-[url "https://git@100.91.80.71:240"]
-    insteadOf = git@100.91.80.71:240
 
