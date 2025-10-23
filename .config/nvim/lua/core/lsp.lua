@@ -1,5 +1,6 @@
 vim.lsp.enable({
 	"ruff",
+	"dockerls",
 	"lua_ls",
 	"marksman",
 	"nixd",
