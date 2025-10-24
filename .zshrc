@@ -6,6 +6,12 @@
 # ---
 stty ixany
 stty ixoff -ixon
+
+# Source home-manager session variables
+if [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+  . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -65,7 +71,7 @@ stty ixoff -ixon
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -165,10 +171,26 @@ esac
 if [[ ${unameOut} == "Linux" ]]; then
 	export PATH="$PATH:/opt/nvim-linux64/bin:/nix/var/nix/profiles/default/bin:$HOME/.local/bin"
 elif [[ ${unameOut} == "Darwin" ]]; then
-	export PATH=/opt/homebrew/bin:/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/usr/local/MacGPG2/bin:/Applications/VMware:/Users/hsteinshiromoto/.local/bin:$HOME/.local/state/nix/profiles/profile/bin:/run/current-system/sw/bin
+	export PATH=/usr/local/MacGPG2/bin:/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Applications/VMware:/Users/hsteinshiromoto/.local/bin:$HOME/.local/state/nix/profiles/profile/bin:/run/current-system/sw/bin
 fi
 
 export PATH="$PATH:/nix/var/nix/profiles/default/bin:$HOME/.tmux/plugins/tpm"
+
+# ---
+# SSH
+# ---
+
+# Use GPG Agent for Authentification
+#
+# References:
+# 	[1] https://gist.github.com/mcattarinussi/834fc4b641ff4572018d0c665e5a94d3
+unset SSH_AGENT_PID
+# if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ;then
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+# fi
+export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
+
 #
 # ---
 # Configuration: tmux
@@ -239,6 +261,14 @@ function yz() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# Pass wrapper to auto-relearn YubiKey
+#
+# Ensures GPG recognizes the current YubiKey before accessing password store
+pass() {
+	gpg-connect-agent "scd serialno" "learn --force" /bye >/dev/null 2>&1
+	command pass "$@"
+}
 # ---
 # Configuration: aliases
 # ---
@@ -257,6 +287,9 @@ elif [[ ${unameOut} == "Darwin" ]]; then
 	alias ns="darwin-rebuild build --flake ~/.config/nix-darwin"
 fi
 
+alias je="jira issue list -tEpic -s\"To Do\" -s\"InProgress\" --created -90d --order-by rank --reverse"
+alias js="jira issue list -tStory -s\"To Do\" -s\"InProgress\" --created -90d --order-by rank --reverse"
+
 # Docker aliases
 alias dpl='docker pull'
 alias dph='docker push'
@@ -264,12 +297,6 @@ alias dk='docker kill $(docker ps -a | fzf | awk "{ print $1 }")'
 alias drm='docker rm $(docker ps -a | fzf | awk "{ print $1 }")'
 alias ds='docker stop $(docker ps -a | fzf | awk "{ print $1 }")'
 alias drmi='docker rmi $(docker images | fzf | awk "{print $3}")'
-
-# The following fzf command should be kept below the cat alias
-
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # ---
 # Configuration: Pyenv
@@ -307,7 +334,9 @@ export VISUAL=nvim
 # References:
 # 	[1] https://medium.com/@hitechluddite/ditch-cleartext-secrets-how-to-safeguard-api-keys-in-zsh-and-bash-with-pass-77f694b9ff64
 # ---
-export ANTHROPIC_API_KEY=$(pass show ANTHROPIC_API_KEY)
+# export GEMINI_API_KEY=$(pass show Google/Tokens/GEMINI_API_KEY)
+# export ANTHROPIC_API_KEY=$(pass show APIs/ANTHROPIC_API_KEY)
+# export JIRA_API_TOKEN=$(pass show APIs/JIRA_API_TOKEN)
 
 # ---
 # FZF history
@@ -322,3 +351,4 @@ setopt appendhistory
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
+# alias claude="/Users/hsteinshiromoto/.claude/local/claude"

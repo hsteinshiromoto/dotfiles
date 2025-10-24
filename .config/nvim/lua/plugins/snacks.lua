@@ -506,6 +506,14 @@ return {
 			end,
 			desc = "LSP Workspace Symbols",
 		},
+		{
+			"<localleader>ca",
+			function()
+				vim.lsp.buf.code_action()
+			end,
+			desc = "Code Actions",
+			mode = { "n", "v" },
+		},
 		-- Other
 		{
 			"<leader>rf",

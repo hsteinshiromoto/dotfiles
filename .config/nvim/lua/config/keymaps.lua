@@ -1,6 +1,9 @@
 local keymap = vim.keymap.set
 
-keymap("n", "r", "<cmd>red<cr>", { desc = "Undo" })
+-- keymap("n", "r", "<cmd>red<cr>", { desc = "Undo" })
+keymap({ "n" }, "<M-h>", ":bn!<CR>", { desc = " Move to left buffer" })
+keymap({ "n" }, "<M-l>", ":bp!<CR>", { desc = " Move to right buffer" })
+keymap({ "n" }, "<TAB>", ":b#<CR>", { desc = " Move to previous visited buffer" })
 
 keymap({ "n", "v" }, "<F8>", function()
 	local tomorrow = os.time() + (24 * 60 * 60) -- add 24 hours in seconds
@@ -14,13 +17,12 @@ keymap({ "n", "v" }, "<F6>", function()
 	vim.api.nvim_put({ date_str }, "c", true, true)
 end, { desc = "Insert Yesterday's Date" })
 
-keymap({ "n", "v" }, "<F7>", "a<C-r>=strftime('%Y-%m-%d')<CR><Esc>", { desc = "Insert Today's Date" })
-keymap({ "i" }, "<F7>", "<C-r>=strftime('%Y-%m-%d')<CR><Esc>", { desc = "Insert Today's Date" })
+keymap({ "i", "n", "v" }, "<F7>", "a<C-r>=strftime('%Y-%m-%d')<CR><Esc>", { desc = "Insert Today's Date" })
 -- Remaps for Tmux Panes: The following comment depends on the tpane file located in .local/bin
 -- keymap("n", "<leader>`", "<cmd>!tpane<CR>", { desc = "Toggle Tmux bottom pane" })
 -- Remaps for selection
-keymap("n", "$$", "v$h", { noremap = true, silent = true, desc = "Select until end of line" })
-keymap("n", "00", "v0", { noremap = true, silent = true, desc = "Select until start of line" })
+-- keymap({ "n" }, "$$", "v$h", { noremap = true, silent = true, desc = "Select until end of line" })
+-- keymap({ "n" }, "00", "v0", { noremap = true, silent = true, desc = "Select until start of line" })
 keymap("n", "SS", function()
 	local ln = vim.api.nvim_win_get_cursor(0)[1]
 	local i = (vim.api.nvim_buf_get_lines(0, ln - 1, ln, false)[1]):find("%a")
@@ -57,29 +59,27 @@ keymap("n", ">", "v>gv", { desc = "Indent Right" })
 keymap("v", "p", '"_dP', { desc = "Paste over currently selected text without yanking it" })
 
 -- Move Lines [1]
-keymap("n", "<A-j>", ":m .+1<CR>==", { desc = "Move Lines" })
-keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move Lines" })
-keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move Lines" })
-keymap("n", "<A-k>", ":m .-2<CR>==", { desc = "Move Lines" })
-keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move Lines" })
-keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move Lines" })
+-- keymap("n", "<A-j>", ":m .+1<CR>==", { desc = "Move Lines" })
+-- keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move Lines" })
+-- keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move Lines" })
+-- keymap("n", "<A-k>", ":m .-2<CR>==", { desc = "Move Lines" })
+-- keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move Lines" })
+-- keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move Lines" })
 
 -- Delete without yanking
 keymap({ "n", "v" }, "d", '"_d', { desc = "Delete and not yank" })
 keymap({ "n", "v" }, "<del>", '"_d', { desc = "Delete and not yank" })
+keymap({ "n", "v" }, "D", '"_d$', { desc = "Delete and not yank" })
 
 -- Autosave and quit
 -- keymap("n", "zz", ":wqa<CR>", { desc = "Save and quit" })
 
 -- Map <leader>backspace to stop Highlight
-keymap({ "n", "v" }, "\\", "<cmd>nohlsearch<cr>", { desc = "Stop Highlight" })
+keymap({ "n", "v" }, "\\", "<cmd>nohlsearch<cr>", { desc = "Stop Search Highlight" })
 
 -- Map paste above and below current line.
 keymap({ "n", "v" }, "<leader>p", ":pu<CR>", { desc = "Past below line" })
 keymap({ "n", "v" }, "<leader>P", ":pu!<CR>", { desc = "Past above line" })
-
--- Remove q as Macro
-keymap("n", "q", "<nop>", { noremap = true })
 
 -- Auto Indent the When Inserting New Empty Line[2]
 vim.keymap.set("n", "i", function()

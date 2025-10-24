@@ -1,27 +1,33 @@
 [user]
-	email = hsteinshiromoto@gmail.com
+	email = hsteinshiromoto@iusevimbtw.com
 	name = Humberto STEIN SHIROMOTO
 	username = hsteinshiromoto
+[checkout]
+	defaultRemote = origin
+[color]
+	ui = auto
+[column]
+	ui = auto
 [core]
 	editor = nvim
 	excludesfile = ~/.gitignore_global
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	pager = delta
-[column]
-	ui = auto
-[init]
-	defaultBranch = main
-[checkout]
-	defaultRemote = origin
-[push]
-	autoSetupRemote = true
-	followTags = true
+[delta]
+	navigate = true
+[diff]
+    colorMoved = default
 [fetch]
 	prune = true
 	pruneTags = true
 	all = true
-[color]
-	ui = auto
+[init]
+	defaultBranch = main
+[interactive]
+    diffFilter = delta --color-only
+[push]
+	autoSetupRemote = true
+	followTags = true
 [alias]
 	gs='git status'
 	gd='git diff --name-only --relative --diff-filter=d | xargs batcat --diff'
@@ -32,3 +38,4 @@
 	gfh='git flow hotfix start'
 	gfr='git flow release start'
 	gff='git flow feature start'
+

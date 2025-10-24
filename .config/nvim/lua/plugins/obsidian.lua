@@ -1,3 +1,348 @@
+local function getDayOffset(days, isBusinessDay)
+	-- Default isBusinessDay to false if not provided
+	isBusinessDay = isBusinessDay or false
+
+	-- If not business day mode, use original logic
+	if not isBusinessDay then
+		-- Get current local time
+		local current = os.date("*t")
+		-- Create a new time table for the target date
+		local target = {
+			year = current.year,
+			month = current.month,
+			day = current.day + days,
+			hour = 12, -- Set to noon to avoid DST issues
+			min = 0,
+			sec = 0,
+		}
+		-- Convert to timestamp and back to ensure proper date calculation
+		local target_time = os.time(target)
+		return os.date("%Y-%m-%d", target_time)
+	end
+
+	-- Business day logic
+	local current = os.date("*t")
+	local days_offset = 0
+	local business_days_counted = 0
+	local direction = days > 0 and 1 or -1
+	local target_business_days = math.abs(days)
+
+	-- Skip weekends when counting business days
+	while business_days_counted < target_business_days do
+		days_offset = days_offset + direction
+		local target = {
+			year = current.year,
+			month = current.month,
+			day = current.day + days_offset,
+			hour = 12,
+			min = 0,
+			sec = 0,
+		}
+		local time = os.time(target)
+		local t = os.date("*t", time)
+		-- Check if it's a weekday (Monday=2 to Friday=6)
+		if t.wday >= 2 and t.wday <= 6 then
+			business_days_counted = business_days_counted + 1
+		end
+	end
+
+	local final_target = {
+		year = current.year,
+		month = current.month,
+		day = current.day + days_offset,
+		hour = 12,
+		min = 0,
+		sec = 0,
+	}
+	return os.date("%Y-%m-%d", os.time(final_target))
+end
+
+-- Corrected ISO week calculation
+function getISOWeek(time)
+	time = time or os.time()
+	local t = os.date("*t", time)
+
+	-- Find Thursday of current week
+	-- In Lua: Sunday=1, Monday=2, ..., Thursday=5, ..., Saturday=7
+	local current_day = t.wday
+	local days_to_thursday = 5 - current_day -- Thursday is day 5
+	local thursday_time = time + (days_to_thursday * 86400)
+	local thursday_date = os.date("*t", thursday_time)
+
+	-- The year of the ISO week is the year of the Thursday
+	local iso_year = thursday_date.year
+
+	-- Find the first Thursday of the ISO year
+	local jan1 = os.time({ year = iso_year, month = 1, day = 1 })
+	local jan1_date = os.date("*t", jan1)
+	local jan1_wday = jan1_date.wday
+
+	-- Days from Jan 1 to first Thursday
+	local days_to_first_thursday
+	if jan1_wday <= 5 then
+		-- Jan 1 is Mon-Thu (2-5), Thursday is in the same week
+		days_to_first_thursday = 5 - jan1_wday
+	else
+		-- Jan 1 is Fri-Sun (6,7,1), Thursday is in the next week
+		days_to_first_thursday = 12 - jan1_wday
+	end
+
+	local first_thursday = jan1 + (days_to_first_thursday * 86400)
+
+	-- Calculate week number
+	local days_diff = (thursday_time - first_thursday) / 86400
+	local week_num = math.floor(days_diff / 7) + 1
+
+	return string.format("%d-W%02d", iso_year, week_num)
+end
+
+-- Main function remains the same
+function getDateOffset(offset, unit)
+	unit = unit or "week"
+
+	if unit == "week" then
+		local current = os.date("*t")
+		local target = {
+			year = current.year,
+			month = current.month,
+			day = current.day + (offset * 7),
+			hour = 12,
+			min = 0,
+			sec = 0,
+		}
+		local offset_time = os.time(target)
+		return getISOWeek(offset_time)
+	elseif unit == "month" then
+		local t = os.date("*t")
+		t.day = 15
+		t.month = t.month + offset
+		t.hour = 12
+		t.min = 0
+		t.sec = 0
+		return os.date("%Y-%m", os.time(t))
+	elseif unit == "quarter" then
+		local t = os.date("*t")
+		t.day = 15
+		t.month = t.month + (offset * 3)
+		t.hour = 12
+		t.min = 0
+		t.sec = 0
+		local quarter = math.ceil(((t.month - 1) % 12 + 1) / 3)
+		return os.date("%Y", os.time(t)) .. "-Q" .. quarter
+	end
+end
+
+function getWeekDays(include_weekend)
+	include_weekend = include_weekend ~= false
+	local current = os.date("*t")
+	local d = {}
+	-- For Sunday start: wday=1 is Sunday, so days since Sunday = wday - 1
+	local days_since_sunday = current.wday - 1
+	for i = 0, (include_weekend and 6 or 4) do
+		local target = {
+			year = current.year,
+			month = current.month,
+			day = current.day - days_since_sunday + i,
+			hour = 12,
+			min = 0,
+			sec = 0,
+		}
+		d[i + 1] = string.format(
+			"[[%s|%s]]",
+			os.date("%Y-%m-%d", os.time(target)),
+			({ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" })[i + 1]
+		)
+	end
+	return table.concat(d, ", ")
+end
+
+-- Generate a calendar table for a given month
+function getMonthCalendar()
+	local current = os.date("*t")
+	local year = current.year
+	local month = current.month
+
+	-- Get first day of the month
+	local first_day = os.time({ year = year, month = month, day = 1, hour = 12 })
+	local first_day_t = os.date("*t", first_day)
+	local first_wday = first_day_t.wday -- 1=Sunday, 2=Monday, ..., 7=Saturday
+
+	-- Get last day of the month
+	local next_month = month + 1
+	local next_year = year
+	if next_month > 12 then
+		next_month = 1
+		next_year = year + 1
+	end
+	local last_day = os.time({ year = next_year, month = next_month, day = 1, hour = 12 }) - 86400
+	local last_day_t = os.date("*t", last_day)
+	local days_in_month = last_day_t.day
+	local last_wday = last_day_t.wday
+
+	-- Get previous month info
+	local prev_month = month - 1
+	local prev_year = year
+	if prev_month < 1 then
+		prev_month = 12
+		prev_year = year - 1
+	end
+	-- Get last day of previous month
+	local prev_last_day = os.time({ year = year, month = month, day = 1, hour = 12 }) - 86400
+	local prev_last_day_t = os.date("*t", prev_last_day)
+	local prev_days_in_month = prev_last_day_t.day
+
+	-- Helper function to create a properly padded day link for calendar
+	local function formatDayCell(date_str, day_num)
+		-- Create the link with day number - always use 4 spaces padding on each side
+		local link = string.format("[[%s\\|%02d]]", date_str, day_num)
+		return "   " .. link .. "   " -- 3 spaces on each side
+	end
+
+	-- Helper function to format week cell with proper centering
+	local function formatWeekCell(week_str)
+		local link = string.format("[[%s]]", week_str)
+		-- Week links are typically 11 chars like [[2025-W01]], need to center in 10 char column
+		return link -- 1 space padding for 11-char week string in 10-char column
+	end
+
+	-- Helper function for Wednesday column which has 11 characters
+	local function formatWednesdayCell(date_str, day_num)
+		local link = string.format("[[%s\\|%02d]]", date_str, day_num)
+		return "   " .. link .. "    " -- 4 spaces left, 5 spaces right for 11-char column
+	end
+
+	-- Build calendar table with consistent column widths
+	local calendar = {}
+	-- Header row with properly spaced day names
+	table.insert(calendar, "|   Week   |  Sunday  |  Monday  | Tuesday  | Wednesday | Thursday |  Friday  | Saturday |")
+	table.insert(calendar, "|----------|----------|----------|----------|-----------|----------|----------|----------|")
+
+	-- Calculate starting position
+	local day = 1
+	local week_row = {}
+
+	-- Handle the first week
+	local first_week_time = first_day
+	-- Adjust to get the Sunday of the first week
+	first_week_time = first_week_time - ((first_wday - 1) * 86400)
+	local week_num = getISOWeek(first_day)
+	table.insert(week_row, formatWeekCell(week_num))
+
+	-- Fill in days from previous month before the first day of current month
+	if first_wday > 1 then
+		local prev_day = prev_days_in_month - (first_wday - 2)
+		for i = 1, first_wday - 1 do
+			local date_str = string.format("%04d-%02d-%02d", prev_year, prev_month, prev_day)
+			if i == 4 then -- Wednesday column
+				table.insert(week_row, formatWednesdayCell(date_str, prev_day))
+			else
+				table.insert(week_row, formatDayCell(date_str, prev_day))
+			end
+			prev_day = prev_day + 1
+		end
+	end
+
+	-- Fill in the days of the first week from current month
+	for i = first_wday, 7 do
+		if day <= days_in_month then
+			local date_str = string.format("%04d-%02d-%02d", year, month, day)
+			if i == 4 then -- Wednesday column
+				table.insert(week_row, formatWednesdayCell(date_str, day))
+			else
+				table.insert(week_row, formatDayCell(date_str, day))
+			end
+			day = day + 1
+		end
+	end
+	table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
+
+	-- Handle remaining weeks
+	while day <= days_in_month do
+		week_row = {}
+		-- Calculate week number for this week
+		local current_day_time = os.time({ year = year, month = month, day = day, hour = 12 })
+		week_num = getISOWeek(current_day_time)
+		table.insert(week_row, formatWeekCell(week_num))
+
+		-- Fill in the days of the week
+		for wday = 1, 7 do
+			if day <= days_in_month then
+				local date_str = string.format("%04d-%02d-%02d", year, month, day)
+				if wday == 4 then -- Wednesday column
+					table.insert(week_row, formatWednesdayCell(date_str, day))
+				else
+					table.insert(week_row, formatDayCell(date_str, day))
+				end
+				day = day + 1
+			else
+				-- We've gone past the last day of the month, add next month's days
+				local next_day = day - days_in_month
+				local date_str = string.format("%04d-%02d-%02d", next_year, next_month, next_day)
+				if wday == 4 then -- Wednesday column
+					table.insert(week_row, formatWednesdayCell(date_str, next_day))
+				else
+					table.insert(week_row, formatDayCell(date_str, next_day))
+				end
+				day = day + 1
+			end
+		end
+		table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
+
+		-- Check if we've filled the last week completely
+		if
+			day > days_in_month
+			and ((day - days_in_month - 1) % 7 == 0 or (last_wday == 7 and day == days_in_month + 1))
+		then
+			break
+		end
+	end
+
+	return table.concat(calendar, "\n")
+end
+
+-- Generate a calendar table for the current week
+function getWeekCalendar()
+	local current = os.date("*t")
+	-- Get current week number
+	local week_num = getISOWeek(os.time(current))
+
+	-- Calculate days of the current week (Sunday to Saturday)
+	-- Find Sunday of current week
+	local days_since_sunday = current.wday - 1 -- wday: 1=Sunday, so days_since_sunday = 0 for Sunday
+	local sunday_time = os.time(current) - (days_since_sunday * 86400)
+
+	-- Build calendar table
+	local calendar = {}
+	-- Header row
+	table.insert(calendar, "| Week Day | Sunday | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday |")
+	table.insert(calendar, "|----------|--------|--------|---------|-----------|----------|--------|----------|")
+
+	-- Build the week row
+	local week_row = {}
+	-- Add week number
+	table.insert(week_row, string.format("[[%s]]", week_num))
+
+	-- Add each day of the week
+	for i = 0, 6 do
+		local day_time = sunday_time + (i * 86400)
+		local day_date = os.date("*t", day_time)
+		local date_str = os.date("%Y-%m-%d", day_time)
+		local day_num = day_date.day
+
+		-- Format each day cell with proper centering (3 spaces on each side for 8-char columns, except Wednesday with 11)
+		local link = string.format("[[%s\\|%02d]]", date_str, day_num)
+		if i == 3 then -- Wednesday (index 3, since Sunday is 0)
+			table.insert(week_row, "   " .. link .. "    ") -- 2 left, 3 right for 11-char column
+		else
+			table.insert(week_row, "  " .. link .. "  ") -- 1 space on each side for 8-char columns
+		end
+	end
+
+	table.insert(calendar, "| " .. table.concat(week_row, " | ") .. " |")
+
+	return table.concat(calendar, "\n")
+end
+
 local icons = require("config.icons")
 local function tchelper(first, rest)
 	return first:upper() .. rest:lower()
@@ -28,7 +373,7 @@ end
 
 return {
 	"obsidian-nvim/obsidian.nvim",
-	tag = "v3.12.0",
+	-- tag = "v3.12.0",
 	lazy = true,
 	ft = "markdown",
 	-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
@@ -46,16 +391,17 @@ return {
 		-- see below for full list of optional dependencies 👇
 	},
 	-- Add condition to only load plugin if directory .obsidian is present [1, 2]
-	cond = vim.fn.isdirectory(".obsidian") == 1,
+	-- cond = vim.fn.isdirectory(".obsidian") == 1,
 	keys = {
 
-		{ "<localleader>t", "<cmd>Obsidian template<cr>", desc = "Insert Template" },
-		{ "<localleader>n", "<cmd>Obsidian new_from_template<cr>", desc = "New Note From Template" },
-		{ "<localleader>d", "<cmd>Obsidian today<cr>", desc = "Obsidian Daily Note" },
-		{ "<localleader>l", "<cmd>Obsidian backlinks<cr>", desc = "Backlinks" },
+		{ "<localleader>ot", "<cmd>Obsidian template<cr>", desc = "Insert Template" },
+		{ "<localleader>on", "<cmd>Obsidian new_from_template<cr>", desc = "New Note From Template" },
+		{ "<localleader>od", "<cmd>Obsidian today<cr>", desc = "Obsidian Daily Note" },
+		{ "<localleader>ol", "<cmd>Obsidian backlinks<cr>", desc = "Backlinks" },
 	},
 	new_notes_location = "notes_subdir",
 	opts = {
+		legacy_commands = false,
 		ui = {
 			enable = true,
 			checkboxes = {
@@ -72,10 +418,6 @@ return {
 		},
 		workspaces = {
 			{
-				name = "personal",
-				path = "~/Personal/content/",
-			},
-			{
 				name = "LOR",
 				path = "~/Work/LOR/Notes",
 			},
@@ -90,17 +432,52 @@ return {
 			time_format = "%H:%M",
 			-- A map for custom variables, the key should be the variable and the value a function
 			substitutions = {
-				week = function()
-					return os.date("%Y-W%W", os.time())
+				YEAR = function()
+					return os.date("%Y", os.time())
 				end,
-				month = function()
+				YEAR_PREVIOUS_QUARTER = function()
+					return getDateOffset(-1, "quarter")
+				end,
+				YEAR_QUARTER = string.format("%s-Q%d", os.date("%Y"), math.ceil(os.date("%m") / 3)),
+				YEAR_NEXT_QUARTER = function()
+					return getDateOffset(1, "quarter")
+				end,
+				YEAR_PREVIOUS_MONTH = function()
+					return getDateOffset(-1, "month")
+				end,
+				YEAR_MONTH = function()
 					return os.date("%Y-%m", os.time())
 				end,
-				quarter = function()
-					return string.format("%s-Q%d", os.date("%Y"), math.ceil(os.date("%m") / 3))
+				YEAR_NEXT_MONTH = function()
+					return getDateOffset(1, "month")
 				end,
-				year = function()
-					return os.date("%Y", os.time())
+				YEAR_PREVIOUS_WEEK_NUMBER = function()
+					return getDateOffset(-1, "week")
+				end,
+				YEAR_WEEK_NUMBER = function()
+					return getDateOffset(0, "week")
+				end,
+				DAYS_OF_WEEK = function()
+					return getWeekDays()
+				end,
+				YEAR_NEXT_WEEK_NUMBER = function()
+					return getDateOffset(1, "week")
+				end,
+				-- YESTERDAY and TOMORROW were being evaluated once when the config was loaded (likely on 2025-08-15), rather than being evaluated each time a template is created
+				YESTERDAY = function()
+					return getDayOffset(-1)
+				end,
+				TODAY = function()
+					return getDayOffset(0)
+				end,
+				TOMORROW = function()
+					return getDayOffset(1)
+				end,
+				MONTH_CALENDAR = function()
+					return getMonthCalendar()
+				end,
+				WEEK_CALENDAR = function()
+					return getWeekCalendar()
 				end,
 			},
 		},
@@ -118,40 +495,41 @@ return {
 			local path = spec.dir / tostring(basename)
 			return path:with_suffix(".md")
 		end,
-		-- Optional, alternatively you can customize the frontmatter data.
-		---@return table
-		note_frontmatter_func = function(note)
-			local date_created = note.metadata and note.metadata.date_created or tostring(os.date("%Y-%m-%d"))
-			-- Add the title of the note as an alias.
-			if note.title then
-				note:add_alias(note.title)
-				if not string.find(note.title, tostring(date_created), 1, true) then
-					note:add_alias(date_created .. " " .. note.title)
+		-- Optional, customize the frontmatter data using the new format
+		frontmatter = {
+			func = function(note)
+				local date_created = note.metadata and note.metadata.date_created or tostring(os.date("%Y-%m-%d"))
+				-- Add the title of the note as an alias.
+				if note.title then
+					note:add_alias(note.title)
+					if not string.find(note.title, tostring(date_created), 1, true) then
+						note:add_alias(date_created .. " " .. note.title)
+					end
 				end
-			end
-			-- Add the note id as an alias
-			if note.id then
-				note:add_alias(note.id)
-			end
-
-			local out = {
-				aliases = note.aliases,
-				date_created = date_created,
-				id = note.id,
-				tags = note.tags,
-				title = note.title,
-			}
-
-			-- `note.metadata` contains any manually added fields in the frontmatter.
-			-- So here we just make sure those fields are kept in the frontmatter.
-			if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-				for k, v in pairs(note.metadata) do
-					out[k] = v
+				-- Add the note id as an alias
+				if note.id then
+					note:add_alias(note.id)
 				end
-			end
 
-			return out
-		end,
+				local out = {
+					aliases = note.aliases,
+					date_created = date_created,
+					id = note.id,
+					tags = note.tags,
+					title = note.title,
+				}
+
+				-- `note.metadata` contains any manually added fields in the frontmatter.
+				-- So here we just make sure those fields are kept in the frontmatter.
+				if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+					for k, v in pairs(note.metadata) do
+						out[k] = v
+					end
+				end
+
+				return out
+			end,
+		},
 		-- Keep the following setting for wiki links for Obsidian app to find the linked files
 		wiki_link_func = "prepend_note_id",
 	},

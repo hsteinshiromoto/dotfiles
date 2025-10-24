@@ -50,7 +50,7 @@ return {
 		-- registry number at the end of the CursorLine, for when you are
 		-- recording a macro! Default is false.
 		recording = {
-			enabled = false,
+			enabled = true,
 			icon = "󰑋",
 			-- you can set some text to surround the recording registry char with
 			-- or just set one to empty to maybe have just one letter, an arrow

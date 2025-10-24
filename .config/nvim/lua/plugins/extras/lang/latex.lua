@@ -1,15 +1,5 @@
 return {
 	{
-		"neovim/nvim-lspconfig",
-		lazy = true,
-		opts = {
-			servers = {
-				texlab = {},
-				-- ltex = {},
-			},
-		},
-	},
-	{
 		"lervag/vimtex",
 		lazy = true,
 		ft = { "tex" },
