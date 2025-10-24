@@ -7,72 +7,65 @@ My dotfiles.
 
 ## Structure
 
-The structure of this repository must be the same as the structure as the config files in the `$HOME` folder.
+The structure of this repository mirrors the `$HOME` directory structure exactly. Files are placed in their target locations within the repo, then symlinked using `stow . --adopt`.
+
+### Directory Overview
+
+- **`.claude/`** - Claude Code configuration and project-specific settings
+- **`.config/`** - Cross-platform application configurations
+  - `atuin/` - Shell history manager configuration
+  - `bat/` - Syntax highlighting cat clone
+  - `btop/` - Resource monitor configuration
+  - `claude/` - Claude AI assistant settings
+  - `ghostty/` - Terminal emulator configuration
+  - `home-manager/` - Nix home-manager configurations
+  - `karabiner/` - macOS keyboard customization (complex modifications and backups)
+  - `kitty/` - Terminal emulator configuration
+  - `lazygit/` - Git UI configuration
+  - `nvim/` - Neovim configuration (see detailed structure below)
+  - `tmuxinator/` - Tmux session management
+  - `yazi/` - File manager configuration
+- **`.gnupg/`** - GnuPG configuration and keys
+- **`.lima/`** - Linux virtual machine configurations
+- **`.local/`** - User-specific binaries and data
+  - `bin/` - User executable scripts
+  - `share/` - User-specific application data
+- **`.ssh/`** - SSH configuration and keys
+- **`.vscode/`** - VS Code extensions configuration
+- **`bin/`** - Utility scripts and aliases
+- **`macos/`** - macOS-specific configurations
+  - `Library/Application Support/` - macOS application data
+    - `espanso/` - Text expansion tool configuration
+  - `Library/KeyBindings/` - macOS custom key bindings
+  - `Library/Preferences/` - macOS application preferences
+- **`utils/`** - Utility files and resources
+  - `prompts/` - AI prompts and templates
+
+### Neovim Structure
+
+The Neovim configuration (`~/.config/nvim/`) uses a modular Lua-based structure:
 
 ```
-.
-├── .config
-│   ├── bat
-│   ├── btop
-│   ├── code-server
-│   ├── karabiner
-│   ├── kitty
-│   ├── mc
-│   ├── neofetch
-│   ├── nix-darwin
-│   ├── nvim
-│   │   └── lua
-│   │       ├── config
-│   │       ├── plugins
-│   │       │   ├── ai
-│   │       │   ├── colorscheme
-│   │       │   ├── completion
-│   │       │   ├── dap
-│   │       │   ├── dashboard
-│   │       │   ├── extras
-│   │       │   │   ├── lang
-│   │       │   │   ├── pde
-│   │       │   │   │   └── notes
-│   │       │   │   └── ui
-│   │       │   │       ├── statuscol
-│   │       │   │       └── statusline
-│   │       │   ├── lsp
-│   │       │   └── test
-│   │       └── utils
-│   └── tmuxinator
-├── .local
-│   ├── bin
-│   └── share
-│       ├── code-server
-│       │   └── User
-│       └── mc
-│           └── skins
-├── .vscode
-│   └── extensions
-├── bin
-├── etc
-├── keyboards
-│   ├── BNR1
-│   ├── bridge75
-│   ├── epomaker
-│   ├── melgeek
-│   │   └── mojo84
-│   ├── monsgeek
-│   └── nuphy
-├── macos
-│   └── Library
-│       ├── Application Support
-│       │   ├── Code
-│       │   │   └── User
-│       │   └── espanso
-│       │       ├── config
-│       │       ├── match
-│       │       │   └── packages
-│       │       └── user
-│       └── KeyBindings
-├── roles
-└── utils
-    └── prompts
+nvim/
+├── lsp/                    # LSP server configurations
+└── lua/
+    ├── config/             # Core Neovim configurations
+    ├── core/               # Core functionality
+    ├── plugins/            # Plugin configurations
+    │   ├── ai/             # AI-related plugins
+    │   ├── colorscheme/    # Theme configurations
+    │   ├── completion/     # Completion plugins
+    │   ├── extras/         # Additional functionality
+    │   │   ├── lang/       # Language-specific plugins
+    │   │   ├── pde/        # Personal Development Environment
+    │   │   │   └── notes/  # Note-taking (Obsidian, etc.)
+    │   │   └── ui/         # UI enhancements
+    │   │       ├── statuscol/   # Status column customization
+    │   │       └── statusline/  # Statusline configuration
+    │   ├── local/          # Local/custom plugins
+    │   ├── server/         # Server-related plugins
+    │   └── test/           # Testing plugins
+    └── utils/              # Utility functions
 ```
 
 ## Requirements
@@ -101,12 +94,12 @@ git add .file
 
 Find a file in the current directory
 ```bash
-find . -type f -name “<filename>”
+find . -type f -name "<filename>"
 ```
 
 Run grep on every file returned by find
 ```bash
-find . -type f -name “<filename>” -exec grep -n “<string>” -i /dev/null —color=always {} ‘;’
+find . -type f -name "<filename>" -exec grep -n "<string>" -i /dev/null —color=always {} ';'
 ```
 
 ### Delta
