@@ -2,7 +2,7 @@
 # ghostty +list-themes
 command=zsh -c "tmux attach || tmux new"
 macos-option-as-alt 					 = true
-font-family                    = JetBrainsMono Nerd Font
+font-family                    = JetBrainsMonoNL Nerd Font
 font-thicken                   = false
 font-size                      = 14
 # window-inherit-font-size       = true

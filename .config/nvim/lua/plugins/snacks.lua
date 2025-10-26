@@ -2,6 +2,9 @@ return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+	},
 	---@type snacks.Config
 	opts = {
 		-- your configuration comes here
@@ -41,7 +44,9 @@ return {
 			},
 		},
 		dim = { enabled = true },
-		explorer = { enabled = true },
+		explorer = {
+			enabled = true,
+		},
 		image = { enable = true },
 		lazygit = {
 			dependencies = {
@@ -50,7 +55,14 @@ return {
 			enabled = true,
 		},
 		notifier = { enabled = true },
-		picker = { enabled = true, hidden = true, ui_select = true },
+		picker = {
+			enabled = true,
+			hidden = true,
+			ui_select = true,
+			icons = {
+				enabled = "auto",
+			},
+		},
 		quickfile = { enabled = true },
 		rename = { enabled = true },
 		scope = { enabled = true },
