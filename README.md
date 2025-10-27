@@ -88,6 +88,39 @@ stow . --adopt
 git add .file
 ```
 
+## Application-Specific Configuration
+
+### Espanso - System-Wide Configuration
+
+Espanso supports custom config directories via the `ESPANSO_CONFIG_DIR` environment variable. However, since Espanso runs as a macOS LaunchAgent (not from your shell), setting this variable in shell configs like `.zshrc` won't work for system-wide text expansion.
+
+#### Making Config Work System-Wide
+
+To use `~/.config/espanso` instead of the default `~/Library/Application Support/espanso`:
+
+1. **Modify the LaunchAgent plist** at `~/Library/LaunchAgents/com.federicoterzi.espanso.plist`:
+
+```xml
+<key>EnvironmentVariables</key>
+<dict>
+    <key>PATH</key>
+    <string>/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>ESPANSO_CONFIG_DIR</key>
+    <string>/Users/YOUR_USERNAME/.config/espanso</string>
+</dict>
+```
+
+2. **Reload Espanso**:
+
+```bash
+launchctl unload ~/Library/LaunchAgents/com.federicoterzi.espanso.plist
+launchctl load ~/Library/LaunchAgents/com.federicoterzi.espanso.plist
+# or simply
+espanso restart
+```
+
+**Note**: The LaunchAgent plist file is managed by Espanso itself and should not be added to this dotfiles repo. Only the config files in `.config/espanso/` are managed by stow.
+
 ## Favorite Commands
 
 ### Find
