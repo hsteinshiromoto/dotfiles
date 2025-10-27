@@ -8,6 +8,7 @@ font-family                    = JetBrainsMono Nerd Font
 font-thicken                   = false
 font-size                      = 14
 # window-inherit-font-size       = true
+font-feature = calt
 
 # Look and Feel
 # adjust-cursor-thickness        = 3
