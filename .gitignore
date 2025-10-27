@@ -697,3 +697,4 @@ tags
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,latex,linux,python,jupyternotebooks,visualstudiocode,vim,pycharm
 
+.config/karabiner/automatic_backups
