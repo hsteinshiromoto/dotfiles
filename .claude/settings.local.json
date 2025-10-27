@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Read(//Users/hsteinshiromoto/Library/Fonts/**)",
+      "Read(//Library/Fonts/**)"
     ],
     "deny": []
   }
