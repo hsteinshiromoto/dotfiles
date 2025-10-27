@@ -3,7 +3,9 @@
     "allow": [
       "Bash(grep:*)",
       "Read(//Users/hsteinshiromoto/Library/Fonts/**)",
-      "Read(//Library/Fonts/**)"
+      "Read(//Library/Fonts/**)",
+      "Read(//Users/hsteinshiromoto/.config/nix/**)",
+      "Bash(find:*)"
     ],
     "deny": []
   }
