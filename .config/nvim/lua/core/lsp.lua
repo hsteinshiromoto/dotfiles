@@ -1,6 +1,7 @@
 -- List of LSP servers to configure
 local servers = {
 	"ruff",
+	"pyright", -- Full Python LSP for go-to-definition, hover, etc.
 	"dockerls",
 	"lua_ls",
 	"marksman",
