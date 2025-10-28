@@ -4,7 +4,7 @@ local servers = {
 	"pyright", -- Full Python LSP for go-to-definition, hover, etc.
 	"dockerls",
 	"lua_ls",
-	"marksman",
+	"markdown_oxide",
 	"nixd",
 	"texlab",
 }
