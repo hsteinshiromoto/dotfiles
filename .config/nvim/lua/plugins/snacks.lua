@@ -62,6 +62,7 @@ return {
 			icons = {
 				enabled = "auto",
 			},
+			-- focus = "input", -- Default - keep cursor in search input
 			sources = {
 				lsp_definitions = {
 					auto_confirm = false,
@@ -485,9 +486,22 @@ return {
 		{
 			"gd",
 			function()
-				Snacks.picker.lsp_definitions()
+				Snacks.picker.lsp_definitions({
+					auto_confirm = false,
+					focus = "input",
+				})
 			end,
 			desc = "Preview Definition",
+		},
+		{
+			"gp",
+			function()
+				Snacks.picker.lsp_definitions({
+					auto_confirm = false,
+					focus = "input",
+				})
+			end,
+			desc = "Preview Definition (Test)",
 		},
 		{
 			"gD",
