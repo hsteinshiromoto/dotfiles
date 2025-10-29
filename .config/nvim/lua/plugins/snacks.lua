@@ -62,6 +62,20 @@ return {
 			icons = {
 				enabled = "auto",
 			},
+			sources = {
+				lsp_definitions = {
+					auto_confirm = false,
+				},
+				lsp_references = {
+					auto_confirm = false,
+				},
+				lsp_implementations = {
+					auto_confirm = false,
+				},
+				lsp_type_definitions = {
+					auto_confirm = false,
+				},
+			},
 		},
 		quickfile = { enabled = true },
 		rename = { enabled = true },
@@ -473,7 +487,7 @@ return {
 			function()
 				Snacks.picker.lsp_definitions()
 			end,
-			desc = "Goto Definition",
+			desc = "Preview Definition",
 		},
 		{
 			"gD",
