@@ -62,6 +62,21 @@ return {
 			icons = {
 				enabled = "auto",
 			},
+			-- focus = "input", -- Default - keep cursor in search input
+			sources = {
+				lsp_definitions = {
+					auto_confirm = false,
+				},
+				lsp_references = {
+					auto_confirm = false,
+				},
+				lsp_implementations = {
+					auto_confirm = false,
+				},
+				lsp_type_definitions = {
+					auto_confirm = false,
+				},
+			},
 		},
 		quickfile = { enabled = true },
 		rename = { enabled = true },
@@ -471,9 +486,22 @@ return {
 		{
 			"gd",
 			function()
-				Snacks.picker.lsp_definitions()
+				Snacks.picker.lsp_definitions({
+					auto_confirm = false,
+					focus = "input",
+				})
 			end,
-			desc = "Goto Definition",
+			desc = "Preview Definition",
+		},
+		{
+			"gp",
+			function()
+				Snacks.picker.lsp_definitions({
+					auto_confirm = false,
+					focus = "input",
+				})
+			end,
+			desc = "Preview Definition (Test)",
 		},
 		{
 			"gD",
