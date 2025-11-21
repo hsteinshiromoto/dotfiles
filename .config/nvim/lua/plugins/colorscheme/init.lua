@@ -76,7 +76,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("storm").setup({
+			require("tokyonight").setup({
 				style = "night",
 			})
 			vim.cmd([[colorscheme tokyonight]])
