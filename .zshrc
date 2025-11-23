@@ -209,10 +209,13 @@ fi
 # ---
 # Configuration: bat
 #
+# Bat requires a particular install of the Tokyo Night theme [2].
+#
 # References:
 # 	[1] https://github.com/sharkdp/bat?tab=readme-ov-file#customization
+# 	[2] https://github.com/0xTadash1/bat-into-tokyonight
 # ---
-export BAT_THEME="gruvbox-dark"
+export BAT_THEME="tokyonight_night"
 
 # ---
 # Tab complete
