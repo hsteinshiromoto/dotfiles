@@ -20,6 +20,7 @@ fi
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="tokyonight"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -208,10 +209,13 @@ fi
 # ---
 # Configuration: bat
 #
+# Bat requires a particular install of the Tokyo Night theme [2].
+#
 # References:
 # 	[1] https://github.com/sharkdp/bat?tab=readme-ov-file#customization
+# 	[2] https://github.com/0xTadash1/bat-into-tokyonight
 # ---
-export BAT_THEME="gruvbox-dark"
+export BAT_THEME="tokyonight_night"
 
 # ---
 # Tab complete

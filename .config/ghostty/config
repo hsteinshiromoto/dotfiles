@@ -18,7 +18,7 @@ link-url                       = true
 macos-titlebar-proxy-icon      = hidden
 # macos-titlebar-style           = tabs
 mouse-hide-while-typing        = true
-theme                          = Gruvbox Dark
+theme                          = TokyoNight Night
 window-vsync                   = true
 
 # Other

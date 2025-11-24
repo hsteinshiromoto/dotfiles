@@ -13,7 +13,7 @@ return {
 		-- Some colours might look better more dark, so set a higher value
 		-- will result in a darker shade.
 		blends = {
-			normal = 0.5,
+			normal = 0.25,
 			insert = 0.5,
 			visual = 0.5,
 			command = 0.5,
@@ -27,18 +27,18 @@ return {
 		-- one way is to define theme here in colors. Another way is to
 		-- set them up with highlight groups. Any highlight group set takes
 		-- precedence over any colours defined here.
-		colors = {
-			normal = "#7C6F64",
-			insert = "#98ab53",
-			-- visual = "#9A8018",
-			visual = "#D65D0D",
-			command = "#6b9f91",
-			operator = "#FF8F40",
-			replace = "#E66767",
-			select = "#AD6FF7",
-			terminal = "#4CD4BD",
-			terminal_n = "#00BBCC",
-		},
+		-- colors = { Colors for gruvbox
+		-- 	normal = "#7C6F64",
+		-- 	insert = "#98ab53",
+		-- 	-- visual = "#9A8018",
+		-- 	visual = "#D65D0D",
+		-- 	command = "#6b9f91",
+		-- 	operator = "#FF8F40",
+		-- 	replace = "#E66767",
+		-- 	select = "#AD6FF7",
+		-- 	terminal = "#4CD4BD",
+		-- 	terminal_n = "#00BBCC",
+		-- },
 		-- disable filetypes here. Add for example "TelescopePrompt" to
 		-- not have any coloured cursorline for the telescope prompt.
 		disabled_filetypes = { "TelescopePrompt", "neo-tree", "alpha", "Outline" },
