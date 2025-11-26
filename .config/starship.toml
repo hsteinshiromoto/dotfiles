@@ -4,20 +4,20 @@ format = """
 [░▒▓](#7aa2f7)\
 $os\
 [](fg:#7aa2f7 bg:#15161e)\
-[](fg:#15161e bg:#394260)\
+[](fg:#15161e bg:#24293b)\
 $username\
-[](fg:#394260 bg:#15161e)\
-[](fg:#15161e bg:#394260)\
+[](fg:#24293b bg:#15161e)\
+[](fg:#15161e bg:#24293b)\
 $shell\
-[](fg:#394260 bg:#15161e)\
-[](fg:#15161e bg:#394260)\
+[](fg:#24293b bg:#15161e)\
+[](fg:#15161e bg:#24293b)\
 $directory\
-[](fg:#394260 bg:#15161e)\
-[](fg:#15161e bg:#394260)\
+[](fg:#24293b bg:#15161e)\
+[](fg:#15161e bg:#24293b)\
 $git_branch\
-[ ](fg:#7aa2f7 bg:#394260)\
+[ ](fg:#7aa2f7 bg:#24293b)\
 $git_status\
-[](fg:#394260 bg:#15161e)\
+[](fg:#24293b bg:#15161e)\
 [](fg:#15161e bg:#1d2230)\
 $time\
 [](fg:#1d2230)\
@@ -51,12 +51,12 @@ RedHatEnterprise = "󱄛"
 
 [username]
 show_always = true
-style_user = "fg:#7aa2f7 bg:#394260"
-style_root = "bg:#394260 fg:#f7768e"
+style_user = "fg:#7aa2f7 bg:#24293b"
+style_root = "bg:#24293b fg:#f7768e"
 format = '[ $user ]($style)'
 
 [directory]
-style = "fg:#73daca bg:#394260"
+style = "fg:#73daca bg:#24293b"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -69,19 +69,19 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:#394260"
-format = '[[ $symbol $branch ](fg:#9ece6a bg:#394260)]($style)'
+style = "bg:#24293b"
+format = '[[ $symbol $branch ](fg:#9ece6a bg:#24293b)]($style)'
 
 [git_status]
-style = "bg:#394260"
-format = '[[($all_status$ahead_behind )](fg:#e0af68 bg:#394260)]($style)'
+style = "bg:#24293b"
+format = '[[($all_status$ahead_behind )](fg:#e0af68 bg:#24293b)]($style)'
 
 [shell]
 disabled = false
-style = "bg:#394260"
+style = "bg:#24293b"
 bash_indicator = "$"
 zsh_indicator = "zsh"
-format = '[[ $indicator ](fg:#2ac3de bg:#394260)]($style)'
+format = '[[ $indicator ](fg:#2ac3de bg:#24293b)]($style)'
 fish_indicator = "fish"
 powershell_indicator = "psh"
 ion_indicator = "ion"
