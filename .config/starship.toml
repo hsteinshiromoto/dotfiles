@@ -3,26 +3,26 @@
 format = """
 [░▒▓](#7aa2f7)\
 $os\
-[  ](bg:#7aa2f7 fg:#24293b)\
+[  ](bold bg:#7aa2f7 fg:#24293b)\
 $hostname\
 [](fg:#7aa2f7 bg:#15161e)\
 [](fg:#15161e bg:#24293b)\
 $username\
 [](fg:#24293b bg:#15161e)\
-[](fg:#15161e bg:#24293b)\
+[](fg:#15161e bg:#2d2a2d)\
 $shell\
-[](fg:#24293b bg:#15161e)\
-[](fg:#15161e bg:#24293b)\
+[](fg:#2d2a2d bg:#15161e)\
+[](fg:#15161e bg:#262d2d)\
 $directory\
-[](fg:#24293b bg:#15161e)\
-[](fg:#15161e bg:#24293b)\
+[](fg:#262d2d bg:#15161e)\
+[](fg:#15161e bg:#1b2c31)\
 $git_branch\
-[ ](fg:#7aa2f7 bg:#24293b)\
+[ ](fg:#1bbc9b bg:#1b2c31)\
 $git_status\
-[](fg:#24293b bg:#15161e)\
-[](fg:#15161e bg:#1d2230)\
+[](fg:#1b2c31 bg:#15161e)\
+[](fg:#15161e bg:#2b283b)\
 $time\
-[](fg:#1d2230)\
+[](fg:#2b283b)\
 \n$character"""
 
 
@@ -59,7 +59,7 @@ style_root = "bg:#24293b fg:#f7768e"
 format = '[ @$user ]($style)'
 
 [directory]
-style = "fg:#73daca bg:#24293b"
+style = "fg:#9ece6a bg:#262d2d"
 format = "[    $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -72,12 +72,12 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:#24293b"
-format = '[[ $symbol $branch ](fg:#9ece6a bg:#24293b)]($style)'
+style = "bg:#1b2c31"
+format = '[[ $symbol $branch ](fg:#1bbc9b bg:#1b2c31)]($style)'
 
 [git_status]
-style = "bg:#24293b"
-format = '[[($all_status$ahead_behind )](fg:#e0af68 bg:#24293b)]($style)'
+style = "bg:#1b2c31"
+format = '[[($all_status$ahead_behind )](fg:#1bbc9b bg:#1b2c31)]($style)'
 
 [hostname]
 ssh_only = false
@@ -88,10 +88,10 @@ disabled = false
 
 [shell]
 disabled = false
-style = "bg:#24293b"
+style = "bg:#2d2a2d"
 bash_indicator = "$"
 zsh_indicator = "zsh"
-format = '[[    $indicator ](fg:#2ac3de bg:#24293b)]($style)'
+format = '[[    $indicator ](fg:#e0af69 bg:#2d2a2d)]($style)'
 fish_indicator = "fish"
 powershell_indicator = "psh"
 ion_indicator = "ion"
@@ -104,8 +104,8 @@ nu_indicator = "nu"
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:#1d2230"
-format = '[[    $time ](fg:#7aa2f7 bg:#1d2230)]($style)'
+style = "bg:#2b283b"
+format = '[[    $time ](fg:#bb9af7 bg:#2b283b)]($style)'
 
 [character]
 disabled = false
