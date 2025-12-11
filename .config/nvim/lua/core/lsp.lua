@@ -22,6 +22,13 @@ for _, server_name in ipairs(servers) do
 		end
 	end
 
+	-- Force UTF-16 encoding for ruff to match pyright
+	if server_name == "ruff" then
+		config.capabilities = config.capabilities or vim.lsp.protocol.make_client_capabilities()
+		config.capabilities.general = config.capabilities.general or {}
+		config.capabilities.general.positionEncodings = { "utf-16" }
+	end
+
 	-- Set the configuration
 	vim.lsp.config[server_name] = config
 end
