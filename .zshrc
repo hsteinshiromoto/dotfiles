@@ -192,6 +192,8 @@ export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 
+# Add alias to reload gpg agent with a different yubikey
+alias ykr="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
 #
 # ---
 # Configuration: tmux
