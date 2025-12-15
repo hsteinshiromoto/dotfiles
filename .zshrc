@@ -194,6 +194,14 @@ gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 
 # Add alias to reload gpg agent with a different yubikey
 alias ykr="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
+# ---
+# Terminal Info Configuration
+#
+# Set TERMINFO_DIRS to ensure tmux can find terminal definitions
+# Includes user terminfo, Ghostty app bundle, and system terminfo
+# ---
+export TERMINFO_DIRS=$HOME/.terminfo:/Applications/Ghostty.app/Contents/Resources/terminfo:/usr/share/terminfo
+
 #
 # ---
 # Configuration: tmux
