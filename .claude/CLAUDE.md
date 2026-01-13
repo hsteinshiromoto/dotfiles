@@ -25,3 +25,7 @@ Use these pieces of information as you long-term memory.
 - All python commands need to be prepended by `uv run`.
 - All python functions require docstrings usin Google format. The docstrings need to have examples.
 
+### IDE
+
+- The user's IDE is neovim with configuration located in `~/.config/nvim`. You are allowed to read/cat/grep/find any file located in there.
+- The user's OS/system packages are located in `~/.config/nix`. You are allowed to read/cat/grep/find any file located in there.
