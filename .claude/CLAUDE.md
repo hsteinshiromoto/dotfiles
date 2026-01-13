@@ -32,7 +32,7 @@ Each of these agents will implement at most three tasks.
 ### Python
 
 - All python projects uses `uv` package manager.
-- All added packages to `uv` will first be installed under the `dev` group and will only be moved into production level manually by a human.
+- All added packages to `uv` will first be installed under the `dev` group and will only be moved into production group manually by a human.
 - All python commands need to be prepended by `uv run`.
 - All python functions require docstrings usin Google format. The docstrings need to have examples.
 
