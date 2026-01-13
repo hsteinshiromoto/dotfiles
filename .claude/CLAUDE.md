@@ -8,6 +8,13 @@ When you startup, do this things:
 - Read the file `journal/summary.md`, this is a summary of the all of the changes done so far. If this file does not exist, create one.
 Use these pieces of information as you long-term memory.
 
+## Agent Flow
+
+- Use always these three subagents in this order:
+- 1. Plan agent: understand and plan the implementation.
+- 2. Build agent: Execute the planned implementation.
+- 3. Evaluation agent: Evaluate and changes and run the `/sanity_check` if applicable.
+
 ## Development Standards
 
 - Prefer functional implementation.
