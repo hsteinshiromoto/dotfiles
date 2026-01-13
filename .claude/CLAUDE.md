@@ -1,5 +1,7 @@
 # Global System Environment and Standards
 
+If any of the below instruction conflict with a local `CLAUDE.md`, please use instruction coming the local file.
+
 ## Start up
 
 When you startup, do this things:
