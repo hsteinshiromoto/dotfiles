@@ -3,8 +3,9 @@
 ## Start up
 
 When you startup, do this things:
-- Look at git log for the current branch.
-- Look at the latest note in the folder `journal`. If this folder does not exist, create it on the project root folder.
+- Read all the git commits for the current branch.
+- Read the latest note in the folder `journal`. If this folder does not exist, create it on the project root folder.
+- Read the file `journal/summary.md`, this is a summary of the all of the changes done so far. If this file does not exist, create one.
 Use these pieces of information as you long-term memory.
 
 ## Development Standards
