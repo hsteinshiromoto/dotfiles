@@ -4,24 +4,26 @@ If any of the below instruction conflict with a local `CLAUDE.md`, please use in
 
 ## Start up
 
-When you startup, do this things:
+When you startup, do these things:
 - Read all the git commits for the current branch.
 - Read the latest note in the folder `journal`. If this folder does not exist, create it on the project root folder.
 - Read the file `journal/summary.md`, this is a summary of the all of the changes done so far. If this file does not exist, create one.
-Use these pieces of information as you long-term memory.
+Use these pieces of information as your long-term memory.
 
 ## Agent Flow
 
-- Use always these three subagents in this order:
-- 1. Plan agent: understand and plan the implementation.
+Use always these three subagents in this order:
+- 1. Plan agent: understand the request, analyse the context, and plan the implementation.
 - 2. Build agent: Execute the planned implementation.
 - 3. Evaluation agent: Evaluate and changes and run the `/sanity_check` if applicable.
+Each of these agents will implement at most three tasks.
 
-## Development Standards
+## Code Development Standards
 
 - Prefer functional implementation.
+- Prefer readable implementation.
 - Prefer modularized code: each function is responsible for only one task.
-- Implement minimal code: 20% of the code should be capable of handling 80% of the requirements.
+- Implement minimal code: 20% of the code should be capable of handling 80% of the requirements. Do not cater for edge cases.
 - Use standard libraries for code implementation.
 - Prefer orchestration over inheritance.
 - When you finish your implementation run `/sanity_check`
