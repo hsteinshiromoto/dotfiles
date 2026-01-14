@@ -13,10 +13,17 @@ Use these pieces of information as your long-term memory.
 ## Agent Flow
 
 Use always these three subagents in this order:
-- 1. Plan agent: understand the request, analyse the context, and plan the implementation.
-- 2. Build agent: Execute the planned implementation.
-- 3. Evaluation agent: Evaluate and changes and run the `/sanity_check` if applicable.
-Each of these agents will implement at most three tasks.
+- 1. Plan agent: understand the request, analyse the context, and plan the implementation. Show the plan for user and ask for approval before moving to the next step.
+- 2. Build agent: Execute the planned implementation. Ask the user for approval before modifying any file in accordance to the plan.
+- 3. Evaluation agent: Evaluate and changes and run the `/sanity_check` if applicable. Ask the user permission to run the tests, summarise the test results, and ask the user if he's happy with the test outcomes.
+Each of these agents will execute at most three tasks.
+- 4. If the results of `/sanity_check` are succesful, ask the user if he wants to add the code git staging area.
+
+## DO NOT
+
+Never perform any of the following tasks without human approval:
+1. Modify any file.
+2. Add any file to git staging area or commit.
 
 ## Code Development Standards
 
