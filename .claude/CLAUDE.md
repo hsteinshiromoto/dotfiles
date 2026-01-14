@@ -34,14 +34,14 @@ Never perform any of the following tasks without human approval:
 - Use standard libraries for code implementation.
 - Prefer orchestration over inheritance.
 - When you finish your implementation run `/sanity_check`
-- For every project that you are making changes. In this folder, for each day, create a file of the format `YYYY-MM-DD.md` containing all changes done to the repository on that day.
+- For every project that you are making changes. For each day, create a file of the format `YYYY-MM-DD.md` containing all changes done to the repository on that day.
 
 ### Python
 
-- All python projects uses `uv` package manager.
+- All python projects use `uv` package manager.
 - All added packages to `uv` will first be installed under the `dev` group and will only be moved into production group manually by a human.
 - All python commands need to be prepended by `uv run`.
-- All python functions require docstrings usin Google format. The docstrings need to have examples.
+- All python functions require docstrings using Google format. The docstrings need to have examples.
 
 ### IDE
 
