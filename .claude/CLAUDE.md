@@ -19,6 +19,11 @@ Use always these three subagents in this order:
 Each of these agents will execute at most three tasks.
 - 4. If the results of `/sanity_check` are succesful, ask the user if he wants to add the code git staging area.
 
+For each of user permission request, offer three options:
+1. Yes (Y).
+2. No (N).
+3. Something else: here the user is prompted to do a small change such execute a command with a different flag option.
+
 ## DO NOT
 
 Never perform any of the following tasks without human approval:
