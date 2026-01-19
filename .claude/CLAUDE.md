@@ -52,3 +52,7 @@ Never perform any of the following tasks without human approval:
 
 - The user's IDE is neovim with configuration located in `~/.config/nvim`. You are allowed to read/cat/grep/find any file located in there.
 - The user's OS/system packages are located in `~/.config/nix`. You are allowed to read/cat/grep/find any file located in there.
+
+## Finishing up
+
+Whenever the user types `/quit` or  `exit`, you will update the `journal/` folder and the notes `journal/YYYY-DD-DD.md`, and `journal/summary.md`
