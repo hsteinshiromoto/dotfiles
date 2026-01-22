@@ -1,5 +1,9 @@
 return {
 	'wsdjeg/calendar.nvim',
+	cmd = 'Calendar',
+	keys = {
+		{ '<leader>oc', function() require('calendar').open() end, desc = 'Open Calendar' },
+	},
 	config = function()
 		require('calendar').setup({
 			mark_icon = '•',
@@ -25,5 +29,9 @@ return {
 			},
 			locales = {} -- See `## Locales`
 		})
+
+		vim.api.nvim_create_user_command('Calendar', function()
+			require('calendar').open()
+		end, { desc = 'Open Calendar' })
 	end
 }
