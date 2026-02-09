@@ -65,5 +65,57 @@
       "$0"
     ],
     "description": "Create the Option Enum base class with case-insensitive lookup, from_code, and validate methods"
+  },
+  "UUIDStr Type Alias": {
+    "prefix": "uuidstr",
+    "body": [
+      "UUIDStr = Annotated[",
+      "    str, AfterValidator(lambda v: str(uuid.UUID(v)))",
+      "]",
+      "$0"
+    ],
+    "description": "Create a UUIDStr type alias with Pydantic validation"
+  },
+  "Parse UUID Function": {
+    "prefix": "parse_uuid",
+    "body": [
+      "def parse_uuid(value: str) -> str:",
+      "    \"\"\"Validate and return UUID string.",
+      "",
+      "    Args:",
+      "        value: The string to validate as UUID.",
+      "",
+      "    Returns:",
+      "        str: The validated UUID string.",
+      "",
+      "    Raises:",
+      "        argparse.ArgumentTypeError: If value is not a valid UUID.",
+      "",
+      "    Examples:",
+      "        >>> parse_uuid(\"550e8400-e29b-41d4-a716-446655440000\")",
+      "        '550e8400-e29b-41d4-a716-446655440000'",
+      "    \"\"\"",
+      "    try:",
+      "        return str(uuid.UUID(value))",
+      "    except ValueError:",
+      "        raise argparse.ArgumentTypeError(f\"Invalid UUID: {value}\")",
+      "$0"
+    ],
+    "description": "Create a parse_uuid function for argparse UUID validation"
+  },
+  "Argparse CLI Boilerplate": {
+    "prefix": "argparse",
+    "body": [
+      "parser = argparse.ArgumentParser(description=\"${1:Command Line Interface}\")",
+      "parser.add_argument(",
+      "    \"--${2:option}\", type=${3:Option}, help=\"${4:Option Enum}\"",
+      ")",
+      "parser.add_argument(\"--${5:uuid}\", type=parse_uuid, required=True, help=\"${6:Id}\")",
+      "parser.add_argument(\"--${7:path}\", type=${8:S3Path}, required=False, help=\"${9:Path}\")",
+      "",
+      "args = parser.parse_args()",
+      "$0"
+    ],
+    "description": "Create argparse CLI boilerplate with Option, UUID, and Path arguments"
   }
 }
