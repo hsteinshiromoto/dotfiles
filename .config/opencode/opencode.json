@@ -1,0 +1,32 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "amazon-bedrock": {
+      "options": {
+        "region": "ap-southeast-2",
+        "profile": "sandbox"
+      }
+    },
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "llama3:latest": {
+          "name": "Llama 3 (4.7GB)"
+        },
+        "llama3.2:latest": {
+          "name": "Llama 3.2 (2.0GB)"
+        },
+        "mistral:latest": {
+          "name": "Mistral (4.1GB)"
+        },
+        "deepseek-r1:1.5b": {
+          "name": "DeepSeek R1 1.5B (1.1GB)"
+        }
+      }
+    }
+  }
+}
