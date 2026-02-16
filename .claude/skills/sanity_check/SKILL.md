@@ -1,4 +1,5 @@
 ---
+name: "sanity_check"
 description: "Run the tests of this repository"
 argument-hint: "specific files or modules"
 ---

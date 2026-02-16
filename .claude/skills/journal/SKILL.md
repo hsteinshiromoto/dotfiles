@@ -1,4 +1,5 @@
 ---
+name: "journal"
 description: "Summarize the work that you have done"
 ---
 Do the following:
