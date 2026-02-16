@@ -8,7 +8,7 @@
       },
       "models": {
         "anthropic-claude-opus-4.6": {
-          "id": "arn:aws:bedrock:ap-southeast-2:xxx:application-inference-profile/yyy"
+          "id": "arn:aws:bedrock:ap-southeast-2:058264223017:inference-profile/global.anthropic.claude-opus-4-6-v1"
         }
       }
     },
