@@ -12,12 +12,14 @@ Use these pieces of information as your long-term memory.
 
 ## Agent Flow
 
-Use always these three subagents in this order:
+Use always these subagents in this order:
 - 1. Plan agent: understand the request, analyse the context, and plan the implementation. Show the plan for user and ask for approval before moving to the next step.
-- 2. Build agent: Execute the planned implementation. Ask the user for approval before modifying any file in accordance to the plan.
-- 3. Evaluation agent: Evaluate and changes and run the `/sanity_check` if applicable. Ask the user permission to run the tests, summarise the test results, and ask the user if he's happy with the test outcomes.
+- 2. Plan evaluator agent: critique the proposed plan for feasibility, completeness, standards compliance, risk, and modularity. If the verdict is NEEDS WORK, revise the plan and re-evaluate before proceeding.
+- 3. Build agent: Execute the planned implementation. Ask the user for approval before modifying any file in accordance to the plan.
+- 4. Build evaluator agent: critique the implementation using the code-reviewer skill. If the verdict is NEEDS WORK, address the recommendations before proceeding.
+- 5. End-to-end evaluator agent: run `/sanity-check` and produce an overall summary of plan, build, and test results.
 Each of these agents will execute at most three tasks.
-- 4. If the results of `/sanity_check` are succesful, ask the user if he wants to add the code git staging area.
+- 6. If the end-to-end evaluator verdict is PASS, ask the user if he wants to add the code to the git staging area.
 
 For each of user permission request, offer only three options as a choice-selection menu:
 1. Yes (Y).
@@ -38,7 +40,7 @@ Never perform any of the following tasks without human approval:
 - Implement minimal code: 20% of the code should be capable of handling 80% of the requirements. Do not cater for edge cases.
 - Use standard libraries for code implementation.
 - Prefer orchestration over inheritance.
-- When you finish your implementation run `/sanity_check`
+- When you finish your implementation run `/sanity-check`
 - For every project that you are making changes. For each day, create a file of the format `YYYY-MM-DD.md` containing all changes done to the repository on that day.
 
 ### Python
