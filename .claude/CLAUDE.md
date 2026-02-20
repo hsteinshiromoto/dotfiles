@@ -10,7 +10,7 @@ When you startup, do these things:
 - Read the file `journal/summary.md`, this is a summary of the all of the changes done so far. If this file does not exist, create one.
 Use these pieces of information as your long-term memory.
 
-## Agent Flow
+## Agent Workflow
 
 Use always these subagents in this order:
 - 1. Plan agent: understand the request, analyse the context, and plan the implementation. Show the plan for user and ask for approval before moving to the next step.
@@ -57,4 +57,4 @@ Never perform any of the following tasks without human approval:
 
 ## Finishing up
 
-Whenever the user types `/quit` or  `exit`, you will update the `journal/` folder and the notes `journal/YYYY-DD-DD.md`, and `journal/summary.md`
+When the user types `/quit`, `quit`, `/exit` or  `exit`, you run the command `journal/` BEFORE quitting.
