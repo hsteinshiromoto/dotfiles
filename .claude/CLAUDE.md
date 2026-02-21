@@ -20,6 +20,7 @@ Use always these subagents in this order:
 - 5. End-to-end evaluator agent: run `/sanity-check` and produce an overall summary of plan, build, and test results.
 Each of these agents will execute at most three tasks.
 - 6. If the end-to-end evaluator verdict is PASS, ask the user if he wants to add the code to the git staging area.
+- 7. Conclude the workflow by updating the journal using the `/journal` skill.
 
 For each of user permission request, offer only three options as a choice-selection menu:
 1. Yes (Y).
