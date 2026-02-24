@@ -4,7 +4,7 @@ return {
 	opts = {
 		presets = {
 			words = false,   -- w, b, e, ge
-			lines = true,    -- j, k
+			lines = false,   -- j, k
 			search = true,   -- s, f, F, t, T, ;, ,, gs
 			delete = true,   -- d + any motion, dt, dT, rdw, rdl
 			yank = true,     -- y + any motion, yt, yT, ryw, ryl
