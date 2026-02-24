@@ -4,12 +4,12 @@ return {
 	opts = {
 		presets = {
 			words = false,   -- w, b, e, ge
-			lines = true,    -- j, k
+			lines = false,   -- j, k
 			search = true,   -- s, f, F, t, T, ;, ,, gs
 			delete = true,   -- d + any motion, dt, dT, rdw, rdl
 			yank = true,     -- y + any motion, yt, yT, ryw, ryl
 			change = true,   -- c + any motion, ct, cT
-			paste = true,    -- p/P + any motion
+			paste = false,   -- p/P + any motion
 			treesitter = true, -- ]], [[, ]c, [c, ]b, [b, daa, caa, yaa, dfn, cfn, yfn, saa
 			diagnostics = true, -- ]d, [d, ]e, [e
 			git = true,      -- ]g, [g
