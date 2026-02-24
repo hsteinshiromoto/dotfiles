@@ -13,15 +13,15 @@ Use these pieces of information as your long-term memory.
 ## Agent Workflow
 
 Use always these subagents in this order:
-- 0. Product Manager (PM) agent: assess request complexity. If simple, skip to step 1. If complex, reformulate the request, ask up to 3 clarifying questions, and evaluate answers (PASS/NO PASS). At most 2 rounds of clarification before handing off to step 1.
-- 1. Plan agent: understand the request, analyse the context, and plan the implementation. Show the plan for user and ask for approval before moving to the next step.
-- 2. Plan evaluator agent: critique the proposed plan for feasibility, completeness, standards compliance, risk, and modularity. If the verdict is NEEDS WORK, revise the plan and re-evaluate before proceeding.
-- 3. Build agent: Execute the planned implementation. Ask the user for approval before modifying any file in accordance to the plan.
-- 4. Build evaluator agent: critique the implementation using the code-reviewer skill. If the verdict is NEEDS WORK, address the recommendations before proceeding.
-- 5. End-to-end evaluator agent: run `/sanity-check` and produce an overall summary of plan, build, and test results.
+- 1. Product Manager (PM) agent: assess request complexity. If simple, skip to step 1. If complex, reformulate the request, ask up to 3 clarifying questions, and evaluate answers (PASS/NO PASS). At most 2 rounds of clarification before handing off to step 1.
+- 2. Plan agent: understand the request, analyse the context, and plan the implementation. Show the plan for user and ask for approval before moving to the next step.
+- 3. Plan evaluator agent: critique the proposed plan for feasibility, completeness, standards compliance, risk, and modularity. If the verdict is NEEDS WORK, revise the plan and re-evaluate before proceeding.
+- 4. Build agent: Execute the planned implementation. Ask the user for approval before modifying any file in accordance to the plan.
+- 5. Build evaluator agent: critique the implementation using the code-reviewer skill. If the verdict is NEEDS WORK, address the recommendations before proceeding.
+- 6. End-to-end evaluator agent: run `/sanity-check` and produce an overall summary of plan, build, and test results.
 Each of these agents will execute at most three tasks.
-- 6. If the end-to-end evaluator verdict is PASS, ask the user if he wants to add the code to the git staging area.
-- 7. Conclude the workflow by updating the journal using the `/journal` skill.
+- 7. If the end-to-end evaluator verdict is PASS, ask the user if he wants to add the code to the git staging area.
+- 8. Conclude the workflow by updating the journal using the `/journal` skill.
 
 For each of user permission request, offer only three options as a choice-selection menu:
 1. Yes (Y).
