@@ -13,6 +13,7 @@ Use these pieces of information as your long-term memory.
 ## Agent Workflow
 
 Use always these subagents in this order:
+- 0. Product Manager (PM) agent: assess request complexity. If simple, skip to step 1. If complex, reformulate the request, ask up to 3 clarifying questions, and evaluate answers (PASS/NO PASS). At most 2 rounds of clarification before handing off to step 1.
 - 1. Plan agent: understand the request, analyse the context, and plan the implementation. Show the plan for user and ask for approval before moving to the next step.
 - 2. Plan evaluator agent: critique the proposed plan for feasibility, completeness, standards compliance, risk, and modularity. If the verdict is NEEDS WORK, revise the plan and re-evaluate before proceeding.
 - 3. Build agent: Execute the planned implementation. Ask the user for approval before modifying any file in accordance to the plan.
