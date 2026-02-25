@@ -17,7 +17,7 @@ Do a review for the existing merge request. Review the committed changes on the 
 - Use `git diff <target-branch>.. HEAD` to get the diff — do NOT include unstaged or staged changes.
 - Read all changed files fully, not just the diff hunks.
 - Use the skills `/code_reviewer` and `/explain_code`.
-- Use JIRA mcp to check the alignment with card requirements.
+- Use JIRA mcp to check the alignment with card requirements, infer the JIRA card id from the source branch.
 
 ### Structured Review
 
