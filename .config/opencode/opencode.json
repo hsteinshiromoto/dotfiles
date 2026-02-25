@@ -35,5 +35,35 @@
         }
       }
     }
+  },
+  "mcp": {
+    "mcp-obsidian": {
+      "type": "local",
+      "command": ["uvx", "mcp-obsidian"],
+      "environment": {
+        "OBSIDIAN_API_KEY": "<your_api_key_here>",
+        "OBSIDIAN_HOST": "<your_obsidian_host>",
+        "OBSIDIAN_PORT": "<your_obsidian_port>"
+      },
+      "enabled": true
+    },
+    "github": {
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer {env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "enabled": true
+    },
+    "gitlab": {
+      "type": "remote",
+      "url": "https://gitlab.com/api/v4/mcp",
+      "enabled": true
+    },
+    "atlassian": {
+      "type": "remote",
+      "url": "https://mcp.atlassian.com/v1/sse",
+      "enabled": true
+    }
   }
 }
