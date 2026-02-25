@@ -57,6 +57,15 @@ Never perform any of the following tasks without human approval:
 - The user's IDE is neovim with configuration located in `~/.config/nvim`. You are allowed to read/cat/grep/find any file located in there.
 - The user's OS/system packages are located in `~/.config/nix`. You are allowed to read/cat/grep/find any file located in there.
 
+### MCPs
+
+- For Atlassian related work, use the Atlassian MCP.
+- For repositories having origin hosted in github, use Github MCP.
+
+### CLIs
+
+- Use `glab` (Gitlab cli) to work with repositories having origin hosted in gitlab.
+
 ## Finishing up
 
 When the user types `/quit`, `quit`, `/exit` or  `exit`, you run the command `journal/` BEFORE quitting.
