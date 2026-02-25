@@ -64,6 +64,11 @@
       "type": "remote",
       "url": "https://mcp.atlassian.com/v1/sse",
       "enabled": true
+    },
+    "hledger-mcp": {
+      "type": "local",
+      "command": ["npx", "-y", "@iiatlas/hledger-mcp", "/Users/hsteinshiromoto/hledger/main.journal"],
+      "enabled": true
     }
   }
 }
