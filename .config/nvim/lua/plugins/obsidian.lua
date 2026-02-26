@@ -398,8 +398,26 @@ return {
 		{ "<localleader>on", "<cmd>Obsidian new_from_template<cr>", desc = "New Note From Template" },
 		{ "<localleader>od", "<cmd>Obsidian today<cr>", desc = "Obsidian Daily Note" },
 		{ "<localleader>ol", "<cmd>Obsidian backlinks<cr>", desc = "Backlinks" },
+		{ "<localleader>oc", "<cmd>ObsidianCopyClean<cr>", mode = "n", desc = "Copy Clean" },
+		{ "<localleader>oc", ":<C-u>'<,'>ObsidianCopyClean<cr>", mode = "v", desc = "Copy Clean" },
 	},
 	new_notes_location = "notes_subdir",
+	config = function(_, opts)
+		require("obsidian").setup(opts)
+		vim.api.nvim_create_user_command("ObsidianCopyClean", function(opts)
+			local lines
+			if opts.range > 0 then
+				lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, false)
+			else
+				lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+			end
+			local text = table.concat(lines, "\n")
+			local clean = require("utils").strip_obsidian_syntax(text)
+			vim.fn.setreg("+", clean)
+			local scope = opts.range > 0 and "selection" or "buffer"
+			vim.notify("Copied cleaned " .. scope .. " to clipboard")
+		end, { range = true })
+	end,
 	opts = {
 		legacy_commands = false,
 		ui = {

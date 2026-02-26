@@ -27,4 +27,22 @@ function M.find_files()
 	end
 end
 
+function M.strip_obsidian_syntax(text)
+	-- Remove YAML frontmatter
+	text = text:gsub("^%-%-%-\n.-\n%-%-%-\n", "")
+	-- Remove embedded files ![[anything]]
+	text = text:gsub("!%[%[.-%]%]", "")
+	-- Convert wiki links with display text [[target|display]] → display
+	text = text:gsub("%[%[[^%]]-|([^%]]-)%]%]", "%1")
+	-- Convert wiki links without display text [[target]] → target
+	text = text:gsub("%[%[([^%]]-)%]%]", "%1")
+	-- Convert callout markers > [!type] → Type:
+	text = text:gsub("> %[!(%w+)%]", function(t)
+		return t:sub(1, 1):upper() .. t:sub(2):lower() .. ":"
+	end)
+	-- Remove highlight syntax ==text== → text
+	text = text:gsub("==(.-)==", "%1")
+	return text
+end
+
 return M
