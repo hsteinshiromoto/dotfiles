@@ -228,6 +228,11 @@ fi
 export BAT_THEME="tokyonight_night"
 
 # ---
+# hledger settings
+# ---
+export LEDGER_FILE=~/hledger/data/main.journal
+
+# ---
 # Tab complete
 # ---
 autoload -U compinit
