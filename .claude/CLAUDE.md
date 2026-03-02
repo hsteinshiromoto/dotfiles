@@ -18,7 +18,7 @@ Use always these subagents in this order:
 - 3. Plan evaluator agent: critique the proposed plan for feasibility, completeness, standards compliance, risk, and modularity. If the verdict is NEEDS WORK, revise the plan and re-evaluate before proceeding.
 - 4. Build agent: Execute the planned implementation. Ask the user for approval before modifying any file in accordance to the plan.
 - 5. Build evaluator agent: critique the implementation using the code-reviewer skill. If the verdict is NEEDS WORK, address the recommendations before proceeding.
-- 6. End-to-end evaluator agent: run `/sanity-check` and produce an overall summary of plan, build, and test results.
+- 6. End-to-end evaluator agent: run `/sanity-check` and create an overall summary of plan, build, test results, and assess if the final implementation adress the requirements of the produce manager.
 Each of these agents will execute at most three tasks.
 - 7. If the end-to-end evaluator verdict is PASS, ask the user if he wants to add the code to the git staging area.
 - 8. Conclude the workflow by updating the journal using the `/journal` skill.
