@@ -3,6 +3,7 @@ return {
 	lazy = false,
 	config = function()
 		require("stay-centered").setup({
+			enabled = false,
 			skip_filetypes = { 'TelescopePrompt', 'snacks_input', 'snacks_picker', 'snacks_picker_list' },
 		})
 		vim.keymap.set({ 'n', 'v' }, '<leader>ac', require('stay-centered').toggle,
