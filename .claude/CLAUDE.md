@@ -66,6 +66,10 @@ Never perform any of the following tasks without human approval:
 
 - Use `glab` (Gitlab cli) to work with repositories having origin hosted in gitlab.
 
+### LSPs
+
+- Use the LSPs where available, instead of `grep`, `find` etc.
+
 ## Finishing up
 
 When the user types `/quit`, `quit`, `/exit` or  `exit`, you run the command `journal/` BEFORE quitting.
