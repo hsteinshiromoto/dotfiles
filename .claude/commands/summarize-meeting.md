@@ -116,9 +116,8 @@ Tags:: #Logs/Meetings/Minutes
 | 1 | [Clear statement of decision] | [Name] | [Agreed/Provisional/Majority] |
 
 ## Action Items
-| # | Action | Owner | Deadline | Status |
-|---|--------|-------|----------|--------|
-| 1 | [Task description] | [Name] | [Date or "TBD"] | Open |
+
+- [ ] added:[[date]] i<importance of the action>:[H <High>/M <Medium>/L <Low>/N <None>] u<urgency or the action>:[H <High>/M <Medium>/L <Low>/N <None>] [One-liner clear statement of the action point] due:[[date]]
 
 ## Parking Lot / Deferred Items
 - [Topic deferred and reason, if any]
@@ -139,6 +138,7 @@ Tags:: #Logs/Meetings/Minutes
 - If the transcript contains off-topic conversation, small talk, or tangents, omit these unless they led to a decision or action.
 - When pre-filled metadata conflicts with transcript content, prefer the pre-filled metadata and note the discrepancy in the Meeting Information section.
 - Automatically identify and add links to existing Obsidian notes.
+- The meeting mentions a future date. Explicitely add it in Obsidian format so this note can be linked when that note is created.
 </guidelines>
 <edge_cases>
 - **No clear agenda stated:** Infer agenda items from topic shifts and label the section “Agenda (Inferred from Discussion).”
