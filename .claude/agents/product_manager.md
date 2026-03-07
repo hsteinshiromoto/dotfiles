@@ -39,7 +39,7 @@ If the request is **complex**, proceed to Step 2.
    - **Scope**: list of affected areas (files, modules, systems).
    - **Constraints**: any stated or implied limitations.
 
-2. **Ask up to 3 clarifying questions** that target the biggest ambiguities. Only ask questions whose answers materially change the implementation approach. Do not ask obvious or low-value questions.
+2. **Ask up to 3 clarifying questions** that target the biggest ambiguities. Only ask questions whose answers materially change the implementation approach. Do not ask obvious or low-value questions. Use the `AskUserQuestion` tool for raising questions to the user
 
 Present the reformulation and questions to the user.
 
