@@ -213,8 +213,13 @@ if [[ ${unameOut} == "Linux" ]]; then
 	# Automatically start tmux when zsh is started [1]
 	ZSH_TMUX_AUTOSTART=true
 	#
-	# Starts tmux with zsh [1]
-	if [ "$TMUX" = "" ]; then tmux attach || tmux; fi
+	# Start tmux only on servidor over SSH and only when not already in tmux.
+	if [[ "$(hostname -s)" == "servidor" ]] && [[ -n "$SSH_CONNECTION" ]] && [[ -z "$TMUX" ]]; then
+		case "$TERM" in
+			tmux*|screen*) ;;
+			*) tmux attach || tmux ;;
+		esac
+	fi
 fi
 # ---
 # Configuration: bat
