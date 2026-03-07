@@ -35,6 +35,7 @@ For each of user permission request, offer only three options as a choice-select
 Never perform any of the following tasks without human approval:
 1. Modify any file.
 2. Add any file to git staging area or commit.
+3. Run shell commands that execute tests or build steps without first confirming the host OS is compatible with the project's test environment (e.g., NixOS tests cannot run from a macOS host).
 
 ## Code Development Standards
 
