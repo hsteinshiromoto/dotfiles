@@ -9,6 +9,7 @@ disable-model-invocation: false
 
 ## Defaults Workflow
 
+0. **Platform check**: Verify the project's test environment is compatible with the current OS. For example, NixOS tests cannot run from a macOS host. If incompatible, notify the user and skip.
 1. Read `README.md` to understand how the tests are run.
 2. Read `Makefile` and `Justfile` to understand the test commands.
 3. Whenever in conflict, consider `Makefile` as the source of truth.
