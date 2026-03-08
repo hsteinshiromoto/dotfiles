@@ -10,6 +10,7 @@ end
 
 -- Later in your config, when loading plugins:
 if not is_remote then
+	vim.fn.serverstart('/tmp/nvim')
 	require("config.options")
 	require("config.lazy")
 	require("config.icons")
