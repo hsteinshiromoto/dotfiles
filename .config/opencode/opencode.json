@@ -47,6 +47,16 @@
       },
       "enabled": true
     },
+    "mcp-neovim-server": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-neovim-server"],
+      "environment": {
+        "NVIM_SOCKET_PATH": "/tmp/nvim",
+        "ALLOW_SHELL_COMMANDS": "true"
+      },
+      "timeout": 120000,
+      "enabled": true
+    },
     "github": {
       "type": "remote",
       "url": "https://api.githubcopilot.com/mcp/",
@@ -68,6 +78,14 @@
     "hledger-mcp": {
       "type": "local",
       "command": ["npx", "-y", "@iiatlas/hledger-mcp", "/Users/hsteinshiromoto/hledger/main.journal"],
+      "enabled": true
+    },
+    "readwise-reader": {
+      "type": "local",
+      "command": ["npx", "-y", "@readwise/readwise-mcp"],
+      "environment": {
+        "ACCESS_TOKEN": "{env:READWISE_ACCESS_TOKEN}"
+      },
       "enabled": true
     }
   }
