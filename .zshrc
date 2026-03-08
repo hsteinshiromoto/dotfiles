@@ -211,14 +211,11 @@ export TERMINFO_DIRS=$HOME/.terminfo:/Applications/Ghostty.app/Contents/Resource
 # ---
 if [[ ${unameOut} == "Linux" ]]; then
 	# Automatically start tmux when zsh is started [1]
-	ZSH_TMUX_AUTOSTART=true
+	ZSH_TMUX_AUTOSTART=false
 	#
-	# Start tmux only on servidor over SSH and only when not already in tmux.
-	if [[ "$(hostname -s)" == "servidor" ]] && [[ -n "$SSH_CONNECTION" ]] && [[ -z "$TMUX" ]]; then
-		case "$TERM" in
-			tmux*|screen*) ;;
-			*) tmux attach || tmux ;;
-		esac
+	# Keep a tmux server available on servidor over SSH, but do not auto-attach.
+	if [[ "$(hostname -s)" == "servidor" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+		TMUX= tmux start-server >/dev/null 2>&1
 	fi
 fi
 # ---
