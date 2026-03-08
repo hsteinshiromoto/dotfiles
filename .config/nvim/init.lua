@@ -10,7 +10,23 @@ end
 
 -- Later in your config, when loading plugins:
 if not is_remote then
-	vim.fn.serverstart('/tmp/nvim')
+	local socket = '/tmp/nvim.' .. vim.fn.getpid()
+	local symlink = '/tmp/nvim'
+	local uv = vim.uv or vim.loop
+
+	vim.fn.serverstart(socket)
+	uv.fs_unlink(symlink)
+	uv.fs_symlink(socket, symlink)
+
+	vim.api.nvim_create_autocmd('VimLeavePre', {
+		callback = function()
+			local link = uv.fs_readlink(symlink)
+			if link == socket then
+				uv.fs_unlink(symlink)
+			end
+			uv.fs_unlink(socket)
+		end,
+	})
 	require("config.options")
 	require("config.lazy")
 	require("config.icons")
