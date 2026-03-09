@@ -17,7 +17,7 @@ return {
 			},
 		},
 	}),
-	opts = {
+		opts = {
 		-- List of characters to use to mark 'pinned' buffers
 		-- The characters will be chosen for new pins in order
 		marklist = { "q", "w", "e", "r", "t", "y" },
@@ -27,12 +27,12 @@ return {
 		-- The length of this list determines how many recent buffers are tracked
 		-- Set to {} to disable recent buffers in the tabline
 		buflist = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" },
-		mappings = {
-			mark = "<leader>a",     -- Mark current buffer
-			jump = "<leader>",      -- Jump to buffer marked by next character i.e `;a`
-			pick = "<leader>bl",    -- Open Dart.pick
-			next = "<leader><Right>", -- Cycle right through the tabline
-			prev = "<leader><Left>", -- Cycle left through the tabline
+			mappings = {
+				mark = "<leader>bm",    -- Mark current buffer
+				jump = "<leader>b",     -- Jump to buffer marked by next character i.e `<leader>bq`
+				pick = "<leader>bl",    -- Open Dart.pick
+				next = "<leader><Right>", -- Cycle right through the tabline
+				prev = "<leader><Left>", -- Cycle left through the tabline
 			unmark_all = "<leader>bu", -- Close all marked and recent buffers
 		},
 	},                          -- see Configuration section
