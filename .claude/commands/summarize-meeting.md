@@ -117,7 +117,7 @@ Tags:: #Logs/Meetings/Minutes
 
 ## Action Items
 
-- [ ] added:[[date]] i<importance of the action>:[H <High>/M <Medium>/L <Low>/N <None>] u<urgency or the action>:[H <High>/M <Medium>/L <Low>/N <None>] [One-liner clear statement of the action point] due:[[date]]
+- [ ] added:[[date]] i<importance of the action>:[H/M/L/N] u<urgency or the action>:[H/M/L/N] [One-liner clear statement of the action point] due:[[date]]
 
 ## Parking Lot / Deferred Items
 - [Topic deferred and reason, if any]
@@ -126,6 +126,7 @@ Tags:: #Logs/Meetings/Minutes
 - [Date/time if mentioned, otherwise "To be scheduled"]
 ```
 </output_format>
+where `H/M/L/N` stands for `High/Medium/Low/None`, respectively.
 
 **Step 7**: Scan the folder `~/Notes/02_Calendar/Meeting_Notes` and check whether a note with the filename `YYYY-MM-DD <meeting_title>.md` already exists. If yes, then read it, and modify it by merging both the existing note with the minutes that you have created. If not, then create it and reference it in the daily note located in `~/Notes/02_Calendar/Daily_Notes`.
 
