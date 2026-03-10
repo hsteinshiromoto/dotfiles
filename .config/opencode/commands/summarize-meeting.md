@@ -1,5 +1,5 @@
 ---
-description: Meeting minutes management (create|update|search)
+description: "Meeting Minutes Management"
 agent: build
 ---
 
@@ -24,7 +24,6 @@ You are an expert executive assistant specializing in corporate meeting document
 ### create [transcript_file]
 
 Transform the provided meeting transcript into structured, professional meeting minutes. Follow the process below exactly.
-
 <pre_filled_metadata>
 Use the following metadata if provided. If a field is empty or set to "AUTO", extract it from the transcript instead. If it cannot be determined from either source, mark it as "Not specified."
 - Title: {{MEETING_TITLE}}
@@ -32,7 +31,72 @@ Use the following metadata if provided. If a field is empty or set to "AUTO", ex
 - Attendees: {{ATTENDEES}}
 - Chair/Facilitator: {{CHAIR}}
 </pre_filled_metadata>
+<transcript>
+$ARGUMENTS
+</transcript>
+<examples>
+<example>
+**Input transcript excerpt:**
+```
+Sarah: OK let's get started. First item — the Q1 budget. Tom, where are we?
+Tom: We're 12% over on marketing spend. I recommend we freeze discretionary spending for March.
+Sarah: Agreed. Let's do that. Tom, can you send the updated numbers to finance by Friday?
+Tom: Will do.
+Sarah: Next up, the office move. Any updates?
+Lisa: The lease signing is pushed to April. Nothing to decide yet.
+Sarah: OK, let's revisit next week. I think that's it. Next meeting same time Thursday.
+```
 
+**Expected output:**
+```
+Abstract:: Brief meeting covering Q1 budget overspend and office move status.
+Date:: [[2024-03-10]] 2024-03-10, 10:00 AM
+Parent:: [[_meta_/_templates_/MeetingMinutes.md|MeetingMinutes]]
+Tags:: #Logs/Meetings/Minutes
+
+# Q1 Budget & Office Move Sync
+
+## Summary
+Short sync covering Q1 budget overspend with a decision to freeze discretionary spending, and an update on the delayed office move.
+
+## People
+
+### Attendees
+- Sarah
+- Tom
+- Lisa
+
+### Chair/Facilitator
+Sarah
+
+## Agenda
+1. Q1 Budget Review
+2. Office Move Update
+
+## Discussion Summary
+### 1. Q1 Budget Review
+Tom reported that marketing spend is 12% over budget for Q1. He recommended freezing discretionary spending for March. Sarah agreed with the recommendation.
+
+### 2. Office Move Update
+Lisa reported the lease signing has been pushed to April. No decisions were required at this time.
+
+## Decisions
+| # | Decision | Proposed By | Status |
+|---|----------|-------------|--------|
+| 1 | Freeze discretionary spending for March | Tom | Agreed |
+
+## Action Items
+<!-- Format: i = importance, u = urgency. Values: H (High), M (Medium), L (Low), N (None) -->
+- [ ] added:[[2024-03-10]] i:H u:H Send updated budget numbers to finance due:[[2024-03-15]]
+
+## Parking Lot / Deferred Items
+- Office move lease signing — revisit next week
+
+## Next Meeting
+- Thursday, same time
+```
+</example>
+</examples>
 <instructions>
 
 **Step 1**: Extract Meeting Metadata
@@ -75,13 +139,16 @@ List every action item, task, or follow-up committed to during the meeting. Each
 - The deadline or timeframe (if mentioned)
 - Priority or urgency (if mentioned)
 
-If a task was discussed but no owner was assigned, flag it as "Owner: Unassigned - needs follow-up."
+If a task was discussed but no owner was assigned, flag it as "Owner: Unassigned — needs follow-up."
 
 **Step 6**: Note Any Parking Lot Items
 
 Capture topics raised but deferred to a future meeting or discussion.
-</instructions>
 
+**Step 7**: Save to Vault
+
+Scan the folder `~/Notes/02_Calendar/Meeting_Notes` and check whether a note with the filename `YYYY-MM-DD <meeting_title>.md` already exists. If yes, then read it, and modify it by merging both the existing note with the minutes that you have created. If not, then create it and reference it in the daily note located in `~/Notes/02_Calendar/Daily_Notes`.
+</instructions>
 <output_format>
 Structure the meeting minutes exactly as follows, using Obsidian formatting and the `MeetingMinutes.md` template file.
 
@@ -99,7 +166,7 @@ Tags:: #Logs/Meetings/Minutes
 
 ## People
 
-### Atendees
+### Attendees
 [bullet-point list of names]
 
 ### Chair/Facilitator
@@ -122,8 +189,10 @@ Tags:: #Logs/Meetings/Minutes
 | 1 | [Clear statement of decision] | [Name] | [Agreed/Provisional/Majority] |
 
 ## Action Items
+<!-- Format: i = importance, u = urgency. Values: H (High), M (Medium), L (Low), N (None) -->
 
-- [ ] added:[[date]] i<importance of the action>:[H <High>/M <Medium>/L <Low>/N <None>] u<urgency or the action>:[H <High>/M <Medium>/L <Low>/N <None>] [One-liner clear statement of the action point] due:[[date]]
+- [ ] added:[[2024-03-10]] i:H u:M Review Q1 budget report and circulate to stakeholders due:[[2024-03-15]]
+- [ ] added:[[date]] i:<H/M/L/N> u:<H/M/L/N> [One-liner clear statement of the action point] due:[[date]]
 
 ## Parking Lot / Deferred Items
 - [Topic deferred and reason, if any]
@@ -132,9 +201,6 @@ Tags:: #Logs/Meetings/Minutes
 - [Date/time if mentioned, otherwise "To be scheduled"]
 ```
 </output_format>
-
-**Step 7**: Scan `~/Notes/02_Calendar/Meeting_Notes` and check whether a note with filename `YYYY-MM-DD <meeting_title>.md` already exists. If yes, read it and merge existing note content with the newly created minutes. If not, create it and reference it in the daily note located in `~/Notes/02_Calendar/Daily_Notes`.
-
 <guidelines>
 - Use speakers' names exactly as they appear in the transcript. Do not guess full names from first names alone.
 - If a speaker is unidentified (for example, "Speaker 3"), use that label consistently.
@@ -146,18 +212,11 @@ Tags:: #Logs/Meetings/Minutes
 - Automatically identify and add links to existing Obsidian notes.
 - If the meeting mentions a future date, explicitly add it in Obsidian format so the note can be linked when that note is created.
 </guidelines>
-
 <edge_cases>
 - **No clear agenda stated:** Infer agenda items from topic shifts and label as "Agenda (Inferred from Discussion)."
 - **Conflicting statements:** Note disagreement factually.
-- **Unclear ownership of action items:** Mark owner as "Unassigned - needs follow-up."
+- **Unclear ownership of action items:** Mark owner as "Unassigned — needs follow-up."
 - **Very short or informal meeting:** Still produce all sections; mark empty sections as "None identified."
 - **Multiple meetings in one transcript:** Process only the first meeting unless instructed otherwise; note additional meeting content exists.
 - **Pre-filled metadata conflicts with transcript:** Use pre-filled value and add a note about discrepancy.
 </edge_cases>
-
-<transcript>
-$ARGUMENTS
-</transcript>
-
-### search [transcript_file]

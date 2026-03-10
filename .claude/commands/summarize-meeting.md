@@ -1,6 +1,6 @@
 ---
 description: "Meeting Minutes Management"
-argument-hint: "create|update|search [args]"
+argument-hint: "create [transcript_file]"
 disable-model-invocation: false
 ---
 
@@ -32,6 +32,72 @@ Use the following metadata if provided. If a field is empty or set to “AUTO”
 - Attendees: {{ATTENDEES}}
 - Chair/Facilitator: {{CHAIR}}
 </pre_filled_metadata>
+<transcript>
+$ARGUMENTS
+</transcript>
+<examples>
+<example>
+**Input transcript excerpt:**
+```
+Sarah: OK let's get started. First item — the Q1 budget. Tom, where are we?
+Tom: We're 12% over on marketing spend. I recommend we freeze discretionary spending for March.
+Sarah: Agreed. Let's do that. Tom, can you send the updated numbers to finance by Friday?
+Tom: Will do.
+Sarah: Next up, the office move. Any updates?
+Lisa: The lease signing is pushed to April. Nothing to decide yet.
+Sarah: OK, let's revisit next week. I think that's it. Next meeting same time Thursday.
+```
+
+**Expected output:**
+```
+Abstract:: Brief meeting covering Q1 budget overspend and office move status.
+Date:: [[2024-03-10]] 2024-03-10, 10:00 AM
+Parent:: [[_meta_/_templates_/MeetingMinutes.md|MeetingMinutes]]
+Tags:: #Logs/Meetings/Minutes
+
+# Q1 Budget & Office Move Sync
+
+## Summary
+Short sync covering Q1 budget overspend with a decision to freeze discretionary spending, and an update on the delayed office move.
+
+## People
+
+### Attendees
+- Sarah
+- Tom
+- Lisa
+
+### Chair/Facilitator
+Sarah
+
+## Agenda
+1. Q1 Budget Review
+2. Office Move Update
+
+## Discussion Summary
+### 1. Q1 Budget Review
+Tom reported that marketing spend is 12% over budget for Q1. He recommended freezing discretionary spending for March. Sarah agreed with the recommendation.
+
+### 2. Office Move Update
+Lisa reported the lease signing has been pushed to April. No decisions were required at this time.
+
+## Decisions
+| # | Decision | Proposed By | Status |
+|---|----------|-------------|--------|
+| 1 | Freeze discretionary spending for March | Tom | Agreed |
+
+## Action Items
+<!-- Format: i = importance, u = urgency. Values: H (High), M (Medium), L (Low), N (None) -->
+- [ ] added:[[2024-03-10]] i:H u:H Send updated budget numbers to finance due:[[2024-03-15]]
+
+## Parking Lot / Deferred Items
+- Office move lease signing — revisit next week
+
+## Next Meeting
+- Thursday, same time
+```
+</example>
+</examples>
 <instructions>
 
 **Step 1**: Extract Meeting Metadata
@@ -75,6 +141,10 @@ If a task was discussed but no owner was assigned, flag it as “Owner: Unassign
 **Step 6**: Note Any Parking Lot Items
 
 Capture topics that were raised but deferred to a future meeting or discussion.
+
+**Step 7**: Save to Vault
+
+Scan the folder `~/Notes/02_Calendar/Meeting_Notes` and check whether a note with the filename `YYYY-MM-DD <meeting_title>.md` already exists. If yes, then read it, and modify it by merging both the existing note with the minutes that you have created. If not, then create it and reference it in the daily note located in `~/Notes/02_Calendar/Daily_Notes`.
 </instructions>
 <output_format>
 Structure the meeting minutes exactly as follows, using Obsidian formatting and `MeetingMinutes.md` template file.
@@ -93,7 +163,7 @@ Tags:: #Logs/Meetings/Minutes
 
 ## People
 
-### Atendees
+### Attendees
 [bullet-point list of names]
 
 ### Chair/Facilitator
@@ -116,8 +186,10 @@ Tags:: #Logs/Meetings/Minutes
 | 1 | [Clear statement of decision] | [Name] | [Agreed/Provisional/Majority] |
 
 ## Action Items
+<!-- Format: i = importance, u = urgency. Values: H (High), M (Medium), L (Low), N (None) -->
 
-- [ ] added:[[date]] i:H/M/L/N u:H/M/L/N [One-liner clear statement of the action point] due:[[date]]
+- [ ] added:[[2024-03-10]] i:H u:M Review Q1 budget report and circulate to stakeholders due:[[2024-03-15]]
+- [ ] added:[[date]] i:<H/M/L/N> u:<H/M/L/N> [One-liner clear statement of the action point] due:[[date]]
 
 ## Parking Lot / Deferred Items
 - [Topic deferred and reason, if any]
@@ -126,13 +198,6 @@ Tags:: #Logs/Meetings/Minutes
 - [Date/time if mentioned, otherwise "To be scheduled"]
 ```
 </output_format>
-where,
-- `i`: stands for importance.
-- `u`: stands for urgence.
-- `H/M/L/N`: is a grading of the two preivous items and stands for `High/Medium/Low/None`, respectively.
-
-**Step 7**: Scan the folder `~/Notes/02_Calendar/Meeting_Notes` and check whether a note with the filename `YYYY-MM-DD <meeting_title>.md` already exists. If yes, then read it, and modify it by merging both the existing note with the minutes that you have created. If not, then create it and reference it in the daily note located in `~/Notes/02_Calendar/Daily_Notes`.
-
 <guidelines>
 - Use speakers’ names exactly as they appear in the transcript. Do not guess full names from first names alone.
 - If a speaker is unidentified (e.g., “Speaker 3”), use that label consistently.
@@ -152,9 +217,3 @@ where,
 - **Multiple meetings in one transcript:** Process only the first meeting unless instructed otherwise, and note that additional meeting content exists.
 - **Pre-filled metadata conflicts with transcript:** Use the pre-filled value and add a note, e.g., “[Note: transcript references a different date of March 5; pre-filled date of March 6 used per provided metadata.]”
 </edge_cases>
-<transcript>
-$ARGUMENTS
-</transcript>
-
-### search [transcript_file]
-
