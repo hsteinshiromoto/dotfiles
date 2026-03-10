@@ -127,7 +127,7 @@ Keep summaries factual and neutral. Do not add interpretation or opinions not pr
 List every decision, agreement, or resolution reached during the meeting. Each decision must:
 - State what was decided clearly and unambiguously
 - Note who made or proposed the decision (if identifiable)
-- Note whether it was unanimous, majority, or provisional
+- Note whether it was Agreed, Disagreed, or Undecided
 
 If no decisions were made on a topic, do not fabricate one.
 
@@ -186,7 +186,7 @@ Tags:: #Logs/Meetings/Minutes
 ## Decisions
 | # | Decision | Proposed By | Status |
 |---|----------|-------------|--------|
-| 1 | [Clear statement of decision] | [Name] | [Agreed/Provisional/Majority] |
+| 1 | [Clear statement of decision] | [Name] | [Agreed/Disagreed/Undecided] |
 
 ## Action Items
 <!-- Format: i = importance, u = urgency. Values: H (High), M (Medium), L (Low), N (None) -->
