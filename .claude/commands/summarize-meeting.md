@@ -188,7 +188,6 @@ Tags:: #Logs/Meetings/Minutes
 ## Action Items
 <!-- Format: i = importance, u = urgency. Values: H (High), M (Medium), L (Low), N (None) -->
 
-- [ ] added:[[2024-03-10]] i:H u:M Review Q1 budget report and circulate to stakeholders due:[[2024-03-15]]
 - [ ] added:[[date]] i:<H/M/L/N> u:<H/M/L/N> [One-liner clear statement of the action point] due:[[date]]
 
 ## Parking Lot / Deferred Items
