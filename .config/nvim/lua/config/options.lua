@@ -24,6 +24,17 @@ vim.opt.clipboard = "unnamedplus"
 -- update buffer content when file changes externally
 vim.opt.autoread = true
 
+-- Fixed MCP socket: latest Neovim instance always wins.
+local mcpSocket = "/tmp/nvim"
+os.remove(mcpSocket)
+vim.fn.serverstart(mcpSocket)
+
+vim.api.nvim_create_autocmd("VimLeave", {
+  callback = function()
+    vim.fn.serverstop(mcpSocket)
+  end,
+})
+
 vim.opt.cursorline = true
 vim.opt.conceallevel = 2
 vim.g.have_nerd_font = true
