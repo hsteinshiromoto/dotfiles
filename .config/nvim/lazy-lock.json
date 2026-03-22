@@ -74,6 +74,7 @@
   "smart-motion.nvim": { "branch": "master", "commit": "e4da0a8f020e5eea107970e4f21a35bfa8a854a5" },
   "snacks.nvim": { "branch": "main", "commit": "fe7cfe9800a182274d0f868a74b7263b8c0c020b" },
   "sort.nvim": { "branch": "main", "commit": "3365768ad75fb7aa2a74ebaf609b7c802354fd46" },
+  "sqlua.nvim": { "branch": "master", "commit": "e4db0e1e16741e1ea42c620d0b8ce3347cc02c51" },
   "statuscol.nvim": { "branch": "main", "commit": "c46172d0911aa5d49ba5f39f4351d1bb7aa289cc" },
   "stay-centered.nvim": { "branch": "main", "commit": "e1a63ccaf2584e97c0ef8e64f9654c9a80d983f6" },
   "styler.nvim": { "branch": "main", "commit": "d73d868541a2536a96d057c793d53c50e5f407bb" },
