@@ -7,10 +7,16 @@ return {
 		event = "VeryLazy",
 		config = function()
 			local components = require("plugins.extras.ui.statusline.components")
+
+			-- Load custom tokyonight theme synced with tmux colors
+			-- with fallback to default tokyonight if custom theme fails to load
+			local ok, custom_theme = pcall(require, "plugins.extras.ui.statusline.tokyonight_tmux")
+			local theme = ok and custom_theme or "tokyonight"
+
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
-					theme = "tokyonight",
+					theme = theme,
 					-- theme = "gruvbox",
 					-- theme = "catppuccin",
 					component_separators = { left = icons.ui.DividerRight, right = icons.ui.DividerLeft },
