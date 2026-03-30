@@ -5,8 +5,8 @@ return {
 			-- Default AWS CLI environment overrides applied to every command.
 			-- These are used when no per-command --profile / --region flag is given.
 			-- Authentication must already be handled by your environment.
-			default_aws_profile = nil, -- sets AWS_PROFILE for every CLI call
-			default_aws_region  = nil, -- sets AWS_DEFAULT_REGION for every CLI call
+			default_aws_profile = "sandbox",     -- sets AWS_PROFILE for every CLI call
+			default_aws_region  = "ap-southeast-2", -- sets AWS_DEFAULT_REGION for every CLI call
 
 			-- Status icons (requires a Nerd Font; replace with ASCII if needed)
 			icons               = {
