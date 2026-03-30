@@ -1,5 +1,9 @@
 return {
 	"jugarpeupv/aws.nvim",
+	keys = {
+		{ "<leader>wa", "<cmd>AwsPicker<cr>",                desc = "AWS service picker" },
+		{ "<leader>wp", "<cmd>AwsPicker --profile prod<cr>", desc = "AWS picker (prod)" },
+	},
 	config = function()
 		require("aws").setup({
 			-- Default AWS CLI environment overrides applied to every command.
