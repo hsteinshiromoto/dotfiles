@@ -1,5 +1,6 @@
 return {
 	"alexpasmantier/tv.nvim",
+	lazy = false,
 	config = function()
 		local h = require('tv').handlers
 
