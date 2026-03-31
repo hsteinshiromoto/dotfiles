@@ -1,5 +1,6 @@
 return {
 	"jugarpeupv/aws.nvim",
+	lazy = false,
 	keys = {
 		{ "<leader>wa", "<cmd>AwsPicker<cr>",                desc = "AWS service picker" },
 		{ "<leader>wp", "<cmd>AwsPicker --profile prod<cr>", desc = "AWS picker (prod)" },
