@@ -117,5 +117,18 @@
       "$0"
     ],
     "description": "Create argparse CLI boilerplate with Option, UUID, and Path arguments"
+  },
+  "Project Root Setup": {
+    "prefix": "PROJECT_ROOT",
+    "body": [
+      "from pathlib import Path",
+      "import sys",
+      "",
+      "PROJECT_ROOT = Path(__file__).resolve().parents[1]",
+      "",
+      "sys.path.append(str(PROJECT_ROOT))",
+      "$0"
+    ],
+    "description": "Setup PROJECT_ROOT path and add to sys.path for module imports"
   }
 }
