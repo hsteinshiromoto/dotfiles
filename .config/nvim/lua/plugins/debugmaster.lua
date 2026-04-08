@@ -2,7 +2,7 @@ return {
 	{ "rcarriga/nvim-dap-ui", enabled = false },
 	{
 		"miroshQa/debugmaster.nvim",
-		lazy = false,
+		ft = { 'make', 'sh', 'bash', 'zsh', 'sql', 'python', 'rust', 'tex' },
 		-- osv is needed if you want to debug neovim lua code. Also can be used
 		-- as a way to quickly test-drive the plugin without configuring debug adapters
 		dependencies = { "mfussenegger/nvim-dap", "jbyuki/one-small-step-for-vimkind" },
