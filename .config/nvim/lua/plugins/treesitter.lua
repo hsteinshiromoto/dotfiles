@@ -71,8 +71,7 @@ return {
 				ignore_install = { "javascript" },
 				modules = {},
 				highlight = { enable = true },
-				-- indent = { enable = true },
-				indent = { enable = true, disable = { "python" } },
+				indent = { enable = true }, -- re-enabled for ibl scope detection; revert to disable = { "python" } if indentation regresses
 				incremental_selection = {
 					enable = true,
 					keymaps = {

@@ -20,6 +20,9 @@ return {
 			workspace = {
 				checkThirdParty = false,
 			},
+			diagnostics = {
+				globals = { "vim" },
+			},
 			completion = { callSnippet = "Replace" },
 			telemetry = { enable = false },
 			hint = {
