@@ -12,6 +12,7 @@
   "csvview.nvim": { "branch": "main", "commit": "7022e18a0fbae9aecf99a3ba02b2a541edc2b8a1" },
   "dart.nvim": { "branch": "master", "commit": "af7256291c8f692647004b9a9fc0e92b6084a691" },
   "debugmaster.nvim": { "branch": "main", "commit": "505d9a269d657ce8e0fa5601e0530f0d8798038c" },
+  "dictionary.nvim": { "branch": "main", "commit": "0963d6b43e96d9ffb9601c1e4d8db14a2c8d15e0" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
   "edgy.nvim": { "branch": "main", "commit": "8bfd2808994a988c975694122f68624b8a219f5f" },
