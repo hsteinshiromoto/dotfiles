@@ -69,6 +69,7 @@
   "UUIDStr Type Alias": {
     "prefix": "uuidstr",
     "body": [
+			"from pydantic import AfterValidator",
       "UUIDStr = Annotated[",
       "    str, AfterValidator(lambda v: str(uuid.UUID(v)))",
       "]",
