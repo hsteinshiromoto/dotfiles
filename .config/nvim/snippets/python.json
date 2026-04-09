@@ -69,7 +69,7 @@
   "UUIDStr Type Alias": {
     "prefix": "uuidstr",
     "body": [
-			"from pydantic import AfterValidator",
+	      "from pydantic import AfterValidator",
       "UUIDStr = Annotated[",
       "    str, AfterValidator(lambda v: str(uuid.UUID(v)))",
       "]",
@@ -107,8 +107,8 @@
   "Argparse CLI Boilerplate": {
     "prefix": "argparse",
     "body": [
-			"from cloudpathlib import AnyPath",
-			,
+	      "from cloudpathlib import AnyPath",
+      "",
       "parser = argparse.ArgumentParser(description=\"${1:Command Line Interface}\")",
       "parser.add_argument(",
       "    \"--${2:option}\", type=${3:Option}, help=\"${4:Option Enum}\"",
