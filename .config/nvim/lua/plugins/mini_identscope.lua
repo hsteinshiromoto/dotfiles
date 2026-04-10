@@ -1,1 +1,1 @@
-return { 'nvim-mini/mini.indentscope', version = '*' }
+return { 'echasnovski/mini.indentscope', version = '*', lazy = false, opts = { symbol = '│' } }
