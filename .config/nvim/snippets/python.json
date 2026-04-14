@@ -124,10 +124,11 @@
   "Project Root Setup": {
     "prefix": "PROJECT_ROOT",
     "body": [
-      "from pathlib import Path",
       "import sys",
+			"",
+			"from cloudpathlib import AnyPath",
       "",
-      "PROJECT_ROOT = Path(__file__).resolve().parents[1]",
+      "PROJECT_ROOT = AnyPath(__file__).resolve().parents[1]",
       "",
       "sys.path.append(str(PROJECT_ROOT))",
       "$0"
