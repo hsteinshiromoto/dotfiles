@@ -134,5 +134,17 @@
       "$0"
     ],
     "description": "Setup PROJECT_ROOT path and add to sys.path for module imports"
+  },
+  "Parse Path CLI": {
+    "prefix": "parse_path_cli",
+    "body": [
+      "def parse_path(input: str) -> AnyPath:",
+      "    if input.lower().startswith(\"s3\"):",
+      "        return AnyPath(input)",
+      "    else:",
+      "        return AnyPath(PROJECT_ROOT / input)",
+      "$0"
+    ],
+    "description": "Resolve path: S3 URL vs path under PROJECT_ROOT"
   }
 }
