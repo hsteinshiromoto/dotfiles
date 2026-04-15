@@ -103,12 +103,13 @@ return {
 			end
 		end,
 		config = function()
-			require("nvim-treesitter").setup({})
 			if not tree_sitter_cli_ok() then
 				warn_missing_tree_sitter_cli()
-			else
-				require("nvim-treesitter").install(install_languages, ts_install_opts)
 			end
+			require("nvim-treesitter").setup({
+				ensure_installed = tree_sitter_cli_ok() and install_languages or {},
+				max_install_jobs = ts_install_opts.max_jobs,
+			})
 
 			local aug = vim.api.nvim_create_augroup("dotfiles_treesitter", { clear = true })
 			vim.api.nvim_create_autocmd("FileType", {
