@@ -24,6 +24,11 @@ vim.opt.clipboard = "unnamedplus"
 -- update buffer content when file changes externally
 vim.opt.autoread = true
 
+-- Omit swap-file "ATTENTION" (E325) when a swap exists. Pickers (e.g. snacks
+-- explorer) open buffers via vim.cmd and cannot show that dialog, which would
+-- error as E5108. See :help 'shortmess' flag A.
+vim.opt.shortmess:append("A")
+
 -- Fixed MCP socket: latest Neovim instance always wins.
 local mcpSocket = "/tmp/nvim"
 os.remove(mcpSocket)
