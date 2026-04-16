@@ -1,4 +1,5 @@
 {
+  "Hypersonic.nvim": { "branch": "main", "commit": "734dfbfbe51952f102a9b439d53d4267bb0024cd" },
   "LuaSnip": { "branch": "master", "commit": "73813308abc2eaeff2bc0d3f2f79270c491be9d7" },
   "aerial.nvim": { "branch": "master", "commit": "645d108a5242ec7b378cbe643eb6d04d4223f034" },
   "atone.nvim": { "branch": "main", "commit": "90a8456ea212b1d8afcbc331d52df6e65c765783" },
