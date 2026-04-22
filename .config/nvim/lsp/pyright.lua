@@ -1,6 +1,12 @@
 return {
 	cmd = { "pyright-langserver", "--stdio" },
 	filetypes = { "python" },
+	before_init = function(_, config)
+		local venv = vim.fn.getcwd() .. "/.venv/bin/python"
+		if vim.fn.executable(venv) == 1 then
+			config.settings.python.pythonPath = venv
+		end
+	end,
 	root_markers = {
 		".git",
 		"pyproject.toml",
