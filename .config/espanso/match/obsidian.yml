@@ -1,8 +1,15 @@
 matches:
-  - trigger: ";ok"
-    replace: "👍"
+  - trigger: "[[today]]"
+    word: true
+    replace: "[[{{output}}|today]]"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo `date \"+%Y-%m-%d\"`"
 
-  - trigger: ";o-day"
+
+  - trigger: "[[yesterday]]"
     word: true
     replace: "[[{{output}}|yesterday]]"
     vars:
@@ -11,7 +18,7 @@ matches:
         params:
           cmd: "echo `date -v -1d \"+%Y-%m-%d\"`"
 
-  - trigger: ";o+day"
+  - trigger: "tomorrow"
     word: true
     replace: "[[{{output}}|tomorrow]]"
     vars:
