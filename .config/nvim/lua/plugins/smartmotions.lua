@@ -5,7 +5,7 @@ return {
 		presets = {
 			words = false,   -- w, b, e, ge
 			lines = false,   -- j, k
-			search = true,   -- s, f, F, t, T, ;, ,, gs
+			search = false,  -- s, f, F, t, T, ;, ,, gs
 			delete = true,   -- d + any motion, dt, dT, rdw, rdl
 			yank = true,     -- y + any motion, yt, yT, ryw, ryl
 			change = true,   -- c + any motion, ct, cT
