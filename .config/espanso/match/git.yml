@@ -22,3 +22,8 @@ matches:
 
   - trigger: ";gfb"
     replace: "git flow bugfix start "
+
+  - trigger: "gbf"
+    word: true
+    replace: "[bugfix]"
+
