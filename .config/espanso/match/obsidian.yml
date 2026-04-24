@@ -26,3 +26,4 @@ matches:
         type: shell
         params:
           cmd: "echo `date -v +1d \"+%Y-%m-%d\"`"
+
