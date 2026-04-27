@@ -47,7 +47,7 @@ return {
 		explorer = {
 			enabled = true,
 		},
-		image = { enable = true },
+		image = { enabled = false },
 		lazygit = {
 			dependencies = {
 				"nvim-lua/plenary.nvim",
