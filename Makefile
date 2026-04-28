@@ -38,7 +38,7 @@ clean:
 
 ## Tree Sitter Update
 ts:
-	nvim --headless -c "lua require('nvim-treesitter.install').update({ with_sync = true })()" -c "qa"
+	nvim --headless -c "lua require('nvim-treesitter').update(nil, {summary=true, max_jobs=4}):wait(600000)" -c "qa"
 # ---
 # Self Documenting Commands
 # ---
