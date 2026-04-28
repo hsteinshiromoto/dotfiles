@@ -3,6 +3,11 @@ return {
 	lazy = false,
 	enabled = true,
 	opts = {
+		cmdline = {
+			format = {
+				cmdline = { pattern = "^:", icon = "", lang = "" },
+			},
+		},
 		lsp = {
 			override = {
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
