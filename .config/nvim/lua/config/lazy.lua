@@ -22,6 +22,7 @@ require("lazy").setup({
 	defaults = { lazy = true, version = nil },
 	install = { missing = true, colorscheme = { "gruvbox" } },
 	checker = { enabled = false },
+	rocks = { enabled = false },
 	performance = {
 		rtp = {
 			disabled_plugins = {
