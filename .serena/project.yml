@@ -29,7 +29,15 @@ project_name: "dotfiles"
 # The first language is the default language and the respective language server will be used as a fallback.
 # Note that when using the JetBrains backend, language servers are not used and this list is correspondingly ignored.
 languages:
+- bash
+- json
 - lua
+- markdown
+- nix
+- python
+- rust
+- toml
+- yaml
 
 # the encoding used by text files in the project
 # For a list of possible encodings, see https://docs.python.org/3.11/library/codecs.html#standard-encodings
@@ -79,7 +87,7 @@ included_optional_tools: []
 # fixed set of tools to use as the base tool set (if non-empty), replacing Serena's default set of tools.
 # This cannot be combined with non-empty excluded_tools or included_optional_tools.
 # Find the list of tools here: https://oraios.github.io/serena/01-about/035_tools.html
-fixed_tools: []
+fixed_tools: [find_declaration, find_implementations, find_referencing_symbols, activate_project, get_current_config, find_file, insert_at_line, read_file, query_project]
 
 # list of mode names to that are always to be included in the set of active modes
 # The full set of modes to be activated is base_modes + default_modes.
@@ -125,3 +133,14 @@ ignored_memory_patterns: []
 # The full set of modes to be activated is base_modes (from global config) + default_modes + added_modes.
 # See https://oraios.github.io/serena/02-usage/050_configuration.html#modes
 added_modes:
+
+# list of additional workspace folder paths for cross-package reference support (e.g. in monorepos).
+# Paths can be absolute or relative to the project root.
+# Each folder is registered as an LSP workspace folder, enabling language servers to discover
+# symbols and references across package boundaries.
+# Currently supported for: TypeScript.
+# Example:
+#   additional_workspace_folders:
+#     - ../sibling-package
+#     - ../shared-lib
+additional_workspace_folders: [~/.config/nix]
