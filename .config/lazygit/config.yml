@@ -7,10 +7,13 @@ git:
   autoRefresh: false
   log:
     showSignature: false
-  pagers:
-    - colorArg: always
-      pager: delta --paging=never
+  paging:
+    colorArg: always
+    pager: delta --paging=never
 # Periodic update checks
+refresher:
+  refreshInterval: 10
+  fetchInterval: 0
 update:
   # One of: 'prompt' (default) | 'background' | 'never'
   method: prompt
