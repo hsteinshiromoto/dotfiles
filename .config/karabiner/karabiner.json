@@ -5,6 +5,23 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Control keys → Control (hold) / Control+Space (tap)",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "left_control" },
+                                "to": [{ "key_code": "left_control" }],
+                                "to_if_alone": [{ "key_code": "spacebar", "modifiers": ["left_control"] }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": { "key_code": "right_control" },
+                                "to": [{ "key_code": "right_control" }],
+                                "to_if_alone": [{ "key_code": "spacebar", "modifiers": ["right_control"] }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Caps Lock → Left Control (Tab if alone)",
                         "manipulators": [
                             {
