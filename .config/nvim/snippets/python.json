@@ -146,5 +146,48 @@
       "$0"
     ],
     "description": "Resolve path: S3 URL vs path under PROJECT_ROOT"
+  },
+  "Get Sorted Data Function": {
+    "prefix": "sorted_data",
+    "body": [
+      "def get_sorted_data(",
+      "    pattern: str, path: Path, descending: bool = True, top_k: int = 0",
+      ") -> pd.DataFrame | dict | str:",
+      "    \"\"\"Return file data matching regex pattern, sorted by filename.",
+      "",
+      "    Args:",
+      "        pattern: Regex pattern to match filenames.",
+      "        path: Directory containing the files.",
+      "        descending: Sort order (True for newest first).",
+      "        top_k: Index to select after sorting (0 = first).",
+      "",
+      "    Returns:",
+      "        Data loaded from the matched file.",
+      "",
+      "    Examples:",
+      "        >>> from tempfile import TemporaryDirectory",
+      "        >>> with TemporaryDirectory() as tmp:",
+      "        ...     tmp_path = Path(tmp)",
+      "        ...     (tmp_path / \"file_2024-01.txt\").touch()",
+      "        ...     (tmp_path / \"file_2024-03.txt\").touch()",
+      "        ...     pattern = r\"\\\\w+_\\\\d{4}-\\\\d{2}\\\\.txt\"",
+      "        ...     files = [f for f in tmp_path.iterdir() if re.search(pattern, f.name)]",
+      "        ...     sorted(files, reverse=True)[0].name  # descending=True: newest first",
+      "        'file_2024-03.txt'",
+      "        ...     sorted(files, reverse=False)[0].name  # ascending: oldest first",
+      "        'file_2024-01.txt'",
+      "    \"\"\"",
+      "    output = [file for file in path.iterdir() if re.search(pattern, file.name)]",
+      "",
+      "    try:",
+      "        output = sorted(output, reverse=descending)[top_k]",
+      "    except IndexError:",
+      "        msg = f\"Expected files to be found in {path} using the pattern {pattern}. Got nothing.\"",
+      "        raise FileNotFoundError(msg)",
+      "",
+      "    return get(filename=Path(output.name), path=output.parent)",
+      "    $0"
+    ],
+    "description": "Function to find and sort files by regex pattern, returning loaded data"
   }
 }
