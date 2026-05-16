@@ -1,5 +1,13 @@
 # Journal Summary
 
+## 2026-05-13 — Add get_sorted_data Neovim Python Snippet
+
+Added a new Python snippet `get_sorted_data` to `.config/nvim/snippets/python.json` with prefix `sorted_data`. The snippet:
+- Finds files matching a regex pattern in a directory
+- Sorts them (descending by default) and selects by index
+- Has fixed docstring Args (user's original had mismatched parameters)
+- Includes doctests using `Path.touch()` demonstrating sorting behavior with verifiable expected outputs
+
 ## 2026-04-28 — NixOS Server Neovim Startup Errors (4 fixes)
 
 Debugged and fixed four issues on the NixOS server:
