@@ -18,7 +18,7 @@ matches:
         params:
           cmd: "echo `date -v -1d \"+%Y-%m-%d\"`"
 
-  - trigger: "tomorrow"
+  - trigger: "[[tomorrow]]"
     word: true
     replace: "[[{{output}}|tomorrow]]"
     vars:
