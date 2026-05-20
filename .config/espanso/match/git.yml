@@ -24,6 +24,5 @@ matches:
     replace: "git flow bugfix start "
 
   - trigger: ";bf;"
-    word: true
     replace: "[bugfix]"
 
