@@ -1,6 +1,20 @@
 	return {
 	"not-manu/filemention.nvim",
-	dependencies = { "dmtrKovalenko/fff.nvim" },
+	dependencies = {
+		{
+			"dmtrKovalenko/fff.nvim",
+			build = "rustup run stable cargo build -p fff-nvim --release",
+			cmd = {
+				"FFFFind",
+				"FFFScan",
+				"FFFRefreshGit",
+				"FFFClearCache",
+				"FFFHealth",
+				"FFFDebug",
+				"FFFOpenLog",
+			},
+		},
+	},
 	event = "InsertEnter",
 	config = function()
 		require("filemention").setup({
