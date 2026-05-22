@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		"obsidian-nvim/obsidian.nvim",
 		"saghen/blink.cmp",
+		"saghen/blink.lib",
 	},
 	lazy = true,
 	ft = "markdown",
