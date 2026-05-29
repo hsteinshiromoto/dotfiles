@@ -35,3 +35,13 @@ matches:
         type: shell
         params:
           cmd: "echo `date -v +1d \"+%Y-%m-%d\"`"
+
+  - trigger: ":uuid7:"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: >-
+            python3 -c 'import time,os; ts=int(time.time()*1000); ra=int.from_bytes(os.urandom(2),"big")&0x0FFF; rb=int.from_bytes(os.urandom(8),"big")&0x3FFFFFFFFFFFFFFF; hi=(ts<<16)|(0x7<<12)|ra; lo=(0b10<<62)|rb; b=hi.to_bytes(8,"big")+lo.to_bytes(8,"big"); h=b.hex(); print(f"{h[:8]}-{h[8:12]}-{h[12:16]}-{h[16:20]}-{h[20:]}")'
