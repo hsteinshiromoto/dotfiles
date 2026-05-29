@@ -50,6 +50,7 @@ return {
 						"fileformat",
 						"filetype",
 						components.word_count,
+						components.char_count,
 						"progress",
 					},
 					lualine_y = {},

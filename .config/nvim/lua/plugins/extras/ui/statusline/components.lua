@@ -109,6 +109,15 @@ return {
 			end
 		end,
 	},
+	char_count = {
+		function()
+			if vim.fn.mode() == "v" or vim.fn.mode() == "V" or vim.fn.mode() == "" then
+				return vim.fn.wordcount().visual_chars .. " chars"
+			else
+				return vim.fn.wordcount().chars .. " chars"
+			end
+		end,
+	},
 	workspace = {
 		function()
 			local cwd = vim.fn.getcwd()
