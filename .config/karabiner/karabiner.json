@@ -248,6 +248,23 @@
                         ]
                     },
                     {
+                        "description": "Map F5 to Command+Shift+M (Teams Mute/Unmute)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "f5"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "m",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         "description": "Tab + hjkl → Arrow Keys (Tab if alone)",
                         "manipulators": [
                             {
