@@ -27,3 +27,66 @@ matches:
         params:
           cmd: "echo `date -v +1d \"+%Y-%m-%d\"`"
 
+  - trigger: "[[next monday]]"
+    word: true
+    replace: "[[{{output}}|next monday]]"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo `date -v+mon \"+%Y-%m-%d\"`"
+
+  - trigger: "[[next tuesday]]"
+    word: true
+    replace: "[[{{output}}|next tuesday]]"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo `date -v+tue \"+%Y-%m-%d\"`"
+
+  - trigger: "[[next wednesday]]"
+    word: true
+    replace: "[[{{output}}|next wednesday]]"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo `date -v+wed \"+%Y-%m-%d\"`"
+
+  - trigger: "[[next thursday]]"
+    word: true
+    replace: "[[{{output}}|next thursday]]"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo `date -v+thu \"+%Y-%m-%d\"`"
+
+  - trigger: "[[next friday]]"
+    word: true
+    replace: "[[{{output}}|next friday]]"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo `date -v+fri \"+%Y-%m-%d\"`"
+
+  - trigger: "[[next saturday]]"
+    word: true
+    replace: "[[{{output}}|next saturday]]"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo `date -v+sat \"+%Y-%m-%d\"`"
+
+  - trigger: "[[next sunday]]"
+    word: true
+    replace: "[[{{output}}|next sunday]]"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo `date -v+sun \"+%Y-%m-%d\"`"
+
