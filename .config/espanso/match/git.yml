@@ -23,6 +23,6 @@ matches:
   - trigger: ";gfb"
     replace: "git flow bugfix start "
 
-  - trigger: ";bf;"
+  - trigger: ";bf"
     replace: "[bugfix]"
 
