@@ -10,13 +10,23 @@
                             {
                                 "from": { "key_code": "left_control" },
                                 "to": [{ "key_code": "left_control" }],
-                                "to_if_alone": [{ "key_code": "spacebar", "modifiers": ["left_control"] }],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "spacebar",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": { "key_code": "right_control" },
                                 "to": [{ "key_code": "right_control" }],
-                                "to_if_alone": [{ "key_code": "spacebar", "modifiers": ["right_control"] }],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "spacebar",
+                                        "modifiers": ["right_control"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -251,16 +261,14 @@
                         "description": "Map F5 to Command+Shift+M (Teams Mute/Unmute)",
                         "manipulators": [
                             {
-                                "type": "basic",
-                                "from": {
-                                    "key_code": "f5"
-                                },
+                                "from": { "key_code": "f5" },
                                 "to": [
                                     {
                                         "key_code": "m",
                                         "modifiers": ["left_command", "left_shift"]
                                     }
-                                ]
+                                ],
+                                "type": "basic"
                             }
                         ]
                     },
@@ -337,6 +345,16 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "play_or_pause → toggle system mic mute via Hammerspoon",
+                        "manipulators": [
+                            {
+                                "from": { "consumer_key_code": "play_or_pause" },
+                                "to": [{ "shell_command": "/usr/bin/open -g \"hammerspoon://mic-mute-toggle\"" }],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -349,6 +367,14 @@
                             "to": [{ "key_code": "right_control" }]
                         }
                     ]
+                },
+                {
+                    "identifiers": {
+                        "is_consumer": true,
+                        "product_id": 4363,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false
                 }
             ],
             "name": "Default profile",
