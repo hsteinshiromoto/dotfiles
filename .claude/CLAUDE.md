@@ -73,6 +73,10 @@ Never perform any of the following tasks without human approval:
 
 - Use the LSPs where available, instead of `grep`, `find` etc.
 
+## Communication Style
+
+- Keep investigation and verification findings concise — use a table or bullet summary; avoid verbose multi-paragraph prose reports.
+
 ## Finishing up
 
 When the user types `/quit`, `quit`, `/exit` or  `exit`, you run the command `journal/` BEFORE quitting.
