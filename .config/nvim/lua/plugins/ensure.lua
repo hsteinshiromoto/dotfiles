@@ -13,6 +13,6 @@ return {
 		formatters = { lua = "stylua", python = { "ruff_format", "ruff_organize_imports" } },
 		linters = { python = "ruff", },
 		-- Tree-sitter parsers (array format for specific parsers)
-		parsers = { "lua", "make", "nix", "python", "typescript" },
+		parsers = { "lua", "make", "mermaid", "nix", "python", "typescript" },
 	},
 }

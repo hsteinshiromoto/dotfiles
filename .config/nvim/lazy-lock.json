@@ -34,6 +34,7 @@
   "lualine.nvim": { "branch": "master", "commit": "221ce6b2d999187044529f49da6554a92f740a96" },
   "markdown_mover.nvim": { "branch": "main", "commit": "06c2553f65e81b4aa06506f0a84a442322d08234" },
   "mason.nvim": { "branch": "main", "commit": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d" },
+  "mermaid.nvim": { "branch": "main", "commit": "6a1b40caa08aaf1a661c935cda9a4475dbc2e582" },
   "mini.diff": { "branch": "main", "commit": "05be51814a718e74244829754a2a900a430a8d8b" },
   "mini.icons": { "branch": "main", "commit": "ac38c983aed0a2bd32a65ca3e2348e12e58ca292" },
   "mini.indentscope": { "branch": "main", "commit": "0308f949f31769e509696af5d5f91cebb2159c69" },
