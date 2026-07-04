@@ -46,3 +46,9 @@ gui:
       - "#db4b4b"
     defaultFgColor:
       - "#c0caf5"
+customCommands:
+  - key: "S"
+    context: "global"
+    command: "git pull --rebase && git push"
+    description: "Sync: pull (rebase) then push"
+    loadingText: "Syncing..."
