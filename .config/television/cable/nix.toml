@@ -1,0 +1,22 @@
+[metadata]
+name = "nix"
+description = "A channel to select from your user's nix"
+requirements = [ "fd", "bat",]
+
+# -H: include hidden paths (e.g. .config, .local)
+# -t f -t d: files and directories (not only files)
+# -E '.git': drop .git directories from results (repeat -E for more globs)
+[source]
+command = "fd -H -t f -t d --no-ignore -E '.git' -E '.claude' -E '.git-crypt' -E 'journal' -E 'result' . $HOME/.config/nix"
+
+[preview]
+command = "bash -c 'p=\"{}\"; if [ -d \"$p\" ]; then ls -la \"$p\"; else bat -n --color=always \"$p\"; fi'"
+
+[keybindings]
+enter = "actions:edit"
+
+[actions.edit]
+description = "Edit the selected dotfile"
+command = "${EDITOR:-nvim} '{}'"
+shell = "bash"
+mode = "execute"

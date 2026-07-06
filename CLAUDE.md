@@ -25,7 +25,6 @@ This dotfiles repository mirrors the `$HOME` directory structure exactly. Files 
 ### Key Components
 - **Neovim**: Complex Lua configuration in `.config/nvim/lua/` with modular plugin structure
 - **Espanso**: Text expansion configs in `macos/Library/Application Support/espanso/`
-- **Docker**: NeoVim development environment with Ubuntu base (nvim.Dockerfile)
 - **Stow**: Primary dotfile management tool for symlinking configurations
 
 ### Development Workflow
@@ -35,6 +34,6 @@ This dotfiles repository mirrors the `$HOME` directory structure exactly. Files 
 
 ## Code Style Guidelines
 - **Shell/Bash**: 4-space indent, lowercase_with_underscore variables
-- **YAML**: 2-space indent, list items with single dash and space  
+- **YAML**: 2-space indent, list items with single dash and space
 - **Lua (Neovim)**: Follow existing plugin structure patterns
 - **Git commits**: Descriptive, feature/fix prefixed messages

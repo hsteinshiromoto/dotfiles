@@ -1,4 +1,4 @@
-SHELL:=/bin/bash
+SHELL:=/usr/bin/env bash
 
 default: help
 
@@ -36,6 +36,9 @@ tree:
 clean:
 	rm -r *.log
 
+## Tree Sitter Update
+ts:
+	nvim --headless -c "lua require('nvim-treesitter').update(nil, {summary=true, max_jobs=4}):wait(600000)" -c "qa"
 # ---
 # Self Documenting Commands
 # ---

@@ -24,6 +24,22 @@ vim.opt.clipboard = "unnamedplus"
 -- update buffer content when file changes externally
 vim.opt.autoread = true
 
+-- Omit swap-file "ATTENTION" (E325) when a swap exists. Pickers (e.g. snacks
+-- explorer) open buffers via vim.cmd and cannot show that dialog, which would
+-- error as E5108. See :help 'shortmess' flag A.
+vim.opt.shortmess:append("A")
+
+-- Fixed MCP socket: latest Neovim instance always wins.
+local mcpSocket = "/tmp/nvim"
+os.remove(mcpSocket)
+vim.fn.serverstart(mcpSocket)
+
+vim.api.nvim_create_autocmd("VimLeave", {
+  callback = function()
+    vim.fn.serverstop(mcpSocket)
+  end,
+})
+
 vim.opt.cursorline = true
 vim.opt.conceallevel = 2
 vim.g.have_nerd_font = true
@@ -45,3 +61,14 @@ vim.o.foldcolumn = "auto:1" -- '0' is not bad [1]
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.opt.foldmethod = "indent" -- Set fold method
+
+-- ---
+-- Whitespace display
+-- ---
+vim.opt.list = true
+vim.opt.listchars = {
+  space = "·",
+  tab = "→ ",
+  trail = "•",
+  nbsp = "␣",
+}

@@ -1,0 +1,67 @@
+# espanso match file
+
+# ror a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Print the current date
+  - trigger: ":day:"
+    word: true
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
+
+  - trigger: ":yesterday:"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo `date -v -1d \"+%Y-%m-%d\"`"
+
+  - trigger: ":tomorrow:"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo `date -v +1d \"+%Y-%m-%d\"`"
+
+  - trigger: ":uuid7:"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: >-
+            python3 -c 'import time,os; ts=int(time.time()*1000); ra=int.from_bytes(os.urandom(2),"big")&0x0FFF; rb=int.from_bytes(os.urandom(8),"big")&0x3FFFFFFFFFFFFFFF; hi=(ts<<16)|(0x7<<12)|ra; lo=(0b10<<62)|rb; b=hi.to_bytes(8,"big")+lo.to_bytes(8,"big"); h=b.hex(); print(f"{h[:8]}-{h[8:12]}-{h[12:16]}-{h[16:20]}-{h[20:]}")'
+
+  - trigger: ":dname:"
+    word: true
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: >-
+            python3 -c '
+            import random;
+            a=["admiring","bold","brave","busy","clever","cool","dazzling","eager",
+               "epic","fervent","focused","friendly","funny","gallant","happy",
+               "hopeful","jolly","keen","laughing","loving","magical","peaceful",
+               "quirky","relaxed","serene","sharp","silly","stoic","sweet","zen"];
+            n=["darwin","einstein","feynman","fermi","hopper","turing","curie",
+               "newton","tesla","lovelace","dijkstra","knuth","shannon","ritchie",
+               "torvalds","wozniak","hamilton","bohr","hawking","noether"];
+            print(random.choice(a)+"_"+random.choice(n))
+            '

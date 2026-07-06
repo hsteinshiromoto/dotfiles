@@ -20,6 +20,7 @@ fi
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="tokyonight"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -171,7 +172,7 @@ esac
 if [[ ${unameOut} == "Linux" ]]; then
 	export PATH="$PATH:/opt/nvim-linux64/bin:/nix/var/nix/profiles/default/bin:$HOME/.local/bin"
 elif [[ ${unameOut} == "Darwin" ]]; then
-	export PATH=/usr/local/MacGPG2/bin:/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Applications/VMware:/Users/hsteinshiromoto/.local/bin:$HOME/.local/state/nix/profiles/profile/bin:/run/current-system/sw/bin
+	export PATH=/usr/local/MacGPG2/bin:/opt/homebrew/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Applications/VMware:/Users/hsteinshiromoto/.local/bin:$HOME/.local/state/nix/profiles/profile/bin:/run/current-system/sw/bin:$HOME/.cargo/bin
 fi
 
 export PATH="$PATH:/nix/var/nix/profiles/default/bin:$HOME/.tmux/plugins/tpm"
@@ -191,6 +192,16 @@ export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 
+# Add alias to reload gpg agent with a different yubikey
+alias ykr="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
+# ---
+# Terminal Info Configuration
+#
+# Set TERMINFO_DIRS to ensure tmux can find terminal definitions
+# Includes user terminfo, Ghostty app bundle, and system terminfo
+# ---
+export TERMINFO_DIRS=$HOME/.terminfo:/Applications/Ghostty.app/Contents/Resources/terminfo:/usr/share/terminfo
+
 #
 # ---
 # Configuration: tmux
@@ -200,18 +211,28 @@ gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 # ---
 if [[ ${unameOut} == "Linux" ]]; then
 	# Automatically start tmux when zsh is started [1]
-	ZSH_TMUX_AUTOSTART=true
+	ZSH_TMUX_AUTOSTART=false
 	#
-	# Starts tmux with zsh [1]
-	if [ "$TMUX" = "" ]; then tmux attach || tmux; fi
+	# Keep a tmux server available on servidor over SSH, but do not auto-attach.
+	if [[ "$(hostname -s)" == "servidor" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+		TMUX= tmux start-server >/dev/null 2>&1
+	fi
 fi
 # ---
 # Configuration: bat
 #
+# Bat requires a particular install of the Tokyo Night theme [2].
+#
 # References:
 # 	[1] https://github.com/sharkdp/bat?tab=readme-ov-file#customization
+# 	[2] https://github.com/0xTadash1/bat-into-tokyonight
 # ---
-export BAT_THEME="gruvbox-dark"
+export BAT_THEME="tokyonight_night"
+
+# ---
+# hledger settings
+# ---
+export LEDGER_FILE=~/hledger/data/main.journal
 
 # ---
 # Tab complete
@@ -298,6 +319,7 @@ alias drm='docker rm $(docker ps -a | fzf | awk "{ print $1 }")'
 alias ds='docker stop $(docker ps -a | fzf | awk "{ print $1 }")'
 alias drmi='docker rmi $(docker images | fzf | awk "{print $3}")'
 
+alias nix_template='nix flake init -t github:hsteinshiromoto/nix.template'
 # ---
 # Configuration: Pyenv
 # ---
@@ -350,5 +372,6 @@ setopt appendhistory
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+eval "$(tv init zsh)"
 eval "$(atuin init zsh)"
 # alias claude="/Users/hsteinshiromoto/.claude/local/claude"

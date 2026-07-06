@@ -1,6 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,latex,linux,python,jupyternotebooks,visualstudiocode,vim,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,latex,linux,python,jupyternotebooks,visualstudiocode,vim,pycharm
 
+.config/tmuxinator
 .config/claude
 
 ### JupyterNotebooks ###
@@ -697,3 +698,5 @@ tags
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,latex,linux,python,jupyternotebooks,visualstudiocode,vim,pycharm
 
+.config/karabiner/automatic_backups
+/.

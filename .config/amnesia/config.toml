@@ -1,0 +1,15 @@
+# amnesia configuration file
+
+# Time to live in minutes.
+# After this time, the application will automatically wipe memory and exit.
+# Use 0.0 or comment out to disable.
+# ttl = 100.0
+
+# Idle timeout in seconds.
+# The application will exit if no input is received for this duration.
+idle = 300.0
+
+# Enable stealth memory encryption (volatile-only).
+# Encrypts the RAM buffer with a key derived from system state and ASLR.
+# Note: Data is only accessible during the current session.
+stealth_encryption = true

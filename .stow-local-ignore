@@ -1,54 +1,55 @@
 # Comments and blank lines are allowed.
 
-# \.ssh/*
-# \.gnupg/*
+# ---
+# Version Control Systems
+# ---
+^RCS$
+.*,v
+^CVS$
+^\.svn$
+^_darcs$
+^\.hg$
+^\.git$
 
 # ---
-# Folders
+# Directories - Repo specific
 # ---
-RCS
-.+,v
-
-CVS
-
-\.svn
-_darcs
-\.hg
-
-\.git
-
-bin
-keyboards
-macos
-roles
-usr
-utils
+^bin$
+^keyboards$
+^macos$
+^roles$
+^usr$
+^utils$
 
 # ---
-# Files
+# Files - Configuration & Metadata
 # ---
-\.gitignore
-\.gitconfig
-\.stow-local-ignore
-CHANGELOG\.md
-CLAUDE\.md
-Dockerfile
-docker-compose\.yml
-LICENSE\.md
-Makefile
-nvim\.Dockerfile
-README\.md
-TODO\.md
-todo\.txt
+^\.gitignore$
+^\.gitconfig$
+^\.stow-local-ignore$
+^CHANGELOG\.md$
+^CLAUDE\.md$
+^Dockerfile$
+^docker-compose\.yml$
+^LICENSE\.md$
+^Makefile$
+^nvim\.Dockerfile$
+^README\.md$
+^TODO\.md$
+^todo\.txt$
 
-.*\.code-workspace
+# ---
+# Files - Editor & Temp
+# ---
+^.*\.code-workspace$
+^.*\.DS_Store$
+^.+~$
+^\#.*\#$
 
-.*\.DS_Store
-
-.+~          # emacs backup files
-\#.*\#       # emacs autosave files
-
-.*\.yml
-.*\.yaml
-nuphy_air75_v2\.layout\.json
-.*\.swp
+# ---
+# Files - Config
+# ---
+^.*\.yml$
+^.*\.yaml$
+^nuphy_air75_v2\.layout\.json$
+^.*\.swp$

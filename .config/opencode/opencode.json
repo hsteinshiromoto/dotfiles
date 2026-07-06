@@ -1,0 +1,92 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+	"theme": "tokyonight",
+	"autoupdate": true,
+  "provider": {
+    "amazon-bedrock": {
+      "options": {
+        "region": "ap-southeast-2",
+        "profile": "sandbox"
+      },
+      "models": {
+        "anthropic-claude-opus-4.6": {
+          "id": "arn:aws:bedrock:ap-southeast-2:058264223017:inference-profile/global.anthropic.claude-opus-4-6-v1"
+        }
+      }
+    },
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "llama3:latest": {
+          "name": "Llama 3 (4.7GB)"
+        },
+        "llama3.2:latest": {
+          "name": "Llama 3.2 (2.0GB)"
+        },
+        "mistral:latest": {
+          "name": "Mistral (4.1GB)"
+        },
+        "deepseek-r1:1.5b": {
+          "name": "DeepSeek R1 1.5B (1.1GB)"
+        }
+      }
+    }
+  },
+  "mcp": {
+    "mcp-obsidian": {
+      "type": "local",
+      "command": ["uvx", "mcp-obsidian"],
+      "environment": {
+        "OBSIDIAN_API_KEY": "<your_api_key_here>",
+        "OBSIDIAN_HOST": "<your_obsidian_host>",
+        "OBSIDIAN_PORT": "<your_obsidian_port>"
+      },
+      "enabled": true
+    },
+    "mcp-neovim-server": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-neovim-server"],
+      "environment": {
+        "NVIM_SOCKET_PATH": "/tmp/nvim",
+        "ALLOW_SHELL_COMMANDS": "true"
+      },
+      "timeout": 120000,
+      "enabled": true
+    },
+    "github": {
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer {env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "enabled": true
+    },
+    "gitlab": {
+      "type": "remote",
+      "url": "https://gitlab.com/api/v4/mcp",
+      "enabled": true
+    },
+    "atlassian": {
+      "type": "remote",
+      "url": "https://mcp.atlassian.com/v1/sse",
+      "enabled": true
+    },
+    "hledger-mcp": {
+      "type": "local",
+      "command": ["npx", "-y", "@iiatlas/hledger-mcp", "/Users/hsteinshiromoto/hledger/main.journal"],
+      "enabled": true
+    },
+    "readwise-reader": {
+      "type": "local",
+      "command": ["npx", "-y", "@readwise/readwise-mcp"],
+      "environment": {
+        "ACCESS_TOKEN": "{env:READWISE_ACCESS_TOKEN}"
+      },
+      "enabled": true
+    }
+  }
+}

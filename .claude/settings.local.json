@@ -1,8 +1,56 @@
 {
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $HOME/dotfiles/.claude/hooks/handover.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
   "permissions": {
     "allow": [
-      "Bash(grep:*)"
-    ],
-    "deny": []
-  }
+      "mcp__serena__find_file",
+      "mcp__serena__get_symbols_overview",
+      "mcp__serena__activate_project",
+      "mcp__serena__list_dir",
+      "mcp__serena__search_for_pattern",
+      "Bash(find ~/.local/share/nvim -name *tokyonight*)",
+      "WebFetch(domain:github.com)",
+      "Bash(curl:*)",
+      "Bash(tmux show-options *)",
+      "Bash(tmux list-keys *)",
+      "Bash(tmux list-panes *)",
+      "Read(//nix/store/**)",
+      "Read(//Users/hsteinshiromoto/.claude/**)",
+      "Bash(gh api *)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(RUSTUP_TOOLCHAIN=stable cargo clippy --quiet)",
+      "Bash(RUSTUP_TOOLCHAIN=stable cargo test)",
+      "Bash(sed -n '205,228p' README.md)",
+      "Bash(sed -n '265,290p' README.md)",
+      "Bash(sed -n '322,385p' README.md)",
+      "Bash(RUSTUP_TOOLCHAIN=stable cargo build)",
+      "Bash(RUSTUP_TOOLCHAIN=stable cargo clippy)",
+      "Bash(INSTA_UPDATE=always RUSTUP_TOOLCHAIN=stable cargo test --test snapshots)",
+      "Bash(ln -s ../dotfiles/.config/hammerspoon ~/.config/hammerspoon)",
+      "Read(//Users/hsteinshiromoto/.config/hammerspoon/**)",
+      "Read(//private/tmp/**)",
+      "Bash(ioreg -p IOUSB -l)",
+      "Bash(system_profiler SPUSBDataType)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "atlassian",
+    "github",
+    "gitlab",
+    "mcp-obsidian",
+    "mcp-neovim-server"
+  ]
 }

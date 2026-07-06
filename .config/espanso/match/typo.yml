@@ -1,0 +1,410 @@
+# espanso typo corrections
+# Common English typing mistakes auto-corrected on word boundary.
+matches:
+  # --- Articles & conjunctions ---
+  - trigger: "teh"
+    word: true
+    replace: "the"
+
+  - trigger: "adn"
+    word: true
+    replace: "and"
+
+  - trigger: "nto"
+    word: true
+    replace: "not"
+
+  - trigger: "hte"
+    word: true
+    replace: "the"
+
+  - trigger: "fo"
+    word: true
+    replace: "of"
+
+  # --- Common short words ---
+  - trigger: "taht"
+    word: true
+    replace: "that"
+
+  - trigger: "waht"
+    word: true
+    replace: "what"
+
+  - trigger: "thsi"
+    word: true
+    replace: "this"
+
+  - trigger: "yuo"
+    word: true
+    replace: "you"
+
+  - trigger: "ahve"
+    word: true
+    replace: "have"
+
+  - trigger: "jsut"
+    word: true
+    replace: "just"
+
+  - trigger: "ot"
+    word: true
+    replace: "to"
+
+  - trigger: "wiht"
+    word: true
+    replace: "with"
+
+  - trigger: "fro"
+    word: true
+    replace: "for"
+
+  - trigger: "ont"
+    word: true
+    replace: "on"
+
+  # --- Auxiliaries ---
+  - trigger: "woudl"
+    word: true
+    replace: "would"
+
+  - trigger: "coudl"
+    word: true
+    replace: "could"
+
+  - trigger: "shoudl"
+    word: true
+    replace: "should"
+
+  - trigger: "whcih"
+    word: true
+    replace: "which"
+
+  - trigger: "wich"
+    word: true
+    replace: "which"
+
+  - trigger: "wihch"
+    word: true
+    replace: "which"
+
+  # --- Spelling mistakes ---
+  - trigger: "becuase"
+    word: true
+    replace: "because"
+
+  - trigger: "becasue"
+    word: true
+    replace: "because"
+
+  - trigger: "recieve"
+    word: true
+    replace: "receive"
+
+  - trigger: "beleive"
+    word: true
+    replace: "believe"
+
+  - trigger: "definately"
+    word: true
+    replace: "definitely"
+
+  - trigger: "occured"
+    word: true
+    replace: "occurred"
+
+  - trigger: "occurance"
+    word: true
+    replace: "occurrence"
+
+  - trigger: "occassion"
+    word: true
+    replace: "occasion"
+
+  - trigger: "seperate"
+    word: true
+    replace: "separate"
+
+  - trigger: "wierd"
+    word: true
+    replace: "weird"
+
+  - trigger: "adress"
+    word: true
+    replace: "address"
+
+  - trigger: "begining"
+    word: true
+    replace: "beginning"
+
+  - trigger: "calender"
+    word: true
+    replace: "calendar"
+
+  - trigger: "commited"
+    word: true
+    replace: "committed"
+
+  - trigger: "concious"
+    word: true
+    replace: "conscious"
+
+  - trigger: "enviroment"
+    word: true
+    replace: "environment"
+
+  - trigger: "existance"
+    word: true
+    replace: "existence"
+
+  - trigger: "grammer"
+    word: true
+    replace: "grammar"
+
+  - trigger: "goverment"
+    word: true
+    replace: "government"
+
+  - trigger: "harrass"
+    word: true
+    replace: "harass"
+
+  - trigger: "imediate"
+    word: true
+    replace: "immediate"
+
+  - trigger: "independant"
+    word: true
+    replace: "independent"
+
+  - trigger: "knowlege"
+    word: true
+    replace: "knowledge"
+
+  - trigger: "maintainance"
+    word: true
+    replace: "maintenance"
+
+  - trigger: "millenium"
+    word: true
+    replace: "millennium"
+
+  - trigger: "miniscule"
+    word: true
+    replace: "minuscule"
+
+  - trigger: "neccessary"
+    word: true
+    replace: "necessary"
+
+  - trigger: "noticable"
+    word: true
+    replace: "noticeable"
+
+  - trigger: "perseverence"
+    word: true
+    replace: "perseverance"
+
+  - trigger: "posession"
+    word: true
+    replace: "possession"
+
+  - trigger: "priviledge"
+    word: true
+    replace: "privilege"
+
+  - trigger: "publically"
+    word: true
+    replace: "publicly"
+
+  - trigger: "recomend"
+    word: true
+    replace: "recommend"
+
+  - trigger: "relavent"
+    word: true
+    replace: "relevant"
+
+  - trigger: "rythm"
+    word: true
+    replace: "rhythm"
+
+  - trigger: "sieze"
+    word: true
+    replace: "seize"
+
+  - trigger: "succesful"
+    word: true
+    replace: "successful"
+
+  - trigger: "suprise"
+    word: true
+    replace: "surprise"
+
+  - trigger: "tendancy"
+    word: true
+    replace: "tendency"
+
+  - trigger: "tommorow"
+    word: true
+    replace: "tomorrow"
+
+  - trigger: "tounge"
+    word: true
+    replace: "tongue"
+
+  - trigger: "truely"
+    word: true
+    replace: "truly"
+
+  - trigger: "untill"
+    word: true
+    replace: "until"
+
+  - trigger: "usefull"
+    word: true
+    replace: "useful"
+
+  - trigger: "vaccum"
+    word: true
+    replace: "vacuum"
+
+  - trigger: "witheld"
+    word: true
+    replace: "withheld"
+
+  - trigger: "accomodate"
+    word: true
+    replace: "accommodate"
+
+  - trigger: "acommodate"
+    word: true
+    replace: "accommodate"
+
+  - trigger: "agressive"
+    word: true
+    replace: "aggressive"
+
+  - trigger: "aparent"
+    word: true
+    replace: "apparent"
+
+  - trigger: "arguement"
+    word: true
+    replace: "argument"
+
+  - trigger: "bizzare"
+    word: true
+    replace: "bizarre"
+
+  - trigger: "catagory"
+    word: true
+    replace: "category"
+
+  - trigger: "collegue"
+    word: true
+    replace: "colleague"
+
+  - trigger: "dissapear"
+    word: true
+    replace: "disappear"
+
+  - trigger: "embarass"
+    word: true
+    replace: "embarrass"
+
+  - trigger: "excercise"
+    word: true
+    replace: "exercise"
+
+  - trigger: "foriegn"
+    word: true
+    replace: "foreign"
+
+  - trigger: "gaurd"
+    word: true
+    replace: "guard"
+
+  - trigger: "hiearchy"
+    word: true
+    replace: "hierarchy"
+
+  - trigger: "hygeine"
+    word: true
+    replace: "hygiene"
+
+  - trigger: "innoculate"
+    word: true
+    replace: "inoculate"
+
+  - trigger: "liesure"
+    word: true
+    replace: "leisure"
+
+  - trigger: "liason"
+    word: true
+    replace: "liaison"
+
+  - trigger: "mischevious"
+    word: true
+    replace: "mischievous"
+
+  - trigger: "paralell"
+    word: true
+    replace: "parallel"
+
+  - trigger: "peice"
+    word: true
+    replace: "piece"
+
+  - trigger: "playright"
+    word: true
+    replace: "playwright"
+
+  - trigger: "pronounciation"
+    word: true
+    replace: "pronunciation"
+
+  - trigger: "questionaire"
+    word: true
+    replace: "questionnaire"
+
+  - trigger: "restaraunt"
+    word: true
+    replace: "restaurant"
+
+  - trigger: "rediculous"
+    word: true
+    replace: "ridiculous"
+
+  - trigger: "sacrilegious"
+    word: true
+    replace: "sacrilegious"
+
+  - trigger: "scissers"
+    word: true
+    replace: "scissors"
+
+  - trigger: "temperment"
+    word: true
+    replace: "temperament"
+
+  - trigger: "therefor"
+    word: true
+    replace: "therefore"
+
+  - trigger: "threshhold"
+    word: true
+    replace: "threshold"
+
+  - trigger: "transfered"
+    word: true
+    replace: "transferred"
+
+  - trigger: "twelth"
+    word: true
+    replace: "twelfth"
+
+  - trigger: "wether"
+    word: true
+    replace: "whether"

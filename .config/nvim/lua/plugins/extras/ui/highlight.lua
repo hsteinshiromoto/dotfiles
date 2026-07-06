@@ -11,7 +11,7 @@ return {
 		"m-demare/hlargs.nvim",
 		event = "VeryLazy",
 		opts = {
-			color = "#ef9062",
+			color = "#fc8b52",
 			use_colorpalette = false,
 			disable = function(_, bufnr)
 				if vim.b.semantic_tokens then

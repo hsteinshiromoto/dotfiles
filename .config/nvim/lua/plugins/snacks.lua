@@ -2,6 +2,9 @@ return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+	},
 	---@type snacks.Config
 	opts = {
 		-- your configuration comes here
@@ -37,12 +40,25 @@ return {
 					ttl = 5 * 60,
 					indent = 3,
 				},
+				{
+					pane = 2,
+					icon = " ",
+					title = "Weather",
+					section = "terminal",
+					cmd = "curl -s 'wttr.in?format=3' || echo 'Weather unavailable'",
+					height = 1,
+					padding = 1,
+					ttl = 30 * 60,
+					indent = 3,
+				},
 				{ section = "startup" },
 			},
 		},
 		dim = { enabled = true },
-		explorer = { enabled = true },
-		image = { enable = true },
+		explorer = {
+			enabled = true,
+		},
+		image = { enabled = false },
 		lazygit = {
 			dependencies = {
 				"nvim-lua/plenary.nvim",
@@ -50,7 +66,29 @@ return {
 			enabled = true,
 		},
 		notifier = { enabled = true },
-		picker = { enabled = true, hidden = true, ui_select = true },
+		picker = {
+			enabled = true,
+			hidden = true,
+			ui_select = true,
+			icons = {
+				enabled = "auto",
+			},
+			-- focus = "input", -- Default - keep cursor in search input
+			sources = {
+				lsp_definitions = {
+					auto_confirm = false,
+				},
+				lsp_references = {
+					auto_confirm = false,
+				},
+				lsp_implementations = {
+					auto_confirm = false,
+				},
+				lsp_type_definitions = {
+					auto_confirm = false,
+				},
+			},
+		},
 		quickfile = { enabled = true },
 		rename = { enabled = true },
 		scope = { enabled = true },
@@ -459,9 +497,22 @@ return {
 		{
 			"gd",
 			function()
-				Snacks.picker.lsp_definitions()
+				Snacks.picker.lsp_definitions({
+					auto_confirm = false,
+					focus = "input",
+				})
 			end,
-			desc = "Goto Definition",
+			desc = "Preview Definition",
+		},
+		{
+			"gp",
+			function()
+				Snacks.picker.lsp_definitions({
+					auto_confirm = false,
+					focus = "input",
+				})
+			end,
+			desc = "Preview Definition (Test)",
 		},
 		{
 			"gD",
@@ -574,6 +625,10 @@ return {
 					Snacks.debug.backtrace()
 				end
 				vim.print = _G.dd -- Override print to use snacks for `:=` command
+
+				-- Remove dimming for hidden files in explorer
+				vim.api.nvim_set_hl(0, "SnacksPickerPathHidden", { link = "Normal" })
+
 				-- Create some toggle mappings
 				Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
 				Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
@@ -581,12 +636,12 @@ return {
 				Snacks.toggle.diagnostics():map("<leader>ud")
 				Snacks.toggle.line_number():map("<leader>ul")
 				Snacks.toggle
-					.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-					:map("<leader>uc")
+						.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+						:map("<leader>uc")
 				Snacks.toggle.treesitter():map("<leader>uT")
 				Snacks.toggle
-					.option("background", { off = "light", on = "dark", name = "Dark Background" })
-					:map("<leader>ub")
+						.option("background", { off = "light", on = "dark", name = "Dark Background" })
+						:map("<leader>ub")
 				Snacks.toggle.inlay_hints():map("<leader>uh")
 				Snacks.toggle.dim():map("<leader>uD")
 			end,

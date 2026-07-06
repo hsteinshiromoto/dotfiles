@@ -1,12 +1,5 @@
 return {
 	{
-		"nvim-treesitter/nvim-treesitter",
-		opts = function(_, opts)
-			opts.ensure_installed = opts.ensure_installed or {}
-			vim.list_extend(opts.ensure_installed, { "python" })
-		end,
-	},
-	{
 		"stevearc/conform.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
@@ -62,10 +55,6 @@ return {
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		opts = {}, -- Define the options here
 		config = function(_, opts)
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "python", "xml" },
-			})
-
 			require("pytest").setup(opts)
 		end,
 	},

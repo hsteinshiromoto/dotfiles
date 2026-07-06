@@ -2,8 +2,24 @@ return {
 	"nvim-lua/plenary.nvim",
 	"MunifTanjim/nui.nvim",
 	{
+		"echasnovski/mini.icons",
+		version = false,
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("mini.icons").setup()
+		end,
+	},
+	{
 		"nvim-tree/nvim-web-devicons",
-		config = { default = true },
+		lazy = false,
+		priority = 999,
+		config = function()
+			require("nvim-web-devicons").setup({
+				override = {},
+				default = true,
+			})
+		end,
 	},
 	{
 		"sitiom/nvim-numbertoggle",
