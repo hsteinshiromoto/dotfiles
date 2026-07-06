@@ -33,8 +33,8 @@ return {
 					enabled = function()
 						return vim.fn.filereadable("todo.txt") == 1
 					end,
-					cmd = "tuxedo list 2>/dev/null || echo 'No todo.txt found'",
-					height = 8,
+					cmd = vim.fn.stdpath('config') .. '/scripts/tuxedo-dashboard.sh',
+					height = 12,
 					padding = 1,
 					ttl = 5 * 60,
 					indent = 3,
