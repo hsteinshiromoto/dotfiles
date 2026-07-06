@@ -13,16 +13,20 @@ The structure of this repository mirrors the `$HOME` directory structure exactly
 
 - **`.claude/`** - Claude Code configuration and project-specific settings
 - **`.config/`** - Cross-platform application configurations
+  - `amnesia/` - Terminal session persistence
   - `atuin/` - Shell history manager configuration
   - `bat/` - Syntax highlighting cat clone
   - `btop/` - Resource monitor configuration
   - `claude/` - Claude AI assistant settings
+  - `espanso/` - Text expansion tool configuration
+  - `eza/` - Modern `ls` replacement theme
   - `ghostty/` - Terminal emulator configuration
-  - `home-manager/` - Nix home-manager configurations
   - `karabiner/` - macOS keyboard customization (complex modifications and backups)
   - `kitty/` - Terminal emulator configuration
   - `lazygit/` - Git UI configuration
   - `nvim/` - Neovim configuration (see detailed structure below)
+  - `opencode/` - OpenCode AI configuration (agents, commands, skills)
+  - `television/` - Fuzzy finder/launcher configuration
   - `tmuxinator/` - Tmux session management
   - `yazi/` - File manager configuration
 - **`.gnupg/`** - GnuPG configuration and keys
@@ -30,12 +34,13 @@ The structure of this repository mirrors the `$HOME` directory structure exactly
 - **`.local/`** - User-specific binaries and data
   - `bin/` - User executable scripts
   - `share/` - User-specific application data
+- **`.serena/`** - Serena AI project configuration
 - **`.ssh/`** - SSH configuration and keys
+- **`.stowrc`**, **`.stow-local-ignore`** - Stow configuration files
 - **`.vscode/`** - VS Code extensions configuration
 - **`bin/`** - Utility scripts and aliases
 - **`macos/`** - macOS-specific configurations
   - `Library/Application Support/` - macOS application data
-    - `espanso/` - Text expansion tool configuration
   - `Library/KeyBindings/` - macOS custom key bindings
   - `Library/Preferences/` - macOS application preferences
 - **`utils/`** - Utility files and resources
