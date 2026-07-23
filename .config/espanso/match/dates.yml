@@ -5,10 +5,10 @@
 # Type e.g.: -18d, +2w, -3m, +5y etc.
 
 matches:
-# Bash version
-  - regex: (?P<offset>[+-]\d+)(?P<unit>[dwmy])
-    replace: "{{output}}"
-    label: Bash offset date
+# Obsidian version
+  - regex: (?p<offset>[+-]\d+)(?p<unit>[dwmy])
+    replace: "[[output]]"
+    label: Obsidian offset date
     vars:
       - name: output
         type: shell
@@ -16,10 +16,28 @@ matches:
           shell: bash
           cmd: |
             case {{unit}} in
-                d) date=$(date -d "{{offset}} days" +"%Y-%m-%d") ;;
-                w) date=$(date -d "{{offset}} weeks" +"%Y-%m-%d") ;;
-                m) date=$(date -d "{{offset}} months" +"%Y-%m-%d") ;;
-                y) date=$(date -d "{{offset}} years" +"%Y-%m-%d") ;;
+                d) date=$(date -d "{{offset}} days" +"%y-%m-%d") ;;
+                w) date=$(date -d "{{offset}} weeks" +"%y-%m-%d") ;;
+                m) date=$(date -d "{{offset}} months" +"%y-%m-%d") ;;
+                y) date=$(date -d "{{offset}} years" +"%y-%m-%d") ;;
+            esac
+            echo "$date"
+
+# bash version
+  - regex: (?p<offset>[+-]\d+)(?p<unit>[dwmy])
+    replace: "{{output}}"
+    label: bash offset date
+    vars:
+      - name: output
+        type: shell
+        params:
+          shell: bash
+          cmd: |
+            case {{unit}} in
+                d) date=$(date -d "{{offset}} days" +"%y-%m-%d") ;;
+                w) date=$(date -d "{{offset}} weeks" +"%y-%m-%d") ;;
+                m) date=$(date -d "{{offset}} months" +"%y-%m-%d") ;;
+                y) date=$(date -d "{{offset}} years" +"%y-%m-%d") ;;
             esac
             echo "$date"
 
