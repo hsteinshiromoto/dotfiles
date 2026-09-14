@@ -76,6 +76,14 @@ When implementing code, ALWAYS use these guiding principles
 - All python commands need to be prepended by `uv run`.
 - All python functions require docstrings using Google format. The docstrings need to have examples.
 
+### Git
+
+- When creating a new file `.gitignore` base it on the file `https://raw.githubusercontent.com/hsteinshiromoto/ignore/refs/heads/main/.gitignore`
+
+#### Branching Model
+
+- Some repositories use `git flow`, others have branches aligned to deployment environments (eg, `dev02` `qa`, `uat`, `prod`), other use trunk-based development. You will need to look at the repository's `README.md` file and the git history.
+
 ### IDE
 
 - The user's IDE is neovim with configuration located in `~/.config/nvim`. You are allowed to read/cat/grep/find any file located in there.
