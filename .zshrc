@@ -299,12 +299,7 @@ alias cd="z"
 alias ls="eza --hyperlink -alh --icons=auto --git"
 alias ld="lazydocker"
 alias lg="lazygit"
-if [[ ${unameOut} == "Linux" ]]; then
-	alias cat="bat"
-elif [[ ${unameOut} == "Darwin" ]]; then
-	alias cat="bat"
-	alias ns="darwin-rebuild build --flake ~/.config/nix-darwin"
-fi
+alias cat="bat"
 
 alias je="jira issue list -tEpic -s\"To Do\" -s\"InProgress\" --created -90d --order-by rank --reverse"
 alias js="jira issue list -tStory -s\"To Do\" -s\"InProgress\" --created -90d --order-by rank --reverse"
@@ -312,10 +307,18 @@ alias js="jira issue list -tStory -s\"To Do\" -s\"InProgress\" --created -90d --
 # Docker aliases
 alias dpl='docker pull'
 alias dph='docker push'
-alias dk='docker kill $(docker ps -a | fzf | awk "{ print $1 }")'
-alias drm='docker rm $(docker ps -a | fzf | awk "{ print $1 }")'
-alias ds='docker stop $(docker ps -a | fzf | awk "{ print $1 }")'
-alias drmi='docker rmi $(docker images | fzf | awk "{print $3}")'
+dk() {
+  docker kill $(docker ps -a | fzf -m --header-lines=1 --preview 'docker inspect {1}' | awk '{print $1}')
+}
+drm() {
+  docker rm $(docker ps -a | fzf -m --header-lines=1 --preview 'docker inspect {1}' | awk '{print $1}')
+}
+ds() {
+  docker stop $(docker ps -a | fzf -m --header-lines=1 --preview 'docker inspect {1}' | awk '{print $1}')
+}
+drmi() {
+  docker rmi $(docker images | fzf -m --header-lines=1 --preview 'docker image inspect {3}' | awk '{print $3}')
+}
 
 # Shell aliases
 
