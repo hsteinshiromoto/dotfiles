@@ -319,7 +319,7 @@ alias drmi='docker rmi $(docker images | fzf | awk "{print $3}")'
 
 # Shell aliases
 
-## GPG symmetric encruption. Usage: $ ge path/to/file.ext
+## GPG symmetric encryption. Usage: $ ge path/to/file.ext
 alias ge='gpg --encrypt --default-recipient-self'
 
 # Add alias to reload gpg agent with a different yubikey. Usage: $ ykr
