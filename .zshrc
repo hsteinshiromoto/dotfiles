@@ -192,8 +192,6 @@ export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 
-# Add alias to reload gpg agent with a different yubikey
-alias ykr="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
 # ---
 # Terminal Info Configuration
 #
@@ -319,11 +317,19 @@ alias drm='docker rm $(docker ps -a | fzf | awk "{ print $1 }")'
 alias ds='docker stop $(docker ps -a | fzf | awk "{ print $1 }")'
 alias drmi='docker rmi $(docker images | fzf | awk "{print $3}")'
 
-# GPG Aliases
+# Shell aliases
+
+## GPG symmetric encruption. Usage: $ ge path/to/file.ext
 alias ge='gpg --encrypt --default-recipient-self'
 
-# Shell aliases
+# Add alias to reload gpg agent with a different yubikey. Usage: $ ykr
+alias ykr="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
+
+## List files disk usage within a folder, sort in descending order, show top 20 results. Usage: $ lsz
 alias lsz='du -h -d 2 . | sort -rh | head -20'
+
+## Delete file using shred. Usage: $ sd path/to/file.ext
+alias sd='shred -u -z -n 3'
 
 alias nix_template='nix flake init -t github:hsteinshiromoto/nix.template'
 # ---
