@@ -148,6 +148,45 @@ Capture topics raised but deferred to a future meeting or discussion.
 **Step 7**: Save to Vault
 
 Scan the folder `~/Notes/02_Calendar/Meeting_Notes` and check whether a note with the filename `YYYY-MM-DD <meeting_title>.md` already exists. If yes, then read it, and modify it by merging both the existing note with the minutes that you have created. If not, then create it and reference it in the daily note located in `~/Notes/02_Calendar/Daily_Notes`.
+
+**Step 8**: Add the action items to tuxedo
+
+Add every action item of the meeting to the task list `~/Notes/todo.txt`. Use one `tuxedo add` command per item.
+
+Build one line per item in this format:
+
+    (PRIORITY) <text> +project @context due:YYYY-MM-DD
+
+Take the priority from the importance and urgency of the item:
+
+| importance | urgency | priority |
+|---|---|---|
+| H | H | (A) |
+| H | M, L, or N | (B) |
+| M, L, or N | H | (C) |
+| M | M | (C) |
+| anything else | | (D) |
+
+Take the context from the owner: `@me`, `@team`, `@<FirstName>`, or `@unassigned` when nobody was named.
+
+Run `tuxedo lsprj` first. Reuse a project name that matches the topic of the meeting. Build a name from the meeting title when none matches: lower case, drop anything in brackets, drop the words a, an, the, and, of, for, to, on, in, then keep the first three words and join them with `_`. Give every item of one meeting the same project.
+
+Follow these rules. They were measured against tuxedo 2026.8.1:
+
+1. Pin the list on every command with `TODO_DIR=$HOME/Notes`. Without it, tuxedo writes `./todo.txt` in the current directory.
+2. Pass the whole task as one quoted argument. Leave out the creation date. tuxedo puts it in front of the text.
+3. Give every task an explicit `due:YYYY-MM-DD`. A text with a `due:` field is stored word for word.
+4. A text with no `due:` field loses its date words. "Prepare the Monday standup deck" becomes "Prepare the standup deck due:2026-09-21". Cut the date word out of the text first when the item has no deadline.
+5. Read the list back with `TODO_DIR=$HOME/Notes tuxedo ls --json`. Compare each stored line against the line you meant to add.
+6. Repair a damaged line with `TODO_DIR=$HOME/Notes tuxedo replace <n> "<text>"`. This command parses no date, and it drops the creation date. Put the date back in the text.
+7. Skip an item that the list already holds. Report it.
+8. Never run `tuxedo del`, `tuxedo done`, or `tuxedo archive`. This step only adds.
+
+Example:
+
+    TODO_DIR=$HOME/Notes tuxedo add "(A) Complete the AWS backup assessment form +rollback_feature_based @team due:2026-09-24"
+
+Report the tasks you added and the tasks you skipped.
 </instructions>
 <output_format>
 Structure the meeting minutes exactly as follows, using Obsidian formatting and the `MeetingMinutes.md` template file.

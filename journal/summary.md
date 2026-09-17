@@ -2,6 +2,10 @@
 
 A running summary of changes to this repository, newest first.
 
+## 2026-09-17
+
+- Turned `summarize-meeting` into a three-phase Workflow script, `.claude/workflows/summarize-meeting.js`. Phase Read finds the source (a stub note in the vault, a transcript file, or today's schedule) and returns the meeting facts. Phase Minutes writes the Obsidian note and links it in the daily note. Phase Tasks adds every action item to `~/Notes/todo.txt` with `tuxedo add`. `.claude/commands/summarize-meeting.md` became a launcher. The opencode copy gained the same tuxedo step, self-contained. See [2026-09-17.md](2026-09-17.md).
+
 ## 2026-09-06
 
 - Compared `release/2026-W37` against `main` (26 commits, 27 files) and documented the branch. Added the `## [3.1.0] - 2026-09-06` section to `CHANGELOG.md`. Updated `README.md`: the `.claude/skills/` and `.claude/workflows/` entries, the `scripts/` entry in the Neovim tree, and a new `### Espanso - Date Snippets` section. See [2026-09-06.md](2026-09-06.md).
