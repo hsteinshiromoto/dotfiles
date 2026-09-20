@@ -110,6 +110,3 @@ You MUST USE the `ste_writing` skill, when writing prose (docs, READMEs, PR desc
 ## Finishing up
 
 When the user types `/quit`, `quit`, `/exit` or  `exit`, you run the command `journal/` BEFORE quitting.
-# graphify
-- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
-When the user types `/graphify`, invoke the Skill tool with `skill: "graphify"` before doing anything else.
