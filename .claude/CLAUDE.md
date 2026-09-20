@@ -56,15 +56,6 @@ If you are unsure of the exact syntax for a third-party DSL, config schema or pl
 
 ## Code Development Standards
 
-- Prefer functional programming implementation over object oriented programming.
-- Prefer readable implementation over abstract logic.
-- Prefer modularized code: each function is responsible for only one task.
-- Implement minimal code: 20% of the code should be capable of handling 80% of the requirements. Do not cater for edge cases.
-- Use standard libraries for code implementation.
-- Prefer orchestration over inheritance.
-- When you finish your implementation run `/sanity-check`
-- For every project that you are making changes. For each day, create a file of the format `YYYY-MM-DD.md` containing all changes done to the repository on that day.
-
 Follow the Unix Philosophy:
 
 When implementing code, ALWAYS use these guiding principles
@@ -76,6 +67,19 @@ When implementing code, ALWAYS use these guiding principles
 - Fail loudly. When a program fails, stop early and show a clear error message.
 - Build a small working version first. Improve it in small steps.
 - Choose simplicity over cleverness. Add complexity only when measurements prove the need.
+
+Additional instructions for coding:
+
+- Prefer functional programming implementation over object oriented programming.
+- Prefer readable implementation over abstract logic.
+- Prefer modularized code: each function is responsible for only one task.
+- Implement minimal code: 20% of the code should be capable of handling 80% of the requirements. Do not cater for edge cases.
+- Use standard libraries for code implementation.
+- Prefer orchestration over inheritance.
+- When you finish your implementation run `/sanity-check`
+- For every project that you are making changes. For each day, create a file of the format `YYYY-MM-DD.md` containing all changes done to the repository on that day.
+- Use test-driven development for implementation: write test first, then code.
+- Code comments: explain WHY not WHAT.
 
 ### Python
 
