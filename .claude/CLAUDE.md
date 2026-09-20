@@ -19,11 +19,10 @@ Use always these subagents in this order:
 - 2. Plan agent: understand the request, analyse the context, and plan the implementation. Show the plan for user and ask for approval before moving to the next step.
 - 3. Plan evaluator agent: critique the proposed plan for feasibility, completeness, standards compliance, risk, and modularity. If the verdict is NEEDS WORK, revise the plan and re-evaluate before proceeding.
 - 4. Build agent: Execute the planned implementation. Ask the user for approval before modifying any file in accordance to the plan.
-- 5. Build evaluator agent: critique the implementation using the code-reviewer skill. If the verdict is NEEDS WORK, address the recommendations before proceeding.
-- 6. End-to-end evaluator agent: run `/sanity-check` and create an overall summary of plan, build, test results, and assess if the final implementation adress the requirements of the produce manager.
+- 5. QA agent: critique the implementation using the code-reviewer skill. If the verdict is NEEDS WORK, address the recommendations before proceeding. For end-to-end evaluation, run `/sanity-check` and create an overall summary of plan, build, test results, and assess if the final implementation adress the requirements of the produce manager.
 Each of these agents will execute at most three tasks.
-- 7. If the end-to-end evaluator verdict is PASS, ask the user if he wants to add the code to the git staging area.
-- 8. Conclude the workflow by updating the journal using the `/journal` skill.
+- 6. If the end-to-end evaluator verdict is PASS, ask the user if he wants to add the code to the git staging area.
+- 7. Conclude the workflow by updating the journal using the `/journal` skill.
 
 For each of user permission request, offer only three options as a choice-selection menu:
 1. Yes (Y).
@@ -31,9 +30,11 @@ For each of user permission request, offer only three options as a choice-select
 3. Something else: only here the user is prompted to type in text that will run a small change such execute a command with a different flag option.
 
 ## Commit and journal conventions
+
 After completing a unit of work: update the repo journal entry, then commit with a scoped conventional-commit message covering only the files for that change. Confirm the working tree is clean afterwards. If `git` reports 'Another git process seems to be running' (index.lock from my zsh prompt), retry once then fall back to plain `rm`/`mv` rather than looping on git.
 
 ## Secrets and sensitive files
+
 Before any commit or `.gitignore` change, scan staged/tracked files for credentials, API keys. Never commit plaintext secrets; route them through sops-nix. Flag any leaked key immediately rather than continuing.
 
 ## DO NOT
@@ -44,12 +45,19 @@ Never perform any of the following tasks without human approval:
 3. Run shell commands that execute tests or build steps without first confirming the host OS is compatible with the project's test environment (e.g., NixOS tests cannot run from a macOS host).
 
 ## Don't guess API or config syntax
-If you are unsure of the exact syntax for a third-party DSL, config schema or plugin API (Obsidian Bases formulas, Forgejo/Gitea options, Opencode plugin API, Ghostreader prompts, hledger CSV rules), fetch the official docs FIRST with WebFetch/WebSearch. Do not invent function or option names and iterate on errors.
+
+If you are unsure of the exact syntax for a third-party DSL, config schema or plugin API (for example, Obsidian Bases formulas, Forgejo/Gitea options, Opencode plugin API, Ghostreader prompts, hledger CSV rules), fetch the official docs FIRST with WebFetch/WebSearch. Do not invent function or option names and iterate on errors.
+
+## Communication Style
+
+- Be concise. No filler sentences.
+- Skip "Great question!" openers.
+- Use bullet points over
 
 ## Code Development Standards
 
-- Prefer functional implementation.
-- Prefer readable implementation.
+- Prefer functional programming implementation over object oriented programming.
+- Prefer readable implementation over abstract logic.
 - Prefer modularized code: each function is responsible for only one task.
 - Implement minimal code: 20% of the code should be capable of handling 80% of the requirements. Do not cater for edge cases.
 - Use standard libraries for code implementation.
@@ -57,7 +65,7 @@ If you are unsure of the exact syntax for a third-party DSL, config schema or pl
 - When you finish your implementation run `/sanity-check`
 - For every project that you are making changes. For each day, create a file of the format `YYYY-MM-DD.md` containing all changes done to the repository on that day.
 
-### Unix Philosophy
+Follow the Unix Philosophy:
 
 When implementing code, ALWAYS use these guiding principles
 - Write each program, module, and/or function to do one thing well.
