@@ -186,9 +186,20 @@ export PATH="$PATH:/nix/var/nix/profiles/default/bin:$HOME/.tmux/plugins/tpm"
 # References:
 # 	[1] https://gist.github.com/mcattarinussi/834fc4b641ff4572018d0c665e5a94d3
 unset SSH_AGENT_PID
-# if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ;then
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-# fi
+# Do NOT clobber an agent forwarded in over SSH. Without this guard sshd's
+# forwarded SSH_AUTH_SOCK is replaced by the LOCAL gpg-agent, which on a host
+# with no YubiKey inserted has no identities at all -- and pam_rssh on servidor
+# then fails sudo with "None of these keys passed authentication", with no
+# password prompt and nothing useful in `journalctl -t sudo`.
+#
+# A bare [ -z "$SSH_AUTH_SOCK" ] guard would be wrong on macOS, where launchd
+# presets the variable to Apple's own agent, which holds no keys either. Keying
+# on SSH_CONNECTION is correct in all four cases: local shell and console fall
+# through to gpg-agent, `ssh -A` keeps the forwarded agent, and `ssh` without
+# -A still gets the local gpg-agent.
+if [ -z "$SSH_CONNECTION" ] || [ -z "$SSH_AUTH_SOCK" ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
 
