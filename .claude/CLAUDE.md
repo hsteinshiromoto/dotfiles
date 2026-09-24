@@ -80,6 +80,7 @@ Additional instructions for coding:
 - For every project that you are making changes. For each day, create a file of the format `YYYY-MM-DD.md` containing all changes done to the repository on that day.
 - Use test-driven development for implementation: write test first, then code.
 - Code comments: explain WHY not WHAT.
+- If a `Makefile` or a `Justfile` exists, use the instructions in these files to run code, unless a different command is necessary.
 
 ### Python
 
@@ -87,6 +88,21 @@ Additional instructions for coding:
 - All added packages to `uv` will first be installed under the `dev` group and will only be moved into production group manually by a human.
 - All python commands need to be prepended by `uv run`.
 - All python functions require docstrings using Google format. The docstrings need to have examples.
+- Follow PEP 8 style guide with descriptive variable names
+- Use type hints for function arguments and returns
+- Document classes with docstrings explaining purpose and attributes
+- Document functions with docstrings describing arguments and return values
+- Handle exceptions with specific error types (e.g., FileNotFoundError)
+
+### Nix
+
+- Use `flake.nix` to ensure reproducibility of the environment. Prefer to start a new `flake.nix` using a template file from the repository `https://github.com/hsteinshiromoto/nix.template`.
+
+### Markdown
+
+#### Obsidian
+
+- Use frontmatter for metadata in markdown files, when they belong to an Obsidian vault.
 
 ### Git
 
