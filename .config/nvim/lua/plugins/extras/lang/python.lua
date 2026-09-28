@@ -58,6 +58,24 @@ return {
 			require("pytest").setup(opts)
 		end,
 	},
+	{
+		-- nvim-lint arrives as an ensure.nvim dependency and ensure.nvim owns
+		-- linters_by_ft (lua/plugins/ensure.lua). All this spec adds is the
+		-- trigger, which nvim-lint leaves to the caller by design -- without
+		-- it the configured linters never run.
+		"mfussenegger/nvim-lint",
+		config = function()
+			-- bandit sets stdin = false and reads the file from disk, so a
+			-- trigger on InsertLeave would report the previous write.
+			vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
+				pattern = "*.py",
+				group = vim.api.nvim_create_augroup("NvimLint", { clear = true }),
+				callback = function()
+					require("lint").try_lint()
+				end,
+			})
+		end,
+	},
 }
 -- References:
 -- 	[1] https://alpha2phi.medium.com/modern-neovim-debugging-and-testing-8deda1da1411
