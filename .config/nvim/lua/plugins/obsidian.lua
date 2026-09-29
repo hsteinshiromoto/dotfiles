@@ -394,8 +394,8 @@ return {
 	cond = vim.fn.isdirectory(".obsidian") == 1,
 	keys = {
 
-		{ "<localleader>ot", "<cmd>Obsidian template<cr>", desc = "Insert Template" },
-		{ "<localleader>on", "<cmd>Obsidian new_from_template<cr>", desc = "New Note From Template" },
+		{ "<localleader>ot", "<cmd>ObsidianTemplate<cr>", desc = "Insert Template" },
+		{ "<localleader>on", "<cmd>ObsidianNoteFromTemplate<cr>", desc = "New Note From Template" },
 		{ "<localleader>od", "<cmd>Obsidian today<cr>", desc = "Obsidian Daily Note" },
 		{ "<localleader>ol", "<cmd>Obsidian backlinks<cr>", desc = "Backlinks" },
 		{ "<localleader>oc", "<cmd>ObsidianCopyClean<cr>", mode = "n", desc = "Copy Clean" },
@@ -404,6 +404,8 @@ return {
 	new_notes_location = "notes_subdir",
 	config = function(_, opts)
 		require("obsidian").setup(opts)
+		-- Renders the vault's Templater templates, which obsidian.nvim cannot read.
+		require("utils.obsidian_template").setup()
 		vim.api.nvim_create_user_command("ObsidianCopyClean", function(opts)
 			local lines
 			if opts.range > 0 then

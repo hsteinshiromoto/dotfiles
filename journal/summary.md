@@ -2,6 +2,10 @@
 
 A running summary of changes to this repository, newest first.
 
+## 2026-09-29
+
+- Added `.config/nvim/lua/utils/obsidian_template.lua`, a bridge from Neovim to the Notes vault's own template renderer. The vault writes its templates in Templater syntax (`<% %>`) and obsidian.nvim reads `{{key}}` only, so `:Obsidian template` inserted the tags verbatim and seven prompting templates were unusable outside Obsidian. The bridge finds the vault by walking up to `.obsidian`, asks `bin/render_template.py --describe` which prompts a template declares, collects the answers with `vim.fn.input`, and renders with `--var` and `--json`. It reads Templater's own folder map so both apps file a note in the same place, and it prefers the vault `.venv` but falls back to `python3`. `<localleader>ot` and `<localleader>on` now call `:ObsidianTemplate` and `:ObsidianNoteFromTemplate`. Fifteen headless checks pass against a sandbox vault. See [2026-09-29.md](2026-09-29.md).
+
 ## 2026-09-17
 
 - Turned `summarize-meeting` into a three-phase Workflow script, `.claude/workflows/summarize-meeting.js`. Phase Read finds the source (a stub note in the vault, a transcript file, or today's schedule) and returns the meeting facts. Phase Minutes writes the Obsidian note and links it in the daily note. Phase Tasks adds every action item to `~/Notes/todo.txt` with `tuxedo add`. `.claude/commands/summarize-meeting.md` became a launcher. The opencode copy gained the same tuxedo step, self-contained. See [2026-09-17.md](2026-09-17.md).
