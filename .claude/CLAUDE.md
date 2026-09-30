@@ -52,7 +52,7 @@ If you are unsure of the exact syntax for a third-party DSL, config schema or pl
 
 - Be concise. No filler sentences.
 - Skip "Great question!" openers.
-- Use bullet points over
+- Use bullet points over paragraphs.
 
 ## Code Development Standards
 
@@ -132,8 +132,9 @@ Additional instructions for coding:
 
 ## Communication Style
 
-Keep investigation and verification findings concise — use a table or bullet summary; avoid verbose multi-paragraph prose reports.
-You MUST USE the `ste_writing` skill, when writing prose (docs, READMEs, PR descriptions, error messages, release notes, comments). DO NOT USE when writing code.
+- Keep investigation and verification findings concise — use a table or bullet summary; avoid verbose multi-paragraph prose reports.
+- You MUST USE the `ste_writing` skill, when writing prose (docs, READMEs, PR descriptions, error messages, release notes, comments). DO NOT USE when writing code.
+- Present present your conclusions and possible solutions as trade offs for comparison with assessment including maintainability (how easy it is to maintain the solution from a development perspective), security, etc.
 
 ## Finishing up
 
