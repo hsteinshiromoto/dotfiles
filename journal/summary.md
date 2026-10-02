@@ -2,6 +2,22 @@
 
 A running summary of changes to this repository, newest first.
 
+## 2026-10-02
+
+Runtime pinentry switching in `.zshrc`: `ykt` (terminal), `ykg` (GUI), `ykd` (drop the
+override), `ykp` (report). One function, `_pinentry_set`, writes a single
+`pinentry-program` line to `~/.gnupg/gpg-agent.conf` and runs `gpgconf --reload
+gpg-agent`. Two facts from `agent/gpg-agent.c` make it work and were read rather than
+assumed: `pinentry-program` is in `parse_rereadable_options`, so a reload suffices and
+the cached PIN and ssh sockets survive; and gpg-agent parses the system config before
+the user config, so the user file wins. This replaces the six-step second-agent recipe
+in the nix repo (`modules/features/nixos/yubikey.nix:43-55`), which stays as the
+fallback for a wedged agent. **The override outlives the shell and the reboot**, so
+`ykd` is not optional — curses left in force gives the sops-nix user service no terminal
+and fails as `0 successful groups required, got 0`. A self-detecting wrapper was ruled
+out: `$DISPLAY` and `$GPG_TTY` reach pinentry over ASSUAN after the exec, not through
+its environment.
+
 ## 2026-09-29
 
 - Added `.config/nvim/lua/utils/obsidian_template.lua`, a bridge from Neovim to the Notes vault's own template renderer. The vault writes its templates in Templater syntax (`<% %>`) and obsidian.nvim reads `{{key}}` only, so `:Obsidian template` inserted the tags verbatim and seven prompting templates were unusable outside Obsidian. The bridge finds the vault by walking up to `.obsidian`, asks `bin/render_template.py --describe` which prompts a template declares, collects the answers with `vim.fn.input`, and renders with `--var` and `--json`. It reads Templater's own folder map so both apps file a note in the same place, and it prefers the vault `.venv` but falls back to `python3`. `<localleader>ot` and `<localleader>on` now call `:ObsidianTemplate` and `:ObsidianNoteFromTemplate`. Fifteen headless checks pass against a sandbox vault. See [2026-09-29.md](2026-09-29.md).

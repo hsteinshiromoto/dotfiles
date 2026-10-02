@@ -338,6 +338,55 @@ alias ge='gpg --encrypt --default-recipient-self'
 
 # Add alias to reload gpg agent with a different yubikey. Usage: $ ykr
 alias ykr="gpg-connect-agent 'scd serialno' 'learn --force' /bye"
+# ---
+# Configuration: gpg-agent pinentry
+#
+# Which pinentry gpg-agent calls, switchable at runtime.
+#
+# The nix config pins pinentry-qt on thinkpadt14 (see
+# modules/hosts/thinkpadt14/hyprland/core.nix) by writing
+# /etc/gnupg/gpg-agent.conf, which is a read-only store symlink. gpg-agent
+# parses that file first and ~/.gnupg/gpg-agent.conf second, so a line written
+# here wins. pinentry-program sits in the agent's rereadable option set, so a
+# reload is enough -- the agent keeps its cached PIN and its ssh sockets.
+#
+# RUN ykd BEFORE A SWITCH OR A LOGOUT. This override outlives the shell and the
+# reboot. curses left in force gives the sops-nix user service no terminal to
+# prompt on, and that failure arrives as "0 successful groups required, got 0",
+# which reads like a missing key and is not.
+#
+# qt on a VT still does not draw, because it has no display there. The flavour
+# is yours to choose. A prompt with no destination is not fixable by choosing
+# one.
+# ---
+_pinentry_set() {
+	local conf="${GNUPGHOME:-$HOME/.gnupg}/gpg-agent.conf"
+	local tmp line=""
+	if [[ -n $1 ]]; then
+		local bin
+		bin=$(command -v "pinentry-$1") || { echo "_pinentry_set: pinentry-$1 not on PATH" >&2; return 1; }
+		line="pinentry-program $bin"
+	fi
+	tmp=$(mktemp) || return 1
+	grep -v '^pinentry-program' "$conf" 2>/dev/null > "$tmp"
+	[[ -n $line ]] && echo "$line" >> "$tmp"
+	mv "$tmp" "$conf" && gpgconf --reload gpg-agent
+}
+
+## Send the PIN prompt to the terminal. Usage: $ ykt
+alias ykt='_pinentry_set curses'
+
+## Send the PIN prompt to the GUI. Usage: $ ykg
+alias ykg='_pinentry_set qt'
+
+## Drop the override, back to what nix declares. Usage: $ ykd
+alias ykd='_pinentry_set'
+
+## Show which pinentry is in force. Usage: $ ykp
+ykp() {
+	local conf="${GNUPGHOME:-$HOME/.gnupg}/gpg-agent.conf"
+	grep -s ^pinentry-program "$conf" || grep -s ^pinentry-program /etc/gnupg/gpg-agent.conf
+}
 
 ## List files disk usage within a folder, sort in descending order, show top 20 results. Usage: $ lsz
 alias lsz='du -h -d 2 . | sort -rh | head -20'
