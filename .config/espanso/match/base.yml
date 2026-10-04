@@ -9,7 +9,7 @@
 # it gets replaced by the "replace" string.
 matches:
   # Print the current date
-  - trigger: ":day:"
+  - trigger: "2day"
     word: true
     replace: "{{mydate}}"
     vars:
