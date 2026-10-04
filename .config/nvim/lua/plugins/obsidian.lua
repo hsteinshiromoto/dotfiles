@@ -57,41 +57,33 @@ local function getDayOffset(days, isBusinessDay)
 	return os.date("%Y-%m-%d", os.time(final_target))
 end
 
--- Corrected ISO week calculation
+-- ISO 8601 week numbering. Switched from Sunday-start on 2026-10-04:
+-- the Makefile's `date +%V` was already ISO, the two rules disagreed every
+-- Sunday, and two weekly notes were named after the wrong week. The
+-- Sunday-first calendar renderers below are deliberately left as they are.
 function getISOWeek(time)
 	time = time or os.time()
 	local t = os.date("*t", time)
 
-	-- Find Thursday of current week
-	-- In Lua: Sunday=1, Monday=2, ..., Thursday=5, ..., Saturday=7
-	local current_day = t.wday
-	local days_to_thursday = 5 - current_day -- Thursday is day 5
-	local thursday_time = time + (days_to_thursday * 86400)
-	local thursday_date = os.date("*t", thursday_time)
+	-- Noon, so a DST transition cannot push a date across a day boundary.
+	local noon = os.time({ year = t.year, month = t.month, day = t.day, hour = 12, min = 0, sec = 0 })
 
-	-- The year of the ISO week is the year of the Thursday
-	local iso_year = thursday_date.year
+	-- ISO weeks run Monday to Sunday, and the week year is the year that holds
+	-- the Thursday of that week. Lua gives Sunday=1..Saturday=7, so convert to
+	-- Monday=1..Sunday=7 first.
+	local iso_wday = (t.wday + 5) % 7 + 1
+	local thursday_time = noon + (4 - iso_wday) * 86400
+	local iso_year = os.date("*t", thursday_time).year
 
-	-- Find the first Thursday of the ISO year
-	local jan1 = os.time({ year = iso_year, month = 1, day = 1 })
-	local jan1_date = os.date("*t", jan1)
-	local jan1_wday = jan1_date.wday
+	-- 4 January always falls in ISO week 1, so its Thursday anchors the year.
+	local jan4 = os.time({ year = iso_year, month = 1, day = 4, hour = 12, min = 0, sec = 0 })
+	local jan4_iso_wday = (os.date("*t", jan4).wday + 5) % 7 + 1
+	local week1_thursday = jan4 + (4 - jan4_iso_wday) * 86400
 
-	-- Days from Jan 1 to first Thursday
-	local days_to_first_thursday
-	if jan1_wday <= 5 then
-		-- Jan 1 is Mon-Thu (2-5), Thursday is in the same week
-		days_to_first_thursday = 5 - jan1_wday
-	else
-		-- Jan 1 is Fri-Sun (6,7,1), Thursday is in the next week
-		days_to_first_thursday = 12 - jan1_wday
-	end
-
-	local first_thursday = jan1 + (days_to_first_thursday * 86400)
-
-	-- Calculate week number
-	local days_diff = (thursday_time - first_thursday) / 86400
-	local week_num = math.floor(days_diff / 7) + 1
+	-- Round rather than floor. Both ends are noon, but a DST change between
+	-- them moves the difference by an hour, which floor would turn into a
+	-- whole week.
+	local week_num = math.floor((thursday_time - week1_thursday) / (7 * 86400) + 0.5) + 1
 
 	return string.format("%d-W%02d", iso_year, week_num)
 end
