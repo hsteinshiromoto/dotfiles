@@ -6,7 +6,7 @@ PROJECT_ROOT=$(git rev-parse --show-toplevel)
 PLAYBOOK_PACKAGES=packages.yml
 PLAYBOOK_DOTFILES=dotfiles.yml
 
-.PHONY: clean help tree playbook
+.PHONY: clean help tree playbook espanso-test
 
 ## Install all plygin managers
 plugins:
@@ -35,6 +35,10 @@ tree:
 ## Remove log flies
 clean:
 	rm -r *.log
+
+## Run the espanso date-helper doctests
+espanso-test:
+	python3 -m doctest .config/espanso/scripts/obsidian_date.py && echo "doctests pass"
 
 ## Tree Sitter Update
 ts:

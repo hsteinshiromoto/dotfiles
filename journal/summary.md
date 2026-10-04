@@ -2,6 +2,27 @@
 
 A running summary of changes to this repository, newest first.
 
+## 2026-10-04
+
+Retriggered `.config/espanso/match/obsidian.yml`. The ten `[[today]]`-style matches became
+23 matches behind `;` short codes, each with a longer alias, and now covering weekly,
+monthly, quarterly and yearly notes as well as daily. A bracketed trigger cannot be typed
+cleanly in Obsidian, because `[[` auto-inserts `]]` and opens the link suggester. Two
+espanso behaviours shaped the result and were read out of the source rather than assumed:
+`word: true` sets `right_word`, which fires only once a separator arrives **after** the
+trigger (`espanso-match/src/rolling/matcher.rs`), so `;td` would have waited for the space
+bar — dropping it also matches `match/git.yml`; and espanso expands the shorter of two
+prefix-sharing triggers eagerly (espanso#178), which is a hard constraint, and which is why
+`;month` cannot exist alongside `;mon`. All 59 triggers across the three match files were
+checked for prefix collisions mechanically. The ten inline `date -v` calls collapsed into
+`.config/espanso/scripts/obsidian_date.py`, stdlib-only and 3.9-compatible because the
+LaunchAgent `PATH` reaches only `/usr/bin/python3`. `date -v` is BSD-only and `date -d` is
+GNU-only, so neither can live in a repo that stows to both. The resolver also fixes a real
+bug: BSD `date -v+mon` returns today on a Monday, so `[[next monday]]` linked to the note
+you were already in. 33 doctests run via a new `make espanso-test`. Separately, `dates.yml`
+was found to be broken in six ways and espanso logs a regex error for it at every start
+(`(?p<` with a lowercase p); left alone as out of scope. See [2026-10-04.md](2026-10-04.md).
+
 ## 2026-10-02
 
 Runtime pinentry switching in `.zshrc`: `ykt` (terminal), `ykg` (GUI), `ykd` (drop the

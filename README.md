@@ -202,6 +202,64 @@ The file `.config/espanso/match/dates.yml` holds offset-date matches. Type an of
 `-18d`, `+2w`, `-3m`, or `+5y`. Espanso replaces it with the date, in the format of one target:
 Obsidian, bash, PowerShell, Python, or JavaScript.
 
+#### Obsidian Note Links
+
+The file `.config/espanso/match/obsidian.yml` holds matches that write a wikilink to a
+periodic note. Each trigger starts with `;`, the same style as `git.yml`. Every match has a
+short code, and most also have a longer alias.
+
+| Trigger | Alias | Result on Sunday 2026-10-04 |
+| --- | --- | --- |
+| `;td` | `;today` | `[[2026-10-04\|today]]` |
+| `;yd` | `;yesterday` | `[[2026-10-03\|yesterday]]` |
+| `;tm` | `;tomorrow` | `[[2026-10-05\|tomorrow]]` |
+| `;mon` … `;sun` | `;nextmon` … `;nextsun` | `;mon` gives `[[2026-10-05\|next monday]]` |
+| `;lmon` … `;lsun` | `;lastmon` … `;lastsun` | `;lfri` gives `[[2026-10-02\|last friday]]` |
+| `;wk` | `;week` | `[[2026-W40\|this week]]` |
+| `;nwk` | `;nextweek` | `[[2026-W41\|next week]]` |
+| `;lwk` | `;lastweek` | `[[2026-W39\|last week]]` |
+| `;mth` | none | `[[2026-10\|this month]]` |
+| `;qtr` | `;quarter` | `[[2026-Q4\|this quarter]]` |
+| `;yr` | `;year` | `[[2026\|this year]]` |
+
+The note names match both vaults and `~/.config/nvim/lua/plugins/obsidian.lua`: daily
+`YYYY-MM-DD`, weekly `YYYY-Www` on the ISO week-year, monthly `YYYY-MM`, quarterly
+`YYYY-Qn`, and yearly `YYYY`.
+
+Three rules explain the shape of this table.
+
+1. The old triggers `[[today]]` and `[[next monday]]` are gone. Obsidian adds `]]` for you
+   when you type `[[`, and it opens the link suggester. You cannot type a bracketed trigger
+   cleanly, and espanso then writes into an open popup. The replacement supplies its own
+   brackets, so the old triggers cannot return as aliases.
+2. No trigger is a prefix of another trigger. Espanso expands the shorter one as soon as it
+   matches, which leaves the longer one dead. This is why `;month` does not exist: `;mon`
+   comes first. Use `;mth`.
+3. `;mon` through `;sun` never return today. BSD `date -v+mon` returns today when today is
+   a Monday, so the old `[[next monday]]` linked to the note you were already in.
+
+Do not add `word: true` to this file. Espanso fires a `right_word` trigger only after you
+type a separator behind it, so `;td` would wait for a space.
+
+#### Date Resolution Helper
+
+The script `.config/espanso/scripts/obsidian_date.py` does all of the date arithmetic. Every
+match calls it with one spec and wraps the single line of output in a wikilink.
+
+```bash
+python3 .config/espanso/scripts/obsidian_date.py today      # 2026-10-04
+python3 .config/espanso/scripts/obsidian_date.py next:mon   # 2026-10-05
+python3 .config/espanso/scripts/obsidian_date.py week-1     # 2026-W39
+```
+
+The script uses the standard library only, and it stays compatible with Python 3.9. The
+espanso LaunchAgent runs with `PATH` set to `/usr/bin:/bin:/usr/sbin:/sbin`. The interpreter
+is therefore `/usr/bin/python3`, and `uv` cannot be reached. An inline `date` call is not an
+option either. The flag `date -v` works only on BSD, and `date -d` works only on GNU, and
+this repository stows to both.
+
+Run `make espanso-test` to check the script. The tests are doctests inside the docstrings.
+
 ## Favorite Commands
 
 ### Find

@@ -1,92 +1,233 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/dev/schemas/match.schema.json
+
+# Obsidian wikilinks to periodic notes.
+#
+# Triggers are `;`-prefixed short codes, not `[[today]]`. Typing `[[` in Obsidian
+# auto-inserts `]]` and opens the link suggester, so a bracketed trigger cannot be
+# typed cleanly and espanso ends up injecting into an open popup. The `;` prefix
+# follows git.yml, which is the house style.
+#
+# Do not add `word: true`. Espanso's rolling matcher only fires a `right_word`
+# trigger once a separator is typed AFTER it, so `;td` would sit there until you
+# pressed space. The leading `;` is already a word separator, so the left boundary
+# it would add is free anyway.
+#
+# No trigger may be a prefix of another: espanso expands the shorter one eagerly
+# (espanso/espanso#178), which would leave the longer one unreachable. This is why
+# there is no `;month` -- `;mon` (next monday) is its prefix. Use `;mth`.
+#
+# All arithmetic lives in scripts/obsidian_date.py. Inline `date` calls cannot be
+# used here: `date -v` is BSD only and `date -d` is GNU only, and this repository
+# stows to both. Offset dates such as `+2w` stay in dates.yml.
+
 matches:
-  - trigger: "[[today]]"
-    word: true
+# Daily notes -- YYYY-MM-DD
+  - triggers: [";td", ";today"]
+    label: "Obsidian daily note -- today"
     replace: "[[{{output}}|today]]"
     vars:
       - name: output
-        type: shell
+        type: script
         params:
-          cmd: "echo `date \"+%Y-%m-%d\"`"
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "today"]
 
-
-  - trigger: "[[yesterday]]"
-    word: true
+  - triggers: [";yd", ";yesterday"]
+    label: "Obsidian daily note -- yesterday"
     replace: "[[{{output}}|yesterday]]"
     vars:
       - name: output
-        type: shell
+        type: script
         params:
-          cmd: "echo `date -v -1d \"+%Y-%m-%d\"`"
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "yesterday"]
 
-  - trigger: "[[tomorrow]]"
-    word: true
+  - triggers: [";tm", ";tomorrow"]
+    label: "Obsidian daily note -- tomorrow"
     replace: "[[{{output}}|tomorrow]]"
     vars:
       - name: output
-        type: shell
+        type: script
         params:
-          cmd: "echo `date -v +1d \"+%Y-%m-%d\"`"
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "tomorrow"]
 
-  - trigger: "[[next monday]]"
-    word: true
+# Next weekday. Never today: BSD `date -v+mon` returned today on a Monday.
+  - triggers: [";mon", ";nextmon"]
+    label: "Obsidian daily note -- next monday"
     replace: "[[{{output}}|next monday]]"
     vars:
       - name: output
-        type: shell
+        type: script
         params:
-          cmd: "echo `date -v+mon \"+%Y-%m-%d\"`"
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:mon"]
 
-  - trigger: "[[next tuesday]]"
-    word: true
+  - triggers: [";tue", ";nexttue"]
+    label: "Obsidian daily note -- next tuesday"
     replace: "[[{{output}}|next tuesday]]"
     vars:
       - name: output
-        type: shell
+        type: script
         params:
-          cmd: "echo `date -v+tue \"+%Y-%m-%d\"`"
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:tue"]
 
-  - trigger: "[[next wednesday]]"
-    word: true
+  - triggers: [";wed", ";nextwed"]
+    label: "Obsidian daily note -- next wednesday"
     replace: "[[{{output}}|next wednesday]]"
     vars:
       - name: output
-        type: shell
+        type: script
         params:
-          cmd: "echo `date -v+wed \"+%Y-%m-%d\"`"
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:wed"]
 
-  - trigger: "[[next thursday]]"
-    word: true
+  - triggers: [";thu", ";nextthu"]
+    label: "Obsidian daily note -- next thursday"
     replace: "[[{{output}}|next thursday]]"
     vars:
       - name: output
-        type: shell
+        type: script
         params:
-          cmd: "echo `date -v+thu \"+%Y-%m-%d\"`"
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:thu"]
 
-  - trigger: "[[next friday]]"
-    word: true
+  - triggers: [";fri", ";nextfri"]
+    label: "Obsidian daily note -- next friday"
     replace: "[[{{output}}|next friday]]"
     vars:
       - name: output
-        type: shell
+        type: script
         params:
-          cmd: "echo `date -v+fri \"+%Y-%m-%d\"`"
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:fri"]
 
-  - trigger: "[[next saturday]]"
-    word: true
+  - triggers: [";sat", ";nextsat"]
+    label: "Obsidian daily note -- next saturday"
     replace: "[[{{output}}|next saturday]]"
     vars:
       - name: output
-        type: shell
+        type: script
         params:
-          cmd: "echo `date -v+sat \"+%Y-%m-%d\"`"
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:sat"]
 
-  - trigger: "[[next sunday]]"
-    word: true
+  - triggers: [";sun", ";nextsun"]
+    label: "Obsidian daily note -- next sunday"
     replace: "[[{{output}}|next sunday]]"
     vars:
       - name: output
-        type: shell
+        type: script
         params:
-          cmd: "echo `date -v+sun \"+%Y-%m-%d\"`"
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:sun"]
 
+# Previous weekday. Never today, for the same reason.
+  - triggers: [";lmon", ";lastmon"]
+    label: "Obsidian daily note -- last monday"
+    replace: "[[{{output}}|last monday]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "last:mon"]
+
+  - triggers: [";ltue", ";lasttue"]
+    label: "Obsidian daily note -- last tuesday"
+    replace: "[[{{output}}|last tuesday]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "last:tue"]
+
+  - triggers: [";lwed", ";lastwed"]
+    label: "Obsidian daily note -- last wednesday"
+    replace: "[[{{output}}|last wednesday]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "last:wed"]
+
+  - triggers: [";lthu", ";lastthu"]
+    label: "Obsidian daily note -- last thursday"
+    replace: "[[{{output}}|last thursday]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "last:thu"]
+
+  - triggers: [";lfri", ";lastfri"]
+    label: "Obsidian daily note -- last friday"
+    replace: "[[{{output}}|last friday]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "last:fri"]
+
+  - triggers: [";lsat", ";lastsat"]
+    label: "Obsidian daily note -- last saturday"
+    replace: "[[{{output}}|last saturday]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "last:sat"]
+
+  - triggers: [";lsun", ";lastsun"]
+    label: "Obsidian daily note -- last sunday"
+    replace: "[[{{output}}|last sunday]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "last:sun"]
+
+# Periodic notes -- YYYY-Www (ISO), YYYY-MM, YYYY-Qn, YYYY
+  - triggers: [";wk", ";week"]
+    label: "Obsidian weekly note -- this week"
+    replace: "[[{{output}}|this week]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "week"]
+
+  - triggers: [";nwk", ";nextweek"]
+    label: "Obsidian weekly note -- next week"
+    replace: "[[{{output}}|next week]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "week+1"]
+
+  - triggers: [";lwk", ";lastweek"]
+    label: "Obsidian weekly note -- last week"
+    replace: "[[{{output}}|last week]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "week-1"]
+
+  - triggers: [";mth"]
+    label: "Obsidian monthly note -- this month"
+    replace: "[[{{output}}|this month]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "month"]
+
+  - triggers: [";qtr", ";quarter"]
+    label: "Obsidian quarterly note -- this quarter"
+    replace: "[[{{output}}|this quarter]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "quarter"]
+
+  - triggers: [";yr", ";year"]
+    label: "Obsidian yearly note -- this year"
+    replace: "[[{{output}}|this year]]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "year"]
