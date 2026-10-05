@@ -121,6 +121,17 @@ function getDateOffset(offset, unit)
 		t.sec = 0
 		local quarter = math.ceil(((t.month - 1) % 12 + 1) / 3)
 		return os.date("%Y", os.time(t)) .. "-Q" .. quarter
+	elseif unit == "year" then
+		-- Mid-June, mid-month, noon: neither month length nor a DST transition
+		-- can then move the result into an adjacent year.
+		local t = os.date("*t")
+		t.year = t.year + offset
+		t.month = 6
+		t.day = 15
+		t.hour = 12
+		t.min = 0
+		t.sec = 0
+		return os.date("%Y", os.time(t))
 	end
 end
 
@@ -446,6 +457,12 @@ return {
 			substitutions = {
 				YEAR = function()
 					return os.date("%Y", os.time())
+				end,
+				YEAR_PREVIOUS_YEAR = function()
+					return getDateOffset(-1, "year")
+				end,
+				YEAR_NEXT_YEAR = function()
+					return getDateOffset(1, "year")
 				end,
 				YEAR_PREVIOUS_QUARTER = function()
 					return getDateOffset(-1, "quarter")
