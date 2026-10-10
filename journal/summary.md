@@ -2,6 +2,28 @@
 
 A running summary of changes to this repository, newest first.
 
+## 2026-10-10
+
+Wide markdown tables now fit the window. `render-markdown.nvim` 8.14.0 added
+`pipe_table.wrap`, which wraps each cell over several virtual lines and keeps the
+columns aligned. The repo pinned 8.13.0, one release behind, so no amount of
+configuration could have reached the option and a new plugin would have
+duplicated it. The pin moved to `245956d` and `pipe_table` is now explicit in
+`.config/nvim/lua/plugins/extras/lang/markdown.lua`. Two faults turned up on the
+way. The spec set both `opts` and a zero-argument `config` function, and
+lazy.nvim runs `setup(opts)` only when no `config` exists, so `file_types` never
+reached the plugin and Avante buffers went unrendered. The fitted table also lost
+its right border, because the `H1` to `H6` heading signs widen the gutter and
+`signcolumn = "auto"` widens it after the plugin measures the window
+(`lib/env.lua:262`), which left 83 columns drawn into 81. Pinning the gutter
+through `win_options.signcolumn.rendered` fixes it, since window options are
+applied before the parse (`core/ui.lua:104`). One limitation stays and cannot be
+fixed by any plugin: the cursor on a wrapped row brings the raw line back,
+because a virtual line cannot hold the cursor (issue 692, closed as not planned).
+Obsidian vaults are untouched, so tables there are still unrendered. Separately,
+`lazy-lock.json` is out of step with the installed versions of 24 other plugins,
+and that still needs a decision. See [2026-10-10.md](2026-10-10.md).
+
 ## 2026-10-04
 
 Retriggered `.config/espanso/match/obsidian.yml`. The ten `[[today]]`-style matches became
