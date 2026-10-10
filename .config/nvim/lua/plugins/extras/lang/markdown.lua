@@ -11,64 +11,74 @@ return {
 		---@type render.md.UserConfig
 		opts = {
 			file_types = { "markdown", "Avante" },
+			win_options = {
+				-- The heading signs widen the gutter. With `signcolumn = "auto"` that
+				-- happens after the plugin measures the table width, so a fitted table
+				-- loses its right border. A fixed gutter keeps the measurement correct.
+				signcolumn = { default = vim.o.signcolumn, rendered = "yes" },
+			},
+			pipe_table = {
+				-- `wrap` splits a wide row over several virtual lines, so the columns keep
+				-- their alignment instead of breaking at the window edge. It disables itself
+				-- without a message unless the cell mode is `padded` or `trimmed`, so the
+				-- mode stays explicit here.
+				cell = "padded",
+				wrap = true,
+			},
+			heading = {
+				icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
+				signs = { "H1", "H2", "H3", "H4", "H5", "H6" },
+			},
+			bullet = {
+				enabled = true,
+				icons = { "•", ">", ">>", ">>>" },
+				ordered_icons = {},
+				left_pad = 0,
+				right_pad = 1,
+				highlight = "RenderMarkdownBullet",
+			},
+			checkbox = {
+				custom = {
+					cancelled = {
+						raw = "[x]",
+						rendered = icons.ui.CloseBox .. " ",
+						highlight = "RenderMarkdownChecked",
+						scope_highlight = "@markup.strikethrough",
+					},
+					done = {
+						raw = "[v]",
+						rendered = icons.ui.BoxChecked2 .. " ",
+						highlight = "RenderMarkdownChecked",
+						scope_highlight = "@markup.strikethrough",
+					},
+					important = {
+						raw = "[!]",
+						rendered = icons.ui.AlertTriangle .. " ",
+						highlight = "DiagnosticWarn",
+					},
+					meeting = {
+						raw = "[<]",
+						rendered = icons.ui.Calendar2 .. " ",
+						highlight = "RenderMarkdownTodo",
+						scope_highlight = nil,
+					},
+					todo = {
+						raw = "[ ]",
+						rendered = icons.ui.CheckBox .. " ",
+						highlight = "RenderMarkdownTodo",
+						scope_highlight = nil,
+					},
+					incomplete = {
+						raw = "[/]",
+						rendered = icons.ui.MinusSquare .. " ",
+						highlight = "DiagnosticWarn",
+						scope_highlight = nil,
+					},
+				},
+			},
 		},
 		ft = { "markdown", "Avante" },
 		cond = vim.fn.isdirectory(".obsidian") == 0,
-		config = function()
-			require("render-markdown").setup({
-				heading = {
-					icons = { "# ", "## ", "### ", "#### ", "##### ", "###### " },
-					signs = { "H1", "H2", "H3", "H4", "H5", "H6" },
-				},
-				bullet = {
-					enabled = true,
-					icons = { "•", ">", ">>", ">>>" },
-					ordered_icons = {},
-					left_pad = 0,
-					right_pad = 1,
-					highlight = "RenderMarkdownBullet",
-				},
-				checkbox = {
-					custom = {
-						cancelled = {
-							raw = "[x]",
-							rendered = icons.ui.CloseBox .. " ",
-							highlight = "RenderMarkdownChecked",
-							scope_highlight = "@markup.strikethrough",
-						},
-						done = {
-							raw = "[v]",
-							rendered = icons.ui.BoxChecked2 .. " ",
-							highlight = "RenderMarkdownChecked",
-							scope_highlight = "@markup.strikethrough",
-						},
-						important = {
-							raw = "[!]",
-							rendered = icons.ui.AlertTriangle .. " ",
-							highlight = "DiagnosticWarn",
-						},
-						meeting = {
-							raw = "[<]",
-							rendered = icons.ui.Calendar2 .. " ",
-							highlight = "RenderMarkdownTodo",
-							scope_highlight = nil,
-						},
-						todo = {
-							raw = "[ ]",
-							rendered = icons.ui.CheckBox .. " ",
-							highlight = "RenderMarkdownTodo",
-							scope_highlight = nil,
-						},
-						incomplete = {
-							raw = "[/]",
-							rendered = icons.ui.MinusSquare .. " ",
-							highlight = "DiagnosticWarn",
-							scope_highlight = nil,
-						},
-					},
-				},
-			})
-		end,
 	},
 	{
 		"hsteinshiromoto/markdown_mover.nvim", -- For GitHub hosted plugin
