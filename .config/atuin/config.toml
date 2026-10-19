@@ -276,3 +276,14 @@ name = "tokyonight"
 ## The "workspace" mode is skipped when not in a workspace or workspaces = false.
 ## Default filter mode can be overridden with the filter_mode setting.
 # filters = [ "global", "host", "session", "workspace", "directory" ]
+
+[tmux]
+## Open the search UI in a tmux popup instead of redrawing the pane.
+## Needs tmux >= 3.2; falls back to inline rendering outside tmux.
+## nushell shells do not support the popup and keep the inline UI.
+enabled = true
+
+[ai]
+## `?` on an empty prompt opens Atuin AI (english-to-bash via Atuin Hub).
+## zsh/bash/fish only, and needs `atuin login` on the host.
+enabled = true
