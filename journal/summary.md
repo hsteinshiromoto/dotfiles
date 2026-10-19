@@ -2,6 +2,44 @@
 
 A running summary of changes to this repository, newest first.
 
+## 2026-10-19
+
+Ghostty was slow to open a pane and laggy to type in. The terminal was not at
+fault. An interactive zsh took 5.94-8.46 s, and a `zsh -i -x` trace put 8.9 s of
+9.9 s inside `compinit`, `compdump` and `compdef`. `compinit` threw away
+`~/.zcompdump` and rebuilt it on every single shell, because the cache check
+compares two counts of the same files that can never agree while `$fpath` holds
+duplicates: `compdump:26` counts the raw `$fpath`, `compaudit:62` counts a
+de-duplicated copy declared at `compaudit:45`. `$fpath` held 44 entries for 19
+unique directories, because nix-darwin's generated `/etc/zshenv` prepends three
+directories per `$NIX_PROFILES` entry, its guard variable is not exported, and
+zsh exports the array as `FPATH`. Ghostty starts a shell, that starts tmux, and
+tmux starts a login shell, so the list grew three times. A new `~/.zshenv` with
+`typeset -U path fpath` fixes it. The file must be `.zshenv`, not `.zshrc`: zsh
+reads `/etc/zshrc` first and nix-darwin runs its own `compinit` there. Startup
+fell to 0.51-0.63 s, user CPU from 0.50 s to 0.09 s, system CPU from 0.67 s to
+0.08 s, and the `.zcompdump` modification time stopped moving. Completion still
+loads 2020 entries. Five stale `.zcompdump.<host>.<pid>` files were deleted.
+- **The first explanation of the typing lag was wrong, and the correction changed
+  the fix.** The claim was that atuin's suggestion query blocked keystrokes.
+  zsh-autosuggestions already enables async itself on zsh 5.0.8 and later
+  (`zsh-autosuggestions.zsh:862`). The real cost is that
+  `_zsh_autosuggest_async_request` sends `kill -TERM`, forks this fully loaded
+  shell, and blocks on `read` for the child PID on every keystroke. The query is
+  off-thread. The fork is not. `ZSH_AUTOSUGGEST_STRATEGY=(history)` now follows
+  `atuin init`, measured at 2.83 ms against 20.97 ms. Atuin keeps Ctrl-R.
+- **`ZSH_AUTOSUGGEST_MANUAL_REBIND=1` was the bigger of the three plugin
+  settings.** It makes `_zsh_autosuggest_start` call
+  `add-zsh-hook -d precmd _zsh_autosuggest_start` and remove itself instead of
+  re-binding widgets every prompt, worth 8.49 ms per prompt. The prompt chain
+  fell from about 15 ms to about 6.3 ms. All three settings precede the zgenom
+  `source` line, because the plugin reads them at load time.
+- **Loose ends.** `zoxide init` moved after `atuin init`, which stops its startup
+  warning reaching stderr on every shell. `__zgenom_autoupdate_background` still
+  burns 4.55 ms per prompt checking a seven-day timer and was left alone. The
+  rendering half of the report is unanswered: keystroke latency in a real
+  terminal cannot be measured from a subprocess with no controlling TTY.
+
 ## 2026-10-10
 
 Wide markdown tables now fit the window. `render-markdown.nvim` 8.14.0 added

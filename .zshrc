@@ -89,6 +89,32 @@ HIST_STAMPS="yyyy-mm-dd"
 #
 # The plugins are installes using zgenom plugin manager.
 # To install most of these plugins add zgenom load githubuser/reponame to .zshrc
+# ---
+# Configuration: zsh-autosuggestions
+#
+# Must be set before zgenom sources the plugin below, because
+# zsh-autosuggestions reads these at load time.
+#
+# `atuin init zsh` prepends an "atuin" strategy that forks the atuin binary to
+# query a ~10 MB SQLite database (10-20 ms warm, ~80 ms cold). The plugin
+# already runs that fetch asynchronously - it sets USE_ASYNC itself on zsh
+# >= 5.0.8 - so BUFFER_MAX_SIZE is what actually helps: it stops the query
+# firing at all past 60 characters, where a suggestion is useless anyway.
+# USE_ASYNC is set here only to pin the behaviour rather than inherit it from
+# a version check.
+#
+# MANUAL_REBIND skips the widget re-binding the plugin otherwise repeats on
+# every prompt. It is safe here only because no plugin loaded after
+# zsh-autosuggestions defines new ZLE widgets; revisit it if that changes.
+#
+# References:
+# 	[1] https://github.com/zsh-users/zsh-autosuggestions#disabling-automatic-widget-re-binding
+# 	[2] ~/.zgenom/sources/zsh-users/zsh-autosuggestions/___/zsh-autosuggestions.zsh:862
+# ---
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=60
+
 source "${HOME}/.zgenom/zgenom.zsh"
 
 # Check for plugin and zgenom updates every 7 days
@@ -445,8 +471,26 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(tv init zsh)"
 eval "$(atuin init zsh)"
+# ---
+# Keep atuin out of the autosuggestion path.
+#
+# `atuin init zsh` prepends an "atuin" strategy to ZSH_AUTOSUGGEST_STRATEGY.
+# That strategy forks the atuin binary to query a ~10 MB SQLite database:
+# measured 20.97 ms per call against 2.83 ms for the built-in history
+# strategy. zsh-autosuggestions runs the fetch asynchronously, but the async
+# path still costs a `kill -TERM`, a fork of this fully-loaded shell, and a
+# blocking read of the child pid on every keystroke, so the query is only
+# partly off the critical path.
+#
+# Ctrl-R still opens atuin's full search; only the inline grey suggestion
+# falls back to zsh history.
+# ---
+ZSH_AUTOSUGGEST_STRATEGY=(history)
+
+# zoxide insists on being the last initialiser; anything sourced after it
+# trips its startup "doctor" warning on every shell.
+eval "$(zoxide init zsh)"
 # alias claude="/Users/hsteinshiromoto/.claude/local/claude"
