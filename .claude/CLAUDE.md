@@ -97,6 +97,7 @@ Additional instructions for coding:
 ### Nix
 
 - Use `flake.nix` to ensure reproducibility of the environment. Prefer to start a new `flake.nix` using a template file from the repository `https://github.com/hsteinshiromoto/nix.template`.
+- Install Claude Code plugins and skills declaratively via `modules/features/home/claude.nix` in `~/.config/nix`. Do not use ad-hoc `claude plugin` commands.
 
 ### Markdown
 
