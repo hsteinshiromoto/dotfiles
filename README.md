@@ -33,9 +33,9 @@ The structure of this repository mirrors the `$HOME` directory structure exactly
 │   ├── eza
 │   ├── ghostty
 │   │   └── themes
-│   ├── hammerspoon
-│   ├── hypr                                <- # Hyprland configuration files
-│   ├── karabiner
+│   ├── hammerspoon                         <- # Hammerspoon configuration files (MacOS only)
+│   ├── hypr                                <- # Hyprland configuration files (Linux only)
+│   ├── karabiner                           <- # Karabiner elements configuration files (MacOS only)
 │   │   ├── assets
 │   │   │   └── complex_modifications
 │   │   └── automatic_backups
@@ -83,7 +83,6 @@ The structure of this repository mirrors the `$HOME` directory structure exactly
 │   └── share
 │       ├── code-server
 │       └── mc
-├── .serena
 ├── .ssh                                    <- # SSH settings
 ├── .vscode
 ├── bin
@@ -97,8 +96,10 @@ The structure of this repository mirrors the `$HOME` directory structure exactly
 │       │       └── user
 │       ├── KeyBindings
 │       └── Preferences
-└── utils
-    └── prompts                             <- # Do not stow this folder
+├── utils
+│   └── prompts                             <- # Do not stow this folder
+├── .tmux.conf                              <- # Tmux settings file
+└── .zshrc                                  <- # Z shell settings file
 ```
 
 ## Workflow
@@ -281,6 +282,14 @@ option either. The flag `date -v` works only on BSD, and `date -d` works only on
 this repository stows to both.
 
 Run `make espanso-test` to check the script. The tests are doctests inside the docstrings.
+
+## Tmux
+
+Tmux plugins are installed and maintained using TPM. Refer to `.tmux.conf`.
+
+## ZSH
+
+Zsh plugins are installed using `zgenom`. Refer to `.zshrc`
 
 ## Favorite Commands
 
