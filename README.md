@@ -3,81 +3,103 @@
 
 # Dotfiles
 
-My dotfiles.
+This repository contains the user's configuration files. These files are place to their target location of each application by using symlinks with `gnustow`.
 
 ## Structure
 
-The structure of this repository mirrors the `$HOME` directory structure exactly. Files are placed in their target locations within the repo, then symlinked using `stow . --adopt`.
+The structure of this repository mirrors the `$HOME` directory structure exactly.
 
 ### Directory Overview
 
-- **`.claude/`** - Claude Code configuration and project-specific settings
-  - `skills/` - Claude skills (`graphify`, `ste_writing`)
-  - `workflows/` - Claude workflow scripts (`debug-ticket`), see `.claude/workflows/README.md`
-- **`.config/`** - Cross-platform application configurations
-  - `amnesia/` - Terminal session persistence
-  - `atuin/` - Shell history manager configuration
-  - `bat/` - Syntax highlighting cat clone
-  - `btop/` - Resource monitor configuration
-  - `claude/` - Claude AI assistant settings
-  - `espanso/` - Text expansion tool configuration
-  - `eza/` - Modern `ls` replacement theme
-  - `ghostty/` - Terminal emulator configuration
-  - `karabiner/` - macOS keyboard customization (complex modifications and backups)
-  - `kitty/` - Terminal emulator configuration
-  - `lazygit/` - Git UI configuration
-  - `nvim/` - Neovim configuration (see detailed structure below)
-  - `opencode/` - OpenCode AI configuration (agents, commands, skills)
-  - `television/` - Fuzzy finder/launcher configuration
-  - `tmuxinator/` - Tmux session management
-  - `yazi/` - File manager configuration
-- **`.gnupg/`** - GnuPG configuration and keys
-- **`.lima/`** - Linux virtual machine configurations
-- **`.local/`** - User-specific binaries and data
-  - `bin/` - User executable scripts
-  - `share/` - User-specific application data
-- **`.serena/`** - Serena AI project configuration
-- **`.ssh/`** - SSH configuration and keys
-- **`.stowrc`**, **`.stow-local-ignore`** - Stow configuration files
-- **`.vscode/`** - VS Code extensions configuration
-- **`bin/`** - Utility scripts and aliases
-- **`macos/`** - macOS-specific configurations
-  - `Library/Application Support/` - macOS application data
-  - `Library/KeyBindings/` - macOS custom key bindings
-  - `Library/Preferences/` - macOS application preferences
-- **`utils/`** - Utility files and resources
-  - `prompts/` - AI prompts and templates
-
-### Neovim Structure
-
-The Neovim configuration (`~/.config/nvim/`) uses a modular Lua-based structure:
-
+```shell
+.
+├── .claude                                 <- # Global Claude Code's settings
+│   ├── agents
+│   ├── commands
+│   ├── hooks
+│   ├── skills
+│   └── workflows
+├── .config                                 <- # $XDG_CONFIG configuration files
+│   ├── amnesia
+│   ├── atuin
+│   ├── bat
+│   ├── btop
+│   ├── claude
+│   ├── code-server
+│   ├── espanso
+│   │   ├── config
+│   │   ├── match
+│   │   └── scripts
+│   ├── eza
+│   ├── ghostty
+│   │   └── themes
+│   ├── hammerspoon
+│   ├── hypr                                <- # Hyprland configuration files
+│   ├── karabiner
+│   │   ├── assets
+│   │   │   └── complex_modifications
+│   │   └── automatic_backups
+│   ├── kitty
+│   ├── lazygit
+│   ├── mc                                  <- # Midnight Commander settings
+│   ├── neofetch
+│   ├── nvim                                <- # Neovim configuration folder
+│   │   ├── lsp                             <- # LSP server configurations
+│   │   ├── lua
+│   │   │   ├── config                      <- # Core Neovim configurations
+│   │   │   ├── core                        <- # Core functionality
+│   │   │   ├── plugins                     <- # Plugin configurations
+│   │   │   │   ├── ai
+│   │   │   │   ├── colorscheme             <- # Theme configurations
+│   │   │   │   ├── completion              <- # Completion plugins
+│   │   │   │   ├── extras                  <- # Additional functionality
+│   │   │   │   │   ├── lang                <- # Language-specific plugins
+│   │   │   │   │   ├── pde                 <- # Personal Development Environment
+│   │   │   │   │   │   └── notes           <- # Note-taking (Obsidian, etc.)
+│   │   │   │   │   └── ui                  <- # UI enhancements
+│   │   │   │   │       ├── statuscol       <- # Status column customization
+│   │   │   │   │       └── statusline      <- # Statusline configuration
+│   │   │   │   ├── local                   <- # Local/custom plugins
+│   │   │   │   │   └── todo_picker
+│   │   │   │   ├── server                  <- # Server-related plugins
+│   │   │   │   └── test                    <- # Testing plugins
+│   │   │   └── utils                       <- # Utility functions
+│   │   ├── scripts                         <- # Shell scripts called by the config (dashboard panes)
+│   │   └── snippets
+│   ├── opencode
+│   │   ├── agents
+│   │   └── commands
+│   ├── television
+│   │   └── cable
+│   ├── tmuxinator
+│   └── yazi
+│       └── flavors
+│           └── tokyo-night.yazi
+├── .gnupg                                  <- # Gnupg settings
+├── .lima
+│   └── default
+├── .local
+│   ├── bin
+│   └── share
+│       ├── code-server
+│       └── mc
+├── .serena
+├── .ssh                                    <- # SSH settings
+├── .vscode
+├── bin
+├── journal
+├── macos
+│   └── Library
+│       ├── Application Support
+│       │   ├── Code
+│       │   └── espanso
+│       │       ├── match
+│       │       └── user
+│       ├── KeyBindings
+│       └── Preferences
+└── utils
+    └── prompts                             <- # Do not stow this folder
 ```
-nvim/
-├── lsp/                    # LSP server configurations
-├── scripts/                # Shell scripts called by the config (dashboard panes)
-└── lua/
-    ├── config/             # Core Neovim configurations
-    ├── core/               # Core functionality
-    ├── plugins/            # Plugin configurations
-    │   ├── ai/             # AI-related plugins
-    │   ├── colorscheme/    # Theme configurations
-    │   ├── completion/     # Completion plugins
-    │   ├── extras/         # Additional functionality
-    │   │   ├── lang/       # Language-specific plugins
-    │   │   ├── pde/        # Personal Development Environment
-    │   │   │   └── notes/  # Note-taking (Obsidian, etc.)
-    │   │   └── ui/         # UI enhancements
-    │   │       ├── statuscol/   # Status column customization
-    │   │       └── statusline/  # Statusline configuration
-    │   ├── local/          # Local/custom plugins
-    │   ├── server/         # Server-related plugins
-    │   └── test/           # Testing plugins
-    └── utils/              # Utility functions
-```
-
-## Requirements
-
 
 ## Workflow
 
