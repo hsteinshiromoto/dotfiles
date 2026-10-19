@@ -1,4 +1,5 @@
 ---
+name: jira
 description: "Manage Jira tickets — create, update, change status, comment, search, view"
 argument-hint: "create|update|status|comment|search|view [args]"
 disable-model-invocation: false

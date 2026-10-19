@@ -1,4 +1,5 @@
 ---
+name: mr-review
 description: "Review Pull/Merge Request"
 argument-hint: "create|update|status|comment|search|view [args]"
 disable-model-invocation: false

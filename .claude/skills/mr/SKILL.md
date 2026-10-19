@@ -1,4 +1,5 @@
 ---
+name: mr
 description: "Manage Pull/Merge Requests — create, update, review, comment, search, view"
 argument-hint: "create|update|status|comment|search|view [args]"
 disable-model-invocation: false

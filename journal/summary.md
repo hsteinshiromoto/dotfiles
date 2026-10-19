@@ -2,6 +2,27 @@
 
 A running summary of changes to this repository, newest first.
 
+## 2026-10-20
+
+- **Brought opencode to skill parity with Claude Code; the MCP parity already
+  existed.** `render.nix` fans one MCP set out to `~/.mcp.json` (Claude, plain
+  only), `~/.cursor/mcp.json` and the SOPS-rendered opencode.json (everything,
+  plus opencode-only servers), so opencode already had a superset — no MCP
+  change. opencode silently drops skills whose frontmatter lacks `name:`, which
+  is why `jira`, `mr` and `mr_review` never appeared there; each file gained one
+  `name:` line (`mr_review` → `mr-review`, hyphen per opencode's naming rule,
+  folder mismatch tolerated as with `sanity_check`/`sanity-check`). The
+  current config schema (checked live) deprecated `skills.paths` in favour of a
+  plain string array, so `render.nix` `opencodeJsonContent` gained
+  `skills = [ "~/.claude/marketplaces/obsidian-skills/skills" ]` — six kepano
+  skills, reusing the clone `claude.nix` already maintains; ponytail,
+  claude-reflect and replica were scoped out as hook-dependent or unrequested,
+  and `$ARGUMENTS` command wrappers were declined. Sanity check: no Makefile
+  test target; `nix-instantiate --parse` passed and all four edits were read
+  back. Needs `home-manager switch` plus an opencode restart. Cross-repo:
+  `~/.config/nix/modules/features/home/mcp/render.nix`. See
+  [2026-10-20.md](2026-10-20.md).
+
 ## 2026-10-19
 
 Ghostty was slow to open a pane and laggy to type in. The terminal was not at
