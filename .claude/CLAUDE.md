@@ -52,7 +52,16 @@ If you are unsure of the exact syntax for a third-party DSL, config schema or pl
 
 - Be concise. No filler sentences.
 - Skip "Great question!" openers.
-- Use bullet points over paragraphs.
+- Keep investigation and verification findings concise — use a table or bullet summary instead of verbose multi-paragraph prose reports.
+- You MUST USE the `ste_writing` skill, when writing prose (for example, docs, READMEs, PR descriptions, error messages, release notes, comments, JIRA tickets). DO NOT USE when writing code.
+- Present your conclusions and possible solutions as trade offs for comparison with assessment including maintainability (how easy it is to maintain the solution from a development perspective), security, etc.
+
+## User Default Folders
+
+- `~/$XDG_CONFIG/nix`: Contains the user's installed software and declarative host configuration. Read the file `~/$XDG_CONFIG/nix/README.md` to understand this repository. Permissions: You are allowed to read and write in this folder.
+- `~/$XDG_CONFIG/sops`: Contains the user's secrets required to install or modify any software. Read the file `~/$XDG_CONFIG/sops/README.md` to understand this repository. Permissions: You are allowed to read this folder.
+- `~/$XDG_CONFIG/dotfiles`: Contains the user's dotfiles, ie configuration files. Read the file `~/$XDG_CONFIG/dotfiles/README.md` to understand this repository. Permissions: You are allowed to read and write in this folder.
+
 
 ## Code Development Standards
 
@@ -130,12 +139,6 @@ Additional instructions for coding:
 ### LSPs
 
 - Use the LSPs where available, instead of `grep`, `find` etc.
-
-## Communication Style
-
-- Keep investigation and verification findings concise — use a table or bullet summary; avoid verbose multi-paragraph prose reports.
-- You MUST USE the `ste_writing` skill, when writing prose (docs, READMEs, PR descriptions, error messages, release notes, comments). DO NOT USE when writing code.
-- Present present your conclusions and possible solutions as trade offs for comparison with assessment including maintainability (how easy it is to maintain the solution from a development perspective), security, etc.
 
 ## Finishing up
 
