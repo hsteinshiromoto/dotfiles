@@ -219,6 +219,44 @@ espanso restart
 
 **Note**: The LaunchAgent plist file is managed by Espanso itself and should not be added to this dotfiles repo. Only the config files in `.config/espanso/` are managed by stow.
 
+### Espanso - Base Snippets
+
+The file `.config/espanso/match/base.yml` holds general snippets. Each trigger needs a word
+boundary.
+
+| Trigger | Result |
+| --- | --- |
+| `2day` | Today, as `YYYY-MM-DD` |
+| `:yesterday:` | Yesterday, as `YYYY-MM-DD` |
+| `:tomorrow:` | Tomorrow, as `YYYY-MM-DD` |
+| `:uuid7:` | A new UUID version 7 |
+| `:dname:` | A random Docker-style name, such as `eager_turing` |
+
+`:yesterday:` and `:tomorrow:` call `date -v`, which is BSD only. These two triggers work on
+macOS. They fail on Linux. The other three use `python3`.
+
+### Espanso - Git Snippets
+
+The file `.config/espanso/match/git.yml` holds git command prefixes. Each trigger starts
+with `;`.
+
+| Trigger | Result |
+| --- | --- |
+| `;ga` | `git add ` |
+| `;gc` | `git commit -m ""` |
+| `;gp` | `git push` |
+| `;gt` | `git tag -a -m ""` |
+| `;gff` | `git flow feature start ` |
+| `;gfr` | `git flow release start ` |
+| `;gfh` | `git flow hotfix start ` |
+| `;gfb` | `git flow bugfix start ` |
+| `;bf` | `[bugfix]` |
+
+### Espanso - Typo Correction
+
+The file `.config/espanso/match/typo.yml` corrects common English typos on a word boundary.
+For example, `teh` becomes `the`. Read the file for the full list.
+
 ### Espanso - Date Snippets
 
 The file `.config/espanso/match/dates.yml` holds offset-date matches. Type an offset such as
