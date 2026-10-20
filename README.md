@@ -221,19 +221,20 @@ espanso restart
 
 ### Espanso - Base Snippets
 
-The file `.config/espanso/match/base.yml` holds general snippets. Each trigger needs a word
+The file `.config/espanso/match/base.yml` holds general snippets. The date triggers start
+with `;`, the same style as `git.yml`. The `:uuid7:` and `:dname:` triggers need a word
 boundary.
 
 | Trigger | Result |
 | --- | --- |
-| `2day` | Today, as `YYYY-MM-DD` |
-| `:yesterday:` | Yesterday, as `YYYY-MM-DD` |
-| `:tomorrow:` | Tomorrow, as `YYYY-MM-DD` |
+| `;ttd` | Today, as `YYYY-MM-DD` |
+| `;tyd` | Yesterday, as `YYYY-MM-DD` |
+| `;ttm` | Tomorrow, as `YYYY-MM-DD` |
 | `:uuid7:` | A new UUID version 7 |
 | `:dname:` | A random Docker-style name, such as `eager_turing` |
 
-`:yesterday:` and `:tomorrow:` call `date -v`, which is BSD only. These two triggers work on
-macOS. They fail on Linux. The other three use `python3`.
+`;tyd` and `;ttm` call `date -v`, which is BSD only. These two triggers work on macOS. They
+fail on Linux. The other three use `python3`.
 
 ### Espanso - Git Snippets
 
@@ -271,17 +272,17 @@ short code, and most also have a longer alias.
 
 | Trigger | Alias | Result on Sunday 2026-10-04 |
 | --- | --- | --- |
-| `;td` | `;today` | `[[2026-10-04\|today]]` |
-| `;yd` | `;yesterday` | `[[2026-10-03\|yesterday]]` |
-| `;tm` | `;tomorrow` | `[[2026-10-05\|tomorrow]]` |
-| `;mon` … `;sun` | `;nextmon` … `;nextsun` | `;mon` gives `[[2026-10-05\|next monday]]` |
-| `;lmon` … `;lsun` | `;lastmon` … `;lastsun` | `;lfri` gives `[[2026-10-02\|last friday]]` |
-| `;wk` | `;week` | `[[2026-W40\|this week]]` |
-| `;nwk` | `;nextweek` | `[[2026-W41\|next week]]` |
-| `;lwk` | `;lastweek` | `[[2026-W39\|last week]]` |
-| `;mth` | none | `[[2026-10\|this month]]` |
-| `;qtr` | `;quarter` | `[[2026-Q4\|this quarter]]` |
-| `;yr` | `;year` | `[[2026\|this year]]` |
+| `;otd` | `;today` | `[[2026-10-04\|today]]` |
+| `;oyd` | `;yesterday` | `[[2026-10-03\|yesterday]]` |
+| `;otm` | `;tomorrow` | `[[2026-10-05\|tomorrow]]` |
+| `;omon` … `;osun` | `;nextmon` … `;nextsun` | `;omon` gives `[[2026-10-05\|next monday]]` |
+| `;olmon` … `;olsun` | `;lastmon` … `;lastsun` | `;olfri` gives `[[2026-10-02\|last friday]]` |
+| `;owk` | `;week` | `[[2026-W40\|this week]]` |
+| `;onwk` | `;nextweek` | `[[2026-W41\|next week]]` |
+| `;olwk` | `;lastweek` | `[[2026-W39\|last week]]` |
+| `;omth` | none | `[[2026-10\|this month]]` |
+| `;oqtr` | `;quarter` | `[[2026-Q4\|this quarter]]` |
+| `;oyr` | `;year` | `[[2026\|this year]]` |
 
 The note names match both vaults and `~/.config/nvim/lua/plugins/obsidian.lua`: daily
 `YYYY-MM-DD`, weekly `YYYY-Www` on the ISO week-year, monthly `YYYY-MM`, quarterly
@@ -294,13 +295,13 @@ Three rules explain the shape of this table.
    cleanly, and espanso then writes into an open popup. The replacement supplies its own
    brackets, so the old triggers cannot return as aliases.
 2. No trigger is a prefix of another trigger. Espanso expands the shorter one as soon as it
-   matches, which leaves the longer one dead. This is why `;month` does not exist: `;mon`
-   comes first. Use `;mth`.
+   matches, which leaves the longer one dead. This is why `;omonth` does not exist: `;omon`
+   comes first. Use `;omth`.
 3. `;mon` through `;sun` never return today. BSD `date -v+mon` returns today when today is
    a Monday, so the old `[[next monday]]` linked to the note you were already in.
 
 Do not add `word: true` to this file. Espanso fires a `right_word` trigger only after you
-type a separator behind it, so `;td` would wait for a space.
+type a separator behind it, so `;otd` would wait for a space.
 
 #### Date Resolution Helper
 

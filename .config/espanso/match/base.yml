@@ -9,8 +9,7 @@
 # it gets replaced by the "replace" string.
 matches:
   # Print the current date
-  - trigger: "2day"
-    word: true
+  - trigger: ";ttd"
     replace: "{{mydate}}"
     vars:
       - name: mydate
@@ -18,8 +17,7 @@ matches:
         params:
           format: "%Y-%m-%d"
 
-  - trigger: ":yesterday:"
-    word: true
+  - trigger: ";tyd"
     replace: "{{output}}"
     vars:
       - name: output
@@ -27,8 +25,7 @@ matches:
         params:
           cmd: "echo `date -v -1d \"+%Y-%m-%d\"`"
 
-  - trigger: ":tomorrow:"
-    word: true
+  - trigger: ";ttm"
     replace: "{{output}}"
     vars:
       - name: output
