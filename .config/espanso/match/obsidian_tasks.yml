@@ -1,0 +1,196 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/espanso/espanso/dev/schemas/match.schema.json
+
+# Obsidian Tasks plugin fields, in the plugin's Dataview format.
+#
+# Single brackets, not double. `[due:: 2026-10-22]` is an inline field that both
+# Tasks and Dataview index; `[[due:: 2026-10-22]]` is a wikilink to a note of
+# that name and neither plugin reads it.
+#
+# The plugin only parses these when Settings -> Tasks -> Task Format is set to
+# `Dataview`. In the default `Tasks Emoji Format` they render as plain text.
+# Field names are from the plugin reference, Task Formats -> Dataview Format.
+#
+# Trigger conventions carry over from obsidian.yml: `;`-prefixed, no `word: true`,
+# and no trigger may be a prefix of another, because espanso expands the shorter
+# one eagerly (espanso/espanso#178). That rule is why the priority codes end in
+# single distinct letters -- `;oph` for high would shadow a `;ophh` for highest --
+# and why tomorrow is `;osctm` rather than `;oschtm`.
+#
+# Dates reuse scripts/obsidian_date.py, as obsidian.yml does. Only `due` carries
+# the full weekday set; `scheduled` and `start` stop at tomorrow, which is as far
+# as they get used in practice. Add weekdays there the same way if that changes.
+
+matches:
+# Priority. Values are the plugin's five named levels.
+  - triggers: [";opx"]
+    label: "Obsidian task -- priority highest"
+    replace: "[priority:: highest]"
+
+  - triggers: [";oph"]
+    label: "Obsidian task -- priority high"
+    replace: "[priority:: high]"
+
+  - triggers: [";opm"]
+    label: "Obsidian task -- priority medium"
+    replace: "[priority:: medium]"
+
+  - triggers: [";opl"]
+    label: "Obsidian task -- priority low"
+    replace: "[priority:: low]"
+
+  - triggers: [";opz"]
+    label: "Obsidian task -- priority lowest"
+    replace: "[priority:: lowest]"
+
+# Due date. `;odue` is today; `;odtm` is tomorrow; `;od<day>` is the next such
+# weekday, never today.
+  - triggers: [";odue"]
+    label: "Obsidian task -- due today"
+    replace: "[due:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "today"]
+
+  - triggers: [";odtm"]
+    label: "Obsidian task -- due tomorrow"
+    replace: "[due:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "tomorrow"]
+
+  - triggers: [";odmon"]
+    label: "Obsidian task -- due next monday"
+    replace: "[due:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:mon"]
+
+  - triggers: [";odtue"]
+    label: "Obsidian task -- due next tuesday"
+    replace: "[due:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:tue"]
+
+  - triggers: [";odwed"]
+    label: "Obsidian task -- due next wednesday"
+    replace: "[due:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:wed"]
+
+  - triggers: [";odthu"]
+    label: "Obsidian task -- due next thursday"
+    replace: "[due:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:thu"]
+
+  - triggers: [";odfri"]
+    label: "Obsidian task -- due next friday"
+    replace: "[due:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:fri"]
+
+  - triggers: [";odsat"]
+    label: "Obsidian task -- due next saturday"
+    replace: "[due:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:sat"]
+
+  - triggers: [";odsun"]
+    label: "Obsidian task -- due next sunday"
+    replace: "[due:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "next:sun"]
+
+# Scheduled date.
+  - triggers: [";osch"]
+    label: "Obsidian task -- scheduled today"
+    replace: "[scheduled:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "today"]
+
+  - triggers: [";osctm"]
+    label: "Obsidian task -- scheduled tomorrow"
+    replace: "[scheduled:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "tomorrow"]
+
+# Start date.
+  - triggers: [";ostart"]
+    label: "Obsidian task -- start today"
+    replace: "[start:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "today"]
+
+  - triggers: [";osttm"]
+    label: "Obsidian task -- start tomorrow"
+    replace: "[start:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "tomorrow"]
+
+# Status and tracking. The plugin names the done date `completion`.
+  - triggers: [";otask"]
+    label: "Obsidian task -- checkbox"
+    replace: "- [ ] "
+
+  - triggers: [";ocre"]
+    label: "Obsidian task -- created today"
+    replace: "[created:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "today"]
+
+  - triggers: [";odone"]
+    label: "Obsidian task -- completed today"
+    replace: "[completion:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "today"]
+
+  - triggers: [";ocan"]
+    label: "Obsidian task -- cancelled today"
+    replace: "[cancelled:: {{output}}]"
+    vars:
+      - name: output
+        type: script
+        params:
+          args: ["python3", "%CONFIG%/scripts/obsidian_date.py", "today"]

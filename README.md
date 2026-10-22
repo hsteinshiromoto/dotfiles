@@ -303,10 +303,50 @@ Three rules explain the shape of this table.
 Do not add `word: true` to this file. Espanso fires a `right_word` trigger only after you
 type a separator behind it, so `;otd` would wait for a space.
 
+#### Obsidian Task Fields
+
+The file `.config/espanso/match/obsidian_tasks.yml` holds matches that write a field for the
+Obsidian Tasks plugin. The fields use the Dataview format of the plugin. Each trigger starts
+with `;`, the same style as `obsidian.yml`.
+
+| Trigger | Result on Sunday 2026-10-04 |
+| --- | --- |
+| `;opx` `;oph` `;opm` `;opl` `;opz` | `[priority:: highest]` down to `[priority:: lowest]` |
+| `;odue` | `[due:: 2026-10-04]` |
+| `;odtm` | `[due:: 2026-10-05]` |
+| `;odmon` … `;odsun` | `;odmon` gives `[due:: 2026-10-05]` |
+| `;osch` | `[scheduled:: 2026-10-04]` |
+| `;osctm` | `[scheduled:: 2026-10-05]` |
+| `;ostart` | `[start:: 2026-10-04]` |
+| `;osttm` | `[start:: 2026-10-05]` |
+| `;ocre` | `[created:: 2026-10-04]` |
+| `;odone` | `[completion:: 2026-10-04]` |
+| `;ocan` | `[cancelled:: 2026-10-04]` |
+| `;otask` | `- [ ] ` |
+
+Set Task Format to `Dataview` in the settings of the Tasks plugin. The default format is
+`Tasks Emoji Format`, which shows these fields as plain text.
+
+Three rules explain the shape of this table.
+
+1. The fields use one pair of brackets, not two. `[due:: 2026-10-04]` is an inline field.
+   `[[due:: 2026-10-04]]` is a wikilink to a note of that name, and no plugin reads it as a
+   field.
+2. No trigger is a prefix of another trigger, for the reason given above. This is why the
+   highest and lowest priorities are `;opx` and `;opz`. A `;ophh` would be dead behind
+   `;oph`. For the same reason, scheduled tomorrow is `;osctm` and not `;oschtm`.
+3. The plugin names the done date `completion`. The other field names also come from the
+   Dataview Format page of the plugin reference.
+
+The `due` field has a trigger for every weekday. The `scheduled` and `start` fields stop at
+tomorrow. Add the weekdays in the same pattern if you need them.
+
 #### Date Resolution Helper
 
-The script `.config/espanso/scripts/obsidian_date.py` does all of the date arithmetic. Every
-match calls it with one spec and wraps the single line of output in a wikilink.
+The script `.config/espanso/scripts/obsidian_date.py` does all of the date arithmetic.
+Both `obsidian.yml` and `obsidian_tasks.yml` call it with one spec. The matches in
+`obsidian.yml` wrap the single line of output in a wikilink. The matches in
+`obsidian_tasks.yml` wrap it in an inline field.
 
 ```bash
 python3 .config/espanso/scripts/obsidian_date.py today      # 2026-10-04
