@@ -41,7 +41,8 @@
       "Bash(aws logs filter-log-events *)",
       "Bash(git -C ~/dotfiles status --short .claude/)",
       "Bash(git *)",
-      "Bash(python3 -m json.tool .claude/settings.local.json)"
+      "Bash(python3 -m json.tool .claude/settings.local.json)",
+      "WebFetch(domain:publish.obsidian.md)"
     ]
   },
   "enableAllProjectMcpServers": true,
