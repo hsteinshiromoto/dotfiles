@@ -40,9 +40,11 @@ Before any commit or `.gitignore` change, scan staged/tracked files for credenti
 ## DO NOT
 
 Never perform any of the following tasks without human approval:
-1. Modify any file.
-2. Add any file to git staging area or commit.
-3. Run shell commands that execute tests or build steps without first confirming the host OS is compatible with the project's test environment (e.g., NixOS tests cannot run from a macOS host).
+- Modify any file.
+- Add any file to git staging area or commit.
+- Run shell commands that execute tests or build steps without first confirming the host OS is compatible with the project's test environment (e.g., NixOS tests cannot run from a macOS host).
+- Decrypt any file without requesting my approval first.
+- Connecting via ssh to any host without requesting my approval first.
 
 ## Don't guess API or config syntax
 
