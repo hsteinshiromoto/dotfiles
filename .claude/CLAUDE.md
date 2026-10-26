@@ -22,7 +22,7 @@ Use always these subagents in this order:
 - 5. QA agent: critique the implementation using the code-reviewer skill. If the verdict is NEEDS WORK, address the recommendations before proceeding. For end-to-end evaluation, run `/sanity-check` and create an overall summary of plan, build, test results, and assess if the final implementation adress the requirements of the produce manager.
 Each of these agents will execute at most three tasks.
 - 6. If the end-to-end evaluator verdict is PASS, ask the user if he wants to add the code to the git staging area.
-- 7. Conclude the workflow by updating the journal using the `/journal` skill.
+- 7. Conclude the workflow by updating the corresponding `README.md` of each corresponding repository and journal using the `/journal` skill.
 
 For each of user permission request, offer only three options as a choice-selection menu:
 1. Yes (Y).
