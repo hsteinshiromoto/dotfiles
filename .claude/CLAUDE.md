@@ -57,6 +57,7 @@ If you are unsure of the exact syntax for a third-party DSL, config schema or pl
 - Keep investigation and verification findings concise — use a table or bullet summary instead of verbose multi-paragraph prose reports.
 - You MUST USE the `ste_writing` skill, when writing prose (for example, docs, READMEs, PR descriptions, error messages, release notes, comments, JIRA tickets). DO NOT USE when writing code.
 - Present your conclusions and possible solutions as trade offs for comparison with assessment including maintainability (how easy it is to maintain the solution from a development perspective), security, etc.
+- Do not hard-wrap prose or free text to 80 columns. Write each paragraph on one line and let the editor or renderer soft-wrap it. Hard breaks stay only where they carry meaning: list items, table rows, code blocks, and frontmatter values. Column limits apply to code only, where the project formatter decides.
 
 ## User Default Folders
 
