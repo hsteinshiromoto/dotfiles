@@ -104,87 +104,53 @@ The structure of this repository mirrors the `$HOME` directory structure exactly
 
 ## Workflow
 
-### Stowing Files (Dotfiles → Home Directory)
+### Stow the dotfiles into `$HOME`
 
-Stow creates symlinks from your home directory to files in the repository. This allows you to manage your dotfiles in version control while they appear in their standard locations.
+| Command | Effect |
+| --- | --- |
+| `make stow-check` | Shows every link stow would make. Changes nothing. Run it first. |
+| `make stow` | Deletes the `$HOME` symlinks that point into this repo, then links everything again. |
+| `make unstow` | Removes the symlinks that stow owns. |
 
-#### Stow All Files
-```bash
-stow .
-```
+`make stow` deletes the old links on purpose. Links made by hand point at an absolute path, stow refuses to replace them, and the run stops with `existing target is not owned by stow`. The target removes them and lets stow make its own relative links.
 
-#### Stow Specific Configuration Directory
-To stow only a specific directory (e.g., `.config`):
-```bash
-stow .config
-```
+What is linked is decided by `.stow-local-ignore`, not by the command. The file ignores the repository infrastructure (`Makefile`, `README.md`, `bin/`, `journal/`, `utils/`, `macos/`) and the configurations that must stay machine-local (`.ssh`, `.gnupg`, `.gitconfig`, `.claude/settings.local.json`, `.config/opencode/opencode.json`, `.lima`). Everything else in the repository is linked.
 
-#### Stow with Adoption (Replace Existing Files)
-If you have existing files in your home directory that conflict with stow, use the `--adopt` flag to replace them with symlinks:
-```bash
-stow . --adopt
-```
+Two pattern forms are used in that file:
 
-This is useful when you already have configuration files in `~` that you want to move under stow management.
+- A pattern without `/` is matched against the file name at any depth. Example: `^.*\.DS_Store$`.
+- A pattern with `/` is matched against the path from the repository root, which starts with `/`. Example: `^/README\.md$`.
 
-### Adopting Existing Files (Home Directory → Dotfiles)
+Use the second form for repository-only entries. A name-only rule such as `^README\.md$` also hides each nested `README.md`.
 
-To adopt existing files from your home directory into this dotfiles repository:
+`.stowrc` holds stow options only. Do not put ignore rules there.
 
-#### Step 1: Copy Files to Repository
-Copy the files from your home directory to the correct location in the repo:
+### Add a new dotfile
+
+1. Put the file in the repository, at the same path it has under `$HOME`:
+
 ```bash
 cp -r ~/.config/myapp .config/myapp
 ```
 
-#### Step 2: Remove Original Files
-Remove or rename the original files in your home directory to avoid conflicts:
+2. Remove the original, or `make stow` stops on the conflict:
+
 ```bash
-rm -rf ~/.config/myapp
+mv ~/.config/myapp ~/.config/myapp.bak
 ```
 
-#### Step 3: Create Symlinks with Stow
-Run stow to create symlinks back to the repository:
+3. Link it and check the result:
+
 ```bash
-stow .config
+make stow
+readlink ~/.config/myapp   # ../dotfiles/.config/myapp
 ```
 
-Or stow everything:
-```bash
-stow .
-```
+4. Delete the backup, then commit the new files.
 
-#### Verification
-Verify the symlink was created:
-```bash
-ls -la ~/.config/myapp
-# Should show: lrwxr-xr-x -> /path/to/dotfiles.linux/.config/myapp
-```
+### Stop stowing a file
 
-Or with readlink:
-```bash
-readlink ~/.config/myapp
-# Should output: /Users/username/Projects/dotfiles.linux/.config/myapp
-```
-
-### Adding New Dotfiles
-
-1. Create or copy the file to its target location in the repository:
-```bash
-touch .file
-# or for config files:
-cp -r ~/.config/app .config/app && rm -rf ~/.config/app
-```
-
-2. Create symlinks using stow:
-```bash
-stow . --adopt
-```
-
-3. Add file to version control:
-```bash
-git add .file
-```
+Add a rule to `.stow-local-ignore`, then run `make stow`. The `--restow` flag removes the link that is now ignored.
 
 ## Application-Specific Configuration
 

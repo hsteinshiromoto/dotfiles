@@ -1,55 +1,59 @@
-# Comments and blank lines are allowed.
+# GNU Stow ignore list for this package.
+#
+# A pattern without "/" matches a basename at any depth.
+# A pattern with "/" matches the path from the repo root, which starts with "/".
+# Use the "/" form for repo-only entries, or the rule hides nested files too.
 
 # ---
-# Version Control Systems
+# Version control and tool state
 # ---
-^RCS$
-.*,v
-^CVS$
-^\.svn$
-^_darcs$
-^\.hg$
-^\.git$
+^/\.git$
+^/\.github$
+^/\.serena$
+^/\.gitignore$
+^/\.gitconfig$
+^/\.gitignore_global$
+^/\.stowrc$
+^/\.stow-local-ignore$
 
 # ---
-# Directories - Repo specific
+# Repo-only directories
 # ---
-^bin$
-^keyboards$
-^macos$
-^roles$
-^usr$
-^utils$
+^/bin$
+^/journal$
+^/macos$
+^/utils$
 
 # ---
-# Files - Configuration & Metadata
+# Repo-only files
 # ---
-^\.gitignore$
-^\.gitconfig$
-^\.stow-local-ignore$
-^CHANGELOG\.md$
-^CLAUDE\.md$
-^Dockerfile$
-^docker-compose\.yml$
-^LICENSE\.md$
-^Makefile$
-^nvim\.Dockerfile$
-^README\.md$
-^TODO\.md$
-^todo\.txt$
+^/CHANGELOG\.md$
+^/CLAUDE\.md$
+^/Dockerfile$
+^/Justfile$
+^/LICENSE$
+^/Makefile$
+^/README\.md$
+^/TODO\.md$
+^/cliff\.toml$
+^/docker-compose\.yml$
+^/pam_biometric\.so$
+^/todo\.txt$
 
 # ---
-# Files - Editor & Temp
+# Machine-local: keep in the repo, do not link
 # ---
-^.*\.code-workspace$
+^/\.lima$
+^/\.ssh$
+^/\.gnupg$
+^/\.claude/settings\.local\.json$
+^/\.config/opencode/opencode\.json$
+
+# ---
+# Junk, any depth
+# ---
 ^.*\.DS_Store$
+^.*\.swp$
+^.*\.code-workspace$
 ^.+~$
 ^\#.*\#$
-
-# ---
-# Files - Config
-# ---
-^.*\.yml$
-^.*\.yaml$
-^nuphy_air75_v2\.layout\.json$
-^.*\.swp$

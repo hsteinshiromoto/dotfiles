@@ -6,7 +6,7 @@ PROJECT_ROOT=$(git rev-parse --show-toplevel)
 PLAYBOOK_PACKAGES=packages.yml
 PLAYBOOK_DOTFILES=dotfiles.yml
 
-.PHONY: clean help tree playbook espanso-test
+.PHONY: clean help tree playbook espanso-test stow stow-check unstow
 
 ## Install all plygin managers
 plugins:
@@ -15,6 +15,20 @@ plugins:
 	@echo "Installing ALL plugin managers ..."
 	bash bin/get_plugin_managers.sh -$(ARG)
 
+
+## Preview what stow would do, change nothing
+stow-check:
+	stow --no --verbose .
+
+## Replace stale symlinks into this repo and (re)stow everything into $HOME
+stow:
+	find "$$HOME" -maxdepth 4 \( -path "$$HOME/Library" -o -path "$(CURDIR)" \) -prune \
+		-o -type l -lname "$(CURDIR)/*" -print -delete
+	stow --restow --verbose .
+
+## Remove the dotfile symlinks from $HOME
+unstow:
+	stow --delete --verbose .
 
 ## Create Public Keys
 public_keys:
