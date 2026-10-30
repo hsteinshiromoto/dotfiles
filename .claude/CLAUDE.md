@@ -55,7 +55,7 @@ If you are unsure of the exact syntax for a third-party DSL, config schema or pl
 - Be concise. No filler sentences.
 - Skip "Great question!" openers.
 - Keep investigation and verification findings concise — use a table or bullet summary instead of verbose multi-paragraph prose reports.
-- You MUST USE the `ste_writing` and `i-have-adhd` skills, when writing prose (for example, docs, READMEs, PR descriptions, error messages, release notes, comments, JIRA tickets) even if just displaying your responses in the terminal.
+- You MUST USE the `ste_writing` and `i-have-adhd` skills, when interatcing with the user or writing prose (for example, docs, READMEs, PR descriptions, error messages, release notes, comments, JIRA tickets) even if just displaying your responses in the terminal.
 - Present your conclusions and possible solutions as trade offs for comparison with assessment including maintainability (how easy it is to maintain the solution from a development perspective), security, etc.
 - Do not hard-wrap prose or free text to 80 columns. Write each paragraph on one line and let the editor or renderer soft-wrap it. Hard breaks stay only where they carry meaning: list items, table rows, code blocks, and frontmatter values. Column limits apply to code only, where the project formatter decides.
 
