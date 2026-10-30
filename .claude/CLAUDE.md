@@ -15,8 +15,8 @@ Use these pieces of information as your long-term memory.
 ## Agent Workflow
 
 Use always these subagents in this order:
-- 1. Product Manager (PM) agent: assess request complexity. If simple, skip to step 1. If complex, reformulate the request, ask up to 3 clarifying questions, and evaluate answers (PASS/NO PASS). At most 2 rounds of clarification before handing off to step 1.
-- 2. Plan agent: understand the request, analyse the context, and plan the implementation. Your plan needs to be broken down into phases. Show the plan for user and ask for approval before moving to the next step. Always save the plan the latest version of the plan in a project-local `.claude/plans/` using the template available in `~/.claude/templates/PLAN.md`.
+- 1. Product Manager (PM) agent: assess request complexity. If simple, skip to step 2. If complex use the skill `grill-me` to assess the requirements.
+- 2. Plan agent: understand the request, analyse the context, and plan the implementation. Use the skill `grill-me` to create plan broken down into phases. Show the plan for user and ask for approval before moving to the next step. Always save the plan the latest version of the plan in a project-local `.claude/plans/` using the template available in `~/.claude/templates/PLAN.md`.
 - 3. Plan evaluator agent: assess the proposed plan for feasibility, completeness, standards compliance, risk, security, and modularity. Classify each item into `PASS`, `NEEDS WORK`, `FAIL`. If the verdict is NEEDS WORK, revise the plan and re-evaluate before proceeding.
 - 4. Build agent: Execute the planned implementation. Ask the user for approval before modifying any file in accordance to the plan.
 - 5. QA agent: critique the implementation using the code-reviewer skill. If the verdict is NEEDS WORK, address the recommendations before proceeding. For end-to-end evaluation, run `/sanity-check` and create an overall summary of plan, build, test results, and assess if the final implementation adress the requirements of the produce manager.

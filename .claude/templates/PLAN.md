@@ -92,36 +92,114 @@ Details of the requirement.
 
 ## Implementation Plan
 
-Summary of the implementation plan and the files to be changes
+List of summarizing each phase of the implementation phases using bullet points.
 
-Ordered headers of the changed files. Most changed file first.
+Ordered headers of the changed files. Most important phase first.
 
-### <Single file to be changed>
+### Phase 1: Title
+
+Summary: Summary of the changes done these files.
+Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
+Risk: Impact of the changes and what can break due to this change
+Rationale: Explanation of why these changes are required and why it is the most important.
+Main Decisions: Summary of the decisions involved in this phase.
+
+Ordered level 4 headers of the changed files. Most important chanages first
+
+#### <Single file to be changed>: Change summary
 
 Summary: Summary of the changes done this file.
-Requirements addressed: Id of the requirement to be addressed. For example, FR1, NF5, etc.
-Impact: Impact of the changes.
+Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
+Risk: Impact of the changes and what can break due to this change
+Rationale: Explanation of why this file is being changed.
 
 Details of the changes.
 
-### <Single file to be changed>
+#### <Single file to be changed>: Change Summary
 
 Summary: Summary of the changes done this file.
-Requirements addressed: Id of the requirement to be addressed. For example, FR3, NF10, etc.
-Impact: Impact of the changes.
+Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
+Risk: Impact of the changes and what can break due to this change
+Rationale: Explanation of why this file is being changed.
 
 Details of the changes.
 
 ...
 
-### <Single file to be changed>
+#### <Single file to be changed>: Change Summary
 
 Summary: Summary of the changes done this file.
-Requirements addressed: Id of the requirement to be addressed. For example, FRn, NF83, etc.
-Impact: Impact of the changes.
+Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
+Risk: Impact of the changes and what can break due to this change
+Rationale: Explanation of why this file is being changed.
 
 Details of the changes.
 
+### Phase 2: Title
+
+Summary: Summary of the changes done these files.
+Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
+Risk: Impact of the changes and what can break due to this change
+Rationale: Explanation of why these changes are required and why it is the second important.
+Main Decisions: Summary of the decisions involved in this phase.
+
+Ordered level 4 headers of the changed files. Most important chanages first
+
+#### <Single file to be changed>: Change Summary
+
+Summary: Summary of the changes done this file.
+Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
+Risk: Impact of the changes and what can break due to this change
+Rationale: Explanation of why this file is being changed.
+
+Details of the changes.
+
+#### <Single file to be changed>: Change Summary
+
+Summary: Summary of the changes done this file.
+Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
+Risk: Impact of the changes and what can break due to this change
+Rationale: Explanation of why this file is being changed.
+
+Details of the changes.
+
+...
+
+#### <Single file to be changed>: Change Summary
+
+Summary: Summary of the changes done this file.
+Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
+Risk: Impact of the changes and what can break due to this change
+Rationale: Explanation of why this file is being changed.
+
+Details of the changes.
+
+...
+
+### Phase P: Title
+
+Summary: Summary of the changes done these files.
+Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
+Risk: Impact of the changes and what can break due to this change
+Rationale: Explanation of why these changes are required and why it is the least important.
+Main Decisions: Summary of the decisions involved in this phase.
+
+Ordered level 4 headers of the changed files. Most important chanages first
+
+#### <Single file to be changed>: Change Summary
+
+Summary: Summary of the changes done this file.
+Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
+Risk: Impact of the changes and what can break due to this change
+Rationale: Explanation of why this file is being changed.
+
+Details of the changes.
+
+...
+
+## Decision Register
+
+Add all the questions and answers produced using the skill `grill-me` add an id for each decision.
 
 ## Changelog
 
