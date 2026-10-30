@@ -37,6 +37,7 @@ Order the requirements having most critical requirements first.
 Summary: Summary of this requirements
 Impact: Impact of the requirement.
 Criticality assessment: Rationale of the criticality assessment.
+Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
 
 Details of the requirement.
 
@@ -45,6 +46,7 @@ Details of the requirement.
 Summary: Summary of this requirements
 Impact: Impact of the requirement.
 Criticality assessment: Rationale of the criticality assessment.
+Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
 
 Details of the requirement.
 
@@ -55,6 +57,7 @@ Details of the requirement.
 Summary: Summary of this requirements
 Impact: Impact of the requirement.
 Criticality assessment: Rationale of the criticality assessment.
+Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
 
 Details of the requirement.
 
@@ -69,6 +72,7 @@ Order the requirements having most critical requirements first.
 Summary: Summary of this requirements
 Impact: Impact of the requirement.
 Criticality assessment: Rationale of the criticality assessment.
+Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
 
 Details of the requirement.
 
@@ -77,6 +81,7 @@ Details of the requirement.
 Summary: Summary of this requirements
 Impact: Impact of the requirement.
 Criticality assessment: Rationale of the criticality assessment.
+Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
 
 Details of the requirement.
 
@@ -87,6 +92,7 @@ Details of the requirement.
 Summary: Summary of this requirements
 Impact: Impact of the requirement.
 Criticality assessment: Rationale of the criticality assessment.
+Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
 
 Details of the requirement.
 
@@ -112,6 +118,7 @@ Summary: Summary of the changes done this file.
 Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
 Risk: Impact of the changes and what can break due to this change
 Rationale: Explanation of why this file is being changed.
+Test: How are the changes is going to be tested? Compare with the pre changes test.
 
 Details of the changes.
 
@@ -121,6 +128,7 @@ Summary: Summary of the changes done this file.
 Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
 Risk: Impact of the changes and what can break due to this change
 Rationale: Explanation of why this file is being changed.
+Test: How are the changes is going to be tested? Compare with the pre changes test.
 
 Details of the changes.
 
@@ -132,6 +140,7 @@ Summary: Summary of the changes done this file.
 Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
 Risk: Impact of the changes and what can break due to this change
 Rationale: Explanation of why this file is being changed.
+Test: How are the changes is going to be tested? Compare with the pre changes test.
 
 Details of the changes.
 
@@ -151,6 +160,7 @@ Summary: Summary of the changes done this file.
 Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
 Risk: Impact of the changes and what can break due to this change
 Rationale: Explanation of why this file is being changed.
+Test: How are the changes is going to be tested? Compare with the pre changes test.
 
 Details of the changes.
 
@@ -160,6 +170,7 @@ Summary: Summary of the changes done this file.
 Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
 Risk: Impact of the changes and what can break due to this change
 Rationale: Explanation of why this file is being changed.
+Test: How are the changes is going to be tested? Compare with the pre changes test.
 
 Details of the changes.
 
@@ -171,6 +182,7 @@ Summary: Summary of the changes done this file.
 Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
 Risk: Impact of the changes and what can break due to this change
 Rationale: Explanation of why this file is being changed.
+Test: How are the changes is going to be tested? Compare with the pre changes test.
 
 Details of the changes.
 
@@ -192,6 +204,7 @@ Summary: Summary of the changes done this file.
 Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
 Risk: Impact of the changes and what can break due to this change
 Rationale: Explanation of why this file is being changed.
+Test: How are the changes is going to be tested? Compare with the pre changes test.
 
 Details of the changes.
 
