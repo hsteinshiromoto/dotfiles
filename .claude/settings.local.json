@@ -44,7 +44,8 @@
       "Bash(python3 -m json.tool .claude/settings.local.json)",
       "WebFetch(domain:publish.obsidian.md)",
       "Bash(stow --version)",
-      "Bash(stow -n -v -t /Users/hsteinshiromoto .)"
+      "Bash(stow -n -v -t /Users/hsteinshiromoto .)",
+      "mcp__atlassian__searchJiraIssuesUsingJql"
     ]
   },
   "enableAllProjectMcpServers": true,
