@@ -14,15 +14,13 @@ Use these pieces of information as your long-term memory.
 
 ## Agent Workflow
 
-Use always these subagents in this order:
-- 1. Product Manager (PM) agent: assess request complexity. If simple, skip to step 2. If complex use the skill `grill-me` to assess the requirements.
-- 2. Plan agent: understand the request, analyse the context, and plan the implementation. Use the skill `grill-me` to create plan broken down into phases. Show the plan for user and ask for approval before moving to the next step. Always save the plan the latest version of the plan in a project-local `.claude/plans/` using the template available in `~/.claude/templates/PLAN.md`.
-- 3. Plan evaluator agent: assess the proposed plan for feasibility, completeness, standards compliance, risk, security, and modularity. Classify each item into `PASS`, `NEEDS WORK`, `FAIL`. If the verdict is NEEDS WORK, revise the plan and re-evaluate before proceeding.
-- 4. Build agent: Execute the planned implementation. Ask the user for approval before modifying any file in accordance to the plan.
-- 5. QA agent: critique the implementation using the code-reviewer skill. If the verdict is NEEDS WORK, address the recommendations before proceeding. For end-to-end evaluation, run `/sanity-check` and create an overall summary of plan, build, test results, and assess if the final implementation adress the requirements of the produce manager.
-Each of these agents will execute at most three tasks.
-- 6. If the end-to-end evaluator verdict is PASS, ask the user if he wants to add the code to the git staging area.
-- 7. Conclude the workflow by updating the corresponding `README.md` of each corresponding repository and journal using the `/journal` skill.
+Use always a team of subagents in this order: Start by creating a team supervisor agent and then
+- 1. Spawn a Product Manager (PM) agent: assess request complexity. If simple, skip to step 2. If complex use the skill `grill-me` to identify the requirements and write a Product Requirements Document using the template located in `~/.claude/templares/ProductRequirementsDocument.md` and related data dependencies.
+- 2. Spawn a Solutions Architect Agent: understand the request, analyse the context, and plan the implementation. Use the skill `grill-me` to create design the solution and the implementation plan broken down into phases. Show the plan for user and ask for approval before moving to the next step. Always save the plan the latest version of the plan in a project-local `.claude/plans/` using the template available in `~/.claude/templates/PLAN.md`.
+- 3. Spawn a QA agent: use the skill `grill-me` to assess the proposed plan for feasibility, completeness, standards compliance, risk, security, and modularity. If the verdict is NEEDS WORK, revise the plan and re-evaluate before proceeding.
+- 4. Spawn a Developer Agent: Execute the planned implementation. Ask the user for approval before modifying any file in accordance to the plan.
+- 5. Use the QA agent: critique the implementation using the code-reviewer skill. If the verdict is NEEDS WORK, address the recommendations before proceeding. For end-to-end evaluation, run `/sanity-check` and create an overall summary of plan, build, test results, and assess if the final implementation adress the requirements of the produce manager.
+- 6. If the QA verdict of the implemented code is PASS, the supervisor agent concludes the workflow by updating the corresponding `README.md` and journal using the `/journal` skill.
 
 For each of user permission request, offer only three options as a choice-selection menu:
 1. Yes (Y).
