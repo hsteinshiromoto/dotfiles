@@ -1,6 +1,7 @@
 ---
 version_number: Count of changes made to this requirement
 date_update: Date this requirements has been created/modified
+requirements_uuid: UUIDv7
 uuid: UUIDv7
 ---
 
@@ -8,99 +9,21 @@ uuid: UUIDv7
 
 ## Summary
 
-Summary: Prose summary of the plan. Use bullet items.
-
-### What?
-
-What this plan addresses.
-
-### Why?
-
-Why are these changes necessary?
-
-### So What?
-
-What is going to be implemented
-
-## Requirements
-
 Summary of the requirements.
 
-### Functional Requirements
-
-Summary of the functional requirements under level 4 headers.
-
-Order the requirements having most critical requirements first.
-
-#### FR1: Single Sentence of the requirement
-
-Summary: Summary of this requirements
-Impact: Impact of the requirement.
-Criticality assessment: Rationale of the criticality assessment.
-Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
-
-Details of the requirement.
-
-#### FR2: Single Sentence of the requirement
-
-Summary: Summary of this requirements
-Impact: Impact of the requirement.
-Criticality assessment: Rationale of the criticality assessment.
-Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
-
-Details of the requirement.
-
-...
-
-#### FRn: Single Sentence of the requirement
-
-Summary: Summary of this requirements
-Impact: Impact of the requirement.
-Criticality assessment: Rationale of the criticality assessment.
-Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
-
-Details of the requirement.
-
-### Non-Functional Requirements
-
-Summary of the non-functional requirements under level 4 headers.
-
-Order the requirements having most critical requirements first.
-
-#### NFR1: Single Sentence of the requirement
-
-Summary: Summary of this requirements
-Impact: Impact of the requirement.
-Criticality assessment: Rationale of the criticality assessment.
-Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
-
-Details of the requirement.
-
-#### NFR2: Single Sentence of the requirement
-
-Summary: Summary of this requirements
-Impact: Impact of the requirement.
-Criticality assessment: Rationale of the criticality assessment.
-Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
-
-Details of the requirement.
-
-...
-
-#### NFRm: Single Sentence of the requirement
-
-Summary: Summary of this requirements
-Impact: Impact of the requirement.
-Criticality assessment: Rationale of the criticality assessment.
-Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
-
-Details of the requirement.
-
-## Implementation Plan
+Summary the technical design.
 
 List of summarizing each phase of the implementation phases using bullet points.
 
 Ordered headers of the changed files. Most important phase first.
+
+## Technical Architecture Design
+
+Create a mermaid diagram of the technical architecture design and add it here.
+
+Also create a diagram workflow of the solution.
+
+## Phases
 
 ### Phase 1: Title
 
