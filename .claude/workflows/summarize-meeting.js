@@ -316,7 +316,7 @@ Set dailyNoteLinked=true when the link is there, either way. Change nothing else
 STEP 6. Save the file and return its path. Set written=true only after the file is on disk. Count the action item lines into actionItemCount.
 
 PROSE STYLE
-Load the ste_writing skill with the Skill tool before you write a single sentence, and follow it for every sentence in this note. It governs the prose; it does not govern code, a path, a field name, or a `tasks` query.
+Load the ste_writing skill with the Skill tool before you write a single sentence, and follow it for every sentence in this note. It governs the prose; it does not govern code, a path, a field name, or a \`tasks\` query.
 Use this fallback only when the Skill tool reports that the skill is unavailable:
 - Write short sentences. Use 20 words at most.
 - Use active voice, and the third person.
