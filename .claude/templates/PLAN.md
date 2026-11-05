@@ -238,6 +238,105 @@ Ordered level 4 headers of the changes. Most important changes first
 
 Add all the questions and answers produced using the skill `grill-me` add an id for each decision.
 
+## Bugs and Known Limitations
+
+List the known bugs and the accepted limitations. Add an id for each entry.
+
+Create a table with the bugs and limitations using the following format:
+
+| Entry Id | Entry Name | Description | Severity | Workaround | Related Decision Id | Related Decision Name | Id of Requirements that this Entry Directly Impacts | Title of Requirements this Entry Directly Impacts |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+Each bug id has the format `BX` and each limitation id has the format `LX`, where `X` is a leading zero number applied for `X` is between 1 and 9 (inclusive).
+
+### Bugs
+
+Summary of the bugs under level 4 headers.
+
+Order the bugs having most critical bugs first.
+
+#### B01: Single Sentence of the bug
+
+**Summary**: Summary of this bug
+
+**Impact**: Impact of the bug.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Why**: Cause of the bug.
+
+**Details**: Details of the bug.
+
+#### B02: Single Sentence of the bug
+
+**Summary**: Summary of this bug
+
+**Impact**: Impact of the bug.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Why**: Cause of the bug.
+
+**Details**: Details of the bug.
+
+...
+
+#### BN: Single Sentence of the bug
+
+**Summary**: Summary of this bug
+
+**Impact**: Impact of the bug.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Why**: Cause of the bug.
+
+**Details**: Details of the bug.
+
+### Limitations
+
+Summary of the accepted limitations under level 4 headers.
+
+Order the limitations having most critical limitations first.
+
+#### L01: Single Sentence of the limitation
+
+**Summary**: Summary of this limitation
+
+**Impact**: Impact of the limitation.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Why**: Cause of the limitation.
+
+**Details**: Details of the limitation.
+
+#### L02: Single Sentence of the limitation
+
+**Summary**: Summary of this limitation
+
+**Impact**: Impact of the limitation.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Why**: Cause of the limitation.
+
+**Details**: Details of the limitation.
+
+...
+
+#### LM: Single Sentence of the limitation
+
+**Summary**: Summary of this limitation
+
+**Impact**: Impact of the limitation.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Why**: Cause of the limitation.
+
+**Details**: Details of the limitation.
+
 ## Changelog
 
 If applicable, list the changes made to this plan. Most recent change first.

@@ -8,7 +8,13 @@ uuid: UUIDv7
 
 ## Summary
 
-Summary: Prose summary of the plan. Use bullet items.
+Table summarizing the requirements. One row per requirement. Most critical requirement first.
+
+| Requirement Id | Requirement Title | Type | Requirement Summary | Impact | Criticality |
+| --- | --- | --- | --- | --- | --- |
+| FR1 | Single sentence of the requirement | Functional | Summary of this requirement | Impact of the requirement | High |
+| FR2 | Single sentence of the requirement | Functional | Summary of this requirement | Impact of the requirement | Medium |
+| NFR1 | Single sentence of the requirement | Non-Functional | Summary of this requirement | Impact of the requirement | High |
 
 ### What?
 
@@ -36,32 +42,56 @@ Order the requirements having most critical requirements first.
 
 #### FR1: Single Sentence of the requirement
 
-Summary: Summary of this requirements
-Impact: Impact of the requirement.
-Criticality assessment: Rationale of the criticality assessment.
-Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
+**Summary**: Summary of this requirements
 
-Details of the requirement.
+**Impact**: Impact of the requirement.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
+
+**Assumptions**:
+
+- Assumption used to write this requirement
+- Assumption used to write this requirement
+
+**Details**: Details of the requirement.
 
 #### FR2: Single Sentence of the requirement
 
-Summary: Summary of this requirements
-Impact: Impact of the requirement.
-Criticality assessment: Rationale of the criticality assessment.
-Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
+**Summary**: Summary of this requirements
 
-Details of the requirement.
+**Impact**: Impact of the requirement.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
+
+**Assumptions**:
+
+- Assumption used to write this requirement
+- Assumption used to write this requirement
+
+**Details**: Details of the requirement.
 
 ...
 
 #### FRn: Single Sentence of the requirement
 
-Summary: Summary of this requirements
-Impact: Impact of the requirement.
-Criticality assessment: Rationale of the criticality assessment.
-Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
+**Summary**: Summary of this requirements
 
-Details of the requirement.
+**Impact**: Impact of the requirement.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
+
+**Assumptions**:
+
+- Assumption used to write this requirement
+- Assumption used to write this requirement
+
+**Details**: Details of the requirement.
 
 ### Non-Functional Requirements
 
@@ -71,36 +101,166 @@ Order the requirements having most critical requirements first.
 
 #### NFR1: Single Sentence of the requirement
 
-Summary: Summary of this requirements
-Impact: Impact of the requirement.
-Criticality assessment: Rationale of the criticality assessment.
-Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
+**Summary**: Summary of this requirements
 
-Details of the requirement.
+**Impact**: Impact of the requirement.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
+
+**Assumptions**:
+
+- Assumption used to write this requirement
+- Assumption used to write this requirement
+
+**Details**: Details of the requirement.
 
 #### NFR2: Single Sentence of the requirement
 
-Summary: Summary of this requirements
-Impact: Impact of the requirement.
-Criticality assessment: Rationale of the criticality assessment.
-Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
+**Summary**: Summary of this requirements
 
-Details of the requirement.
+**Impact**: Impact of the requirement.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
+
+**Assumptions**:
+
+- Assumption used to write this requirement
+- Assumption used to write this requirement
+
+**Details**: Details of the requirement.
 
 ...
 
 #### NFRm: Single Sentence of the requirement
 
-Summary: Summary of this requirements
-Impact: Impact of the requirement.
-Criticality assessment: Rationale of the criticality assessment.
-Verification: How this is the implementation of this requirement going to be verified/tested/assessed?
+**Summary**: Summary of this requirements
 
-Details of the requirement.
+**Impact**: Impact of the requirement.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
+
+**Assumptions**:
+
+- Assumption used to write this requirement
+- Assumption used to write this requirement
+
+**Details**: Details of the requirement.
 
 ## Decision Register
 
 Add all the questions and answers produced using the skill `grill-me` add an id for each decision.
+
+Create a table with the decisions using the following format:
+
+| Decision Id | Decision Name | Description | Impacts Decision Id | Is Impacted by Decision Id | Id of Requirements that this Decision Directly Impacts | Title of Requirements this Decision Directly Impacts |
+| --- | --- | --- | --- | --- | --- | --- |
+
+Each decision id has the format `DX`, where `X` is a leading zero number applied for `X` is between 1 and 9 (inclusive).
+
+## Bugs and Known Limitations
+
+List the known bugs and the accepted limitations. Add an id for each entry.
+
+Create a table with the bugs and limitations using the following format:
+
+| Entry Id | Entry Name | Description | Severity | Workaround | Related Decision Id | Related Decision Name | Id of Requirements that this Entry Directly Impacts | Title of Requirements this Entry Directly Impacts |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+Each bug id has the format `BX` and each limitation id has the format `LX`, where `X` is a leading zero number applied for `X` is between 1 and 9 (inclusive).
+
+### Bugs
+
+Summary of the bugs under level 4 headers.
+
+Order the bugs having most critical bugs first.
+
+#### B01: Single Sentence of the bug
+
+**Summary**: Summary of this bug
+
+**Impact**: Impact of the bug.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Why**: Cause of the bug.
+
+**Details**: Details of the bug.
+
+#### B02: Single Sentence of the bug
+
+**Summary**: Summary of this bug
+
+**Impact**: Impact of the bug.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Why**: Cause of the bug.
+
+**Details**: Details of the bug.
+
+...
+
+#### BN: Single Sentence of the bug
+
+**Summary**: Summary of this bug
+
+**Impact**: Impact of the bug.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Why**: Cause of the bug.
+
+**Details**: Details of the bug.
+
+### Limitations
+
+Summary of the accepted limitations under level 4 headers.
+
+Order the limitations having most critical limitations first.
+
+#### L01: Single Sentence of the limitation
+
+**Summary**: Summary of this limitation
+
+**Impact**: Impact of the limitation.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Why**: Cause of the limitation.
+
+**Details**: Details of the limitation.
+
+#### L02: Single Sentence of the limitation
+
+**Summary**: Summary of this limitation
+
+**Impact**: Impact of the limitation.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Why**: Cause of the limitation.
+
+**Details**: Details of the limitation.
+
+...
+
+#### LM: Single Sentence of the limitation
+
+**Summary**: Summary of this limitation
+
+**Impact**: Impact of the limitation.
+
+**Criticality assessment**: Rationale of the criticality assessment.
+
+**Why**: Cause of the limitation.
+
+**Details**: Details of the limitation.
 
 ## Changelog
 
