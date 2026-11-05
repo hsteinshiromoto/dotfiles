@@ -50,7 +50,23 @@ Order the requirements having most critical requirements first.
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
-**Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
+**Verification**: Gherkin scenarios that cover this requirement. One scenario per behaviour, including the paths the system must refuse. See [Verification Format](#verification-format).
+
+```gherkin
+Feature: FR1 - Single sentence of the requirement
+
+  Scenario: Name of the expected behaviour
+    Given a precondition that holds before the behaviour
+    When the actor does something observable
+    Then the system produces an observable result
+    And the system produces a second observable result
+
+  Scenario: Name of the path the system must refuse
+    Given a precondition that holds before the behaviour
+    When the actor does something the system must reject
+    Then the system refuses with a named error
+    And the system leaves the stored data unchanged
+```
 
 **Assumptions**:
 
@@ -69,7 +85,7 @@ Order the requirements having most critical requirements first.
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
-**Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
+**Verification**: Gherkin scenarios that cover this requirement, written in the format shown under FR1. See [Verification Format](#verification-format).
 
 **Assumptions**:
 
@@ -90,7 +106,7 @@ Order the requirements having most critical requirements first.
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
-**Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
+**Verification**: Gherkin scenarios that cover this requirement, written in the format shown under FR1. See [Verification Format](#verification-format).
 
 **Assumptions**:
 
@@ -115,7 +131,7 @@ Order the requirements having most critical requirements first.
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
-**Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
+**Verification**: The measurement, its threshold, and the conditions the measurement is taken under. For example, `p95 latency below 200 ms at 500 requests per second`. Do not use Gherkin here. See [Verification Format](#verification-format).
 
 **Assumptions**:
 
@@ -134,7 +150,7 @@ Order the requirements having most critical requirements first.
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
-**Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
+**Verification**: The measurement, its threshold, and the conditions the measurement is taken under. For example, `p95 latency below 200 ms at 500 requests per second`. Do not use Gherkin here. See [Verification Format](#verification-format).
 
 **Assumptions**:
 
@@ -155,7 +171,7 @@ Order the requirements having most critical requirements first.
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
-**Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
+**Verification**: The measurement, its threshold, and the conditions the measurement is taken under. For example, `p95 latency below 200 ms at 500 requests per second`. Do not use Gherkin here. See [Verification Format](#verification-format).
 
 **Assumptions**:
 
@@ -303,6 +319,23 @@ Key changes to the plan summarized below as bullet points.
 ### YYYY-MM-DD Change Abstract - Last recent change
 
 ## Definitions
+
+### Verification Format
+
+`Verification` states what counts as proof the requirement is met. The format depends on the kind of requirement.
+
+Functional requirements use Gherkin, because a functional requirement describes a behaviour and a behaviour has a precondition, a trigger and an observable result. Writing it as `Given` / `When` / `Then` forces each of the three to be named, and the scenario carries straight into the implementation plan as the test for the changes that address the requirement.
+
+Rules for the scenarios:
+
+- One `Feature` block per requirement. The feature line repeats the requirement id and its single sentence.
+- One `Scenario` per behaviour. Cover the expected path and every path the system must refuse.
+- `Given` states what holds before. `When` states the single action. `Then` states what is observable afterwards. Use `And` to add a step of the same kind.
+- Each step is one fact. Do not join two facts with `and` inside one step.
+- Write steps the way a user or a caller sees the system. Do not name functions, files or database tables.
+- Keep values concrete. `Given the account holds 50 AUD` beats `Given the account holds some money`.
+
+Non-functional requirements do not use Gherkin. A threshold is a measurement, not a scenario, and `Given` / `When` / `Then` adds lines without adding precision. State the measurement, the threshold and the conditions instead.
 
 ### Criticality
 

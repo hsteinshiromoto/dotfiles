@@ -69,7 +69,21 @@ Ordered level 4 headers of the changes. Most important changes first
 
 **Rationale**: Explanation of why this change is required.
 
-**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+**Test**: This change is behavioural, so the test is the set of Gherkin scenarios inherited from the requirement it addresses. State what the test suite did before the change and what it does after. See [Test Format](#test-format).
+
+```gherkin
+Feature: Ch1.01 - Change Title
+
+  Scenario: Name of the expected behaviour
+    Given a precondition that holds before the behaviour
+    When the actor does something observable
+    Then the system produces an observable result
+
+  Scenario: Name of the path the system must refuse
+    Given a precondition that holds before the behaviour
+    When the actor does something the system must reject
+    Then the system refuses with a named error
+```
 
 **Details**: Details of the changes.
 
@@ -90,7 +104,7 @@ Ordered level 4 headers of the changes. Most important changes first
 
 **Rationale**: Explanation of why this change is required.
 
-**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+**Test**: How is this change going to be tested? Compare with the pre change test. If the change is behavioural, use Gherkin scenarios in the format shown under Ch1.01. If it is not, use prose. See [Test Format](#test-format).
 
 **Details**: Details of the changes.
 
@@ -113,7 +127,7 @@ Ordered level 4 headers of the changes. Most important changes first
 
 **Rationale**: Explanation of why this change is required.
 
-**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+**Test**: How is this change going to be tested? Compare with the pre change test. If the change is behavioural, use Gherkin scenarios in the format shown under Ch1.01. If it is not, use prose. See [Test Format](#test-format).
 
 **Details**: Details of the changes.
 
@@ -143,7 +157,7 @@ Ordered level 4 headers of the changes. Most important changes first
 
 **Rationale**: Explanation of why this change is required.
 
-**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+**Test**: How is this change going to be tested? Compare with the pre change test. If the change is behavioural, use Gherkin scenarios in the format shown under Ch1.01. If it is not, use prose. See [Test Format](#test-format).
 
 **Details**: Details of the changes.
 
@@ -164,7 +178,7 @@ Ordered level 4 headers of the changes. Most important changes first
 
 **Rationale**: Explanation of why this change is required.
 
-**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+**Test**: How is this change going to be tested? Compare with the pre change test. If the change is behavioural, use Gherkin scenarios in the format shown under Ch1.01. If it is not, use prose. See [Test Format](#test-format).
 
 **Details**: Details of the changes.
 
@@ -187,7 +201,7 @@ Ordered level 4 headers of the changes. Most important changes first
 
 **Rationale**: Explanation of why this change is required.
 
-**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+**Test**: How is this change going to be tested? Compare with the pre change test. If the change is behavioural, use Gherkin scenarios in the format shown under Ch1.01. If it is not, use prose. See [Test Format](#test-format).
 
 **Details**: Details of the changes.
 
@@ -232,7 +246,7 @@ Ordered level 4 headers of the changes. Most important changes first
 
 **Rationale**: Explanation of why this change is required.
 
-**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+**Test**: How is this change going to be tested? Compare with the pre change test. If the change is behavioural, use Gherkin scenarios in the format shown under Ch1.01. If it is not, use prose. See [Test Format](#test-format).
 
 **Details**: Details of the changes.
 
@@ -384,6 +398,23 @@ Key changes to the plan summarized below as bullet points.
 ### Change Id
 
 Each change id has the format `ChX.Y`, where `X` is the phase number and `Y` is the change number inside that phase. `Y` has a leading zero applied when `Y` is between 1 and 9 (inclusive). For example, the second change of phase 3 is `Ch3.02`.
+
+### Test Format
+
+`Test` states what counts as proof the change works. The format depends on what the change does.
+
+A change is behavioural when it alters what a user or a calling system can observe: a new flow, a changed response, a new rule the system enforces, a path it now refuses. These use Gherkin. Copy the scenarios from the `Verification` field of the requirement the change addresses, and narrow them to what this change alone delivers. The scenario is the pass condition, so the change is not done until every scenario passes.
+
+Rules for the scenarios:
+
+- One `Feature` block per change. The feature line repeats the change id and its title.
+- One `Scenario` per behaviour. Cover the expected path and every path the system must refuse.
+- `Given` states what holds before. `When` states the single action. `Then` states what is observable afterwards.
+- Each step is one fact. Write it the way a user or a caller sees the system, not the way the code is structured.
+
+Every other change uses prose. A refactor, a configuration change, a dependency bump, a performance target and a logging change are not behavioural, and `Given the module is split / When it is split / Then it is split` states nothing. For these, name the test that must still pass, or the measurement and its threshold.
+
+State the pre change test in both cases, so the plan shows what coverage existed and what the change adds.
 
 ### Criticality
 
