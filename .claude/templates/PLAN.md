@@ -119,12 +119,12 @@ Ordered level 4 headers of the changes. Most important changes first
 
 ### Phase 2: Title
 
-| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title | Change Criticality | Id of Decisions Impacting this Change | Name of Decisions Impacting this Change |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Ch2.01 | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Blocker | D01 | Name of the decision |
-| Ch2.02 | Change Title | `path/to/file` | NF5 | Name of the non-functional requirement | Required | D01 | Name of the decision |
-| ... | ... | ... | ... | ... | ... | ... | ... |
-| Ch2.0M | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Optional | D01 | Name of the decision |
+| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title                     | Change Criticality | Id of Decisions Impacting this Change | Name of Decisions Impacting this Change |
+| --------- | ------------ | ------------------- | ---------------------- | -------------------------------------- | ------------------ | ------------------------------------- | --------------------------------------- |
+| Ch2.01    | Change Title | `path/to/file`      | FR1                    | Name of the functional requirement     | Blocker            | D01                                   | Name of the decision                    |
+| Ch2.02    | Change Title | `path/to/file`      | NF5                    | Name of the non-functional requirement | Required           | D01                                   | Name of the decision                    |
+| ...       | ...          | ...                 | ...                    | ...                                    | ...                | ...                                   | ...                                     |
+| Ch2.0M    | Change Title | `path/to/file`      | FR1                    | Name of the functional requirement     | Optional           | D01                                   | Name of the decision                    |
 
 #### Ch2.01 - Change Title
 
