@@ -9,13 +9,15 @@ uuid: UUIDv7
 
 ## Summary
 
-Summary of the requirements.
 
-Summary the technical design.
+Table summarizing the implementation. One row per change. Most important phase first.
 
-List of summarizing each phase of the implementation phases using bullet points.
+| Phase | Phase Summary | Repository Impact | Files to be changed | Change Id | Change Title | Requirements Addressed | Requirements Title |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file`, `path/to/other_file` | Ch1 | Title of this change | FR1 | Name of the functional requirement |
+| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file` | Ch2 | Title of this change | NF5 | Name of the non-functional requirement |
+| Phase 2 | Summary of this phase | Repositories or modules affected | `path/to/file` | Ch3 | Title of this change | FR2 | Name of the functional requirement |
 
-Ordered headers of the changed files. Most important phase first.
 
 ## Technical Architecture Design
 
@@ -27,109 +29,208 @@ Also create a diagram workflow of the solution.
 
 ### Phase 1: Title
 
-Summary: Summary of the changes done these files.
-Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
-Risk: Impact of the changes and what can break due to this change
-Rationale: Explanation of why these changes are required and why it is the most important.
-Main Decisions: Summary of the decisions involved in this phase.
+**Summary**: Summary of the changes done these files.
 
-Ordered level 4 headers of the changed files. Most important chanages first
+**Requirements Addressed**:
 
-#### <Single file to be changed>: Change summary
+- FR1: Name of the functional requirement
+- NF5: Name of the non-functional requirement
 
-Summary: Summary of the changes done this file.
-Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
-Risk: Impact of the changes and what can break due to this change
-Rationale: Explanation of why this file is being changed.
-Test: How are the changes is going to be tested? Compare with the pre changes test.
+**Risk**: Impact of the changes and what can break due to this change
 
-Details of the changes.
+**Rationale**: Explanation of why these changes are required and why it is the most important.
 
-#### <Single file to be changed>: Change Summary
+**Main Decisions**: Summary of the decisions involved in this phase.
 
-Summary: Summary of the changes done this file.
-Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
-Risk: Impact of the changes and what can break due to this change
-Rationale: Explanation of why this file is being changed.
-Test: How are the changes is going to be tested? Compare with the pre changes test.
+Ordered level 4 headers of the changes. Most important changes first
 
-Details of the changes.
+#### Ch1 - Change Title
+
+**Files Impacted**:
+
+- `path/to/file`: What changes in this file
+- `path/to/other_file`: What changes in this file
+
+**Summary**: Summary of this change.
+
+**Requirements Addressed**:
+
+- FR1: Name of the functional requirement
+- NF5: Name of the non-functional requirement
+
+**Risk**: Impact of the change and what can break due to this change
+
+**Rationale**: Explanation of why this change is required.
+
+**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+
+**Details**: Details of the changes.
+
+#### Ch2 - Change Title
+
+**Files Impacted**:
+
+- `path/to/file`: What changes in this file
+
+**Summary**: Summary of this change.
+
+**Requirements Addressed**:
+
+- FR1: Name of the functional requirement
+- NF5: Name of the non-functional requirement
+
+**Risk**: Impact of the change and what can break due to this change
+
+**Rationale**: Explanation of why this change is required.
+
+**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+
+**Details**: Details of the changes.
 
 ...
 
-#### <Single file to be changed>: Change Summary
+#### ChN - Change Title
 
-Summary: Summary of the changes done this file.
-Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
-Risk: Impact of the changes and what can break due to this change
-Rationale: Explanation of why this file is being changed.
-Test: How are the changes is going to be tested? Compare with the pre changes test.
+**Files Impacted**:
 
-Details of the changes.
+- `path/to/file`: What changes in this file
+
+**Summary**: Summary of this change.
+
+**Requirements Addressed**:
+
+- FR1: Name of the functional requirement
+- NF5: Name of the non-functional requirement
+
+**Risk**: Impact of the change and what can break due to this change
+
+**Rationale**: Explanation of why this change is required.
+
+**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+
+**Details**: Details of the changes.
 
 ### Phase 2: Title
 
-Summary: Summary of the changes done these files.
-Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
-Risk: Impact of the changes and what can break due to this change
-Rationale: Explanation of why these changes are required and why it is the second important.
-Main Decisions: Summary of the decisions involved in this phase.
+**Summary**: Summary of the changes done these files.
 
-Ordered level 4 headers of the changed files. Most important chanages first
+**Requirements Addressed**:
 
-#### <Single file to be changed>: Change Summary
+- FR1: Name of the functional requirement
+- NF5: Name of the non-functional requirement
 
-Summary: Summary of the changes done this file.
-Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
-Risk: Impact of the changes and what can break due to this change
-Rationale: Explanation of why this file is being changed.
-Test: How are the changes is going to be tested? Compare with the pre changes test.
+**Risk**: Impact of the changes and what can break due to this change
 
-Details of the changes.
+**Rationale**: Explanation of why these changes are required and why it is the second important.
 
-#### <Single file to be changed>: Change Summary
+**Main Decisions**: Summary of the decisions involved in this phase.
 
-Summary: Summary of the changes done this file.
-Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
-Risk: Impact of the changes and what can break due to this change
-Rationale: Explanation of why this file is being changed.
-Test: How are the changes is going to be tested? Compare with the pre changes test.
+Ordered level 4 headers of the changes. Most important changes first
 
-Details of the changes.
+#### ChN+1 - Change Title
+
+**Files Impacted**:
+
+- `path/to/file`: What changes in this file
+
+**Summary**: Summary of this change.
+
+**Requirements Addressed**:
+
+- FR1: Name of the functional requirement
+- NF5: Name of the non-functional requirement
+
+**Risk**: Impact of the change and what can break due to this change
+
+**Rationale**: Explanation of why this change is required.
+
+**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+
+**Details**: Details of the changes.
+
+#### ChN+2 - Change Title
+
+**Files Impacted**:
+
+- `path/to/file`: What changes in this file
+
+**Summary**: Summary of this change.
+
+**Requirements Addressed**:
+
+- FR1: Name of the functional requirement
+- NF5: Name of the non-functional requirement
+
+**Risk**: Impact of the change and what can break due to this change
+
+**Rationale**: Explanation of why this change is required.
+
+**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+
+**Details**: Details of the changes.
 
 ...
 
-#### <Single file to be changed>: Change Summary
+#### ChM - Change Title
 
-Summary: Summary of the changes done this file.
-Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
-Risk: Impact of the changes and what can break due to this change
-Rationale: Explanation of why this file is being changed.
-Test: How are the changes is going to be tested? Compare with the pre changes test.
+**Files Impacted**:
 
-Details of the changes.
+- `path/to/file`: What changes in this file
+
+**Summary**: Summary of this change.
+
+**Requirements Addressed**:
+
+- FR1: Name of the functional requirement
+- NF5: Name of the non-functional requirement
+
+**Risk**: Impact of the change and what can break due to this change
+
+**Rationale**: Explanation of why this change is required.
+
+**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+
+**Details**: Details of the changes.
 
 ...
 
 ### Phase P: Title
 
-Summary: Summary of the changes done these files.
-Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
-Risk: Impact of the changes and what can break due to this change
-Rationale: Explanation of why these changes are required and why it is the least important.
-Main Decisions: Summary of the decisions involved in this phase.
+**Summary**: Summary of the changes done these files.
 
-Ordered level 4 headers of the changed files. Most important chanages first
+**Requirements Addressed**:
 
-#### <Single file to be changed>: Change Summary
+- FR1: Name of the functional requirement
+- NF5: Name of the non-functional requirement
 
-Summary: Summary of the changes done this file.
-Requirements addressed: Id of the requirements to be addressed. For example, FR1, NF5, etc.
-Risk: Impact of the changes and what can break due to this change
-Rationale: Explanation of why this file is being changed.
-Test: How are the changes is going to be tested? Compare with the pre changes test.
+**Risk**: Impact of the changes and what can break due to this change
 
-Details of the changes.
+**Rationale**: Explanation of why these changes are required and why it is the least important.
+
+**Main Decisions**: Summary of the decisions involved in this phase.
+
+Ordered level 4 headers of the changes. Most important changes first
+
+#### ChM+1 - Change Title
+
+**Files Impacted**:
+
+- `path/to/file`: What changes in this file
+
+**Summary**: Summary of this change.
+
+**Requirements Addressed**:
+
+- FR1: Name of the functional requirement
+- NF5: Name of the non-functional requirement
+
+**Risk**: Impact of the change and what can break due to this change
+
+**Rationale**: Explanation of why this change is required.
+
+**Test**: How are the changes is going to be tested? Compare with the pre changes test.
+
+**Details**: Details of the changes.
 
 ...
 
@@ -152,4 +253,3 @@ Key changes to the plan summarized below as bullet points.
 ...
 
 ### YYYY-MM-DD Change Abstract - Last recent change
-
