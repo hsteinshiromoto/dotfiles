@@ -44,6 +44,14 @@ Never perform any of the following tasks without human approval:
 - Decrypt any file without requesting my approval first.
 - Connecting via ssh to any host without requesting my approval first.
 
+Never weaken a check, a guard or a security control to make something pass. Fix the cause. If the control is genuinely wrong, say so and let me decide — do not relax it and carry on.
+
+## Debugging
+
+- Find the root cause before running more commands. Form one hypothesis from the evidence you already have, then run the smallest set of commands that confirms or kills it. Do not sweep.
+- When I have to run the commands, send ONE batch I can paste, not a stream of single commands across many turns.
+- When a third-party behaviour is the suspect, read its documentation or its source before theorising about it.
+
 ## Don't guess API or config syntax
 
 If you are unsure of the exact syntax for a third-party DSL, config schema or plugin API (for example, Obsidian Bases formulas, Forgejo/Gitea options, Opencode plugin API, Ghostreader prompts, hledger CSV rules), fetch the official docs FIRST with WebFetch/WebSearch. Do not invent function or option names and iterate on errors.
