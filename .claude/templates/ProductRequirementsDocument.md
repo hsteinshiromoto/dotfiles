@@ -46,6 +46,8 @@ Order the requirements having most critical requirements first.
 
 **Impact**: Impact of the requirement.
 
+**Criticality**: High
+
 **Criticality assessment**: Rationale of the criticality assessment.
 
 **Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
@@ -62,6 +64,8 @@ Order the requirements having most critical requirements first.
 **Summary**: Summary of this requirements
 
 **Impact**: Impact of the requirement.
+
+**Criticality**: Medium
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
@@ -81,6 +85,8 @@ Order the requirements having most critical requirements first.
 **Summary**: Summary of this requirements
 
 **Impact**: Impact of the requirement.
+
+**Criticality**: Low
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
@@ -105,6 +111,8 @@ Order the requirements having most critical requirements first.
 
 **Impact**: Impact of the requirement.
 
+**Criticality**: High
+
 **Criticality assessment**: Rationale of the criticality assessment.
 
 **Verification**: How this is the implementation of this requirement going to be verified/tested/assessed?
@@ -121,6 +129,8 @@ Order the requirements having most critical requirements first.
 **Summary**: Summary of this requirements
 
 **Impact**: Impact of the requirement.
+
+**Criticality**: Medium
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
@@ -140,6 +150,8 @@ Order the requirements having most critical requirements first.
 **Summary**: Summary of this requirements
 
 **Impact**: Impact of the requirement.
+
+**Criticality**: Low
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
@@ -169,7 +181,7 @@ List the known bugs and the accepted limitations. Add an id for each entry.
 
 Create a table with the bugs and limitations using the following format:
 
-| Entry Id | Entry Name | Description | Severity | Workaround | Related Decision Id | Related Decision Name | Id of Requirements that this Entry Directly Impacts | Title of Requirements this Entry Directly Impacts |
+| Entry Id | Entry Name | Description | Criticality | Workaround | Related Decision Id | Related Decision Name | Id of Requirements that this Entry Directly Impacts | Title of Requirements this Entry Directly Impacts |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 Each bug id has the format `BX` and each limitation id has the format `LX`, where `X` is a leading zero number applied for `X` is between 1 and 9 (inclusive).
@@ -186,6 +198,8 @@ Order the bugs having most critical bugs first.
 
 **Impact**: Impact of the bug.
 
+**Criticality**: High
+
 **Criticality assessment**: Rationale of the criticality assessment.
 
 **Why**: Cause of the bug.
@@ -197,6 +211,8 @@ Order the bugs having most critical bugs first.
 **Summary**: Summary of this bug
 
 **Impact**: Impact of the bug.
+
+**Criticality**: Medium
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
@@ -211,6 +227,8 @@ Order the bugs having most critical bugs first.
 **Summary**: Summary of this bug
 
 **Impact**: Impact of the bug.
+
+**Criticality**: Low
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
@@ -230,6 +248,8 @@ Order the limitations having most critical limitations first.
 
 **Impact**: Impact of the limitation.
 
+**Criticality**: High
+
 **Criticality assessment**: Rationale of the criticality assessment.
 
 **Why**: Cause of the limitation.
@@ -241,6 +261,8 @@ Order the limitations having most critical limitations first.
 **Summary**: Summary of this limitation
 
 **Impact**: Impact of the limitation.
+
+**Criticality**: Medium
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
@@ -255,6 +277,8 @@ Order the limitations having most critical limitations first.
 **Summary**: Summary of this limitation
 
 **Impact**: Impact of the limitation.
+
+**Criticality**: Low
 
 **Criticality assessment**: Rationale of the criticality assessment.
 

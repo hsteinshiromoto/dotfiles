@@ -248,10 +248,20 @@ List the known bugs and the accepted limitations. Add an id for each entry.
 
 Create a table with the bugs and limitations using the following format:
 
-| Entry Id | Entry Name | Description | Severity | Workaround | Related Decision Id | Related Decision Name | Id of Requirements that this Entry Directly Impacts | Title of Requirements this Entry Directly Impacts |
+| Entry Id | Entry Name | Description | Criticality | Workaround | Related Decision Id | Related Decision Name | Id of Requirements that this Entry Directly Impacts | Title of Requirements this Entry Directly Impacts |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 Each bug id has the format `BX` and each limitation id has the format `LX`, where `X` is a leading zero number applied for `X` is between 1 and 9 (inclusive).
+
+`Criticality` grades the consequence of shipping with the bug unfixed or the limitation accepted. It uses the same three values as the requirements document, so an entry carried between the two keeps its grade:
+
+| Criticality | Definition |
+| --- | --- |
+| `High` | The release cannot go ahead with it. A bug at High loses or exposes data, blocks a core flow, or breaks a security or compliance obligation. A limitation at High changes what users can be promised. |
+| `Medium` | The release can go ahead, but a named group of users is left worse off and the entry must be scheduled into a later release. The system still works for everyone else. |
+| `Low` | The release can go ahead and nothing is owed afterwards. The entry is worth clearing when there is room for it. |
+
+These are not the `Blocker` / `Required` / `Optional` values used by the phase tables above. A phase table grades a change against its phase; this grades an entry against the release.
 
 ### Bugs
 
@@ -265,6 +275,8 @@ Order the bugs having most critical bugs first.
 
 **Impact**: Impact of the bug.
 
+**Criticality**: High
+
 **Criticality assessment**: Rationale of the criticality assessment.
 
 **Why**: Cause of the bug.
@@ -276,6 +288,8 @@ Order the bugs having most critical bugs first.
 **Summary**: Summary of this bug
 
 **Impact**: Impact of the bug.
+
+**Criticality**: Medium
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
@@ -290,6 +304,8 @@ Order the bugs having most critical bugs first.
 **Summary**: Summary of this bug
 
 **Impact**: Impact of the bug.
+
+**Criticality**: Low
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
@@ -309,6 +325,8 @@ Order the limitations having most critical limitations first.
 
 **Impact**: Impact of the limitation.
 
+**Criticality**: High
+
 **Criticality assessment**: Rationale of the criticality assessment.
 
 **Why**: Cause of the limitation.
@@ -320,6 +338,8 @@ Order the limitations having most critical limitations first.
 **Summary**: Summary of this limitation
 
 **Impact**: Impact of the limitation.
+
+**Criticality**: Medium
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
@@ -334,6 +354,8 @@ Order the limitations having most critical limitations first.
 **Summary**: Summary of this limitation
 
 **Impact**: Impact of the limitation.
+
+**Criticality**: Low
 
 **Criticality assessment**: Rationale of the criticality assessment.
 
