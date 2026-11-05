@@ -278,3 +278,16 @@ Key changes to the plan summarized below as bullet points.
 
 ### YYYY-MM-DD Change Abstract - Last recent change
 
+## Definitions
+
+### Criticality
+
+`Criticality` grades the consequence of shipping without the item. It applies to every requirement, bug and limitation in this document, and takes one of three values:
+
+| Criticality | Definition |
+| --- | --- |
+| `High` | The release cannot go ahead without it. A requirement at High is one the product has no purpose without. A bug at High loses or exposes data, blocks a core flow, or breaks a security or compliance obligation. A limitation at High changes what users can be promised. |
+| `Medium` | The release can go ahead, but a named group of users is left worse off and the gap must be scheduled into a later release. The system still works for everyone else. |
+| `Low` | The release can go ahead and nothing is owed afterwards. The item improves the result, for example through ergonomics, polish or cleanup, and is done when there is room for it. |
+
+The `Criticality assessment` field under each item is where the chosen value is justified against these definitions.

@@ -4,20 +4,19 @@ date_update: Date this requirements has been created/modified
 requirements_uuid: UUIDv7
 uuid: UUIDv7
 ---
-
 # Plan Name
 
 ## Summary
 
-
 Table summarizing the implementation. One row per change. Most important phase first.
 
-| Phase | Phase Summary | Repository Impact | Files to be changed | Change Id | Change Title | Requirements Addressed | Requirements Title |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file`, `path/to/other_file` | Ch1 | Title of this change | FR1 | Name of the functional requirement |
-| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file` | Ch2 | Title of this change | NF5 | Name of the non-functional requirement |
-| Phase 2 | Summary of this phase | Repositories or modules affected | `path/to/file` | Ch3 | Title of this change | FR2 | Name of the functional requirement |
+| Phase   | Phase Summary         | Repository Impact                | Files to be changed                  | Change Id | Change Title         | Requirements Addressed | Requirements Title                     |
+| ------- | --------------------- | -------------------------------- | ------------------------------------ | --------- | -------------------- | ---------------------- | -------------------------------------- |
+| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file`, `path/to/other_file` | Ch1       | Title of this change | FR1                    | Name of the functional requirement     |
+| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file`                       | Ch2       | Title of this change | NF5                    | Name of the non-functional requirement |
+| Phase 2 | Summary of this phase | Repositories or modules affected | `path/to/file`                       | Ch3       | Title of this change | FR2                    | Name of the functional requirement     |
 
+Requirements version: X.
 
 ## Technical Architecture Design
 
@@ -27,7 +26,15 @@ Also create a diagram workflow of the solution.
 
 ## Phases
 
+Each phase opens with a table that indexes its changes. One row per level 4 change header, in the same order.
 ### Phase 1: Title
+
+| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title | Change Criticality |
+| --- | --- | --- | --- | --- | --- |
+| Ch1 | Change Title | `path/to/file`, `path/to/other_file` | FR1 | Name of the functional requirement | Blocker |
+| Ch2 | Change Title | `path/to/file` | NF5 | Name of the non-functional requirement | Required |
+| ... | ... | ... | ... | ... | ... |
+| ChN | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Optional |
 
 **Summary**: Summary of the changes done these files.
 
@@ -112,6 +119,13 @@ Ordered level 4 headers of the changes. Most important changes first
 
 ### Phase 2: Title
 
+| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title | Change Criticality |
+| --- | --- | --- | --- | --- | --- |
+| ChN+1 | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Blocker |
+| ChN+2 | Change Title | `path/to/file` | NF5 | Name of the non-functional requirement | Required |
+| ... | ... | ... | ... | ... | ... |
+| ChM | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Optional |
+
 **Summary**: Summary of the changes done these files.
 
 **Requirements Addressed**:
@@ -195,6 +209,11 @@ Ordered level 4 headers of the changes. Most important changes first
 ...
 
 ### Phase P: Title
+
+| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title | Change Criticality |
+| --- | --- | --- | --- | --- | --- |
+| ChM+1 | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Required |
+| ... | ... | ... | ... | ... | ... |
 
 **Summary**: Summary of the changes done these files.
 
@@ -352,3 +371,15 @@ Key changes to the plan summarized below as bullet points.
 ...
 
 ### YYYY-MM-DD Change Abstract - Last recent change
+
+## Definitions
+
+### Criticality
+
+`Change Criticality` grades what happens to the phase if the change is dropped. It is one of three values:
+
+| Change Criticality | Definition                                                                                                                                                                                                            |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Blocker`          | The phase cannot close without this change. Either a later change in the same phase depends on it, or the phase leaves the system in a broken or unsafe state while it is missing. Drop it and the whole phase stops. |
+| `Required`         | The phase can close without this change, but it would not meet the requirements it claims to address. The system still runs. Drop it and the requirement stays open and must be carried into a later phase.           |
+| `Optional`         | The phase meets its requirements without this change. It improves the result, for example through performance, ergonomics or cleanup. Drop it and nothing is owed.                                                    |
