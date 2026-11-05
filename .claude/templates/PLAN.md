@@ -12,9 +12,9 @@ Table summarizing the implementation. One row per change. Most important phase f
 
 | Phase   | Phase Summary         | Repository Impact                | Files to be changed                  | Change Id | Change Title         | Requirements Addressed | Requirements Title                     |
 | ------- | --------------------- | -------------------------------- | ------------------------------------ | --------- | -------------------- | ---------------------- | -------------------------------------- |
-| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file`, `path/to/other_file` | Ch1       | Title of this change | FR1                    | Name of the functional requirement     |
-| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file`                       | Ch2       | Title of this change | NF5                    | Name of the non-functional requirement |
-| Phase 2 | Summary of this phase | Repositories or modules affected | `path/to/file`                       | Ch3       | Title of this change | FR2                    | Name of the functional requirement     |
+| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file`, `path/to/other_file` | Ch1.01    | Title of this change | FR1                    | Name of the functional requirement     |
+| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file`                       | Ch1.02    | Title of this change | NF5                    | Name of the non-functional requirement |
+| Phase 2 | Summary of this phase | Repositories or modules affected | `path/to/file`                       | Ch2.01    | Title of this change | FR2                    | Name of the functional requirement     |
 
 Requirements version: X.
 
@@ -29,12 +29,12 @@ Also create a diagram workflow of the solution.
 Each phase opens with a table that indexes its changes. One row per level 4 change header, in the same order.
 ### Phase 1: Title
 
-| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title | Change Criticality |
-| --- | --- | --- | --- | --- | --- |
-| Ch1 | Change Title | `path/to/file`, `path/to/other_file` | FR1 | Name of the functional requirement | Blocker |
-| Ch2 | Change Title | `path/to/file` | NF5 | Name of the non-functional requirement | Required |
-| ... | ... | ... | ... | ... | ... |
-| ChN | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Optional |
+| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title | Change Criticality | Id of Decisions Impacting this Change | Name of Decisions Impacting this Change |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Ch1.01 | Change Title | `path/to/file`, `path/to/other_file` | FR1 | Name of the functional requirement | Blocker | D01 | Name of the decision |
+| Ch1.02 | Change Title | `path/to/file` | NF5 | Name of the non-functional requirement | Required | D01 | Name of the decision |
+| ... | ... | ... | ... | ... | ... | ... | ... |
+| Ch1.0N | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Optional | D01 | Name of the decision |
 
 **Summary**: Summary of the changes done these files.
 
@@ -51,7 +51,7 @@ Each phase opens with a table that indexes its changes. One row per level 4 chan
 
 Ordered level 4 headers of the changes. Most important changes first
 
-#### Ch1 - Change Title
+#### Ch1.01 - Change Title
 
 **Files Impacted**:
 
@@ -73,7 +73,7 @@ Ordered level 4 headers of the changes. Most important changes first
 
 **Details**: Details of the changes.
 
-#### Ch2 - Change Title
+#### Ch1.02 - Change Title
 
 **Files Impacted**:
 
@@ -96,7 +96,7 @@ Ordered level 4 headers of the changes. Most important changes first
 
 ...
 
-#### ChN - Change Title
+#### Ch1.0N - Change Title
 
 **Files Impacted**:
 
@@ -119,29 +119,14 @@ Ordered level 4 headers of the changes. Most important changes first
 
 ### Phase 2: Title
 
-| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title | Change Criticality |
-| --- | --- | --- | --- | --- | --- |
-| ChN+1 | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Blocker |
-| ChN+2 | Change Title | `path/to/file` | NF5 | Name of the non-functional requirement | Required |
-| ... | ... | ... | ... | ... | ... |
-| ChM | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Optional |
+| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title | Change Criticality | Id of Decisions Impacting this Change | Name of Decisions Impacting this Change |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Ch2.01 | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Blocker | D01 | Name of the decision |
+| Ch2.02 | Change Title | `path/to/file` | NF5 | Name of the non-functional requirement | Required | D01 | Name of the decision |
+| ... | ... | ... | ... | ... | ... | ... | ... |
+| Ch2.0M | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Optional | D01 | Name of the decision |
 
-**Summary**: Summary of the changes done these files.
-
-**Requirements Addressed**:
-
-- FR1: Name of the functional requirement
-- NF5: Name of the non-functional requirement
-
-**Risk**: Impact of the changes and what can break due to this change
-
-**Rationale**: Explanation of why these changes are required and why it is the second important.
-
-**Main Decisions**: Summary of the decisions involved in this phase.
-
-Ordered level 4 headers of the changes. Most important changes first
-
-#### ChN+1 - Change Title
+#### Ch2.01 - Change Title
 
 **Files Impacted**:
 
@@ -162,7 +147,7 @@ Ordered level 4 headers of the changes. Most important changes first
 
 **Details**: Details of the changes.
 
-#### ChN+2 - Change Title
+#### Ch2.02 - Change Title
 
 **Files Impacted**:
 
@@ -185,7 +170,7 @@ Ordered level 4 headers of the changes. Most important changes first
 
 ...
 
-#### ChM - Change Title
+#### Ch2.0M - Change Title
 
 **Files Impacted**:
 
@@ -210,10 +195,10 @@ Ordered level 4 headers of the changes. Most important changes first
 
 ### Phase P: Title
 
-| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title | Change Criticality |
-| --- | --- | --- | --- | --- | --- |
-| ChM+1 | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Required |
-| ... | ... | ... | ... | ... | ... |
+| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title | Change Criticality | Id of Decisions Impacting this Change | Name of Decisions Impacting this Change |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ChP.01 | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Required | D01 | Name of the decision |
+| ... | ... | ... | ... | ... | ... | ... | ... |
 
 **Summary**: Summary of the changes done these files.
 
@@ -230,7 +215,7 @@ Ordered level 4 headers of the changes. Most important changes first
 
 Ordered level 4 headers of the changes. Most important changes first
 
-#### ChM+1 - Change Title
+#### ChP.01 - Change Title
 
 **Files Impacted**:
 
@@ -373,6 +358,10 @@ Key changes to the plan summarized below as bullet points.
 ### YYYY-MM-DD Change Abstract - Last recent change
 
 ## Definitions
+
+### Change Id
+
+Each change id has the format `ChX.Y`, where `X` is the phase number and `Y` is the change number inside that phase. `Y` has a leading zero applied when `Y` is between 1 and 9 (inclusive). For example, the second change of phase 3 is `Ch3.02`.
 
 ### Criticality
 
