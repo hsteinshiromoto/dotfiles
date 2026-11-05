@@ -2,6 +2,15 @@
 
 A running summary of changes to this repository, newest first.
 
+## 2026-11-05
+
+- **Added a design-thinking agent team.** `.claude/templates/DesignThinkingTeam.md`
+  orchestrates the d.school 5 stages through Claude Code subagents (lite tier
+  default, stage gates, EVIDENCE/SIMULATED/ASSUMPTION labelling, no "ship" on
+  simulated evidence). `.claude/agents/design_thinking_facilitator.md` makes it
+  spawnable; `.claude/templates/agents` symlinks the agent definitions into the
+  Notes vault. See [2026-11-05.md](2026-11-05.md).
+
 ## 2026-10-20
 
 - **Brought opencode to skill parity with Claude Code; the MCP parity already
