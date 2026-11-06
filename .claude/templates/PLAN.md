@@ -10,11 +10,11 @@ uuid: UUIDv7
 
 Table summarizing the implementation. One row per change. Most important phase first.
 
-| Phase   | Phase Summary         | Repository Impact                | Files to be changed                  | Change Id | Change Title         | Requirements Addressed | Requirements Title                     |
-| ------- | --------------------- | -------------------------------- | ------------------------------------ | --------- | -------------------- | ---------------------- | -------------------------------------- |
-| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file`, `path/to/other_file` | Ch1.01    | Title of this change | FR1                    | Name of the functional requirement     |
-| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file`                       | Ch1.02    | Title of this change | NF5                    | Name of the non-functional requirement |
-| Phase 2 | Summary of this phase | Repositories or modules affected | `path/to/file`                       | Ch2.01    | Title of this change | FR2                    | Name of the functional requirement     |
+| Phase   | Phase Summary         | Repository Impact                | Files to be changed [Format using bullet items] | Change Id [Format using bullet items] | Change Title [Format using bullet items] | Requirements Addressed [Format using bullet items] | Requirements Title [Format using bullet items] |
+| ------- | --------------------- | -------------------------------- | ----------------------------------------------- | ------------------------------------- | ---------------------------------------- | -------------------------------------------------- | ---------------------------------------------- |
+| Phase 1 | Summary of this phase | Repositories or modules affected | - `path/to/file`<br>- `path/to/other_file`      | Ch1.01                                | Title of this change                     | FR1                                                | Name of the functional requirement             |
+| Phase 1 | Summary of this phase | Repositories or modules affected | `path/to/file`                                  | Ch1.02                                | Title of this change                     | NF5                                                | Name of the non-functional requirement         |
+| Phase 2 | Summary of this phase | Repositories or modules affected | `path/to/file`                                  | Ch2.01                                | Title of this change                     | FR2                                                | Name of the functional requirement             |
 
 Requirements version: X.
 
@@ -29,12 +29,12 @@ Also create a diagram workflow of the solution.
 Each phase opens with a table that indexes its changes. One row per level 4 change header, in the same order.
 ### Phase 1: Title
 
-| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title | Change Criticality | Id of Decisions Impacting this Change | Name of Decisions Impacting this Change |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Ch1.01 | Change Title | `path/to/file`, `path/to/other_file` | FR1 | Name of the functional requirement | Blocker | D01 | Name of the decision |
-| Ch1.02 | Change Title | `path/to/file` | NF5 | Name of the non-functional requirement | Required | D01 | Name of the decision |
-| ... | ... | ... | ... | ... | ... | ... | ... |
-| Ch1.0N | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Optional | D01 | Name of the decision |
+| Change id | Change Title | Files to be changed [Format using bullet items] | Requirements Addressed [Format using bullet items] | Requirements Title [Format using bullet items] | Change Criticality | Id of Decisions Impacting this Change [Format using bullet items] | Name of Decisions Impacting this Change [Format using bullet items] |
+| --------- | ------------ | ----------------------------------------------- | -------------------------------------------------- | ---------------------------------------------- | ------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Ch1.01    | Change Title | - `path/to/file` <br>- `path/to/other_file`     | FR1                                                | Name of the functional requirement             | Blocker            | D01                                                               | Name of the decision                                                |
+| Ch1.02    | Change Title | `path/to/file`                                  | NF5                                                | Name of the non-functional requirement         | Required           | D01                                                               | Name of the decision                                                |
+| ...       | ...          | ...                                             | ...                                                | ...                                            | ...                | ...                                                               | ...                                                                 |
+| Ch1.0N    | Change Title | `path/to/file`                                  | FR1                                                | Name of the functional requirement             | Optional           | D01                                                               | Name of the decision                                                |
 
 **Summary**: Summary of the changes done these files.
 
@@ -133,12 +133,12 @@ Feature: Ch1.01 - Change Title
 
 ### Phase 2: Title
 
-| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title                     | Change Criticality | Id of Decisions Impacting this Change | Name of Decisions Impacting this Change |
-| --------- | ------------ | ------------------- | ---------------------- | -------------------------------------- | ------------------ | ------------------------------------- | --------------------------------------- |
-| Ch2.01    | Change Title | `path/to/file`      | FR1                    | Name of the functional requirement     | Blocker            | D01                                   | Name of the decision                    |
-| Ch2.02    | Change Title | `path/to/file`      | NF5                    | Name of the non-functional requirement | Required           | D01                                   | Name of the decision                    |
-| ...       | ...          | ...                 | ...                    | ...                                    | ...                | ...                                   | ...                                     |
-| Ch2.0M    | Change Title | `path/to/file`      | FR1                    | Name of the functional requirement     | Optional           | D01                                   | Name of the decision                    |
+| Change id | Change Title | Files to be changed [Format using bullet items] | Requirements Addressed [Format using bullet items] | Requirements Title [Format using bullet items] | Change Criticality | Id of Decisions Impacting this Change [Format using bullet items] | Name of Decisions Impacting this Change [Format using bullet items] |
+| --------- | ------------ | ----------------------------------------------- | -------------------------------------------------- | ---------------------------------------------- | ------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Ch2.01    | Change Title | `path/to/file`                                  | FR1                                                | Name of the functional requirement             | Blocker            | D01                                                               | Name of the decision                                                |
+| Ch2.02    | Change Title | `path/to/file`                                  | NF5                                                | Name of the non-functional requirement         | Required           | D01                                                               | Name of the decision                                                |
+| ...       | ...          | ...                                             | ...                                                | ...                                            | ...                | ...                                                               | ...                                                                 |
+| Ch2.0M    | Change Title | `path/to/file`                                  | FR1                                                | Name of the functional requirement             | Optional           | D01                                                               | Name of the decision                                                |
 
 #### Ch2.01 - Change Title
 
@@ -209,10 +209,10 @@ Feature: Ch1.01 - Change Title
 
 ### Phase P: Title
 
-| Change id | Change Title | Files to be changed | Requirements Addressed | Requirements Title | Change Criticality | Id of Decisions Impacting this Change | Name of Decisions Impacting this Change |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| ChP.01 | Change Title | `path/to/file` | FR1 | Name of the functional requirement | Required | D01 | Name of the decision |
-| ... | ... | ... | ... | ... | ... | ... | ... |
+| Change id | Change Title | Files to be changed [Format using bullet items] | Requirements Addressed [Format using bullet items] | Requirements Title [Format using bullet items] | Change Criticality | Id of Decisions Impacting this Change [Format using bullet items] | Name of Decisions Impacting this Change [Format using bullet items] |
+| --------- | ------------ | ----------------------------------------------- | -------------------------------------------------- | ---------------------------------------------- | ------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
+| ChP.01    | Change Title | `path/to/file`                                  | FR1                                                | Name of the functional requirement             | Required           | D01                                                               | Name of the decision                                                |
+| ...       | ...          | ...                                             | ...                                                | ...                                            | ...                | ...                                                               | ...                                                                 |
 
 **Summary**: Summary of the changes done these files.
 
@@ -262,8 +262,8 @@ List the known bugs and the accepted limitations. Add an id for each entry.
 
 Create a table with the bugs and limitations using the following format:
 
-| Entry Id | Entry Name | Description | Criticality | Workaround | Related Decision Id | Related Decision Name | Id of Requirements that this Entry Directly Impacts | Title of Requirements this Entry Directly Impacts |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Entry Id | Entry Name | Description | Criticality | Workaround | Related Decision Id [Format using bullet items] | Related Decision Name [Format using bullet items] | Id of Requirements that this Entry Directly Impacts [Format using bullet items] | Title of Requirements this Entry Directly Impacts [Format using bullet items] |
+| -------- | ---------- | ----------- | ----------- | ---------- | ----------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 
 Each bug id has the format `BX` and each limitation id has the format `LX`, where `X` is a leading zero number applied for `X` is between 1 and 9 (inclusive).
 
