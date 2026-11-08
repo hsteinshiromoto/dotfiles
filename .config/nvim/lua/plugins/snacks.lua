@@ -16,6 +16,7 @@ return {
 			enabled = true,
 			sections = {
 				{ section = "header" },
+				{ section = "terminal", cmd = "fortune -s", hl = "header", height = 4, padding = 1, indent = 2, ttl = 0 },
 				-- {
 				-- 	pane = 2,
 				-- 	section = "terminal",
