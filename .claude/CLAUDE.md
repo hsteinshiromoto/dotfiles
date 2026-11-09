@@ -117,6 +117,15 @@ Additional instructions for coding:
 - Use `flake.nix` to ensure reproducibility of the environment. Prefer to start a new `flake.nix` using a template file from the repository `https://github.com/hsteinshiromoto/nix.template`.
 - Install Claude Code plugins and skills declaratively via `modules/features/home/claude.nix` in `~/.config/nix`. Do not use ad-hoc `claude plugin` commands.
 
+### Frontend UI
+
+- Before you write any UI component, invoke the `pick-ui-library` skill. It sets `disable-model-invocation`, so it never starts on its own: call it with the Skill tool. It is Emil Kowalski's curated list and it answers "which library for this task".
+- Do not hand-build a component that one of these libraries already gives you. Read `package.json` first and use what the project already has.
+- Foundations, pick one and keep it: shadcn/ui (`https://ui.shadcn.com`), Base UI (`https://base-ui.com`), Radix (`https://www.radix-ui.com`). Default shadcn now reads as the AI look, so restyle its tokens.
+- Specialists, always prefer these over a hand-built version: Sonner for toasts (`https://sonner.emilkowal.ski`), Vaul for drawers and sheets (`https://vaul.emilkowal.ski`), cmdk for command menus (`https://cmdk.paco.me`), NumberFlow for animated numbers (`https://number-flow.barvian.me`).
+- Design components, for the one element that must stand out: Beautiful UI (`https://beautifului.dev`), RareUI (`https://rareui.in`), Magic UI (`https://magicui.design`), Aceternity UI (`https://ui.aceternity.com`), 21st.dev (`https://21st.dev`).
+- The one-standout rule: one screen gets one of these. More than one and the page looks like a demo.
+
 ### Markdown
 
 #### Obsidian
