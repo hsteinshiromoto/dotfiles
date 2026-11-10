@@ -43,6 +43,9 @@ Never perform any of the following tasks without human approval:
 - Run shell commands that execute tests or build steps without first confirming the host OS is compatible with the project's test environment (e.g., NixOS tests cannot run from a macOS host).
 - Decrypt any file without requesting my approval first.
 - Connecting via ssh to any host without requesting my approval first.
+- Run `sudo` or `su` commands.
+- Run git push.
+- Decrypt any file.
 
 Never weaken a check, a guard or a security control to make something pass. Fix the cause. If the control is genuinely wrong, say so and let me decide — do not relax it and carry on.
 
