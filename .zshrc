@@ -284,6 +284,37 @@ _comp_options+=(globdots)							# Include hidden files
 bindkey -v
 export KEYTIMEOUT=1
 
+# Cursor shape tracks the keymap, mirroring Neovim's default 'guicursor':
+# block in normal and visual, beam in insert, underline in replace.
+# DECSCUSR codes: 2 = steady block, 4 = steady underline, 6 = steady beam.
+function _cursor_shape() {
+	printf '\e[%s q' "$1"
+}
+
+# Starship wraps a pre-existing zle-keymap-select instead of replacing it, so
+# this must be defined before `starship init zsh` runs further down.
+function zle-keymap-select() {
+	case $KEYMAP in
+		vicmd|visual|viopp) _cursor_shape 2 ;;
+		*) [[ $ZLE_STATE == *overwrite* ]] && _cursor_shape 4 || _cursor_shape 6 ;;
+	esac
+}
+zle -N zle-keymap-select
+
+# Every new prompt starts in insert mode.
+function zle-line-init() {
+	_cursor_shape 6
+}
+zle -N zle-line-init
+
+# Commands such as nvim and less leave their own cursor behind, so hand them a
+# block rather than whatever the last keymap set.
+function _cursor_shape_for_command() {
+	_cursor_shape 2
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec _cursor_shape_for_command
+
 # ---
 # Custom Functions
 # ---

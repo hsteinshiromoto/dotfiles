@@ -2,6 +2,10 @@
 
 A running summary of changes to this repository, newest first.
 
+## 2026-11-13
+
+- **Zsh vi mode now drives the terminal cursor shape.** `.zshrc` gained a `zle-keymap-select` widget that prints DECSCUSR escapes for the current `$KEYMAP` (beam `\e[6 q` in insert, block `\e[2 q` in normal, visual and operator-pending, underline `\e[4 q` in replace), a `zle-line-init` widget that resets to a beam each prompt, and a `preexec` hook that hands a block to external commands. This mirrors Neovim's default `guicursor`. No terminal or tmux change was needed: Ghostty's terminfo already defines `Ss`/`Se`, tmux already reported `cstyle` in `client_termfeatures`, and `shell-integration-features = no-cursor` was already set. The widget must sit before `starship init zsh` at `.zshrc:474`, because Starship wraps a pre-existing `zle-keymap-select` but overrides one defined after it. See [2026-11-13.md](2026-11-13.md).
+
 ## 2026-11-05
 
 - **Added a design-thinking agent team.** `.claude/templates/DesignThinkingTeam.md`
