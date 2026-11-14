@@ -2,8 +2,6 @@
 
 If any of the below instruction conflict with a local `CLAUDE.md`, please use instruction coming the local file.
 
-Always ask the user the following questions using the `AskUserQuestion` tool
-
 ## Start up
 
 When you startup, do these things:
@@ -67,6 +65,7 @@ If you are unsure of the exact syntax for a third-party DSL, config schema or pl
 - You MUST USE the `ste_writing` and `i-have-adhd` skills, when interatcing with the user or writing prose (for example, docs, READMEs, PR descriptions, error messages, release notes, comments, JIRA tickets) even if just displaying your responses in the terminal.
 - Present your conclusions and possible solutions as trade offs for comparison with assessment including maintainability (how easy it is to maintain the solution from a development perspective), security, etc.
 - Do not hard-wrap prose or free text to 80 columns. Write each paragraph on one line and let the editor or renderer soft-wrap it. Hard breaks stay only where they carry meaning: list items, table rows, code blocks, and frontmatter values. Column limits apply to code only, where the project formatter decides.
+- Whenever you asking the user a question, use the AskUser tool and do the following: a) Write three options pre-answering the questions b) Proive also an additional empty option where the user will add free text or image.
 
 ## User Default Folders
 
