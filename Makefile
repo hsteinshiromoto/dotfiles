@@ -18,17 +18,17 @@ plugins:
 
 ## Preview what stow would do, change nothing
 stow-check:
-	stow --no --verbose .
+	stow --no --verbose --target="$$HOME" .
 
 ## Replace stale symlinks into this repo and (re)stow everything into $HOME
 stow:
 	find "$$HOME" -maxdepth 4 \( -path "$$HOME/Library" -o -path "$(CURDIR)" \) -prune \
 		-o -type l -lname "$(CURDIR)/*" -print -delete
-	stow --restow --verbose .
+	stow --restow --verbose --target="$$HOME" .
 
 ## Remove the dotfile symlinks from $HOME
 unstow:
-	stow --delete --verbose .
+	stow --delete --verbose --target="$$HOME" .
 
 ## Create Public Keys
 public_keys:
