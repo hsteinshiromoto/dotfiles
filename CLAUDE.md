@@ -14,7 +14,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Repository Architecture
 
 ### Structure Philosophy
-This dotfiles repository mirrors the `$HOME` directory structure exactly. Files should be placed in their target locations within the repo, then symlinked using `stow . --adopt`.
+This dotfiles repository mirrors the `$HOME` directory structure exactly. Place a file at its target location inside the repo, then link it with `make stow`.
+
+Never hand-make a symlink into this repo, and never call `stow` without `--target="$HOME"`. The repo lives in `~/Projects/dotfiles.linux`, so a bare `stow .` links into `~/Projects`, one level above `$HOME`. The `stow`, `stow-check` and `unstow` targets in the `Makefile` pass the right target; use them.
 
 ### Platform Organization
 - **macos/**: macOS-specific configurations (Library, Application Support, etc.)
@@ -28,7 +30,7 @@ This dotfiles repository mirrors the `$HOME` directory structure exactly. Files 
 - **Stow**: Primary dotfile management tool for symlinking configurations
 
 ### Development Workflow
-1. **New dotfiles**: Create file in repo location → `stow . --adopt` → `git add`
+1. **New dotfiles**: Create file in repo location → `make stow` → `git add`
 2. **Testing**: Use Docker environment for Linux testing
 3. **Plugin management**: Run `make plugins` to install all managers
 

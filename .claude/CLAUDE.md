@@ -25,9 +25,17 @@ For each of user permission request, offer only three options as a choice-select
 2. No (N).
 3. Something else: only here the user is prompted to type in text that will run a small change such execute a command with a different flag option.
 
+## Skills
+
+Run the `grill-me` skill through the AskUserQuestion tool, never as plain-text questions. Each round gives three pre-filled options, plus the free-text option the tool adds.
+
 ## Commit and journal conventions
 
 After completing a unit of work: update the repo journal entry, then commit with a scoped conventional-commit message covering only the files for that change. Confirm the working tree is clean afterwards. If `git` reports 'Another git process seems to be running' (index.lock from my zsh prompt), retry once then fall back to plain `rm`/`mv` rather than looping on git.
+
+Show me `git diff --stat` for the change and wait for my answer before you stage or commit.
+
+Documentation is part of the change, not a follow-up: update `README.md`, `CHANGELOG.md` and the journal in the same change set as the code, without being asked.
 
 ## Secrets and sensitive files
 
@@ -37,7 +45,7 @@ Before any commit or `.gitignore` change, scan staged/tracked files for credenti
 
 Never perform any of the following tasks without human approval:
 - Modify any file.
-- Add any file to git staging area or commit.
+- Add any file to git staging area or commit. This binds subagents and background tasks too: they hold no approval you have not been given.
 - Run shell commands that execute tests or build steps without first confirming the host OS is compatible with the project's test environment (e.g., NixOS tests cannot run from a macOS host).
 - Decrypt any file without requesting my approval first.
 - Connecting via ssh to any host without requesting my approval first.
