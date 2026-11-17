@@ -1,3 +1,21 @@
+-- Read once per session: the dashboard rebuilds on every resize and a new quote there is jarring.
+local quote
+local function fortune(width)
+	if not quote then
+		quote = vim.fn.systemlist(("fortune -s | fold -s -w %d"):format(width))
+		for i, line in ipairs(quote) do
+			quote[i] = line:gsub("\t", "    "):gsub("%s+$", "")
+		end
+		if #quote == 0 then
+			quote = { "" }
+		end
+	end
+	return quote
+end
+
+local quote_ns = vim.api.nvim_create_namespace("dashboard_quote")
+local quote_gap = 3
+
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
@@ -16,7 +34,6 @@ return {
 			enabled = true,
 			sections = {
 				{ section = "header" },
-				{ section = "terminal", cmd = "fortune -s", hl = "header", height = 4, padding = 1, indent = 2, ttl = 0 },
 				-- {
 				-- 	pane = 2,
 				-- 	section = "terminal",
@@ -52,6 +69,38 @@ return {
 					indent = 3,
 				},
 				{ section = "startup" },
+				-- Quote goes last so it renders below every other section. Snacks aligns a section
+				-- inside its own pane column, so the rows are claimed as blank here and written by
+				-- hand in render, where the dashboard knows its real width and left edge.
+				function(dashboard)
+					local lines = fortune(dashboard.opts.width)
+					return {
+						padding = { 0, quote_gap },
+						text = ("\n"):rep(#lines - 1),
+						render = function(dash, pos)
+							local panes = #dash.panes
+							local width = dash.opts.width * panes + dash.opts.pane_gap * (panes - 1)
+							for i, line in ipairs(lines) do
+								local pad = dash.col + (width - vim.api.nvim_strwidth(line)) / 2
+								dash.lines[pos[1] + quote_gap + i - 1] = (" "):rep(math.max(0, math.floor(pad))) .. line
+							end
+							-- Lines reach the buffer after every render callback has run, so highlight later.
+							vim.schedule(function()
+								if not vim.api.nvim_buf_is_valid(dash.buf) then
+									return
+								end
+								vim.api.nvim_buf_clear_namespace(dash.buf, quote_ns, 0, -1)
+								for i = 1, #lines do
+									local row = pos[1] + quote_gap + i - 2
+									pcall(vim.api.nvim_buf_set_extmark, dash.buf, quote_ns, row, 0, {
+										end_row = row + 1,
+										hl_group = "SnacksDashboardHeader",
+									})
+								end
+							end)
+						end,
+					}
+				end,
 			},
 		},
 		dim = { enabled = true },

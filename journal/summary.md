@@ -2,6 +2,10 @@
 
 A running summary of changes to this repository, newest first.
 
+## 2026-11-17
+
+- **The Neovim dashboard quote moved to the bottom and is centred on the whole dashboard.** The `fortune -s` section in `.config/nvim/lua/plugins/snacks.lua` is no longer a `terminal` section: `ttl = 0` meant the live terminal was always shown, with its cursor block and the `[Process exited 0]` line. It now reads `fortune -s | fold -s -w 60` once per session and claims blank rows that a `render` callback fills in, which is the only way to centre on the full dashboard width. Snacks aligns a section inside its own pane column, and its one re-centring rule, for lines wider than a pane, clamps below about 185 columns. Measured exact at 200, 150, 124 and 100 columns. See [2026-11-17.md](2026-11-17.md).
+
 ## 2026-11-13
 
 - **Zsh vi mode now drives the terminal cursor shape.** `.zshrc` gained a `zle-keymap-select` widget that prints DECSCUSR escapes for the current `$KEYMAP` (beam `\e[6 q` in insert, block `\e[2 q` in normal, visual and operator-pending, underline `\e[4 q` in replace), a `zle-line-init` widget that resets to a beam each prompt, and a `preexec` hook that hands a block to external commands. This mirrors Neovim's default `guicursor`. No terminal or tmux change was needed: Ghostty's terminfo already defines `Ss`/`Se`, tmux already reported `cstyle` in `client_termfeatures`, and `shell-integration-features = no-cursor` was already set. The widget must sit before `starship init zsh` at `.zshrc:474`, because Starship wraps a pre-existing `zle-keymap-select` but overrides one defined after it. See [2026-11-13.md](2026-11-13.md).
