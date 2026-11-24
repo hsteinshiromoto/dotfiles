@@ -2,6 +2,10 @@
 
 A running summary of changes to this repository, newest first.
 
+## 2026-11-24
+
+- **superfile's copy, cut and paste moved onto the vim keys.** `.config/superfile/hotkeys.toml` binds `copy_items` to `y`, `cut_items` to `d` and `paste_items` to `p`, keeping `ctrl+c`, `ctrl+x`, `ctrl+v` and `ctrl+w` as second bindings, so `d` then `p` moves a file. `focus_on_process_bar` had to give up `p` and takes `b`, because superfile does not check for conflicts and a double-bound key silently runs only one action. `delete_items` is untouched, so `d` never deletes. Host-local: `programs.superfile.hotkeys` in `~/.config/nix` is still empty, and setting it would overwrite the file. See [2026-11-24.md](2026-11-24.md).
+
 ## 2026-11-17
 
 - **The Neovim dashboard quote moved to the bottom and is centred on the whole dashboard.** The `fortune -s` section in `.config/nvim/lua/plugins/snacks.lua` is no longer a `terminal` section: `ttl = 0` meant the live terminal was always shown, with its cursor block and the `[Process exited 0]` line. It now reads `fortune -s | fold -s -w 60` once per session and claims blank rows that a `render` callback fills in, which is the only way to centre on the full dashboard width. Snacks aligns a section inside its own pane column, and its one re-centring rule, for lines wider than a pane, clamps below about 185 columns. Measured exact at 200, 150, 124 and 100 columns. See [2026-11-17.md](2026-11-17.md).
