@@ -135,6 +135,7 @@ Additional instructions for coding:
 - Specialists, always prefer these over a hand-built version: Sonner for toasts (`https://sonner.emilkowal.ski`), Vaul for drawers and sheets (`https://vaul.emilkowal.ski`), cmdk for command menus (`https://cmdk.paco.me`), NumberFlow for animated numbers (`https://number-flow.barvian.me`).
 - Design components, for the one element that must stand out: Beautiful UI (`https://beautifului.dev`), RareUI (`https://rareui.in`), Magic UI (`https://magicui.design`), Aceternity UI (`https://ui.aceternity.com`), 21st.dev (`https://21st.dev`).
 - The one-standout rule: one screen gets one of these. More than one and the page looks like a demo.
+- For TUI components, use pre existing components in accordance to the language. For example, Rust -> Ratatui, Go -> Charm
 
 ### Markdown
 
@@ -145,6 +146,7 @@ Additional instructions for coding:
 ### Git
 
 - When creating a new file `.gitignore` base it on the file `https://raw.githubusercontent.com/hsteinshiromoto/ignore/refs/heads/main/.gitignore`
+- When working in a git repository, use the AskUser for a a new branch to be created. In particular, give suggestions: 1. JIRA-based branch. For example, `feature/AA-XYZ` or `bugfix/LEAD-MNP`. 2. Work description slug. For example, `feature/work_description_slug`. 3. Something else, where the user will enter the branch.
 
 #### Branching Model
 
@@ -163,6 +165,7 @@ Additional instructions for coding:
 ### CLIs
 
 - Use `glab` (Gitlab cli) to work with repositories having origin hosted in gitlab.
+- Use Atlassian cli if the corresponding MCP does not work.
 
 ### LSPs
 
