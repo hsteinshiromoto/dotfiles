@@ -2,6 +2,10 @@
 
 A running summary of changes to this repository, newest first.
 
+## 2026-11-25
+
+- **tmux popups got their colours pinned, because tmux 3.8 started supplying its own.** A `display-popup` on mbp2025 came up a pale grey that matched nothing else, while the same popup elsewhere took the pane background, on identical config. `tmux show -g popup-style` on mbp2025 reported `bg=themedarkgrey,fg=themewhite`, a string that appears in no config file: recent tmux ships a built-in theme and writes its `popup-style` default in those named colours, where tmux 3.2 left the option empty and let the popup inherit the pane. `.tmux.conf` now pins `popup-style`, `popup-border-style` and `popup-border-lines`, so no tmux version or future default theme can move them again. See [2026-11-25.md](2026-11-25.md).
+
 ## 2026-11-24
 
 - **superfile's copy, cut and paste moved onto the vim keys.** `.config/superfile/hotkeys.toml` binds `copy_items` to `y`, `cut_items` to `d` and `paste_items` to `p`, keeping `ctrl+c`, `ctrl+x`, `ctrl+v` and `ctrl+w` as second bindings, so `d` then `p` moves a file. `focus_on_process_bar` had to give up `p` and takes `b`, because superfile does not check for conflicts and a double-bound key silently runs only one action. `delete_items` is untouched, so `d` never deletes. Host-local: `programs.superfile.hotkeys` in `~/.config/nix` is still empty, and setting it would overwrite the file. See [2026-11-24.md](2026-11-24.md).
