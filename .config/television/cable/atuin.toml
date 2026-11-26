@@ -1,0 +1,26 @@
+[metadata]
+name = "atuin"
+description = "Open a sesh session in the directory of a past command"
+requirements = ["atuin", "sesh", "tr"]
+
+[source]
+# --print0 ends every record with a NUL, so tr can turn newlines inside a
+# multiline command into spaces and the NUL into the row separator. Without it
+# one recorded heredoc becomes a dozen unusable rows.
+# The braces belong to atuin: television templates display, preview and actions,
+# never the source command.
+# shortcut: directories that no longer exist are still listed; sesh fails on them. Filter when that bites.
+command = '''atuin search --filter-mode global --format '{directory}\t{command}' --print0 --limit 2000 '' | tr '\n\0' ' \n' '''
+display = "{split:\t:1}  {split:\t:0}"
+output = "{split:\t:0}"
+
+[preview]
+command = "sesh preview '{split:\t:0}'"
+
+[keybindings]
+enter = "actions:connect"
+
+[actions.connect]
+description = "Connect to a session in the directory of the selected command"
+command = "sesh connect '{split:\t:0}'"
+mode = "execute"

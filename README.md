@@ -338,6 +338,14 @@ Two settings in the config are version-sensitive: `threads.capture` is named `ca
 
 The Claude Code side of the link — the MCP server and the three `atuin hook claude-code` entries in `~/.claude/settings.json` — is declared in `~/.config/nix/modules/features/home/claude.nix`, not here. Do not run `atuin hook install claude-code`: it writes the same entries into a file Home Manager overwrites on every rebuild.
 
+### Atuin to sesh
+
+`.config/television/cable/atuin.toml` turns shell history into tmux sessions. Press `prefix + a`, search any command you have run, and Enter runs `sesh connect` on the directory that command ran in. The search matches the command and the path, so either one finds the session.
+
+The source command is `atuin search --filter-mode global --format '{directory}\t{command}' --print0` piped through `tr`, which turns the newlines inside a multiline command into spaces and the NUL into the row separator. Television does not template a source command, so the braces reach atuin unexpanded; `display`, `preview` and the actions use `{split:\t:N}`.
+
+This channel does not feed directories into sesh as a list source, and `[frecency]` in `sesh.toml` is not used either. Without atuin sync, atuin only records directories this machine has already visited, and zoxide holds all of them plus 61 more.
+
 ## Tmux
 
 Tmux plugins are installed and maintained using TPM. Refer to `.tmux.conf`.
