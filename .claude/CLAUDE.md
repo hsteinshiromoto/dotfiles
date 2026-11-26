@@ -79,7 +79,7 @@ If you are unsure of the exact syntax for a third-party DSL, config schema or pl
 
 - `~/$XDG_CONFIG/nix`: Contains the user's installed software and declarative host configuration. Read the file `~/$XDG_CONFIG/nix/README.md` to understand this repository. Permissions: You are allowed to read and write in this folder.
 - `~/$XDG_CONFIG/sops`: Contains the user's secrets required to install or modify any software. Read the file `~/$XDG_CONFIG/sops/README.md` to understand this repository. Permissions: You are allowed to read this folder.
-- `~/$XDG_CONFIG/dotfiles`: Contains the user's dotfiles, ie configuration files. Read the file `~/$XDG_CONFIG/dotfiles/README.md` to understand this repository. Permissions: You are allowed to read and write in this folder.
+- `~/dotfiles`: Contains the user's dotfiles, ie configuration files. Read the file `~/dotfiles/README.md` to understand this repository. Permissions: You are allowed to read and write in this folder.
 
 
 ## Code Development Standards
@@ -135,7 +135,7 @@ Additional instructions for coding:
 - Specialists, always prefer these over a hand-built version: Sonner for toasts (`https://sonner.emilkowal.ski`), Vaul for drawers and sheets (`https://vaul.emilkowal.ski`), cmdk for command menus (`https://cmdk.paco.me`), NumberFlow for animated numbers (`https://number-flow.barvian.me`).
 - Design components, for the one element that must stand out: Beautiful UI (`https://beautifului.dev`), RareUI (`https://rareui.in`), Magic UI (`https://magicui.design`), Aceternity UI (`https://ui.aceternity.com`), 21st.dev (`https://21st.dev`).
 - The one-standout rule: one screen gets one of these. More than one and the page looks like a demo.
-- For TUI components, use pre existing components in accordance to the language. For example, Rust -> Ratatui, Go -> Charm
+- For TUI components, use pre existing components in accordance to the language. For example, Rust -> Ratatui, Go -> Charm.
 
 ### Markdown
 
@@ -156,11 +156,13 @@ Additional instructions for coding:
 
 - The user's IDE is neovim with configuration located in `~/.config/nvim`. You are allowed to read/cat/grep/find any file located in there.
 - The user's OS/system packages are located in `~/.config/nix`. You are allowed to read/cat/grep/find any file located in there.
+- The user's settings and configurations are located in `$XDG_CONFIG`. You are allowed to read/cat/grep/find any file located in there.
 
 ### MCPs
 
 - For Atlassian related work, use the Atlassian MCP.
 - For repositories having origin hosted in github, use Github MCP.
+- For nix packages, you are always allowed to use nix MCP.
 
 ### CLIs
 
@@ -170,6 +172,10 @@ Additional instructions for coding:
 ### LSPs
 
 - Use the LSPs where available, instead of `grep`, `find` etc.
+
+### Search
+
+- You are always allowed to search and read `github` or `gitlab`.
 
 ## Finishing up
 
