@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Atuin daemon and thread capture (`.config/atuin/config.toml`): `[daemon] enabled`/`autostart` and `[threads] capture`, so Claude Code sessions are recorded as synced threads and `atuin resume` can search, resume and fork them across machines
+- README section for atuin, naming the Nix files that own the binary and the Claude Code link
+
 ## [3.1.0] - 2026-09-06
 
 ### Added

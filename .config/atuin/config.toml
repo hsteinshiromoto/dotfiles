@@ -237,7 +237,13 @@ strategy = "auto"
 
 [daemon]
 ## Enables using the daemon to sync. Requires the daemon to be running in the background. Start it with `atuin daemon`
-# enabled = false
+## Required by [threads]: thread capture happens in the daemon, not the shell hook.
+enabled = true
+
+## Atuin starts and supervises the daemon itself. On macOS this registers a
+## launchd agent at ~/Library/LaunchAgents/sh.atuin.daemon.plist.
+## Not in the 18.15.2 sample above; added for 18.24.x.
+autostart = true
 
 ## How often the daemon should sync in seconds
 # sync_frequency = 300
@@ -287,3 +293,10 @@ enabled = true
 ## `?` on an empty prompt opens Atuin AI (english-to-bash via Atuin Hub).
 ## zsh/bash/fish only, and needs `atuin login` on the host.
 enabled = true
+
+[threads]
+## Capture Claude Code (and other coding agents') sessions as threads in the
+## encrypted record store, synced like history. `atuin resume` then searches,
+## resumes and forks them across machines. Needs [daemon] enabled above.
+## The key is `capture` on 18.24.x; upstream renames it to `enabled` in 18.25.1.
+capture = true

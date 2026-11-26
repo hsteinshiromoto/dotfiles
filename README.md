@@ -328,6 +328,16 @@ this repository stows to both.
 
 Run `make espanso-test` to check the script. The tests are doctests inside the docstrings.
 
+## Atuin
+
+`.config/atuin/config.toml` is stowed to `~/.config/atuin`. The atuin binary itself comes from Nix, not from here: `programs.atuin` in `~/.config/nix/modules/features/home/shell.nix` pins it to `pkgs.unstable.atuin`.
+
+The daemon is on (`[daemon] enabled` and `autostart`), and `[threads] capture` records the sessions of coding agents such as Claude Code into the encrypted record store and syncs them. `atuin resume` searches, resumes and forks those sessions across machines. Capture happens in the daemon, so `[threads]` does nothing without `[daemon] enabled`.
+
+Two settings in the config are version-sensitive: `threads.capture` is named `capture` on atuin 18.24.x and `enabled` from 18.25.1, and `[tmux]`/`[ai]` need a build newer than the 18.15.2 the commented sample in the file was written against.
+
+The Claude Code side of the link — the MCP server and the three `atuin hook claude-code` entries in `~/.claude/settings.json` — is declared in `~/.config/nix/modules/features/home/claude.nix`, not here. Do not run `atuin hook install claude-code`: it writes the same entries into a file Home Manager overwrites on every rebuild.
+
 ## Tmux
 
 Tmux plugins are installed and maintained using TPM. Refer to `.tmux.conf`.
