@@ -346,6 +346,14 @@ The source command is `atuin search --filter-mode global --format '{directory}\t
 
 This channel does not feed directories into sesh as a list source, and `[frecency]` in `sesh.toml` is not used either. Without atuin sync, atuin only records directories this machine has already visited, and zoxide holds all of them plus 61 more.
 
+### Atuin threads
+
+`.config/television/cable/atuin-threads.toml` lists the coding-agent sessions `[threads]` captured. Press `prefix + C`, search any session by its title, its harness or the directory it ran in, and Enter runs `atuin threads resume`, which is `cd <cwd> && claude --resume <session id>`. The preview pane shows the session's messages through `atuin threads show`.
+
+The source is `atuin threads list --style ndjson` piped through `jq -r '… | @tsv'`. `@tsv` escapes a tab or a newline inside a title, so one session stays one row. The selected row carries the 32-character atuin id, which `show` and `resume` both accept.
+
+The binding opens a window, not a popup like `prefix + a`. A popup closes when its command exits, which would take the resumed session down with it.
+
 ## Tmux
 
 Tmux plugins are installed and maintained using TPM. Refer to `.tmux.conf`.

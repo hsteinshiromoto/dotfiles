@@ -1,0 +1,25 @@
+[metadata]
+name = "atuin-threads"
+description = "Resume a captured coding-agent thread"
+requirements = ["atuin", "jq"]
+
+[source]
+# @tsv escapes a tab or a newline inside a title, so one thread stays one row.
+# A thread recorded before titles existed falls back to its first message.
+# The braces belong to jq: television templates display, preview and actions,
+# never the source command.
+# shortcut: every harness is listed, not only claude-code. Filter on .harness when another agent gets noisy.
+command = '''atuin threads list --style ndjson | jq -r '[.atuin_id, .harness, (.title // .preview // "(untitled)"), .cwd] | @tsv' '''
+display = "{split:\t:2}  {split:\t:1}  {split:\t:3}"
+output = "{split:\t:0}"
+
+[preview]
+command = "atuin threads show '{split:\t:0}'"
+
+[keybindings]
+enter = "actions:resume"
+
+[actions.resume]
+description = "Resume the selected thread in its agent"
+command = "atuin threads resume '{split:\t:0}'"
+mode = "execute"
