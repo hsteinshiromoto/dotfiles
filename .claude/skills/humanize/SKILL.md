@@ -24,11 +24,17 @@ python3 ~/.claude/skills/humanize/unslop.py FILE...
 python3 ~/.claude/skills/humanize/unslop.py --write FILE...
 ```
 
-Reads stdin when given no paths. Skips fenced and inline code. Exits 1 in report mode when it finds anything, so it works in a pre-commit hook.
+Reads stdin when given no paths. Leaves fenced code, inline code, double-backtick spans and YAML front matter untouched.
 
 It rewrites: curly quotes and apostrophes, all the exotic spaces, the ellipsis character, the minus sign, non-breaking and soft hyphens. It deletes: zero-width space, word joiner, BOM, soft hyphen, and the vendor residue listed below. It removes `utm_source=chatgpt.com`, `utm_source=openai`, `utm_source=copilot.com` and `referrer=grok.com` from URLs.
 
-It reports and never rewrites em dashes and en dashes, because both are legitimate punctuation. Decide each one yourself — see Pass 4.
+**Exit codes**, so a hook can gate on it: `0` nothing to do, `1` findings in report mode or files changed under `--write`, `2` a file could not be read. Characters it only reports never raise the exit code — gating on an em dash would demand that correct punctuation be deleted to make the gate pass.
+
+**`--write` runs only on prose suffixes** — `.md`, `.markdown`, `.txt`, `.rst`, `.org`, `.adoc`, and no suffix at all. Anything else is refused with a message. A curly quote inside a quoted CSV field costs the row a column, and inside a Python string literal it ends the string. Report mode has no such limit, because report mode changes nothing.
+
+It reports and never rewrites em dashes and en dashes, because both are legitimate punctuation. Decide each one yourself — see Pass 4. It does not touch primes (`′ ″`) at all: a prime is a measurement glyph, never a quotation mark.
+
+**Read the warnings.** An unclosed code fence makes everything after it count as code, so the script names the opening line rather than reporting the rest of the file clean. An unfenced four-space-indented code block is still treated as prose and will be rewritten — fence it first.
 
 It leaves U+200C and U+200D alone on any line that is not plainly Latin script, because those are required letters in Devanagari, Arabic and Persian and they join emoji sequences. `--aggressive` overrides that and will corrupt such text.
 
@@ -44,6 +50,8 @@ Residue the script strips, which you should also recognise by eye:
 | Any | `[Your Name]`, `INSERT_SOURCE_URL_30`, `|access-date=2026-xx-xx` |
 
 After `--write`, read the file. Removing a token leaves a gap: a dangling `url=`, a sentence that now ends mid-clause. Repair those in Pass 2.
+
+One known false positive: `[cite: 1]` is stripped from prose that discusses the marker as well as from prose that suffered it. Wrap the token in backticks when writing about it. Everything else in the table is anchored to a vendor-specific shape.
 
 ## Pass 2 — rhetoric and content
 
@@ -72,12 +80,12 @@ Delete or rewrite:
 
 **Watch the current set as well, not only the famous one.** The 2024 list decayed: *delve* in arXiv abstracts went 0.04% (2022) to 0.35% (2024) to 0.02% (2026), below where it started. The 2026 replacements are *underexplored, grounded, aligns, synthesizes, reproducible, structurally.* The list moves every year; treat any fixed word list here as dated.
 
-**Restore the things models avoid.** Human writing has more of these, so putting them back helps as much as deleting tells:
+**Keep the things models avoid. Never add them.** Human writing carries more of these, so leaving the author's alone helps as much as deleting tells does. The verb is *keep*, not *restore*: a superlative and a hedge are both claims, and writing one in breaks the scope rule above.
 
-- Simple is/has phrases: *there is a*, *it has a*.
-- Superlatives and definite statements: *one of the best*, *the only*, *the first*.
-- Qualifiers and intensifiers: *very*, *perhaps*, *tends to*.
-- Wordy constructions where they are natural: *as a result of*, *in order to*, *the fact that*.
+- Simple is/has phrases: *there is a*, *it has a*. Safe to add — they change no claim.
+- Superlatives and definite statements — *one of the best*, *the only*, *the first* — only where the author already wrote them. Adding *the first* asserts a fact the source may not support.
+- Qualifiers and hedges — *very*, *perhaps*, *tends to* — only where the author already wrote them. Adding *perhaps* weakens a claim the author made flatly. Stop deleting them; do not insert them.
+- Wordy constructions where they are natural: *as a result of*, *in order to*, *the fact that*. Safe to keep, not worth adding.
 
 **Vary the sentences.** Model prose has low variance in sentence length and shallow, uniform clause structure. Put a four-word sentence next to a thirty-word one. Let one paragraph run long and the next be two lines.
 
@@ -97,9 +105,15 @@ Delete or rewrite:
 - **Openers and closers.** *Certainly,* *Of course,* *Great question,* *I hope this helps,* *Let me know if you need anything else,* *In summary,* *In conclusion,* *Overall.* Delete all of them.
 - **Letter register in a chat or comment.** *Dear …, I hope this message finds you well … Thank you for your time and consideration.* Rewrite as a message.
 
+## Do not chain ste_writing
+
+`ste_writing` is the alternative to this skill, not the step after it. Chaining them reverses the two edits that do most of the work here: its 20-word sentence cap destroys the sentence-length variance of Pass 3, and its ban on semicolons destroys the punctuation variety of Pass 4. STE-flavoured mode is not an escape — it relaxes the dictionary and keeps the sentence discipline. Its own scope line says it is not for anything that needs a voice, and restoring a voice is this skill's whole job.
+
+Choose one at the start. `ste_writing` for a procedure, a runbook, a safety instruction or an error message, where a voice is a defect. `/humanize` for prose a person is meant to read as written by a person.
+
 ## Finish
 
-Call the `ste_writing` skill on the result. It does the general Simplified Technical English pass and this skill does not duplicate it: `/humanize` removes the tells, `ste_writing` makes what is left plain.
+Re-run `unslop.py --write` on the file. Passes 2 to 4 generate new prose, and generated prose arrives with fresh curly quotes and ellipses — the first run cannot normalise text that did not exist yet.
 
 ## Report
 

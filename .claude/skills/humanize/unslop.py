@@ -40,8 +40,6 @@ TRANSLATE = {
     "”": '"',  # right double quote
     "„": '"',
     "‟": '"',
-    "′": "'",  # prime
-    "″": '"',  # double prime
     "…": "...",  # horizontal ellipsis
     "−": "-",  # minus sign
     "‐": "-",  # hyphen
@@ -64,22 +62,37 @@ JOINERS = {"‌": "zero-width non-joiner", "‍": "zero-width joiner"}
 # Reported, never rewritten: both are legitimate punctuation.
 REPORT_ONLY = {"—": "em dash", "–": "en dash"}
 
+# --write is gated on these. An allowlist, not a blocklist: an unknown suffix
+# fails closed. A curly quote inside a quoted CSV field becomes a bare quote and
+# the row loses a column; inside a Python string literal it ends the string.
+# The empty suffix is included so COMMIT_EDITMSG and extensionless drafts work.
+PROSE_SUFFIXES = {"", ".md", ".markdown", ".txt", ".rst", ".org", ".adoc"}
+
 # Vendor residue. Each of these is a paste artefact with no meaning in the text.
 RESIDUE = [
     (r":?contentReference\[oaicite:\d+\](?:\{[^}]*\})?", "ChatGPT contentReference"),
     (r"\boai_citation[^\s]*", "ChatGPT oai_citation"),
     (r"\bturn\d+(?:search|view|news)\d+\b", "ChatGPT turn-search token"),
     (r'\battributableIndex="[^"]*"', "ChatGPT attributableIndex"),
+    # shortcut: strips "[cite: 1]" from prose that discusses the marker too.
+    # Kept because the tell value is high and the collision only happens when
+    # writing about AI tells. Wrap the token in backticks to protect it.
     (r"\[cite:\s*\d+(?:\s*,\s*\d+)*\]", "Gemini cite marker"),
     (r"\[span_\d+\]\((?:start|end)_span\)", "Gemini span marker"),
     (r"\bgrok_render_citation_card_json\b|\bgrok_card\b", "Grok card token"),
     (r"【\d+†[^】]*】", "DeepSeek lenticular citation"),
-    (r"\bppl-ai-file-upload[^\s]*|\battached_file\b", "Perplexity file token"),
-    (r"\bINSERT_[A-Z0-9_]+\b", "placeholder token"),
+    # Bare "attached_file" is a real API field name in technical prose, so only
+    # the vendor-prefixed form is matched.
+    (r"\bppl-ai-file-upload[^\s]*", "Perplexity file token"),
+    # Anchored to the placeholder shapes chatbots actually emit. Bare
+    # INSERT_[A-Z0-9_]+ also swallowed INSERT_OR_REPLACE, which is SQL.
+    (r"\bINSERT_[A-Z0-9_]*(?:URL|NAME|TEXT|TITLE|DATE)[A-Z0-9_]*\b", "placeholder token"),
     (r"\|access-date=\d{4}-[xX]{2}-[xX]{2}", "placeholder access-date"),
     (r"\|date=\d{4}-\d{2}-XX", "placeholder date"),
+    # (?!\() keeps the pattern off a Markdown link label: without it,
+    # "[Name of the repository](url)" lost its label and left a bare "(url)".
     (
-        r"\[(?:Your |Insert |Article Title|Award or |Describe |Name of )[^\]\n]{0,60}\]",
+        r"\[(?:Your |Insert |Article Title|Award or |Describe |Name of )[^\]\n]{0,60}\](?!\()",
         "unfilled placeholder bracket",
     ),
 ]
@@ -91,18 +104,45 @@ UTM = re.compile(
 )
 
 CODE_FENCE = re.compile(r"^\s*(?:```|~~~)")
-INLINE_CODE = re.compile(r"`[^`\n]*`")
+# Double-backtick spans are matched first: Markdown uses them exactly when the
+# span itself contains a backtick, which is code at its most fragile.
+INLINE_CODE = re.compile(r"``.*?``|`[^`\n]*`")
+FRONT_MATTER = re.compile(r"^---\s*$")
 
 LATIN_ONLY = re.compile(r"^[\x00-˿ -⁯₠-⃏\s]*$")
 
 
-def split_code(text: str) -> list[tuple[str, bool]]:
-    """Split into (chunk, is_code) spans so code is never rewritten."""
+# shortcut: an unfenced 4-space-indented code block is treated as prose and is
+# rewritten. Skipping indented lines instead would silently skip every
+# continuation paragraph under a bullet, which is the worse failure. Upgrade to
+# a list-aware block parser only if unfenced code blocks start showing up.
+
+
+def split_code(text: str) -> tuple[list[tuple[str, bool]], int]:
+    """Split into (chunk, is_code) spans so code is never rewritten.
+
+    Returns the spans, and the 1-based line number of an unclosed fence (0 if
+    every fence closed).
+    """
     out: list[tuple[str, bool]] = []
     in_fence = False
-    for line in text.splitlines(keepends=True):
+    fence_line = 0
+    in_front_matter = False
+    for i, line in enumerate(text.splitlines(keepends=True), 1):
+        # YAML front matter is data, not prose. A curly quote inside a quoted
+        # value becomes a bare quote and the document stops parsing.
+        if i == 1 and FRONT_MATTER.match(line.rstrip("\r\n")):
+            in_front_matter = True
+            out.append((line, True))
+            continue
+        if in_front_matter:
+            if FRONT_MATTER.match(line.rstrip("\r\n")):
+                in_front_matter = False
+            out.append((line, True))
+            continue
         if CODE_FENCE.match(line):
             in_fence = not in_fence
+            fence_line = i if in_fence else 0
             out.append((line, True))
             continue
         if in_fence:
@@ -115,7 +155,7 @@ def split_code(text: str) -> list[tuple[str, bool]]:
             out.append((m.group(0), True))
             pos = m.end()
         out.append((line[pos:], False))
-    return out
+    return out, fence_line if in_fence else 0
 
 
 def clean_chunk(chunk: str, aggressive: bool) -> tuple[str, dict[str, int]]:
@@ -171,10 +211,11 @@ def clean_chunk(chunk: str, aggressive: bool) -> tuple[str, dict[str, int]]:
     return chunk, found
 
 
-def process(text: str, aggressive: bool) -> tuple[str, dict[str, int]]:
+def process(text: str, aggressive: bool) -> tuple[str, dict[str, int], int]:
     out: list[str] = []
     total: dict[str, int] = {}
-    for chunk, is_code in split_code(text):
+    spans, unclosed = split_code(text)
+    for chunk, is_code in spans:
         if is_code:
             out.append(chunk)
             continue
@@ -182,7 +223,30 @@ def process(text: str, aggressive: bool) -> tuple[str, dict[str, int]]:
         out.append(cleaned)
         for k, v in found.items():
             total[k] = total.get(k, 0) + v
-    return "".join(out), total
+    return "".join(out), total, unclosed
+
+
+def actionable(found: dict[str, int]) -> int:
+    """Count only findings the tool would actually change.
+
+    Em and en dashes are reported and never rewritten, so gating a hook on them
+    would demand that correct punctuation be deleted to make the gate pass.
+    """
+    return sum(v for k, v in found.items() if "REPORT ONLY" not in k and "KEPT" not in k)
+
+
+def report(label: str, found: dict[str, int], unclosed: int, stream) -> None:
+    if found:
+        print(label, file=stream)
+        for k, v in sorted(found.items()):
+            print(f"  {v:5d}  {k}", file=stream)
+    if unclosed:
+        # A silent false-clean is the one failure a reporting tool must not have.
+        print(
+            f"{label}: WARNING unclosed code fence opened at line {unclosed}; "
+            "everything after it was treated as code and left unchecked",
+            file=stream,
+        )
 
 
 def main() -> int:
@@ -200,24 +264,35 @@ def main() -> int:
         if args.write:
             print("--write needs file paths", file=sys.stderr)
             return 2
-        cleaned, found = process(sys.stdin.read(), args.aggressive)
+        cleaned, found, unclosed = process(sys.stdin.read(), args.aggressive)
         sys.stdout.write(cleaned)
-        for k, v in sorted(found.items()):
-            print(f"{v:5d}  {k}", file=sys.stderr)
-        return 0
+        report("<stdin>", found, unclosed, sys.stderr)
+        return 1 if actionable(found) else 0
 
     hits = 0
+    changed = 0
+    failed = 0
     for p in map(Path, args.paths):
-        text = p.read_text(encoding="utf-8")
-        cleaned, found = process(text, args.aggressive)
-        if found:
-            hits += 1
-            print(f"{p}")
-            for k, v in sorted(found.items()):
-                print(f"  {v:5d}  {k}")
+        if args.write and p.suffix.lower() not in PROSE_SUFFIXES:
+            print(f"{p}: refusing --write, not a prose file", file=sys.stderr)
+            continue
+        try:
+            text = p.read_text(encoding="utf-8")
+        except (UnicodeDecodeError, OSError) as e:
+            # One unreadable file must not abandon the rest of the batch after
+            # earlier files have already been written.
+            print(f"{p}: skipped, {type(e).__name__}", file=sys.stderr)
+            failed += 1
+            continue
+        cleaned, found, unclosed = process(text, args.aggressive)
+        report(str(p), found, unclosed, sys.stdout)
+        hits += actionable(found)
         if args.write and cleaned != text:
             p.write_text(cleaned, encoding="utf-8")
-    return 1 if (hits and not args.write) else 0
+            changed += 1
+    if failed:
+        return 2
+    return 1 if (changed if args.write else hits) else 0
 
 
 if __name__ == "__main__":
