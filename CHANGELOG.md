@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Atuin daemon and thread capture (`.config/atuin/config.toml`): `[daemon] enabled`/`autostart` and `[threads] capture`, so Claude Code sessions are recorded as synced threads and `atuin resume` can search, resume and fork them across machines
 - README section for atuin, naming the Nix files that own the binary and the Claude Code link
+- Claude skill `humanize` (`.claude/skills/humanize/`): removes the signs of AI writing in four passes. `unslop.py` does the deterministic half — Unicode normalisation, per-vendor paste residue (`contentReference[oaicite:1]`, `[cite: 1]`, `grok_card`, DeepSeek lenticular brackets), unfilled placeholder brackets, and `utm_source=chatgpt.com`/`referrer=grok.com` on cited URLs. `SKILL.md` holds the rhetoric, syntax, diction and formatting passes, then hands the result to `ste_writing`. Reports by default and edits only under `--write`; never rewrites em or en dashes, and keeps U+200C/U+200D on non-Latin lines where they are letters. `disable-model-invocation`, so it runs only on `/humanize`
+- Journal entry for 2026-11-28
 
 ## [3.1.0] - 2026-09-06
 
